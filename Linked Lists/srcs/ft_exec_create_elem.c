@@ -6,22 +6,23 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 21:19:38 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/01 21:24:47 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/01 21:56:12 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_list.h"
 
-void	ft_exec_create_elem(t_list *(*create_elem)(void *))
+void	ft_exec_create_elem(void)
 {
 	t_list	*list;
 	int		*num;
 
+	printf("\n==> ft_create_elem function\n");
 	num = (int *)malloc(sizeof(int));
 	if (!num)
 		return ;
 	*num = 42;
-	list = create_elem(num);
+	list = ft_create_elem(num);
 	if (!list)
 		return ;
 	printf("\n => %d\n\n", *(int *)list->data);
