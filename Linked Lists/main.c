@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 14:32:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/01 21:21:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/01 21:57:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	main(void)
 {
-	ft_exec_create_elem(&ft_create_elem);
+	ft_exec_create_elem();
 	return (0);
 }
