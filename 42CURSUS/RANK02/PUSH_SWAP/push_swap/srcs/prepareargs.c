@@ -6,11 +6,20 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 08:50:30 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/26 18:18:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/27 07:29:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+char	*ft_jointfree(char *str, char *buff)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(str, buff);
+	free(str);
+	return (tmp);
+}
 
 int	getlen(char **strs)
 {

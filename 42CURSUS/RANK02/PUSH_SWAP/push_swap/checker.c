@@ -6,11 +6,19 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 18:11:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/26 18:56:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/27 08:33:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/checker.h"
+
+void	free_ult(char *line, t_node *stack_a, t_node *stack_b)
+{
+	if (line)
+		free(line);
+	lstfree(stack_b);
+	errorlst(stack_a);
+}
 
 void	checker(t_node **stack_a, t_node **stack_b)
 {
@@ -20,15 +28,14 @@ void	checker(t_node **stack_a, t_node **stack_b)
 	line = get_next_line(0);
 	while (line)
 	{
+		if (ft_strchr(line, '\n') == NULL)
+			free_ult(line, *stack_a, *stack_b);
 		command = ft_strtrim(line, "\n");
 		free(line);
 		if (!command)
-			errorlst(*stack_a);
+			free_ult(line, *stack_a, *stack_b);
 		if (execute(stack_a, stack_b, command, true) == false)
-		{
-			free(command);
-			errorlst(*stack_a);
-		}
+			free_ult(command, *stack_a, *stack_b);
 		free(command);
 		line = get_next_line(0);
 	}
@@ -67,11 +74,6 @@ int	main(int ac, char **av)
 	while (i < strct.size)
 		stack_a = addnode(stack_a, strct.tab[i++]);
 	free(strct.tab);
-	if (sorted(stack_a, false))
-	{
-		lstfree(stack_a);
-		exit(EXIT_SUCCESS);
-	}
 	checker(&stack_a, &stack_b);
 	lstfree(stack_a);
 	lstfree(stack_b);

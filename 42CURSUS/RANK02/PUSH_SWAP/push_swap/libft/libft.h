@@ -6,17 +6,12 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 10:51:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/26 18:18:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/27 07:30:12 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1024
-
-# endif
 
 # include <stdio.h>
 # include <stdlib.h>
@@ -87,12 +82,6 @@ int		ft_putstr(const char *s);
 int		ft_putstrhex(unsigned int n, const char format);
 
 ////////////////////////////////////////////////////////////////////////////////
-//                               READ FUNCTIONS                               //
-////////////////////////////////////////////////////////////////////////////////
-
-char	*get_next_line(int fd);
-
-////////////////////////////////////////////////////////////////////////////////
 //                              STRINGS FUNCTIONS                             //
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -108,7 +97,6 @@ char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_jointfree(char *str, char *buff);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                           LINKED LISTS FUNCTIONS                           //

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:02:23 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/26 18:31:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/27 07:30:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ bool	multi_execute(t_node **stack_a, t_node **stack_b, char *line, int n);
 //                              PREPARE ARGUMENTS                             //
 ////////////////////////////////////////////////////////////////////////////////
 
+char	*ft_jointfree(char *str, char *buff);
 int		getlen(char **strs);
 void	freechars(char **strs);
 char	**jointsplit(int len, char **av);

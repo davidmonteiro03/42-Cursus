@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 14:02:23 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/26 18:56:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/27 07:57:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,12 @@ void	sort3(t_node *stack_a);
 void	simple_sort(t_node *stack_a, t_node *stack_b, int size);
 void	sort(t_node *stack_a, t_node *stack_b);
 void	push_swap(t_node *stack_a, t_node *stack_b, int size);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                  READ LINE                                 //
+////////////////////////////////////////////////////////////////////////////////
+
+char	*get_next_line(int fd);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                    SORT                                    //
