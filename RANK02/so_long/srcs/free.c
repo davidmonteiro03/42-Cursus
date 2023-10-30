@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:16:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/30 19:29:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:31:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	multiple_free(const char *format, ...)
 	{
 		if (*(format + i) == '%')
 		{
-			if (ft_strchr("sta", *(format + i + 1)))
+			if (ft_strchr("pa", *(format + i + 1)))
 				type_free(args, *(format + i + 1));
 			i++;
 		}
