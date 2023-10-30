@@ -26,9 +26,9 @@ void	free_pnts(void **pnts)
 
 void	type_free(va_list args, const char format)
 {
-	if (format == 'p')
+	if (format == 'a')
 		free(va_arg(args, void *));
-	else if (format == 'P')
+	else if (format == 'b')
 		free_pnts(va_arg(args, void **));
 }
 
@@ -45,7 +45,7 @@ void	multiple_free(const char *format, ...)
 	{
 		if (*(format + i) == '%')
 		{
-			if (ft_strchr("pP", *(format + i + 1)))
+			if (ft_strchr("ab", *(format + i + 1)))
 				type_free(args, *(format + i + 1));
 			i++;
 		}
