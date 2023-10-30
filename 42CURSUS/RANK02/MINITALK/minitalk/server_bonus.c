@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 16:38:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/30 09:44:41 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/10/30 08:50:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/10/30 09:32:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/minitalk.h"
+#include "includes/minitalk_bonus.h"
 
-void	build_char(int sign)
+void	build_char(int sign, siginfo_t *info, void *content)
 {
-	static int	i;
-	static char	character;
+	static int		i;
+	static wchar_t	character;
 
+	(void)content;
 	if (sign != SIGUSR1 && sign != SIGUSR2)
 	{
 		i = 0;
@@ -26,31 +27,36 @@ void	build_char(int sign)
 	if (sign == SIGUSR1)
 		character |= (1 << i);
 	i++;
-	if (i == 8)
+	if (i == 32)
 	{
 		if (character == 0)
+		{
 			ft_putendl_fd("", 1);
-		ft_printf(BGRN "%c" BWHT, character);
+			kill(info->si_pid, SIGUSR1);
+		}
+		write(1, &character, 1);
 		i = 0;
 		character = 0;
 	}
 }
 
-void	sign_handler(int bit)
+void	sign_handler(int bit, siginfo_t *info, void *content)
 {
-	build_char(bit);
-	signal(bit, sign_handler);
+	build_char(bit, info, content);
 }
 
 int	main(void)
 {
-	int	pid;
+	struct sigaction	action;
+	int					pid;
 
 	pid = getpid();
-	build_char(0);
+	build_char(0, NULL, NULL);
 	ft_printf(BCYN "SERVER PID" BWHT ": " BGRN "%d" BWHT "\n", pid);
-	signal(SIGUSR1, sign_handler);
-	signal(SIGUSR2, sign_handler);
+	action.sa_sigaction = &sign_handler;
+	action.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &action, NULL);
+	sigaction(SIGUSR2, &action, NULL);
 	while (1)
 		pause();
 	return (EXIT_SUCCESS);

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 16:40:30 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/30 08:35:42 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/10/30 09:01:34 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/10/30 09:08:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/minitalk.h"
+
+void	sign_handler(int sig)
+{
+	(void)sig;
+	ft_printf(BGRN "Message sent successfully" BWHT "!\n");
+	exit(EXIT_SUCCESS);
+}
 
 void	send_to_server(int pid, char c)
 {
 	int	i;
 
 	i = -1;
-	while (++i < 8)
+	while (++i < 32)
 	{
 		if (c & (1 << i))
 			kill(pid, SIGUSR1);
@@ -25,7 +32,6 @@ void	send_to_server(int pid, char c)
 			kill(pid, SIGUSR2);
 		usleep(150);
 	}
-	usleep(50);
 }
 
 int	main(int ac, char **av)
@@ -33,6 +39,7 @@ int	main(int ac, char **av)
 	static int	pid;
 	int			i;
 
+	signal(SIGUSR1, sign_handler);
 	if (ac != 3)
 		return (EXIT_FAILURE);
 	pid = ft_atoi(av[1]);
@@ -40,5 +47,7 @@ int	main(int ac, char **av)
 	while (av[2][i])
 		send_to_server(pid, av[2][i++]);
 	send_to_server(pid, av[2][i]);
+	while (1)
+		pause();
 	return (EXIT_SUCCESS);
 }
