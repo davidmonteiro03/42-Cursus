@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:16:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/30 19:33:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:37:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	free_strings(void **pnts)
+void	free_pnts(void **pnts)
 {
 	int	i;
 
@@ -28,8 +28,8 @@ void	type_free(va_list args, const char format)
 {
 	if (format == 'p')
 		free(va_arg(args, void *));
-	else if (format == 'a')
-		free_strings(va_arg(args, void **));
+	else if (format == 'P')
+		free_pnts(va_arg(args, void **));
 }
 
 void	multiple_free(const char *format, ...)
@@ -45,7 +45,7 @@ void	multiple_free(const char *format, ...)
 	{
 		if (*(format + i) == '%')
 		{
-			if (ft_strchr("pa", *(format + i + 1)))
+			if (ft_strchr("pP", *(format + i + 1)))
 				type_free(args, *(format + i + 1));
 			i++;
 		}
