@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/30 18:21:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/30 19:24:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,13 @@ void	simperror(char *error);
 
 void	parse_extension(char *arg, char *extension);
 void	parse_arg(char *arg);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                    FREE                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+void	free_strings(char **strs);
+void	type_free(va_list args, const char format);
+void	multiple_free(const char *format, ...);
 
 #endif
