@@ -25,10 +25,10 @@ char	*parse_extension(char *arg, char *ext)
 	tmp_ext = ft_substr(tmp, ft_strlen(tmp) - len_ext, len_ext);
 	if (ft_strncmp(tmp_ext, ext, 4) != 0)
 	{
-		multiple_free("%p%p", tmp_ext, tmp);
+		multiple_free("%a%a", tmp_ext, tmp);
 		return (NULL);
 	}
-	multiple_free("%p", tmp_ext);
+	multiple_free("%a", tmp_ext);
 	return (tmp);
 }
 
@@ -37,5 +37,5 @@ void	parse_arg(char *arg)
 	char	*tmp;
 
 	tmp = parse_extension(arg, ".ber");
-	multiple_free("%p", tmp);
+	multiple_free("%a", tmp);
 }
