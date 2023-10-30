@@ -57,6 +57,7 @@
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
-    "get_next_line.h": "c"
+    "get_next_line.h": "c",
+    "so_long.h": "c"
   }
 }

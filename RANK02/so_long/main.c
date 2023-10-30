@@ -6,36 +6,52 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:49:32 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/30 13:26:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/30 15:03:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/so_long.h"
 
-t_map	prepare_map(void)
+t_chars	init_chars(void)
 {
-	t_map	map;
+	t_chars	chars;
 
-	map.empty = '0';
-	map.wall = '1';
-	map.collect = 'C';
-	map.exit = 'E';
-	map.start_pos = 'P';
-	return (map);
+	chars.empty = '0';
+	chars.wall = '1';
+	chars.collect = 'C';
+	chars.exit = 'E';
+	chars.start_pos = 'P';
+	return (chars);
+}
+
+void	read_file(char *file)
+{
+	int		fd;
+	char	*line;
+	char	*buf;
+
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		ft_error(file);
+	buf = "";
+	line = get_next_line(fd);
+	while (line)
+	{
+		ft_putstr(line);
+		buf = ft_strjoin(line, buf);
+		free(line);
+		line = get_next_line(fd);
+	}
+	free(buf);
 }
 
 int	main(int ac, char **av)
 {
-	t_map	map;
+	t_chars	chars;
 
 	if (ac != 2)
-	{
-		ft_putendl_fd(av[ac - 1], 1);
 		exit(EXIT_FAILURE);
-	}
-	map = prepare_map();
-	ft_printf("empty: %c\nwall: %c\ncollect: %c\nexit: %c\nstart_pos: %c\n", \
-		map.empty, map.wall, map.collect, map.exit, map.start_pos \
-	);
+	chars = init_chars();
+	read_file(av[1]);
 	return (EXIT_SUCCESS);
 }

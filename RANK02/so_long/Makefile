@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/10/30 12:56:14 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/10/30 13:54:59 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ INCLUDES_DIR	= includes/
 LIBFT_DIR		= libft
 LIBFT_NAME		= libft.a
 
-SRCS			= main.c
+SRCS			= main.c \
+					srcs/errors.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
@@ -35,6 +36,11 @@ EXEC			= so_long
 all: $(EXEC)
 
 $(OBJS_DIR)%.o: ./%.c
+	@mkdir -p $(dir $@)
+	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
+
+$(OBJS_DIR)%.o: srcs/%.c
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
