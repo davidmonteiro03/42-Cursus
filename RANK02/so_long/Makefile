@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/10/30 12:52:43 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/10/30 12:56:14 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,9 @@ RM				= rm -rf
 
 OBJS_DIR		= obj/
 INCLUDES_DIR	= includes/
+
+LIBFT_DIR		= libft
+LIBFT_NAME		= libft.a
 
 SRCS			= main.c
 
