@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/10/30 16:36:03 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/10/30 18:18:54 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,9 @@ LIBFT_DIR		= libft
 LIBFT_NAME		= libft.a
 
 SRCS			= main.c \
-					srcs/errors.c
+					srcs/errors.c \
+					srcs/parse_arg.c \
+					srcs/utils.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 

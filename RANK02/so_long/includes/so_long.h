@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/30 16:58:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/30 18:21:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,33 +15,24 @@
 
 # define BRED "\e[1;31m"
 # define BGRN "\e[1;32m"
-# define BRST "\e[0m"
+# define BCYN "\e[1;36m"
+# define BRST "\e[1;0m"
 
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 # include <strings.h>
 
-typedef struct s_chars
-{
-	char	empty;
-	char	wall;
-	char	collect;
-	char	exit;
-	char	start_pos;
-}t_chars;
-
-typedef struct s_map
-{
-	char	**lines;
-	int		cont_lines;
-	int		*length_lines;
-}t_map;
-
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ERRORS                                   //
 ////////////////////////////////////////////////////////////////////////////////
 
-void	ft_simple_error(char *error);
-void	ft_perror(char *file);
+void	simperror(char *error);
+
+////////////////////////////////////////////////////////////////////////////////
+//                               PARSE ARGUMENTS                              //
+////////////////////////////////////////////////////////////////////////////////
+
+void	parse_extension(char *arg, char *extension);
+void	parse_arg(char *arg);
 
 #endif
