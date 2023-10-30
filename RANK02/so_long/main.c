@@ -6,8 +6,14 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:49:32 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/30 12:50:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/30 12:57:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "includes/so_long.h"
 
+int	main(void)
+{
+	ft_putendl_fd("So_long ready to use!", 1);
+	return (0);
+}
