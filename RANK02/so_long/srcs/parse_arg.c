@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:31:47 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 13:06:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:22:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ char	*parse_extension(char *arg, char *ext)
 	return (tmp);
 }
 
-void	parse_arg(char *arg, t_mapinfo *mapinfo)
+void	parse_arg(char *arg, t_mapinfo *mapinfo, char ***lines)
 {
 	char	*file;
-	char	**lines;
 
 	if (!arg)
 		simperror(ARGUMENT_ERROR);
 	file = parse_extension(arg, ".ber");
-	lines = read_file(file);
+	*lines = read_file(file);
 	multiple_free("%a", file);
-	parse_contents(lines, mapinfo);
-	multiple_free("%b", lines);
+	parse_contents(*lines, mapinfo);
 }

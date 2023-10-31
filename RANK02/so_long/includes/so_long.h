@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 13:08:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 16:09:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define BRED "\e[1;31m"
 # define BGRN "\e[1;32m"
+# define BYLW "\e[1;33m"
 # define BCYN "\e[1;36m"
 # define BRST "\e[1;0m"
 
@@ -42,20 +43,22 @@ typedef struct s_chars
 
 typedef struct s_mapinfo
 {
-	int	n_collect;
-	int	n_exit;
-	int	n_start_pos;
-	int	n_lines;
-	int	n_columns;
-	int	start_x;
-	int	start_y;
+	int		n_collect;
+	int		n_exit;
+	int		n_start_pos;
+	int		n_lines;
+	int		n_columns;
+	int		start_x;
+	int		start_y;
 }t_mapinfo;
 
 typedef struct s_game
 {
-	int	collect;
-	int	player_x;
-	int	player_y;
+	char	**map;
+	int		c;
+	int		total_c;
+	int		x;
+	int		y;
 }t_game;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -64,6 +67,7 @@ typedef struct s_game
 
 void		display_strs(char **strs);
 void		display_chars_struct(t_chars chars);
+void		display_game(t_game *game);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ERRORS                                   //
@@ -99,7 +103,7 @@ void		mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars);
 ////////////////////////////////////////////////////////////////////////////////
 
 char		*parse_extension(char *arg, char *ext);
-void		parse_arg(char *arg, t_mapinfo *mapinfo);
+void		parse_arg(char *arg, t_mapinfo *mapinfo, char ***lines);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                 PARSE UTILS                                //
