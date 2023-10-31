@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 11:05:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 11:19:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ void	fileerror(char *file);
 void	simplefree(void *pnt);
 void	free_pnts(void **pnts);
 void	free_ppnts(void ***ppnts);
-void	free_pnts(void **pnts);
 void	type_free(va_list args, const char format);
 void	multiple_free(const char *format, ...);
 
