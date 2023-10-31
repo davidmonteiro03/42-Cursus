@@ -1,37 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_init.c                                      :+:      :+:    :+:   */
+/*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:36:51 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 12:43:22 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/10/31 11:24:09 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/10/31 12:08:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_chars	chars_init(void)
+char	**read_file(char *file)
 {
-	t_chars	chars;
+	int		fd;
+	char	*line;
+	char	*buff;
+	char	**lines;
 
-	chars.empty = '0';
-	chars.wall = '1';
-	chars.collect = 'C';
-	chars.exit = 'E';
-	chars.start_pos = 'P';
-	return (chars);
-}
-
-t_mapinfo	mapinfo_init(void)
-{
-	t_mapinfo	mapinfo;
-
-	mapinfo.n_collect = 0;
-	mapinfo.n_exit = 0;
-	mapinfo.n_start_pos = 0;
-	mapinfo.n_lines = 0;
-	mapinfo.n_columns = 0;
-	return (mapinfo);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		fileerror(file);
+	buff = ft_strdup("");
+	line = get_next_line(fd);
+	while (line)
+	{
+		buff = ft_jointfree2(buff, line);
+		line = get_next_line(fd);
+	}
+	if (fd > 0)
+		close(fd);
+	if (!buff)
+		return (NULL);
+	lines = ft_split(buff, '\n');
+	free(buff);
+	if (!lines)
+		return (NULL);
+	return (lines);
 }

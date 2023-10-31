@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_init.c                                      :+:      :+:    :+:   */
+/*   find.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:36:51 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 12:43:22 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/10/31 11:42:09 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/10/31 11:53:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_chars	chars_init(void)
+int	find_invalid_char(char *str, t_chars chars)
 {
-	t_chars	chars;
+	int	i;
 
-	chars.empty = '0';
-	chars.wall = '1';
-	chars.collect = 'C';
-	chars.exit = 'E';
-	chars.start_pos = 'P';
-	return (chars);
-}
-
-t_mapinfo	mapinfo_init(void)
-{
-	t_mapinfo	mapinfo;
-
-	mapinfo.n_collect = 0;
-	mapinfo.n_exit = 0;
-	mapinfo.n_start_pos = 0;
-	mapinfo.n_lines = 0;
-	mapinfo.n_columns = 0;
-	return (mapinfo);
+	i = -1;
+	while (str[++i])
+		if (str[i] != chars.empty && str[i] != chars.wall && \
+			str[i] != chars.collect && str[i] != chars.exit && \
+			str[i] != chars.start_pos)
+			return (1);
+	return (0);
 }

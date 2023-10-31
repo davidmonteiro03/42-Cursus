@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   struct_init.c                                      :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/31 10:36:51 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 12:43:22 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/10/31 12:15:39 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/10/31 12:41:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-t_chars	chars_init(void)
+void	mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars)
 {
-	t_chars	chars;
-
-	chars.empty = '0';
-	chars.wall = '1';
-	chars.collect = 'C';
-	chars.exit = 'E';
-	chars.start_pos = 'P';
-	return (chars);
-}
-
-t_mapinfo	mapinfo_init(void)
-{
-	t_mapinfo	mapinfo;
-
-	mapinfo.n_collect = 0;
-	mapinfo.n_exit = 0;
-	mapinfo.n_start_pos = 0;
-	mapinfo.n_lines = 0;
-	mapinfo.n_columns = 0;
-	return (mapinfo);
+	if (c == chars.collect)
+		mapinfo->n_collect++;
+	else if (c == chars.exit)
+		mapinfo->n_exit++;
+	else if (c == chars.start_pos)
+		mapinfo->n_start_pos++;
 }

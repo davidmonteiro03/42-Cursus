@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/10/31 10:42:01 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/10/31 12:21:07 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,13 @@ LIBFT_NAME		= libft.a
 
 SRCS			= main.c \
 					srcs/display.c \
+					srcs/find.c \
 					srcs/free.c \
 					srcs/errors.c \
+					srcs/map.c \
 					srcs/parse_arg.c \
 					srcs/parse_utils.c \
+					srcs/read_file.c \
 					srcs/struct_init.c \
 					srcs/utils.c
 

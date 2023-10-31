@@ -6,57 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:21:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 11:06:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:56:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-char	*parse_extension(char *arg, char *ext)
-{
-	char	*tmp;
-	char	*tmp_ext;
-	size_t	len_ext;
-
-	tmp = specialtrim(arg, ext);
-	len_ext = ft_strlen(ext);
-	tmp_ext = ft_substr(tmp, ft_strlen(tmp) - len_ext, len_ext);
-	if (ft_strncmp(tmp_ext, ext, len_ext) != 0)
-	{
-		multiple_free("%a%a", tmp_ext, tmp);
-		simperror(EXTENSION_ERROR);
-	}
-	multiple_free("%a", tmp_ext);
-	return (tmp);
-}
-
-char	**read_file(char *file)
-{
-	int		fd;
-	char	*line;
-	char	*buff;
-	char	**lines;
-
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
-		fileerror(file);
-	buff = ft_strdup("");
-	line = get_next_line(fd);
-	while (line)
-	{
-		buff = ft_jointfree2(buff, line);
-		line = get_next_line(fd);
-	}
-	if (fd > 0)
-		close(fd);
-	if (!buff)
-		return (NULL);
-	lines = ft_split(buff, '\n');
-	free(buff);
-	if (!lines)
-		return (NULL);
-	return (lines);
-}
 
 void	parse_length_lines(char **lines)
 {
@@ -73,8 +27,77 @@ void	parse_length_lines(char **lines)
 	}
 }
 
+void	parse_chars(char **lines)
+{
+	t_chars	chars;
+	int		i;
+
+	chars = chars_init();
+	i = -1;
+	while (lines[++i])
+	{
+		if (find_invalid_char(lines[i], chars) == 1)
+		{
+			multiple_free("%b", lines);
+			simperror("Found a invalid char in file!");
+		}
+	}
+}
+
+void	parse_info(char **lines, t_mapinfo *mapinfo)
+{
+	t_chars	chars;
+	int		i;
+	int		j;
+
+	chars = chars_init();
+	i = -1;
+	while (lines[++i])
+	{
+		j = -1;
+		while (lines[i][++j])
+			mapinfo_update(lines[i][j], mapinfo, chars);
+	}
+	if (mapinfo->n_collect < 1 || mapinfo->n_exit != 1 || \
+		mapinfo->n_start_pos != 1)
+	{
+		multiple_free("%b", lines);
+		simperror("Invalid map");
+	}
+	mapinfo->n_lines = i;
+	mapinfo->n_columns = j;
+}
+
+void	parse_walls(char **lines, t_mapinfo *mapinfo)
+{
+	t_chars	chars;
+	int		i;
+	int		j;
+
+	chars = chars_init();
+	i = -1;
+	while (++i < mapinfo->n_lines)
+	{
+		j = -1;
+		while (++j < mapinfo->n_columns)
+		{
+			if ((i == 0 || j == 0 || i == mapinfo->n_lines - 1 || \
+				j == mapinfo->n_columns - 1) && lines[i][j] != chars.wall)
+			{
+				multiple_free("%b", lines);
+				simperror("The border of the map must be a wall");
+			}
+		}
+	}
+}
+
 void	parse_contents(char **lines)
 {
+	t_mapinfo	mapinfo;
+
 	parse_length_lines(lines);
-	display_strs(lines);
+	parse_chars(lines);
+	mapinfo = mapinfo_init();
+	parse_info(lines, &mapinfo);
+	parse_walls(lines, &mapinfo);
 }

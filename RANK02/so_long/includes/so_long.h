@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 11:19:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 12:57:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,56 +40,86 @@ typedef struct s_chars
 	char	start_pos;
 }t_chars;
 
+typedef struct s_mapinfo
+{
+	int	n_collect;
+	int	n_exit;
+	int	n_start_pos;
+	int	n_lines;
+	int	n_columns;
+}t_mapinfo;
+
 ////////////////////////////////////////////////////////////////////////////////
 //                                   DISPLAY                                  //
 ////////////////////////////////////////////////////////////////////////////////
 
-void	display_strs(char **strs);
-void	display_chars_struct(t_chars chars);
+void		display_strs(char **strs);
+void		display_chars_struct(t_chars chars);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ERRORS                                   //
 ////////////////////////////////////////////////////////////////////////////////
 
-void	simperror(char *error);
-void	fileerror(char *file);
+void		simperror(char *error);
+void		fileerror(char *file);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                    FIND                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+int			find_invalid_char(char *str, t_chars chars);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                    FREE                                    //
 ////////////////////////////////////////////////////////////////////////////////
 
-void	simplefree(void *pnt);
-void	free_pnts(void **pnts);
-void	free_ppnts(void ***ppnts);
-void	type_free(va_list args, const char format);
-void	multiple_free(const char *format, ...);
+void		simplefree(void *pnt);
+void		free_pnts(void **pnts);
+void		free_ppnts(void ***ppnts);
+void		type_free(va_list args, const char format);
+void		multiple_free(const char *format, ...);
 
 ////////////////////////////////////////////////////////////////////////////////
-//                                 PARSE UTILS                                //
+//                                     MAP                                    //
 ////////////////////////////////////////////////////////////////////////////////
 
-char	*parse_extension(char *arg, char *ext);
-char	**read_file(char *file);
-void	parse_length_lines(char **lines);
-void	parse_contents(char **lines);
+void		mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               PARSE ARGUMENTS                              //
 ////////////////////////////////////////////////////////////////////////////////
 
-void	parse_arg(char *arg);
+char		*parse_extension(char *arg, char *ext);
+void		parse_arg(char *arg);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                 PARSE UTILS                                //
+////////////////////////////////////////////////////////////////////////////////
+
+void		parse_length_lines(char **lines);
+void		parse_chars(char **lines);
+void		parse_info(char **lines, t_mapinfo *mapinfo);
+void		parse_walls(char **lines, t_mapinfo *mapinfo);
+void		parse_contents(char **lines);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                  READ FILE                                 //
+////////////////////////////////////////////////////////////////////////////////
+
+char		**read_file(char *file);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                          STRUCTURES INITIALIZATION                         //
 ////////////////////////////////////////////////////////////////////////////////
 
-t_chars	chars_init(void);
+t_chars		chars_init(void);
+t_mapinfo	mapinfo_init(void);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                    UTILS                                   //
 ////////////////////////////////////////////////////////////////////////////////
 
-char	*specialtrim(char *str, char *ext);
-char	*ft_jointfree2(char *s1, char *s2);
+char		*specialtrim(char *str, char *ext);
+char		*ft_jointfree2(char *s1, char *s2);
 
 #endif
