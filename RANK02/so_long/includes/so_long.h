@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 16:09:47 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 17:49:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 # define BGRN "\e[1;32m"
 # define BYLW "\e[1;33m"
 # define BCYN "\e[1;36m"
-# define BRST "\e[1;0m"
+# define BWHT "\e[1;37m"
+# define RESET "\e[0m"
 
 # define MEMORY_ERROR "Problem with memory allocation"
 # define ARGUMENT_ERROR "Problem with given argument"
@@ -26,6 +27,7 @@
 
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
+# include "../minilibx-linux/mlx.h"
 # include <strings.h>
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -52,22 +54,12 @@ typedef struct s_mapinfo
 	int		start_y;
 }t_mapinfo;
 
-typedef struct s_game
-{
-	char	**map;
-	int		c;
-	int		total_c;
-	int		x;
-	int		y;
-}t_game;
-
 ////////////////////////////////////////////////////////////////////////////////
 //                                   DISPLAY                                  //
 ////////////////////////////////////////////////////////////////////////////////
 
 void		display_strs(char **strs);
 void		display_chars_struct(t_chars chars);
-void		display_game(t_game *game);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ERRORS                                   //

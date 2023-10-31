@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/10/31 12:21:07 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/10/31 17:56:13 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ INCLUDES_DIR	= includes/
 
 LIBFT_DIR		= libft
 LIBFT_NAME		= libft.a
+MINILIBX_DIR	= minilibx-linux
+MINILIBX_NAME	= libmlx.a
 
 SRCS			= main.c \
 					srcs/display.c \
@@ -56,12 +58,14 @@ $(OBJS_DIR)%.o: srcs/%.c
 
 $(EXEC): $(OBJS)
 	@make -C $(LIBFT_DIR) >/dev/null
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft
+	@make -C $(MINILIBX_DIR)
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft -L./minilibx-linux -g -lmlx -lXext -lX11 -lm -lz -lbsd
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:
 	@$(RM) $(OBJS_DIR)
 	@make -C $(LIBFT_DIR) clean >/dev/null
+	@make -C $(MINILIBX_DIR) clean >/dev/null
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
