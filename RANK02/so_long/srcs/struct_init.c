@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:36:51 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 12:43:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:07:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,7 @@ t_mapinfo	mapinfo_init(void)
 	mapinfo.n_start_pos = 0;
 	mapinfo.n_lines = 0;
 	mapinfo.n_columns = 0;
+	mapinfo.start_x = -1;
+	mapinfo.start_y = -1;
 	return (mapinfo);
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 10:21:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 12:56:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:14:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,19 @@ void	parse_walls(char **lines, t_mapinfo *mapinfo)
 				multiple_free("%b", lines);
 				simperror("The border of the map must be a wall");
 			}
+			if (lines[i][j] == 'P')
+			{
+				mapinfo->start_x = i;
+				mapinfo->start_y = j;
+			}
 		}
 	}
 }
 
-void	parse_contents(char **lines)
+void	parse_contents(char **lines, t_mapinfo *mapinfo)
 {
-	t_mapinfo	mapinfo;
-
 	parse_length_lines(lines);
 	parse_chars(lines);
-	mapinfo = mapinfo_init();
-	parse_info(lines, &mapinfo);
-	parse_walls(lines, &mapinfo);
+	parse_info(lines, mapinfo);
+	parse_walls(lines, mapinfo);
 }

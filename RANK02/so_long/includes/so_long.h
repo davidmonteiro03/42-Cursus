@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 12:57:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/31 13:08:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,16 @@ typedef struct s_mapinfo
 	int	n_start_pos;
 	int	n_lines;
 	int	n_columns;
+	int	start_x;
+	int	start_y;
 }t_mapinfo;
+
+typedef struct s_game
+{
+	int	collect;
+	int	player_x;
+	int	player_y;
+}t_game;
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   DISPLAY                                  //
@@ -90,7 +99,7 @@ void		mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars);
 ////////////////////////////////////////////////////////////////////////////////
 
 char		*parse_extension(char *arg, char *ext);
-void		parse_arg(char *arg);
+void		parse_arg(char *arg, t_mapinfo *mapinfo);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                 PARSE UTILS                                //
@@ -100,7 +109,7 @@ void		parse_length_lines(char **lines);
 void		parse_chars(char **lines);
 void		parse_info(char **lines, t_mapinfo *mapinfo);
 void		parse_walls(char **lines, t_mapinfo *mapinfo);
-void		parse_contents(char **lines);
+void		parse_contents(char **lines, t_mapinfo *mapinfo);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                  READ FILE                                 //
