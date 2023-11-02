@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/31 17:49:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/02 13:36:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "../libft/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 # include <strings.h>
+# include <X11/keysym.h>
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                 STRUCTURES                                 //
@@ -53,6 +54,17 @@ typedef struct s_mapinfo
 	int		start_x;
 	int		start_y;
 }t_mapinfo;
+
+typedef struct s_game
+{
+	void	*mlx;
+	void	*win;
+	char	**m;
+	int		x;
+	int		y;
+	int		c;
+	int		tc;
+}t_game;
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   DISPLAY                                  //
@@ -85,10 +97,34 @@ void		type_free(va_list args, const char format);
 void		multiple_free(const char *format, ...);
 
 ////////////////////////////////////////////////////////////////////////////////
+//                                    GAME                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+void		prep_game(t_game *g, char **m, t_mapinfo i);
+void		start_game(t_game *g);
+void		end_game(t_game *g);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                   HANDLE                                   //
+////////////////////////////////////////////////////////////////////////////////
+
+int			handle_no_event(void *data);
+int			handle_input(int key, t_game *g, t_chars c);
+
+////////////////////////////////////////////////////////////////////////////////
 //                                     MAP                                    //
 ////////////////////////////////////////////////////////////////////////////////
 
 void		mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                    MOVES                                   //
+////////////////////////////////////////////////////////////////////////////////
+
+void		up(t_game *g);
+void		down(t_game *g);
+void		left(t_game *g);
+void		right(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               PARSE ARGUMENTS                              //

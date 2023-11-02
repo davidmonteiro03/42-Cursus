@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/10/31 17:56:13 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/02 13:32:23 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,10 +30,13 @@ MINILIBX_NAME	= libmlx.a
 
 SRCS			= main.c \
 					srcs/display.c \
+					srcs/errors.c \
 					srcs/find.c \
 					srcs/free.c \
-					srcs/errors.c \
+					srcs/game_utils.c \
+					srcs/handle.c \
 					srcs/map.c \
+					srcs/moves.c \
 					srcs/parse_arg.c \
 					srcs/parse_utils.c \
 					srcs/read_file.c \
