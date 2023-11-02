@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/02 13:32:23 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/02 17:54:09 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,17 +30,15 @@ MINILIBX_NAME	= libmlx.a
 
 SRCS			= main.c \
 					srcs/display.c \
+					srcs/draw.c \
 					srcs/errors.c \
 					srcs/find.c \
 					srcs/free.c \
-					srcs/game_utils.c \
-					srcs/handle.c \
+					srcs/init.c \
 					srcs/map.c \
-					srcs/moves.c \
 					srcs/parse_arg.c \
 					srcs/parse_utils.c \
 					srcs/read_file.c \
-					srcs/struct_init.c \
 					srcs/utils.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))

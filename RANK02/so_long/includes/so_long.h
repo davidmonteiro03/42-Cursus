@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/02 13:36:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:48:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "../libft/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 # include <strings.h>
+# include <X11/X.h>
 # include <X11/keysym.h>
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -60,10 +61,20 @@ typedef struct s_game
 	void	*mlx;
 	void	*win;
 	char	**m;
+	void	*wall;
+	void	*bck;
+	void	*play;
+	void	*ext;
+	void	*col;
+	int		i_w;
+	int		i_h;
+	int		m_w;
+	int		m_h;
+	int		c;
 	int		x;
 	int		y;
-	int		c;
-	int		tc;
+	int		mv;
+	int		end;
 }t_game;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -72,6 +83,14 @@ typedef struct s_game
 
 void		display_strs(char **strs);
 void		display_chars_struct(t_chars chars);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                    DRAW                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+void		prepare_game(t_game *g, t_mapinfo info);
+
+void	init_game(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ERRORS                                   //
@@ -97,34 +116,17 @@ void		type_free(va_list args, const char format);
 void		multiple_free(const char *format, ...);
 
 ////////////////////////////////////////////////////////////////////////////////
-//                                    GAME                                    //
+//                               INITIALIZATION                               //
 ////////////////////////////////////////////////////////////////////////////////
 
-void		prep_game(t_game *g, char **m, t_mapinfo i);
-void		start_game(t_game *g);
-void		end_game(t_game *g);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                   HANDLE                                   //
-////////////////////////////////////////////////////////////////////////////////
-
-int			handle_no_event(void *data);
-int			handle_input(int key, t_game *g, t_chars c);
+t_chars		chars_init(void);
+t_mapinfo	mapinfo_init(void);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                     MAP                                    //
 ////////////////////////////////////////////////////////////////////////////////
 
 void		mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                    MOVES                                   //
-////////////////////////////////////////////////////////////////////////////////
-
-void		up(t_game *g);
-void		down(t_game *g);
-void		left(t_game *g);
-void		right(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               PARSE ARGUMENTS                              //
@@ -148,13 +150,6 @@ void		parse_contents(char **lines, t_mapinfo *mapinfo);
 ////////////////////////////////////////////////////////////////////////////////
 
 char		**read_file(char *file);
-
-////////////////////////////////////////////////////////////////////////////////
-//                          STRUCTURES INITIALIZATION                         //
-////////////////////////////////////////////////////////////////////////////////
-
-t_chars		chars_init(void);
-t_mapinfo	mapinfo_init(void);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                    UTILS                                   //
