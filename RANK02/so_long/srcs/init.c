@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:49:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/03 12:53:31 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:33:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ void	prepare_game(t_game *g, t_mapinfo info)
 	g->ext_p = "assets/imgs/ext.xpm";
 	g->play_p = "assets/imgs/play.xpm";
 	g->wall_p = "assets/imgs/wal.xpm";
+	g->play_r_p = "assets/imgs/play_r.xpm";
+	g->play_l_p = "assets/imgs/play_l.xpm";
+	g->play_u_p = "assets/imgs/play_u.xpm";
+	g->play_d_p = "assets/imgs/play_d.xpm";
 	g->mv = 0;
+	g->exit = 0;
 }
 
 t_chars	chars_init(void)

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/03 12:50:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 15:31:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ typedef struct s_game
 	char	*wall_p;
 	char	*bck_p;
 	char	*play_p;
+	char	*play_r_p;
+	char	*play_l_p;
+	char	*play_u_p;
+	char	*play_d_p;
 	char	*ext_p;
 	char	*col_p;
 	char	**m;
@@ -79,7 +83,7 @@ typedef struct s_game
 	int		x;
 	int		y;
 	int		mv;
-	int		end;
+	int		exit;
 }t_game;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -164,7 +168,7 @@ void		parse_contents(char **lines, t_mapinfo *mapinfo);
 ////////////////////////////////////////////////////////////////////////////////
 
 void		play(t_game *g);
-void		exit_game(t_game *g);
+int			exit_game(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                  READ FILE                                 //
