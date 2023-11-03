@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/02 19:48:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:16:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,8 @@ void		display_chars_struct(t_chars chars);
 //                                    DRAW                                    //
 ////////////////////////////////////////////////////////////////////////////////
 
-void		prepare_game(t_game *g, t_mapinfo info);
-
-void	init_game(t_game *g);
+void		init_game(t_game *g);
+void		draw(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ERRORS                                   //
@@ -119,6 +118,7 @@ void		multiple_free(const char *format, ...);
 //                               INITIALIZATION                               //
 ////////////////////////////////////////////////////////////////////////////////
 
+void		prepare_game(t_game *g, t_mapinfo info);
 t_chars		chars_init(void);
 t_mapinfo	mapinfo_init(void);
 
@@ -127,6 +127,15 @@ t_mapinfo	mapinfo_init(void);
 ////////////////////////////////////////////////////////////////////////////////
 
 void		mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                    MOVES                                   //
+////////////////////////////////////////////////////////////////////////////////
+
+void		right(t_game *g);
+void		left(t_game *g);
+void		up(t_game *g);
+void		down(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                               PARSE ARGUMENTS                              //
@@ -144,6 +153,13 @@ void		parse_chars(char **lines);
 void		parse_info(char **lines, t_mapinfo *mapinfo);
 void		parse_walls(char **lines, t_mapinfo *mapinfo);
 void		parse_contents(char **lines, t_mapinfo *mapinfo);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                    PLAY                                    //
+////////////////////////////////////////////////////////////////////////////////
+
+void		play(t_game *g);
+void		exit_game(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                  READ FILE                                 //

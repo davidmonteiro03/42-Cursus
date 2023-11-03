@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:49:32 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/02 19:25:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 10:41:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int	main(int ac, char **av)
 	parse_arg(av[1], &info, &g.m);
 	prepare_game(&g, info);
 	init_game(&g);
+	play(&g);
+	mlx_loop(g.mlx);
 	multiple_free("%b", g.m);
 	return (EXIT_SUCCESS);
 }

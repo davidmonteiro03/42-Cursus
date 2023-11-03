@@ -6,11 +6,21 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:49:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/02 17:36:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:09:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	prepare_game(t_game *g, t_mapinfo info)
+{
+	g->m_w = info.n_columns * 32;
+	g->m_h = info.n_lines * 32;
+	g->c = info.n_collect;
+	g->x = info.start_x;
+	g->y = info.start_y;
+	g->mv = 0;
+}
 
 t_chars	chars_init(void)
 {

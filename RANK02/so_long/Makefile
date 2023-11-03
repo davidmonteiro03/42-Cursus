@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/02 17:54:09 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/03 11:07:26 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ LIBFT_DIR		= libft
 LIBFT_NAME		= libft.a
 MINILIBX_DIR	= minilibx-linux
 MINILIBX_NAME	= libmlx.a
+MINILIBX_FLAGS	= -g -lmlx -lXext -lX11 -lm -lz -lbsd
 
 SRCS			= main.c \
 					srcs/display.c \
@@ -36,8 +37,10 @@ SRCS			= main.c \
 					srcs/free.c \
 					srcs/init.c \
 					srcs/map.c \
+					srcs/moves.c \
 					srcs/parse_arg.c \
 					srcs/parse_utils.c \
+					srcs/play.c \
 					srcs/read_file.c \
 					srcs/utils.c
 
@@ -58,20 +61,20 @@ $(OBJS_DIR)%.o: srcs/%.c
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
 
 $(EXEC): $(OBJS)
-	@make -C $(LIBFT_DIR) >/dev/null
+	@make -C $(LIBFT_DIR) > /dev/null
 	@make -C $(MINILIBX_DIR)
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft -L./minilibx-linux -g -lmlx -lXext -lX11 -lm -lz -lbsd
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft -L./$(MINILIBX_DIR) $(MINILIBX_FLAGS)
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:
 	@$(RM) $(OBJS_DIR)
-	@make -C $(LIBFT_DIR) clean >/dev/null
-	@make -C $(MINILIBX_DIR) clean >/dev/null
+	@make -C $(LIBFT_DIR) clean > /dev/null
+	@make -C $(MINILIBX_DIR)
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
 	@$(RM) $(EXEC)
-	@make -C $(LIBFT_DIR) fclean >/dev/null
+	@make -C $(LIBFT_DIR) fclean > /dev/null
 	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
 
 re: fclean all
