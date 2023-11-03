@@ -6,14 +6,14 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/03 11:07:26 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/03 16:53:59 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RED				= \033[1;31m
-GREEN			= \033[1;32m
-YELLOW			= \033[1;33m
-CYAN			= \033[1;36m
+RED				= \033[1;91m
+GREEN			= \033[1;92m
+YELLOW			= \033[1;93m
+CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CC				= cc
@@ -31,17 +31,15 @@ MINILIBX_FLAGS	= -g -lmlx -lXext -lX11 -lm -lz -lbsd
 
 SRCS			= main.c \
 					srcs/display.c \
+					srcs/display_utils.c \
 					srcs/draw.c \
 					srcs/errors.c \
-					srcs/find.c \
 					srcs/free.c \
 					srcs/init.c \
-					srcs/map.c \
 					srcs/moves.c \
 					srcs/parse_arg.c \
 					srcs/parse_utils.c \
 					srcs/play.c \
-					srcs/read_file.c \
 					srcs/utils.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/03 15:31:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:51:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 # define BCYN "\e[1;96m"
 # define BWHT "\e[1;97m"
 # define RESET "\e[0m"
+
+# define LEVEL_1 BRED
+# define LEVEL_2 "\e[1;31m"
+# define LEVEL_3 BYLW
+# define LEVEL_4 "\e[1;32m"
+# define LEVEL_5 BGRN
 
 # define MEMORY_ERROR "Problem with memory allocation"
 # define ARGUMENT_ERROR "Problem with given argument"
@@ -80,6 +86,7 @@ typedef struct s_game
 	int		m_w;
 	int		m_h;
 	int		c;
+	int		sc;
 	int		x;
 	int		y;
 	int		mv;
@@ -92,13 +99,25 @@ typedef struct s_game
 
 void		display_strs(char **strs);
 void		display_chars_struct(t_chars chars);
+void		display_game_info(t_game *g);
+
+////////////////////////////////////////////////////////////////////////////////
+//                                DISPLAY UTILS                               //
+////////////////////////////////////////////////////////////////////////////////
+
+void		display_1(int c, int t, int p);
+void		display_2(int c, int t, int p);
+void		display_3(int c, int t, int p);
+void		display_4(int c, int t, int p);
+void		display_5(int c, int t, int p);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                    DRAW                                    //
 ////////////////////////////////////////////////////////////////////////////////
 
-void		init_game(t_game *g);
+void		img_init(t_game *g);
 void		draw(t_game *g);
+void		init_game(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                   ERRORS                                   //
@@ -106,12 +125,6 @@ void		draw(t_game *g);
 
 void		simperror(char *error);
 void		fileerror(char *file);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                    FIND                                    //
-////////////////////////////////////////////////////////////////////////////////
-
-int			find_invalid_char(char *str, t_chars chars);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                    FREE                                    //
@@ -130,11 +143,6 @@ void		multiple_free(const char *format, ...);
 void		prepare_game(t_game *g, t_mapinfo info);
 t_chars		chars_init(void);
 t_mapinfo	mapinfo_init(void);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                     MAP                                    //
-////////////////////////////////////////////////////////////////////////////////
-
 void		mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -167,14 +175,8 @@ void		parse_contents(char **lines, t_mapinfo *mapinfo);
 //                                    PLAY                                    //
 ////////////////////////////////////////////////////////////////////////////////
 
-void		play(t_game *g);
 int			exit_game(t_game *g);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                  READ FILE                                 //
-////////////////////////////////////////////////////////////////////////////////
-
-char		**read_file(char *file);
+void		play(t_game *g);
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                    UTILS                                   //
@@ -182,5 +184,7 @@ char		**read_file(char *file);
 
 char		*specialtrim(char *str, char *ext);
 char		*ft_jointfree2(char *s1, char *s2);
+char		**read_file(char *file);
+int			find_invalid_char(char *str, t_chars chars);
 
 #endif

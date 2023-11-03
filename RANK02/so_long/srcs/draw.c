@@ -6,11 +6,16 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 17:52:23 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/03 13:17:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:14:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+static void	put_image(t_game *g, void *img, int x, int y)
+{
+	mlx_put_image_to_window(g->mlx, g->win, img, x, y);
+}
 
 void	img_init(t_game *g)
 {
@@ -24,11 +29,6 @@ void	img_init(t_game *g)
 		g->play_p, &g->i_w, &g->i_h);
 	g->ext = mlx_xpm_file_to_image(g->mlx, \
 		g->ext_p, &g->i_w, &g->i_h);
-}
-
-void	put_image(t_game *g, void *img, int x, int y)
-{
-	mlx_put_image_to_window(g->mlx, g->win, img, x, y);
 }
 
 void	draw(t_game *g)

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:49:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/03 15:33:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 16:03:28 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	prepare_game(t_game *g, t_mapinfo info)
 	g->m_w = info.n_columns * 32;
 	g->m_h = info.n_lines * 32;
 	g->c = info.n_collect;
+	g->sc = info.n_collect;
 	g->x = info.start_x;
 	g->y = info.start_y;
 	g->bck_p = "assets/imgs/bck.xpm";
@@ -56,4 +57,14 @@ t_mapinfo	mapinfo_init(void)
 	mapinfo.start_x = -1;
 	mapinfo.start_y = -1;
 	return (mapinfo);
+}
+
+void	mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars)
+{
+	if (c == chars.collect)
+		mapinfo->n_collect++;
+	else if (c == chars.exit)
+		mapinfo->n_exit++;
+	else if (c == chars.start_pos)
+		mapinfo->n_start_pos++;
 }
