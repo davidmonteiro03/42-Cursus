@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 16:49:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/03 11:09:31 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:53:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void	prepare_game(t_game *g, t_mapinfo info)
 	g->c = info.n_collect;
 	g->x = info.start_x;
 	g->y = info.start_y;
+	g->bck_p = "assets/imgs/bck.xpm";
+	g->col_p = "assets/imgs/col.xpm";
+	g->ext_p = "assets/imgs/ext.xpm";
+	g->play_p = "assets/imgs/play.xpm";
+	g->wall_p = "assets/imgs/wal.xpm";
 	g->mv = 0;
 }
 

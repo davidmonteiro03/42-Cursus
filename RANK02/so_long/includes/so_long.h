@@ -6,18 +6,18 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/03 11:16:47 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:50:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define BRED "\e[1;31m"
-# define BGRN "\e[1;32m"
-# define BYLW "\e[1;33m"
-# define BCYN "\e[1;36m"
-# define BWHT "\e[1;37m"
+# define BRED "\e[1;91m"
+# define BGRN "\e[1;92m"
+# define BYLW "\e[1;93m"
+# define BCYN "\e[1;96m"
+# define BWHT "\e[1;97m"
 # define RESET "\e[0m"
 
 # define MEMORY_ERROR "Problem with memory allocation"
@@ -60,12 +60,17 @@ typedef struct s_game
 {
 	void	*mlx;
 	void	*win;
-	char	**m;
 	void	*wall;
 	void	*bck;
 	void	*play;
 	void	*ext;
 	void	*col;
+	char	*wall_p;
+	char	*bck_p;
+	char	*play_p;
+	char	*ext_p;
+	char	*col_p;
+	char	**m;
 	int		i_w;
 	int		i_h;
 	int		m_w;

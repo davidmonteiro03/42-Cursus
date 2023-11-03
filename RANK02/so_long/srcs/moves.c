@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 11:00:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/03 11:26:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:51:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,14 @@ void	right(t_game *g)
 	c = chars_init();
 	if (g->m[g->x][g->y + 1] == c.wall)
 		return ;
-	if (g->m[g->x][g->y + 1] == c.exit && g->c == 0)
+	if (g->m[g->x][g->y + 1] == c.exit)
 		exit_game(g);
-	g->m[g->x][g->y++] = '0';
-	if (g->m[g->x][g->y] == 'C')
+	if (g->m[g->x][g->y + 1] == c.collect)
 		g->c--;
-	g->m[g->x][g->y] = 'P';
+	g->m[g->x][g->y++] = c.empty;
+	g->m[g->x][g->y] = c.start_pos;
 	g->mv++;
-	ft_printf("MOVES: %d\n", g->mv);
-	if (g->c == 0)
-		g->ext = mlx_xpm_file_to_image(g->mlx, \
-			"assets/ext.xpm", &g->i_w, &g->i_h);
+	ft_printf(BCYN "MOVES" BWHT ": " BYLW "%d\n" RESET, g->mv);
 	draw(g);
 }
 
@@ -40,17 +37,14 @@ void	left(t_game *g)
 	c = chars_init();
 	if (g->m[g->x][g->y - 1] == c.wall)
 		return ;
-	if (g->m[g->x][g->y - 1] == c.exit && g->c == 0)
+	if (g->m[g->x][g->y - 1] == c.exit)
 		exit_game(g);
-	g->m[g->x][g->y--] = '0';
-	if (g->m[g->x][g->y] == 'C')
+	if (g->m[g->x][g->y - 1] == c.collect)
 		g->c--;
-	g->m[g->x][g->y] = 'P';
+	g->m[g->x][g->y--] = c.empty;
+	g->m[g->x][g->y] = c.start_pos;
 	g->mv++;
-	ft_printf("MOVES: %d\n", g->mv);
-	if (g->c == 0)
-		g->ext = mlx_xpm_file_to_image(g->mlx, \
-			"assets/ext.xpm", &g->i_w, &g->i_h);
+	ft_printf(BCYN "MOVES" BWHT ": " BYLW "%d\n" RESET, g->mv);
 	draw(g);
 }
 
@@ -61,17 +55,14 @@ void	up(t_game *g)
 	c = chars_init();
 	if (g->m[g->x - 1][g->y] == c.wall)
 		return ;
-	if (g->m[g->x - 1][g->y] == c.exit && g->c == 0)
+	if (g->m[g->x - 1][g->y] == c.exit)
 		exit_game(g);
-	g->m[g->x--][g->y] = '0';
-	if (g->m[g->x][g->y] == 'C')
+	if (g->m[g->x - 1][g->y] == c.collect)
 		g->c--;
-	g->m[g->x][g->y] = 'P';
+	g->m[g->x--][g->y] = c.empty;
+	g->m[g->x][g->y] = c.start_pos;
 	g->mv++;
-	ft_printf("MOVES: %d\n", g->mv);
-	if (g->c == 0)
-		g->ext = mlx_xpm_file_to_image(g->mlx, \
-			"assets/ext.xpm", &g->i_w, &g->i_h);
+	ft_printf(BCYN "MOVES" BWHT ": " BYLW "%d\n" RESET, g->mv);
 	draw(g);
 }
 
@@ -82,16 +73,13 @@ void	down(t_game *g)
 	c = chars_init();
 	if (g->m[g->x + 1][g->y] == c.wall)
 		return ;
-	if (g->m[g->x + 1][g->y] == c.exit && g->c == 0)
+	if (g->m[g->x + 1][g->y] == c.exit)
 		exit_game(g);
-	g->m[g->x++][g->y] = '0';
-	if (g->m[g->x][g->y] == 'C')
+	if (g->m[g->x + 1][g->y] == c.collect)
 		g->c--;
-	g->m[g->x][g->y] = 'P';
+	g->m[g->x++][g->y] = c.empty;
+	g->m[g->x][g->y] = c.start_pos;
 	g->mv++;
-	ft_printf("MOVES: %d\n", g->mv);
-	if (g->c == 0)
-		g->ext = mlx_xpm_file_to_image(g->mlx, \
-			"assets/ext.xpm", &g->i_w, &g->i_h);
+	ft_printf(BCYN "MOVES" BWHT ": " BYLW "%d\n" RESET, g->mv);
 	draw(g);
 }
