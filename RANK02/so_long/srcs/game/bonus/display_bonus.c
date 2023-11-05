@@ -40,7 +40,6 @@ void	print_score_bonus(t_game *g)
 		print_level4_bonus(c, t, p);
 	else
 		print_level5_bonus(c, t, p);
-
 }
 
 void	print_game_info(t_game *g)
