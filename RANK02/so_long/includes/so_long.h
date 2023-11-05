@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/05 14:53:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:43:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ typedef struct s_chars
 
 typedef struct s_mapinfo
 {
-	int		n_collect;
-	int		n_exit;
-	int		n_start_pos;
-	int		n_lines;
-	int		n_columns;
-	int		start_x;
-	int		start_y;
+	int	n_collect;
+	int	n_exit;
+	int	n_start_pos;
+	int	n_lines;
+	int	n_columns;
+	int	start_x;
+	int	start_y;
 }t_mapinfo;
 
 ////////////////////////////////////////////////////////////////////////////////

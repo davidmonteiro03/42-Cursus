@@ -53,13 +53,13 @@ typedef struct s_chars
 
 typedef struct s_mapinfo
 {
-	int		n_collect;
-	int		n_exit;
-	int		n_start_pos;
-	int		n_lines;
-	int		n_columns;
-	int		start_x;
-	int		start_y;
+	int	n_collect;
+	int	n_exit;
+	int	n_start_pos;
+	int	n_lines;
+	int	n_columns;
+	int	start_x;
+	int	start_y;
 }t_mapinfo;
 
 ////////////////////////////////////////////////////////////////////////////////
