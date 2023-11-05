@@ -35,7 +35,6 @@
 # include "../libft/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
 # include <strings.h>
-# include <time.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 

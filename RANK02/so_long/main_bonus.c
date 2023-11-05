@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 12:49:32 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/05 18:14:00 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/05 19:40:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	main(int ac, char **av)
 	t_mapinfo	info;
 	t_game		g;
 
-	srand(time(NULL));
 	if (ac != 2)
 		simperror(BCYN "Try this" BWHT ": " RESET \
 		"./so_long {arg} [ex: map1.ber]" RESET);
