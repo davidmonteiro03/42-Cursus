@@ -12,6 +12,20 @@
 
 #include "../../../includes/so_long_bonus.h"
 
+void	put_move(t_game *g)
+{
+	char	*str;
+	char	*buff;
+
+	buff = ft_strdup("MOVES: ");
+	str = ft_itoa(g->data.mv);
+	buff = ft_jointfree2(buff, str);
+	put_black_back(g);
+	mlx_string_put(g->mlx.mlx, g->mlx.win, 16, g->size.m_h - 10, \
+		0xFFFFFF, buff);
+	free(buff);
+}
+
 void	right_bonus(t_game *g)
 {
 	t_chars	c;
@@ -33,6 +47,7 @@ void	right_bonus(t_game *g)
 	put_image_bonus(g, g->img.play.play_r, g->data.y * 32, g->data.x * 32);
 	g->data.m[g->data.x][g->data.y] = c.start_pos;
 	g->data.mv++;
+	put_move(g);
 }
 
 void	left_bonus(t_game *g)
@@ -56,6 +71,7 @@ void	left_bonus(t_game *g)
 	put_image_bonus(g, g->img.play.play_l, g->data.y * 32, g->data.x * 32);
 	g->data.m[g->data.x][g->data.y] = c.start_pos;
 	g->data.mv++;
+	put_move(g);
 }
 
 void	up_bonus(t_game *g)
@@ -79,6 +95,7 @@ void	up_bonus(t_game *g)
 	put_image_bonus(g, g->img.play.play_u, g->data.y * 32, g->data.x * 32);
 	g->data.m[g->data.x][g->data.y] = c.start_pos;
 	g->data.mv++;
+	put_move(g);
 }
 
 void	down_bonus(t_game *g)
@@ -102,4 +119,5 @@ void	down_bonus(t_game *g)
 	put_image_bonus(g, g->img.play.play_d, g->data.y * 32, g->data.x * 32);
 	g->data.m[g->data.x][g->data.y] = c.start_pos;
 	g->data.mv++;
+	put_move(g);
 }

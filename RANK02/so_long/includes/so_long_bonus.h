@@ -202,6 +202,7 @@ void		init_game_bonus(t_game *g);
 //play_game_bonus.c
 int			move_bonus(int k, t_game *g);
 void		put_fire_onmap_bonus(t_game *g, void *img);
+void		put_black_back(t_game *g);
 int			animate_bonus(t_game *g);
 void		play_game_bonus(t_game *g);
 

@@ -42,6 +42,20 @@ void	put_fire_onmap_bonus(t_game *g, void *img)
 	}
 }
 
+void	put_black_back(t_game *g)
+{
+	int	i;
+	int	j;
+
+	i = g->size.m_h - 32;
+	while (++i < g->size.m_h + 32)
+	{
+		j = -1;
+		while (++j < g->size.m_w)
+			mlx_pixel_put(g->mlx.mlx, g->mlx.win, j, i, 0x000000);
+	}
+}
+
 int	animate_bonus(t_game *g)
 {
 	static int	frame;

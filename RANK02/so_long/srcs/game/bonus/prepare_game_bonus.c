@@ -15,7 +15,7 @@
 void	prepare_game_bonus(t_game *g, t_mapinfo info)
 {
 	g->size.m_w = info.n_columns * 32;
-	g->size.m_h = info.n_lines * 32;
+	g->size.m_h = (info.n_lines + 1) * 32;
 	g->data.c = info.n_collect;
 	g->data.sc = info.n_collect;
 	g->data.x = info.start_x;
