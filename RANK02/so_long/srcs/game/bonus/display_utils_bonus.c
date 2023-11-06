@@ -44,6 +44,6 @@ void	print_level5_bonus(int c, int t, int p)
 {
 	ft_printf(LEVEL_5 "%d" BWHT "/" LEVEL_5 "%d", c, t);
 	ft_printf(BWHT " (" LEVEL_5 "%d%%" BWHT ")", p);
-	ft_printf(LEVEL_5 " Wow" BWHT "! " LEVEL_5 "Your're amazing" \
+	ft_printf(LEVEL_5 " Wow" BWHT "! " LEVEL_5 "You're amazing" \
 		BWHT "! 😀\n" RESET);
 }
