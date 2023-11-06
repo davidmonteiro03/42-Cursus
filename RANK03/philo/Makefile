@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/06 17:48:39 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/06 19:10:46 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,14 +17,14 @@ CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -pthread
 RM				= rm -rf
 
 OBJS_DIR		= obj/
 INCLUDES_DIR	= includes/
 
 SRCS			= main.c \
-					srcs/philo_putchar.c
+					srcs/utils.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
