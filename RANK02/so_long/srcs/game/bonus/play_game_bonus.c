@@ -24,6 +24,7 @@ int	move_bonus(int k, t_game *g)
 		down_bonus(g);
 	else if (k == XK_Escape)
 		close_game_bonus(g);
+	check_clear_fire_bonus(g);
 	return (0);
 }
 
@@ -71,7 +72,6 @@ int	animate_bonus(t_game *g)
 	else
 		put_fire_onmap_bonus(g, g->img.fire.fire_5);
 	frame++;
-	check_clear_fire_bonus(g);
 	usleep(55000);
 	return (0);
 }

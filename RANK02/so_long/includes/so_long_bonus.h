@@ -137,11 +137,11 @@ typedef struct s_std_i
 // fire images
 typedef struct s_fire_i
 {
-	void	*fire_1;
-	void	*fire_2;
-	void	*fire_3;
-	void	*fire_4;
-	void	*fire_5;
+	char	*fire_1;
+	char	*fire_2;
+	char	*fire_3;
+	char	*fire_4;
+	char	*fire_5;
 }t_fire_i;
 
 // directories

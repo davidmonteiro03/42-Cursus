@@ -14,8 +14,10 @@
 
 void	check_clear_fire_bonus(t_game *g)
 {
-	int	i;
-	int	j;
+	char	*str;
+	char	*buff;
+	int		i;
+	int		j;
 
 	i = -1;
 	while (g->data.m[++i])
@@ -26,8 +28,17 @@ void	check_clear_fire_bonus(t_game *g)
 				return ;
 	}
 	if (g->data.c == 0)
-		mlx_string_put(g->mlx.mlx, g->mlx.win, 5, 16, 0xFFFFFF, \
-			"You collected everything!");
+	{
+		buff = ft_strdup("MOVES: ");
+		str = ft_itoa(g->data.mv);
+		buff = ft_jointfree2(buff, str);
+		str = ft_strdup(" You collected everything!");
+		buff = ft_jointfree2(buff, str);
+		put_black_back(g);
+		mlx_string_put(g->mlx.mlx, g->mlx.win, 16, g->size.m_h - 10, \
+			0xFFFFFF, buff);
+		free(buff);
+	}
 }
 
 void	clear_fire_bonus(t_game *g, int i, int j)
