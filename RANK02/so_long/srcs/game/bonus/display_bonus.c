@@ -52,10 +52,10 @@ void	print_game_info(t_game *g)
 	ft_printf("\n" RESET);
 }
 
-void	print_lose_msg(t_game *g)
+void	print_lose_msg(void)
 {
 	ft_printf(RESET "\n");
 	ft_printf(BRED "The fire killed you" BWHT "! " BRED "You lose the game");
 	ft_printf(BWHT "... 😥\n");
-	print_game_info(g);
+	ft_printf("\n" RESET);
 }

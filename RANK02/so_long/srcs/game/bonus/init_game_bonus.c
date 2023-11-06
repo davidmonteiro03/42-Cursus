@@ -44,21 +44,6 @@ void	draw_game_bonus(t_game *g)
 	}
 }
 
-int	empty_around_bonus(int i, int j, t_game *g)
-{
-	t_chars	c;
-
-	c = chars_init();
-	if (g->data.m[i - 1][j - 1] == c.empty && \
-		g->data.m[i - 1][j + 1] == c.empty && \
-		g->data.m[i + 1][j - 1] == c.empty && \
-		g->data.m[i + 1][j + 1] == c.empty && \
-		g->data.m[i - 1][j] == c.empty && g->data.m[i + 1][j] == c.empty && \
-		g->data.m[i][j - 1] == c.empty && g->data.m[i][j + 1] == c.empty)
-		return (1);
-	return (0);
-}
-
 void	put_fire_bonus(t_game *g)
 {
 	t_chars	c;
@@ -71,9 +56,8 @@ void	put_fire_bonus(t_game *g)
 	{
 		j = -1;
 		while (g->data.m[i][++j])
-			if (g->data.m[i][j] == c.collect && \
-				empty_around_bonus(i, j, g) == 1)
-				put_fire_pos_bonus(g, (i + j) % 8, i, j);
+			if (g->data.m[i][j] == c.collect)
+				put_fire_pos_bonus(g, i, j);
 	}
 }
 

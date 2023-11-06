@@ -57,6 +57,7 @@ int	animate_bonus(t_game *g)
 	else
 		put_fire_onmap_bonus(g, g->img.fire.fire_5);
 	frame++;
+	check_clear_fire_bonus(g);
 	usleep(55000);
 	return (0);
 }

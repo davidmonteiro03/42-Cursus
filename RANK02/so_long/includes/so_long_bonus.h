@@ -226,10 +226,12 @@ void		down_bonus(t_game *g);
 void		print_exit_msg(void);
 void		print_score_bonus(t_game *g);
 void		print_game_info(t_game *g);
-void		print_lose_msg(t_game *g);
+void		print_lose_msg(void);
 
 //fire_utils_bonus.c
-void		put_fire_pos_bonus(t_game *g, int pos, int i, int j);
+void		check_clear_fire_bonus(t_game *g);
+void		clear_fire_bonus(t_game *g, int i, int j);
+void		put_fire_pos_bonus(t_game *g, int i, int j);
 
 //display_utils_bonus.c
 void		print_level1_bonus(int c, int t, int p);
