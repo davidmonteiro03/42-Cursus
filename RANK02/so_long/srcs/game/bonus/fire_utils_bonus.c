@@ -25,8 +25,9 @@ void	check_clear_fire_bonus(t_game *g)
 			if (g->data.m[i][j] == 'F')
 				return ;
 	}
-	mlx_string_put(g->mlx.mlx, g->mlx.win, 16, 16, 0xFFFFFF, \
-		"You collected everything! Congratulations!");
+	if (g->data.c == 0)
+		mlx_string_put(g->mlx.mlx, g->mlx.win, 5, 16, 0xFFFFFF, \
+			"You collected everything!");
 }
 
 void	clear_fire_bonus(t_game *g, int i, int j)
