@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/07 13:39:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:43:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,15 @@
 
 int	main(int ac, char **av)
 {
-	t_info		info;
-	t_philo		*philo;
-	int			np;
+	t_philo	**philo;
+	t_info	info;
 
-	if (ac != 5)
+	if (ac != 5 && ac != 6)
 		return (0);
-	np = philo_atol(av[1]);
 	philo_info(&info, av);
-	info_range(info, np);
-	philo = (t_philo *)malloc(sizeof(t_philo) * np);
-	create_philos(philo, info, np);
-	join_philos(philo, np);
-	free(philo);
+	philo = (t_philo **)malloc(sizeof(t_philo *) * philo_atoi(av[1]));
+	create_philo(philo, philo_atoi(av[1]));
+	join_philo(philo, philo_atoi(av[1]));
+	free_philo(philo, philo_atoi(av[1]));
 	return (0);
 }
