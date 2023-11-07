@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/07 12:17:14 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/07 13:38:00 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ OBJS_DIR		= obj/
 INCLUDES_DIR	= includes/
 
 SRCS			= main.c \
+					srcs/threads.c \
 					srcs/utils.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
