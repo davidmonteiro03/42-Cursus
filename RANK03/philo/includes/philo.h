@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/07 12:04:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:05:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 
 typedef struct s_info
 {
-	long int	np;
 	long int	ttd;
 	long int	tte;
 	long int	tts;
