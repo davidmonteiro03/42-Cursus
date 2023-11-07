@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 19:10:21 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/07 11:54:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/07 12:03:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,14 @@ long int	philo_atol(const char *nptr)
 
 void	philo_info(t_info *info, char **av)
 {
-	info->np = philo_atol(av[1]);
 	info->ttd = philo_atol(av[2]);
 	info->tte = philo_atol(av[3]);
 	info->tts = philo_atol(av[4]);
 }
 
-void	info_range(t_info info)
+void	info_range(t_info info, int np)
 {
-	if (info.np < 0 || info.np > 2147483647 || \
+	if (np < 0 || np > 2147483647 || \
 		info.ttd < 0 || info.ttd > 2147483647 || \
 		info.tte < 0 || info.tte > 2147483647 || \
 		info.tts < 0 || info.tts > 2147483647)
