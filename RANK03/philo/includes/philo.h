@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/06 19:40:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:55:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,22 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef struct s_philos
+typedef struct s_info
 {
-	unsigned int	np;
-	unsigned int	ttd;
-	unsigned int	tte;
-	unsigned int	tts;
-	unsigned int	notepme;
-}t_philos;
+	long int	np;
+	long int	ttd;
+	long int	tte;
+	long int	tts;
+}t_info;
 
-unsigned int	philo_atou(const char *nptr);
+typedef struct s_philo
+{
+	int			pos;
+	pthread_t	id;
+}t_philo;
+
+long int	philo_atol(const char *nptr);
+void		philo_info(t_info *info, char **av);
+void		info_range(t_info info);
 
 #endif

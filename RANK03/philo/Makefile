@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/06 19:10:46 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/07 10:19:55 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -pthread
+CFLAGS			= -Wall -Wextra -Werror
+THREADFLAGS		= -pthread
 RM				= rm -rf
 
 OBJS_DIR		= obj/
@@ -35,15 +36,15 @@ all: $(EXEC)
 $(OBJS_DIR)%.o: ./%.c
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $(THREADFLAGS) -c $< -o $@
 
 $(OBJS_DIR)%.o: srcs/%.c
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $(THREADFLAGS) -c $< -o $@
 
 $(EXEC): $(OBJS)
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $(THREADFLAGS) $^ -o $@
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:

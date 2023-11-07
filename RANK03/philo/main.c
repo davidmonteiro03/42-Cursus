@@ -6,27 +6,41 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/06 19:41:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/07 11:55:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-void	philo(t_philos *philos, char **av)
+void	*philo_create(void *arg)
 {
-	philos->np = philo_atou(av[1]);
-	philos->ttd = philo_atou(av[2]);
-	philos->tte = philo_atou(av[3]);
-	philos->tts = philo_atou(av[4]);
-	philos->notepme = philo_atou(av[5]);
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
+	printf("PHILO %d created!\n", philo->pos);
+	return (NULL);
 }
 
 int	main(int ac, char **av)
 {
-	t_philos	philos;
+	t_info		info;
+	t_philo		*philo;
+	int			i;
 
-	if (ac != 5 && ac != 6)
+	if (ac != 5)
 		return (0);
-	philo(&philos, av);
+	philo_info(&info, av);
+	info_range(info);
+	philo = (t_philo *)malloc(sizeof(t_philo) * info.np);
+	i = -1;
+	while (++i < info.np)
+	{
+		philo[i].pos = i + 1;
+		pthread_create(&philo[i].id, NULL, philo_create, &philo[i]);
+	}
+	i = -1;
+	while (++i < info.np)
+		pthread_join(philo[i].id, NULL);
+	free(philo);
 	return (0);
 }
