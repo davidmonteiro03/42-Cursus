@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/07 15:42:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:49:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ typedef struct s_info
 
 typedef struct s_philo
 {
-	pthread_t	id;
+	pthread_t		id;
+	pthread_mutex_t	lf;
+	pthread_mutex_t	rf;
 }t_philo;
 
 ////////////////////////////////////////////////////////////////////////////////

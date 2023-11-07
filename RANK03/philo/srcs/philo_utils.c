@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:40:35 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/07 15:40:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/07 15:51:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	create_philo(t_philo **philo, int num)
 	while (++i < num)
 	{
 		philo[i] = (t_philo *)malloc(sizeof(t_philo));
+		pthread_mutex_init(&philo[i]->lf, NULL);
+		pthread_mutex_init(&philo[i]->rf, NULL);
 		pthread_create(&philo[i]->id, NULL, philo_create, &philo[i]);
 	}
 }
@@ -56,6 +58,10 @@ void	free_philo(t_philo **philo, int num)
 		return ;
 	i = -1;
 	while (++i < num)
+	{
+		pthread_mutex_destroy(&philo[i]->lf);
+		pthread_mutex_destroy(&philo[i]->rf);
 		free(philo[i]);
+	}
 	free(philo);
 }
