@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/07 10:19:55 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/07 12:10:19 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,8 @@ GREEN			= \033[1;92m
 YELLOW			= \033[1;93m
 CYAN			= \033[1;96m
 RESET			= \033[1;0m
+
+ARGS			= 5 1000 2000 5000
 
 CC				= cc
 CFLAGS			= -Wall -Wextra -Werror
@@ -32,6 +34,11 @@ OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 EXEC			= philo
 
 all: $(EXEC)
+
+run: $(EXEC)
+	clean
+	@echo "$(CYAN)./$(EXEC) $(ARGS)$(RESET)"
+	@./$(EXEC) $(ARGS)
 
 $(OBJS_DIR)%.o: ./%.c
 	@mkdir -p $(dir $@)
