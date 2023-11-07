@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/07 15:49:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/07 19:40:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,36 +18,65 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <sys/wait.h>
 # include <pthread.h>
+# include <stdbool.h>
 
-typedef struct s_info
-{
-	int	ttd;
-	int	tte;
-	int	tts;
-}t_info;
+struct	s_info;
 
 typedef struct s_philo
 {
+	int				n;
+	int				ec;
+	long			lm;
+	pthread_mutex_t	*lf;
+	pthread_mutex_t	*rf;
+	struct s_info	*info;
 	pthread_t		id;
-	pthread_mutex_t	lf;
-	pthread_mutex_t	rf;
 }t_philo;
 
-////////////////////////////////////////////////////////////////////////////////
-//                                    UTILS                                   //
-////////////////////////////////////////////////////////////////////////////////
+typedef struct s_info
+{
+	int				np;
+	int				ttd;
+	int				tte;
+	int				tts;
+	int				notepme;
+	long			st;
+	bool			die;
+	pthread_t		*th;
+	pthread_mutex_t	*f;
+	t_philo			*ph;
+}t_info;
+
+/* ************************************************************************** */
+/*                                 CHECK ARGS                                 */
+/* ************************************************************************** */
 
 int		philo_atoi(const char *nptr);
+void	check_atoi(char *str);
+void	check_args(int ac, char **av);
 
-////////////////////////////////////////////////////////////////////////////////
-//                                 PHILO UTILS                                //
-////////////////////////////////////////////////////////////////////////////////
+/* ************************************************************************** */
+/*                                   ERRORS                                   */
+/* ************************************************************************** */
 
-void	philo_info(t_info *info, char **av);
-void	*philo_create(void *arg);
-void	create_philo(t_philo **philo, int num);
-void	join_philo(t_philo **philo, int num);
-void	free_philo(t_philo **philo, int num);
+void	error(void);
+
+/* ************************************************************************** */
+/*                                    INIT                                    */
+/* ************************************************************************** */
+
+void	init_forks(t_info *info);
+void	init_philos(t_info *info);
+void	init_info(t_info *info, int ac, char **av);
+
+/* ************************************************************************** */
+/*                                 PHILO UTILS                                */
+/* ************************************************************************** */
+
+long	get_time(void);
+void	philo_waitms(int ms);
+void	display_status(t_philo *philo, char *action);
 
 #endif
