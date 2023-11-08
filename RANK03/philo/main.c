@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 10:38:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:40:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	philo_1(t_inf *inf)
 {
 	status(&inf->ph[0], "is thinking");
-	wait_ms(inf->ttd);
+	usleep(inf->ttd);
 	status(&inf->ph[0], "died");
 }
 

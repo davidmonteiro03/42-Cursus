@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:11:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 10:25:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:40:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	init_inf(t_inf *inf, int ac, char **av)
 {
 	inf->np = ph_atoi(av[1]);
-	inf->ttd = ph_atoi(av[2]);
-	inf->tte = ph_atoi(av[3]);
-	inf->tts = ph_atoi(av[4]);
+	inf->ttd = ph_atoi(av[2]) * 1000;
+	inf->tte = ph_atoi(av[3]) * 1000;
+	inf->tts = ph_atoi(av[4]) * 1000;
 	inf->notepme = -1;
 	inf->die = false;
 	if (ac == 6)

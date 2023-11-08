@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 10:27:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:40:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	init_philos(t_inf *inf);
 /* ************************************************************************** */
 
 void	status(t_ph *ph, char *info);
-void	wait_ms(int us);
 long	get_time(void);
 
 #endif
