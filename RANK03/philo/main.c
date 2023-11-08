@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 10:37:31 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:38:43 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(int ac, char **av)
 {
 	t_inf	inf;
 
-	if (ac != 5 && ac != 6 && av)
+	if (ac != 5 && ac != 6)
 		error_usage();
 	check_args(ac, av);
 	init_inf(&inf, ac, av);
