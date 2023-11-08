@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 08:40:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 10:59:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/08 12:53:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	error_message(void)
 
 void	check_num_args(int ac, char **av)
 {
+	if (ac == 1)
+		usage_std();
 	if (ac == 2)
 		usage_1(av);
 	if (ac == 3)
