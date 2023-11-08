@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 09:01:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 12:53:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/08 16:00:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	check_args(int ac, char **av)
 	while (++i < ac)
 	{
 		check_number(av[i]);
-		if (ph_atol(av[i]) <= 0 || ph_atol(av[i]) > 2147483647)
+		if (ph_atol(av[i]) < 0 || ph_atol(av[i]) > 2147483647)
 			error_message();
 	}
+	if (ph_atol(av[0]) <= 0)
+		error_message();
 }
