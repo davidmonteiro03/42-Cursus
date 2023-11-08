@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 10:40:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:59:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	check_args(int ac, char **av);
 /* ************************************************************************** */
 
 void	error_message(void);
-void	error_usage(void);
+void	check_num_args(int ac, char **av);
+void	error_usage(int ac, char **av);
 
 /* ************************************************************************** */
 /*                                    INIT                                    */
@@ -64,6 +65,14 @@ void	error_usage(void);
 
 void	init_inf(t_inf *inf, int ac, char **av);
 void	init_philos(t_inf *inf);
+
+/* ************************************************************************** */
+/*                                 USAGE UTILS                                */
+/* ************************************************************************** */
+
+void	usage_1(char **av);
+void	usage_2(char **av);
+void	usage_3(char **av);
 
 /* ************************************************************************** */
 /*                                    UTILS                                   */
