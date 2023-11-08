@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args.c                                       :+:      :+:    :+:   */
+/*   checks.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 18:46:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/07 19:00:57 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/08 09:01:54 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/08 09:12:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	philo_atoi(const char *nptr)
+int	ph_atoi(const char *nptr)
 {
 	int		num;
 	int		sign;
@@ -31,28 +31,26 @@ int	philo_atoi(const char *nptr)
 	return (num * sign);
 }
 
-void	check_atoi(char *str)
+void	check_number(char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i] && (str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
 		i++;
-	if (str[i] == '-')
-		error();
+	if (!str[i] || !(str[i] >= '0' && str[i] <= '9'))
+		error_message();
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 		i++;
-	if (str[i])
-		error();
+	if (str[i] && !(str[i] == 32 || (str[i] >= 9 && str[i] <= 13)))
+		error_message();
 }
 
 void	check_args(int ac, char **av)
 {
 	int	i;
 
-	if (ac != 5 && ac != 6)
-		error();
 	i = 0;
 	while (++i < ac)
-		check_atoi(av[i]);
+		check_number(av[i]);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 19:25:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/07 19:33:37 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/08 10:06:12 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/08 10:26:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 long	get_time(void)
 {
-	struct timeval	ct;
+	struct timeval	time;
 
-	gettimeofday(&ct, NULL);
-	return ((ct.tv_sec * 1000) + (ct.tv_usec / 1000));
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	philo_waitms(int ms)
+void	wait_ms(int us)
 {
-	usleep(ms * 1000);
+	usleep(us * 1000);
 }
 
-void	display_status(t_philo *philo, char *action)
+void	status(t_ph *ph, char *info)
 {
-	printf("%ld %d", get_time() - philo->info->st, philo->n);
-	printf(" %s\n", action);
+	printf("%lu %d", get_time() - ph->inf->st, ph->n);
+	printf(" %s\n", info);
 }
