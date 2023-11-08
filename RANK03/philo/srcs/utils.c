@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:06:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 10:26:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/08 10:35:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void	wait_ms(int us)
 
 void	status(t_ph *ph, char *info)
 {
-	printf("%lu %d", get_time() - ph->inf->st, ph->n);
+	printf("%4lu %3d", get_time() - ph->inf->st, ph->n);
 	printf(" %s\n", info);
 }
