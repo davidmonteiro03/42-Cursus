@@ -20,11 +20,11 @@
 
  | Exam                                                         |      Status       | Score |      Helpful files       |
  | :----------------------------------------------------------- | :----------: | :------------: | :----------: |
- | EXAM-RANK-02 | <img src="https://img.shields.io/badge/done-sucess" /> | <img src="https://img.shields.io/badge/100%20%2F%20100%20%E2%98%85-success" />  | Not Ready |
- |[EXAM-RANK-03](https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03) | <img src="https://img.shields.io/badge/Registed-yellow" /> | The exam have not been done yet | Ready |
- | EXAM-RANK-04 | Currently not registered on exam | The exam have not been done yet | Not Ready |
- | EXAM-RANK-05 | Currently not registered on exam | The exam have not been done yet | Not Ready |
- | EXAM-RANK-06 | Currently not registered on exam | The exam have not been done yet | Not Ready |
+ | EXAM-RANK-02 | <img src="https://img.shields.io/badge/done-sucess" /> | <img src="https://img.shields.io/badge/100%20%2F%20100%20%E2%98%85-success" />  | Not Ready. |
+ |[EXAM-RANK-03](https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03) | <img src="https://img.shields.io/badge/Registed-yellow" /> | The exam hasn't been done yet. | Ready. |
+ | EXAM-RANK-04 | Currently not registered on exam. | The exam hasn't been done yet. | Not Ready. |
+ | EXAM-RANK-05 | Currently not registered on exam. | The exam hasn't been done yet. | Not Ready. |
+ | EXAM-RANK-06 | Currently not registered on exam. | The exam hasn't been done yet. | Not Ready. |
 
  ------
  </div>
