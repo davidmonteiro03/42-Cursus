@@ -19,5 +19,6 @@ int	main(int ac, char **av)
 	check_args(ac, av);
 	display_start();
 	display_end();
+	helloabc();
 	return (0);
 }
