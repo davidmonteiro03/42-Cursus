@@ -12,6 +12,9 @@
  |[push_swap](https://github.com/davidmonteiro03/42-Cursus/tree/main/RANK02/push_swap)                | <img src="https://img.shields.io/badge/done-sucess" /> | <img src="https://img.shields.io/badge/125%20%2F%20100%20%E2%98%85-success" />  |
  |[minitalk](https://github.com/davidmonteiro03/42-Cursus/tree/main/RANK02/minitalk)                | <img src="https://img.shields.io/badge/done-sucess" /> | <img src="https://img.shields.io/badge/125%20%2F%20100%20%E2%98%85-success" />  |
  |[so_long](https://github.com/davidmonteiro03/42-Cursus/tree/main/RANK02/so_long)                | <img src="https://img.shields.io/badge/done-sucess" /> | <img src="https://img.shields.io/badge/117%20%2F%20100%20%E2%98%85-success" />  |
+ | RANK 03 |
+ |[philosophers](https://github.com/davidmonteiro03/42-Cursus/tree/main/RANK03/philo)                | <img src="https://img.shields.io/badge/Registed-yellow" /> | <img src="https://img.shields.io/badge/0%20%2F%20100-gray" />  |
+ https://img.shields.io/badge/Registed-yellow
  
  ------
  </div>
