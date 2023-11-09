@@ -18,13 +18,13 @@
 ## Exams
  <div align="center">
 
- | Exam                                                         |
- | :----------------------------------------------------------- |
- | EXAM-RANK-02 |
- |[EXAM-RANK-03](https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03) |
- | EXAM-RANK-04 |
- | EXAM-RANK-05 |
- | EXAM-RANK-06 |
+ | Exam                                                         |      Status       |
+ | :----------------------------------------------------------- | :----------: |
+ | EXAM-RANK-02 | | <img src="https://img.shields.io/badge/done-sucess" /> |
+ |[EXAM-RANK-03](https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03) | <img src="https://img.shields.io/badge/Registed-yellow" /> |
+ | EXAM-RANK-04 | | <img src="https://img.shields.io/badge/Registed-yellow" /> |
+ | EXAM-RANK-05 | | <img src="https://img.shields.io/badge/Registed-yellow" /> |
+ | EXAM-RANK-06 | | <img src="https://img.shields.io/badge/Registed-yellow" /> |
 
  ------
  </div>
