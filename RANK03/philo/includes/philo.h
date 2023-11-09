@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 15:58:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/09 10:11:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,38 +21,6 @@
 # include <sys/wait.h>
 # include <pthread.h>
 # include <stdbool.h>
-
-typedef pthread_t		t_id;
-typedef pthread_mutex_t	t_f;
-
-struct	s_inf;
-
-typedef struct s_ph
-{
-	int				ec;
-	int				n;
-	int				lf;
-	int				rf;
-	long			lm;
-	struct s_inf	*inf;
-	t_id			id;
-}t_ph;
-
-typedef struct s_inf
-{
-	int		np;
-	int		ttd;
-	int		tte;
-	int		tts;
-	int		notepme;
-	long	st;
-	int		end;
-	int		max;
-	t_ph	*ph;
-	t_f		*f;
-	t_f		m;
-	t_f		w;
-}t_inf;
 
 /* ************************************************************************** */
 /*                                   CHECKS                                   */

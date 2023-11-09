@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/08 10:47:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 14:52:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/09 08:54:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	usage_2(char **av)
 	else
 		printf("%-11ld %40s |\n", ph_atol(av[1]), "✅");
 	printf("|%s", "  arg2: ");
-	if (ph_atol(av[2]) > 2147483647 || ph_atol(av[2]) <= 0)
+	if (ph_atol(av[2]) > 2147483647 || ph_atol(av[2]) < 0)
 		printf("%-40s %11s |\n", av[2], "❌");
 	else
 		printf("%-11ld %40s |\n", ph_atol(av[2]), "✅");
@@ -71,12 +71,12 @@ void	usage_3(char **av)
 	else
 		printf("%-11ld %40s |\n", ph_atol(av[1]), "✅");
 	printf("|%s", "  arg2: ");
-	if (ph_atol(av[2]) > 2147483647 || ph_atol(av[2]) <= 0)
+	if (ph_atol(av[2]) > 2147483647 || ph_atol(av[2]) < 0)
 		printf("%-40s %11s |\n", av[2], "❌");
 	else
 		printf("%-11ld %40s |\n", ph_atol(av[2]), "✅");
 	printf("|%s", "  arg3: ");
-	if (ph_atol(av[3]) > 2147483647 || ph_atol(av[3]) <= 0)
+	if (ph_atol(av[3]) > 2147483647 || ph_atol(av[3]) < 0)
 		printf("%-40s %11s |\n", av[3], "❌");
 	else
 		printf("%-11ld %40s |\n", ph_atol(av[3]), "✅");
