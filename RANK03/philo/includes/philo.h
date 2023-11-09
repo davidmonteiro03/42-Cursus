@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/09 10:11:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/09 18:16:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # include <sys/wait.h>
 # include <pthread.h>
 # include <stdbool.h>
+
+typedef pthread_t		t_id;
+typedef pthread_mutex_t	t_f;
 
 /* ************************************************************************** */
 /*                                   CHECKS                                   */
