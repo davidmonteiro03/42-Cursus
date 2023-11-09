@@ -20,7 +20,11 @@
 
  | Exam                                                         |
  | :----------------------------------------------------------- |
+ | EXAM-RANK-02 |
  |[EXAM-RANK-03](https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03) |
+ | EXAM-RANK-04 |
+ | EXAM-RANK-05 |
+ | EXAM-RANK-06 |
 
  ------
  </div>
