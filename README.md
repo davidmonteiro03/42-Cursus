@@ -78,8 +78,8 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td>Rank</td>
 			<td>Status</td>
-			<td>Helpful files</td>
 			<td>Delivery date</td>
+			<td>Helpful files</td>
 		</tr>
 		<!-- RANK 02 -->
 		<tr>
