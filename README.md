@@ -76,7 +76,7 @@
 		<tr>
 			<td>RANK 03</td>
 			<td>Registered</td>
-			<td href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">EXAM-RANK-03</td>
+			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">EXAM-RANK-03</a></td>
 		</tr>
 	</table>
 </div>
