@@ -120,7 +120,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 03 -->
 		<tr>
 			<td>RANK 03</td>
-			<td colspan="2">Registered</td>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="100"/>
+			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
 					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="100"/>
