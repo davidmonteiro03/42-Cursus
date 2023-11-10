@@ -73,12 +73,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>2023-10-30</td>
 		</tr>
 		<tr>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/so_long">so_long</a></td>
-			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
-			<td>117/100</td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/so_long">
+					<img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/so_longm.png" width="100"/>
+				</a>
+			</td>
 			<td>2023-11-06</td>
 		</tr>
-		RANK 03
+		<!-- RANK 03
 		<tr>
 			<td rowspan="2"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">RANK 03</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a></td>
@@ -88,7 +90,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td>minishell</td>
 			<td colspan="3">Not Registered</td>
-		</tr>
+		</tr> -->
 	</table>
 </div>
 
