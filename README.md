@@ -25,7 +25,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 01 -->
 		<tr>
 			<td rowspan="3">
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">
+					<img src="https://www.svgrepo.com/show/70902/one.svg" width="100"/>
+				</a>
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">
