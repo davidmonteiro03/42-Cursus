@@ -13,7 +13,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
-					<img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" height="45"/>
+					<img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" width="45"/>
 				</a>
 			</td>
 			<td>
