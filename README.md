@@ -117,5 +117,5 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 
 ## Download files
 
-Go to <a href="https://minhaskamal.github.io/DownGit/#/home" target="_blank">DownGit</a> and copy the link of the folder you want to download, then click on Download button.
-Hold CTRL or CMD to open it in a new page.
+<p>Go to <a href="https://minhaskamal.github.io/DownGit/#/home" target="_blank">DownGit</a> and copy the link of the folder you want to download, then click on Download button.</p>
+<p>Hold CTRL or CMD to open it in a new page.</p>
