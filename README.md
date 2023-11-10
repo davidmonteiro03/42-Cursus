@@ -22,13 +22,13 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
-			<td>Finished</td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
 			<td>100/100</td>
 			<td>2023-10-09</td>
 		</tr>
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">get_next_line</a></td>
-			<td>Finished</td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
 			<td>100/100</td>
 			<td>2023-10-10</td>
 		</tr>
@@ -42,19 +42,19 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02">RANK 02</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/push_swap">push_swap</a></td>
-			<td>Finished</td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
 			<td>125/100</td>
 			<td>2023-10-27</td>
 		</tr>
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/minitalk">minitalk</a></td>
-			<td>Finished</td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
 			<td>125/100</td>
 			<td>2023-10-30</td>
 		</tr>
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/so_long">so_long</a></td>
-			<td>Finished</td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
 			<td>117/100</td>
 			<td>2023-11-06</td>
 		</tr>
@@ -84,7 +84,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 02 -->
 		<tr>
 			<td>RANK 02</td>
-			<td>Finished</td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
 			<td>2023-10-23</td>
 			<td>Not Ready</td>
 		</tr>
