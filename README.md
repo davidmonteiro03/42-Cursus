@@ -1,10 +1,9 @@
 <div align="center">
 	<table>
 		<thead>
-			<th>
+			<tr>
 				<td style="color:red">RANK</td>
-			</th>
+			</tr>
 		</thead>
-  		<tbody></tbody>
 	</table>
 </div>
