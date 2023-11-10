@@ -12,7 +12,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
-					<img src="https://raw.githubusercontent.com/dragonfruitnetwork/dragon6-assets/master/public/rank/v4/0.png" width="100"/>
+					<img src="https://raw.githubusercontent.com/dragonfruitnetwork/dragon6-assets/master/public/rank/v4/10.png" width="100"/>
 				</a>
 			</td>
 			<td>
@@ -24,7 +24,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 		<!-- RANK 01 -->
 		<tr>
-			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a></td>
+			<td rowspan="3">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a>
+			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" width="100"/>
