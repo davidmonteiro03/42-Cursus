@@ -75,7 +75,8 @@
 		<!-- RANK 03 -->
 		<tr>
 			<td>RANK 03</td>
-			<td colspan="2">Registered</td>
+			<td>Registered</td>
+			<td href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">EXAM-RANK-03</td>
 		</tr>
 	</table>
 </div>
