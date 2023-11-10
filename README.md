@@ -152,57 +152,57 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 02 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="30"/>
+				<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="70"/>
 			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="70"/>
 			</td>
 			<td>2023-10-23</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="30"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="70"/>
 			</td>
 		</tr>
 		<!-- RANK 03 -->
 		<tr>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">
-					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="30"/>
+					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="70"/>
 				</a>
 			</td>
 			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="30"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="70"/>
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
-					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/>
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="70"/>
 				</a>
 			</td>
 		</tr>
 		<!-- RANK 04 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="30"/>
+				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="70"/>
 			</td>
 			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="30"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="70"/>
 			</td>
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="30"/>
+				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="70"/>
 			</td>
 			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="30"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="70"/>
 			</td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="30"/>
+				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="70"/>
 			</td>
 			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="30"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="70"/>
 			</td>
 		</tr>
 	</table>
