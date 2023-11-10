@@ -50,18 +50,26 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			</td>
 			<td>2023-10-13</td>
 		</tr>
-		<!-- RANK 02
+		<!-- RANK 02 -->
 		<tr>
-			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02">RANK 02</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/push_swap">push_swap</a></td>
-			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
-			<td>125/100</td>
+			<td rowspan="3">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02">
+					<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="100"/>
+				</a>
+			</td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/push_swap">
+					<img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/push_swapm.png" width="100"/>
+				</a>
+			</td>
 			<td>2023-10-27</td>
 		</tr>
 		<tr>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/minitalk">minitalk</a></td>
-			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
-			<td>125/100</td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/minitalk">
+					<img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/minitalkm.png" width="100"/>
+				</a>
+			</td>
 			<td>2023-10-30</td>
 		</tr>
 		<tr>
@@ -80,7 +88,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td>minishell</td>
 			<td colspan="3">Not Registered</td>
-		</tr> -->
+		</tr>
 	</table>
 </div>
 
