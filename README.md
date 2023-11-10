@@ -53,8 +53,7 @@
 		</tr>
 		<tr>
 			<td>minishell</td>
-			<td>Not Registered</td>
-			<td>Not delivered</td>
+			<td colspan="2">Not Registered</td>
 		</tr>
 	</table>
 </div>
