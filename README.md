@@ -1,8 +1,5 @@
 # 42-Cursus
 I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cursus</a> on October 2, 2023, from Piscine #7 of 42.
-
-[teste](https://github.com/davidmonteiro03/42-Cursus/blob/main/Projects/RANK00)
-
 ## Projects
 <div align="center">
 	<table>
@@ -15,34 +12,28 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 		<!-- RANK 00 -->
 		<tr>
-			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00" target="_blank">RANK 00</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft" target="_blank">Libft</a></td>
+			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
+			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
 			<td>Finished</td>
 			<td>125/100</td>
 			<td>2023-10-07</td>
 		</tr>
 		<!-- RANK 01 -->
 		<tr>
-			<td rowspan="3">RANK 01</td>
-			<td></td>
-			<td>ft_printf</td>
-			<td></td>
+			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a></td>
+			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
 			<td>Finished</td>
 			<td>100/100</td>
 			<td>2023-10-09</td>
 		</tr>
 		<tr>
-			<td></td>
-			<td>get_next_line</td>
-			<td></td>
+			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">get_next_line</a></td>
 			<td>Finished</td>
 			<td>100/100</td>
 			<td>2023-10-10</td>
 		</tr>
 		<tr>
-			<td></td>
 			<td>Born2beroot</td>
-			<td></td>
 			<td>Finished</td>
 			<td>110/100</td>
 			<td>2023-10-13</td>
