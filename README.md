@@ -12,7 +12,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
-					<img src="https://cdn-icons-gif.flaticon.com/8362/8362336.gif" width="100"/>
+					<img src="https://www.funimada.com/assets/images/cards/big/0-20.gif" width="100"/>
 				</a>
 			</td>
 			<td>
