@@ -2,12 +2,11 @@
 	<foreignObject width="100%" height="100%">
 		<div xmlns="http://www.w3.org/1999/xhtml">
 			<style>
-        html {
-          background: #000 !important;
-        }
-        .container {
+				html{ background: #000 !important; }
+				.container
+				{
 					font-family:
-            'Press Start 2P',
+						'Press Start 2P',
 						system-ui,
 						-apple-system,
 						'Segoe UI',
@@ -17,7 +16,7 @@
 						sans-serif,
 						'Apple Color Emoji',
 						'Segoe UI Emoji';
-          font-weight: 400;
+					font-weight: 400;
 					display: flex;
 					flex-direction: column;
 					margin: 0;
@@ -30,8 +29,8 @@
 				}
 			</style>
 			<div class="container">
-        <button>teste</button>
-      </div>
+				teste
+			</div>
 		</div>
 	</foreignObject>
 </svg>
