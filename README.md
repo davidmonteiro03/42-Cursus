@@ -2,7 +2,8 @@
 	<table>
 		<thead>
 			<tr>
-				<td style="color:red">RANK</td>
+				<td>RANK</td>
+				<td>Project</td>
 			</tr>
 		</thead>
 	</table>
