@@ -78,5 +78,20 @@
 			<td>Registered</td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">EXAM-RANK-03</a></td>
 		</tr>
+		<!-- RANK 04 -->
+		<tr>
+			<td>RANK 04</td>
+			<td colspan="2">Rank 03 has not yet been completed</td>
+		</tr>
+		<!-- RANK 05 -->
+		<tr>
+			<td>RANK 05</td>
+			<td colspan="2">Rank 03 has not yet been completed</td>
+		</tr>
+		<!-- RANK 06 -->
+		<tr>
+			<td>RANK 06</td>
+			<td colspan="2">Rank 03 has not yet been completed</td>
+		</tr>
 	</table>
 </div>
