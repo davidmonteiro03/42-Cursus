@@ -10,7 +10,11 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 		<!-- RANK 00 -->
 		<tr>
-			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
+			<td rowspan="1">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
+					<img src="https://www.svgrepo.com/show/6974/one.svg" />
+				</a>
+			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png"/>
