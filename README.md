@@ -119,14 +119,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			</td>
 			<td colspan="3">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">
-					<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="90"/>
+					<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="125"/>
 				</a>
 			</td>
 			<td>Philosophers</td>
 		</tr>
 		<tr>
 			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" width="90"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" width="125"/>
 			</td>
 			<td>minishell</td>
 		</tr>
@@ -136,7 +136,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
 			</td>
 			<td colspan="4">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="90"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
 			</td>
 		</tr>
 		<!-- RANK 05 -->
@@ -145,7 +145,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
 			</td>
 			<td colspan="4">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="90"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
 			</td>
 		</tr>
 		<!-- RANK 06 -->
@@ -154,7 +154,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
 			</td>
 			<td colspan="4">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="90"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
 			</td>
 		</tr>
 	</table>
