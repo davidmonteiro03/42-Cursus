@@ -22,7 +22,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
-			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png"/></td>
 			<td>100/100</td>
 			<td>2023-10-09</td>
 		</tr>
