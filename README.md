@@ -12,7 +12,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
-					<img src="https://freepngimg.com/download/numbers/9-2-0-number-png.png" height="100"/>
+					<img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" height="100"/>
 				</a>
 			</td>
 			<td>
@@ -26,7 +26,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">
-					<img src="https://www.svgrepo.com/show/70902/one.svg" width="100"/>
+					<img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="100"/>
 				</a>
 			</td>
 			<td>
