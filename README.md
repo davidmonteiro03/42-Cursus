@@ -151,19 +151,25 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td>RANK 04</td>
 			<td colspan="2">Not registered</td>
-			<td>Not Ready</td>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="100"/>
+			</td>
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
 			<td>RANK 05</td>
 			<td colspan="2">Not registered</td>
-			<td>Not Ready</td>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="100"/>
+			</td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
 			<td>RANK 06</td>
 			<td colspan="2">Not registered</td>
-			<td>Not Ready</td>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="100"/>
+			</td>
 		</tr>
 	</table>
 </div>
