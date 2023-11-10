@@ -44,5 +44,17 @@
 			<td>Finished</td>
 			<td>117/100</td>
 		</tr>
+		<!-- RANK 03 -->
+		<tr>
+			<td rowspan="2"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">RANK 03</a></td>
+			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a></td>
+			<td>Registered</td>
+			<td>Not delivered</td>
+		</tr>
+		<tr>
+			<td>minishell</td>
+			<td>Not Registered</td>
+			<td>Not delivered</td>
+		</tr>
 	</table>
 </div>
