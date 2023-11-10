@@ -138,8 +138,6 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 	</table>
 </div>
 
-## Images
-
 ## Exams
 <div align="center">
 	<table>
@@ -207,6 +205,16 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 	</table>
 </div>
+
+## Images
+
+### Not Registered
+
+<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="50"/>
+
+### Project Finished
+
+<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
 
 ## Download files
 
