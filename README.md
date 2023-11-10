@@ -79,35 +79,37 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>Rank</td>
 			<td>Status</td>
 			<td>Helpful files</td>
+			<td>Delivery date</td>
 		</tr>
 		<!-- RANK 02 -->
 		<tr>
 			<td>RANK 02</td>
 			<td>Finished</td>
+			<td>2023-10-23</td>
 			<td>Not Ready</td>
 		</tr>
 		<!-- RANK 03 -->
 		<tr>
 			<td>RANK 03</td>
-			<td>Registered</td>
+			<td colspan="2">Registered</td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">EXAM-RANK-03</a></td>
 		</tr>
 		<!-- RANK 04 -->
 		<tr>
 			<td>RANK 04</td>
-			<td>Not registered</td>
+			<td colspan="2">Not registered</td>
 			<td>Not Ready</td>
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
 			<td>RANK 05</td>
-			<td>Not registered</td>
+			<td colspan="2">Not registered</td>
 			<td>Not Ready</td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
 			<td>RANK 06</td>
-			<td>Not registered</td>
+			<td colspan="2">Not registered</td>
 			<td>Not Ready</td>
 		</tr>
 	</table>
