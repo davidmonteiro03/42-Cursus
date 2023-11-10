@@ -80,17 +80,21 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			</td>
 			<td>2023-11-06</td>
 		</tr>
-		<!-- RANK 03
+		<!-- RANK 03 -->
 		<tr>
-			<td rowspan="2"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">RANK 03</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a></td>
-			<td>Registered</td>
-			<td colspan="2">Currently working on it</td>
+			<td rowspan="2">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">
+					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="100"/>
+				</a>
+			</td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a>
+			</td>
 		</tr>
 		<tr>
 			<td>minishell</td>
-			<td colspan="3">Not Registered</td>
-		</tr> -->
+			<td colspan="2">Not Registered</td>
+		</tr>
 	</table>
 </div>
 
