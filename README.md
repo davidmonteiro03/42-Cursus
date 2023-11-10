@@ -34,7 +34,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 		<tr>
 			<td>Born2beroot</td>
-			<td>Finished</td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
 			<td>110/100</td>
 			<td>2023-10-13</td>
 		</tr>
