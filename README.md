@@ -138,6 +138,8 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 	</table>
 </div>
 
+## Images
+
 ## Exams
 <div align="center">
 	<table>
@@ -153,7 +155,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="30"/>
 			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/870/870646.png" width="30"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/>
 			</td>
 			<td>2023-10-23</td>
 			<td>
@@ -172,7 +174,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
-					<img src="https://cdn-icons-png.flaticon.com/512/870/870646.png" width="30"/>
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/>
 				</a>
 			</td>
 		</tr>
