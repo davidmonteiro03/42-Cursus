@@ -32,6 +32,12 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>100/100</td>
 			<td>2023-10-10</td>
 		</tr>
+		<tr>
+			<td>Born2beroot</td>
+			<td>Finished</td>
+			<td>110/100</td>
+			<td>2023-10-13</td>
+		</tr>
 		<!-- RANK 02 -->
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02">RANK 02</a></td>
