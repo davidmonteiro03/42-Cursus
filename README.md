@@ -6,39 +6,43 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td>Rank</td>
 			<td>Project</td>
-			<td>Status</td>
-			<td>Score</td>
 			<td>Delivery date</td>
 		</tr>
 		<!-- RANK 00 -->
 		<tr>
 			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
-			<td>Finished</td>
-			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png"/></td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png"/>
+				</a>
+			</td>
 			<td>2023-10-07</td>
 		</tr>
 		<!-- RANK 01 -->
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
-			<td>Finished</td>
-			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" /></td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" />
+				</a>
+			</td>
 			<td>2023-10-09</td>
 		</tr>
 		<tr>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">get_next_line</a></td>
-			<td>Finished</td>
-			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linee.png" /></td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linee.png" />
+				</a>
+			</td>
 			<td>2023-10-10</td>
 		</tr>
 		<tr>
-			<td>Born2beroot</td>
-			<td>Finished</td>
-			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/born2berootm.png" /></td>
+			<td>
+				<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/born2berootm.png" />
+			</td>
 			<td>2023-10-13</td>
 		</tr>
-		<!-- RANK 02 -->
+		<!-- RANK 02
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02">RANK 02</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/push_swap">push_swap</a></td>
@@ -58,7 +62,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>117/100</td>
 			<td>2023-11-06</td>
 		</tr>
-		<!-- RANK 03 -->
+		RANK 03
 		<tr>
 			<td rowspan="2"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">RANK 03</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a></td>
@@ -68,7 +72,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td>minishell</td>
 			<td colspan="3">Not Registered</td>
-		</tr>
+		</tr> -->
 	</table>
 </div>
 
