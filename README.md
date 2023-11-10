@@ -1,7 +1,7 @@
 # 42-Cursus
 I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cursus</a> on October 2, 2023, from Piscine #7 of 42.
 
-[teste](https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00)
+[teste](https://github.com/davidmonteiro03/42-Cursus/blob/main/Projects/RANK00)
 
 ## Projects
 <div align="center">
