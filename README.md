@@ -5,35 +5,45 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 	<table>
 		<tr>
 			<td>Rank</td>
+			<td>Download</td>
 			<td>Project</td>
+			<td>Download</td>
 			<td>Status</td>
 			<td>Score</td>
 			<td>Delivery date</td>
 		</tr>
 		<!-- RANK 00 -->
 		<tr>
-			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
+			<td rowspan="1">RANK 00</td>
+			<td></td>
+			<td>Libft</td>
+			<td></td>
 			<td>Finished</td>
 			<td>125/100</td>
 			<td>2023-10-07</td>
 		</tr>
 		<!-- RANK 01 -->
 		<tr>
-			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
+			<td rowspan="3">RANK 01</td>
+			<td></td>
+			<td>ft_printf</td>
+			<td></td>
 			<td>Finished</td>
 			<td>100/100</td>
 			<td>2023-10-09</td>
 		</tr>
 		<tr>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">get_next_line</a></td>
+			<td></td>
+			<td>get_next_line</td>
+			<td></td>
 			<td>Finished</td>
 			<td>100/100</td>
 			<td>2023-10-10</td>
 		</tr>
 		<tr>
+			<td></td>
 			<td>Born2beroot</td>
+			<td></td>
 			<td>Finished</td>
 			<td>110/100</td>
 			<td>2023-10-13</td>
