@@ -115,7 +115,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="100"/>
 			</td>
 			<td>2023-10-23</td>
-			<td>Not Ready</td>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/2569/2569174.png" />
+			</td>
 		</tr>
 		<!-- RANK 03 -->
 		<tr>
