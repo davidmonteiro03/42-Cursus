@@ -14,7 +14,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
-			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png" width="30"/></td>
+			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png"/></td>
 			<td>125/100</td>
 			<td>2023-10-07</td>
 		</tr>
@@ -22,7 +22,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
-			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png"/></td>
+			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="30"/></td>
 			<td>100/100</td>
 			<td>2023-10-09</td>
 		</tr>
