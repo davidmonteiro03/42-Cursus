@@ -14,7 +14,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
-			<td><img src="https://camo.githubusercontent.com/9b1f48e203c5923923a60fa9af7913246fd90bb9ba4ae3546fd1ccdea75fda6b/687474703a2f2f692e67697068792e636f6d2f4876367056507a42635155586d2e676966" width="50"/></td>
+			<td><img src="https://raw.githubusercontent.com/icons8/flat-color-icons/8eccbbbd8b2af1d2c9593e7cfba5ecb0d68ee378/svg/approval.svg" width="50"/></td>
 			<td>125/100</td>
 			<td>2023-10-07</td>
 		</tr>
