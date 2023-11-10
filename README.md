@@ -42,13 +42,13 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02">RANK 02</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/push_swap">push_swap</a></td>
+			<td>Finished</td>
 			<td><div class="project-status-box" data-status="success">
 <div class="iconf-check-4 mt-4">
 success
 </div>
 <span>125</span>
 </div></td>
-			<td>125/100</td>
 			<td>2023-10-27</td>
 		</tr>
 		<tr>
