@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/10 16:05:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/10 17:40:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@
 typedef pthread_t		t_id;
 typedef pthread_mutex_t	t_f;
 
-struct					t_inf;
+struct					s_inf;
 
 typedef struct s_ph
 {
 	int				id;
 	int				meal_count;
+	long			lm;
 	t_f				*lf;
 	t_f				*rf;
 	struct s_inf	*inf;
@@ -43,7 +44,10 @@ typedef struct s_inf
 	int		time_eat;
 	int		time_sleep;
 	int		num_times_ph_eat;
+	int		max_eat;
+	int		cur_eat;
 	long	st;
+	bool	end;
 	t_ph	*ph;
 	t_f		*f;
 	t_id	*th;
@@ -77,7 +81,7 @@ void		init_philos(t_inf *inf);
 /*                                   ROUTINE                                  */
 /* ************************************************************************** */
 
-void		lock_forks(t_ph *ph);
+int			lock_forks(t_ph *ph);
 void		sleeping(t_ph *ph);
 void		unlock_forks(t_ph *ph);
 
