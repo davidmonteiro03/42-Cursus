@@ -1,6 +1,6 @@
 <div align="center">
 	<!-- RANK 00 -->
-	<table>
+	<table style="font-size:500px">
 		<tr>
 			<td colspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK00</a></td>
 		</tr>
