@@ -5,19 +5,15 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 	<table>
 		<tr>
 			<td>Rank</td>
-			<td>Download</td>
 			<td>Project</td>
-			<td>Download</td>
 			<td>Status</td>
 			<td>Score</td>
 			<td>Delivery date</td>
 		</tr>
 		<!-- RANK 00 -->
 		<tr>
-			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
-			<td><a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00" target="_blank">Download Rank 00</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
-			<td><a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft"t arget="_blank">Download Libft</a></td>
+			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00" target="_blank">RANK 00</a></td>
+			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft" target="_blank">Libft</a></td>
 			<td>Finished</td>
 			<td>125/100</td>
 			<td>2023-10-07</td>
