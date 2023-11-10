@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/10 16:18:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:27:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	*routine(void *philo)
 		status(ph, "is thinking");
 		lock_forks(ph);
 		status(ph, "is eating");
-		usleep(ph->inf->time_eat);
+		usleep(ph->inf->time_eat * 1000);
 		unlock_forks(ph);
 		sleeping(ph);
 	}
