@@ -8,6 +8,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>Project</td>
 			<td>Status</td>
 			<td>Score</td>
+			<td>Delivery date</td>
 		</tr>
 		<!-- RANK 00 -->
 		<tr>
@@ -15,6 +16,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
 			<td>Finished</td>
 			<td>125/100</td>
+			<td>2023-10-07</td>
 		</tr>
 		<!-- RANK 01 -->
 		<tr>
@@ -22,11 +24,13 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
 			<td>Finished</td>
 			<td>100/100</td>
+			<td>2023-10-09</td>
 		</tr>
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">get_next_line</a></td>
 			<td>Finished</td>
 			<td>100/100</td>
+			<td>2023-10-10</td>
 		</tr>
 		<!-- RANK 02 -->
 		<tr>
@@ -34,27 +38,30 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/push_swap">push_swap</a></td>
 			<td>Finished</td>
 			<td>125/100</td>
+			<td>2023-10-27</td>
 		</tr>
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/minitalk">minitalk</a></td>
 			<td>Finished</td>
 			<td>125/100</td>
+			<td>2023-10-30</td>
 		</tr>
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/so_long">so_long</a></td>
 			<td>Finished</td>
 			<td>117/100</td>
+			<td>2023-11-06</td>
 		</tr>
 		<!-- RANK 03 -->
 		<tr>
 			<td rowspan="2"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">RANK 03</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a></td>
 			<td>Registered</td>
-			<td>Not delivered</td>
+			<td colspan="2">Not delivered</td>
 		</tr>
 		<tr>
 			<td>minishell</td>
-			<td colspan="2">Not Registered</td>
+			<td colspan="3">Not Registered</td>
 		</tr>
 	</table>
 </div>
