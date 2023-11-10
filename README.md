@@ -14,16 +14,16 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
-					<img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" width="70"/>
+					<img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" width="50"/>
 				</a>
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png" width="70"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png" width="80"/>
 				</a>
 			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="70"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
 			</td>
 			<td>2023-10-07</td>
 			<td>Libft</td>
@@ -32,16 +32,16 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">
-					<img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="70"/>
+					<img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="50"/>
 				</a>
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" width="70"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" width="80"/>
 				</a>
 			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="70"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
 			</td>
 			<td>2023-10-09</td>
 			<td>ft_printf</td>
@@ -49,21 +49,21 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linee.png" width="70"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linee.png" width="80"/>
 				</a>
 			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="70"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
 			</td>
 			<td>2023-10-10</td>
 			<td>get_next_line</td>
 		</tr>
 		<tr>
 			<td>
-				<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/born2berootm.png" width="70"/>
+				<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/born2berootm.png" width="80"/>
 			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="70"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
 			</td>
 			<td>2023-10-13</td>
 			<td>Born2beroot</td>
