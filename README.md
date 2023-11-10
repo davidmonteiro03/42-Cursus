@@ -111,7 +111,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>
 				<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="100"/>
 			</td>
-			<td><img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="100"/></td>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="100"/>
+			</td>
 			<td>2023-10-23</td>
 			<td>Not Ready</td>
 		</tr>
@@ -119,7 +121,11 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td>RANK 03</td>
 			<td colspan="2">Registered</td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">EXAM-RANK-03</a></td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="100"/>
+				</a>
+			</td>
 		</tr>
 		<!-- RANK 04 -->
 		<tr>
