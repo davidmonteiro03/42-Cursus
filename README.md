@@ -4,6 +4,7 @@
 			<tr>
 				<td>RANK</td>
 				<td>Project</td>
+				<td>Status</td>
 			</tr>
 		</thead>
 	</table>
