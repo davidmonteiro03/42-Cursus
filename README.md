@@ -14,7 +14,7 @@
 			<td>Finished</td>
 			<td>125/100</td>
 		</tr>
-	</table><hr />
+	</table>
 	<!-- RANK 01 -->
 	<table>
 		<tr>
@@ -27,6 +27,11 @@
 		</tr>
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
+			<td>Finished</td>
+			<td>100/100</td>
+		</tr>
+		<tr>
+			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">get_next_line</a></td>
 			<td>Finished</td>
 			<td>100/100</td>
 		</tr>
