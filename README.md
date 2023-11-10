@@ -14,16 +14,16 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
-					<img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" width="100"/>
+					<img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" width="85"/>
 				</a>
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png" width="100"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png" width="150"/>
 				</a>
 			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="65"/>
 			</td>
 			<td>2023-10-07</td>
 			<td>Libft</td>
@@ -32,7 +32,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">
-					<img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="100"/>
+					<img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="85"/>
 				</a>
 			</td>
 			<td>
@@ -72,7 +72,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02">
-					<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="100"/>
+					<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="85"/>
 				</a>
 			</td>
 			<td>
@@ -114,7 +114,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="2">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">
-					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="100"/>
+					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="85"/>
 				</a>
 			</td>
 			<td colspan="3">
@@ -133,7 +133,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 04 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="100"/>
+				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="85"/>
 			</td>
 			<td colspan="4">
 				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="100"/>
@@ -142,7 +142,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 05 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="100"/>
+				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="85"/>
 			</td>
 			<td colspan="4">
 				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="100"/>
@@ -151,7 +151,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 06 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="100"/>
+				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="85"/>
 			</td>
 			<td colspan="4">
 				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="100"/>
