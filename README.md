@@ -28,7 +28,7 @@
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
 			<td>Finished</td>
-			<td>125/100</td>
+			<td>100/100</td>
 		</tr>
 	</table>
 </div>
