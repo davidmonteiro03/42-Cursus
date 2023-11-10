@@ -57,3 +57,25 @@
 		</tr>
 	</table>
 </div>
+
+## Exams
+<div align="center">
+	<table>
+		<tr>
+			<td>Rank</td>
+			<td>Status</td>
+			<td>Helpful files</td>
+		</tr>
+		<!-- RANK 02 -->
+		<tr>
+			<td>RANK 02</td>
+			<td>Finished</td>
+			<td>Not Ready</td>
+		</tr>
+		<!-- RANK 03 -->
+		<tr>
+			<td>RANK 03</td>
+			<td colspan="2">Registered</td>
+		</tr>
+	</table>
+</div>
