@@ -24,14 +24,6 @@
 
 ## Images
 
-### Not registered in Project
-
-<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" width="75"/>
-
-### Not registered in Rank
-
-<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
-
 ### Project Finished
 
 <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
