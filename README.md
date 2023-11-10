@@ -15,9 +15,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 00 -->
 		<tr>
 			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00.zip" download>Download Rank 00</a></td>
+			<td><a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">Download Rank 00</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
-			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft.zip" download>Download Libft</a></td>
+			<td><a href="https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
 			<td></td>
 			<td>Finished</td>
 			<td>125/100</td>
