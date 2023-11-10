@@ -63,7 +63,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td rowspan="2"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">RANK 03</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a></td>
 			<td>Registered</td>
-			<td colspan="2">Not delivered</td>
+			<td colspan="2">Currently working on it</td>
 		</tr>
 		<tr>
 			<td>minishell</td>
