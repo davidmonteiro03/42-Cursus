@@ -7,6 +7,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>Rank</td>
 			<td>Project</td>
 			<td>Delivery date</td>
+			<td>Name of the project</td>
 		</tr>
 		<!-- RANK 00 -->
 		<tr>
@@ -21,6 +22,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td>2023-10-07</td>
+			<td>Libft</td>
 		</tr>
 		<!-- RANK 01 -->
 		<tr>
@@ -35,6 +37,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td>2023-10-09</td>
+			<td>ft_printf</td>
 		</tr>
 		<tr>
 			<td>
@@ -43,12 +46,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td>2023-10-10</td>
+			<td>get_next_line</td>
 		</tr>
 		<tr>
 			<td>
 				<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/born2berootm.png" width="100"/>
 			</td>
 			<td>2023-10-13</td>
+			<td>Born2beroot</td>
 		</tr>
 		<!-- RANK 02 -->
 		<tr>
@@ -63,6 +68,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td>2023-10-27</td>
+			<td>push_swap</td>
 		</tr>
 		<tr>
 			<td>
@@ -71,6 +77,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td>2023-10-30</td>
+			<td>minitalk</td>
 		</tr>
 		<tr>
 			<td>
@@ -79,6 +86,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td>2023-11-06</td>
+			<td>so_long</td>
 		</tr>
 		<!-- RANK 03 -->
 		<tr>
@@ -92,9 +100,11 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 					<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="100"/>
 				</a>
 			</td>
+			<td>Philosophers</td>
 		</tr>
 		<tr>
 			<td colspan="2">Not Registered</td>
+			<td>minishell</td>
 		</tr>
 	</table>
 </div>
