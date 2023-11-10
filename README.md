@@ -14,7 +14,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">RANK 00</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00/libft">Libft</a></td>
-			<td>125/100</td>
+			<td>Finished</td>
 			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png"/></td>
 			<td>2023-10-07</td>
 		</tr>
@@ -22,20 +22,20 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="3"><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">RANK 01</a></td>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">ft_printf</a></td>
+			<td>Finished</td>
 			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" /></td>
-			<td>100/100</td>
 			<td>2023-10-09</td>
 		</tr>
 		<tr>
 			<td><a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">get_next_line</a></td>
+			<td>Finished</td>
 			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linee.png" /></td>
-			<td>100/100</td>
 			<td>2023-10-10</td>
 		</tr>
 		<tr>
 			<td>Born2beroot</td>
+			<td>Finished</td>
 			<td><img src="https://github.com/byaliego/42-project-badges/blob/main/badges/born2berootm.png" /></td>
-			<td>110/100</td>
 			<td>2023-10-13</td>
 		</tr>
 		<!-- RANK 02 -->
