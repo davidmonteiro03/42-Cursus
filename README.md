@@ -87,12 +87,11 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="100"/>
 				</a>
 			</td>
-			<td>
+			<td colspan="2">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a>
 			</td>
 		</tr>
 		<tr>
-			<td>minishell</td>
 			<td colspan="2">Not Registered</td>
 		</tr>
 	</table>
