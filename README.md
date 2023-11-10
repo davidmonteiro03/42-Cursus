@@ -149,24 +149,24 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 		<!-- RANK 04 -->
 		<tr>
-			<td colspan="3">
+			<td>
 				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="100"/>
 			</td>
-			<td></td>
+			<td colspan="3"></td>
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
-			<td colspan="3">
+			<td>
 				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="100"/>
 			</td>
-			<td></td>
+			<td colspan="3"></td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
-			<td colspan="3">
+			<td>
 				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="100"/>
 			</td>
-			<td></td>
+			<td colspan="3"></td>
 		</tr>
 	</table>
 </div>
