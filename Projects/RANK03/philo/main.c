@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/10 15:58:57 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:18:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,37 @@ void	philo_1(t_inf *inf)
 	status(&inf->ph[0], "died");
 }
 
+void	*routine(void *philo)
+{
+	t_ph	*ph;
+
+	ph = (t_ph *)philo;
+	while (1)
+	{
+		status(ph, "is thinking");
+		lock_forks(ph);
+		status(ph, "is eating");
+		usleep(ph->inf->time_eat);
+		unlock_forks(ph);
+		sleeping(ph);
+	}
+	return (NULL);
+}
+
 void	confusion(t_inf *inf)
 {
+	int	i;
+
 	inf->st = get_time();
 	if (inf->num_ph == 1)
 		return (philo_1(inf));
+	i = -1;
+	while (++i < inf->num_ph)
+		pthread_create(&inf->th[i], NULL, &routine, &inf->ph[i]);
+	inf->st = get_time();
+	i = -1;
+	while (++i < inf->num_ph)
+		pthread_join(inf->th[i], NULL);
 }
 
 void	peace(t_inf *inf)

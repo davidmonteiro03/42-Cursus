@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 15:40:35 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/10 15:49:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:12:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	init_philos(t_inf *inf)
 		inf->ph[i].id = i + 1;
 		inf->ph[i].inf = inf;
 		inf->ph[i].lf = &inf->f[i];
-		inf->ph[i].lf = &inf->f[(i + 1) % inf->num_ph];
+		inf->ph[i].rf = &inf->f[(i + 1) % inf->num_ph];
 	}
 }

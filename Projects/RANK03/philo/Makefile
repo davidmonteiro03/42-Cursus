@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/10 15:50:25 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/10 16:05:33 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS			= main.c \
 					srcs/checks.c \
 					srcs/errors.c \
 					srcs/init.c \
+					srcs/routine.c \
 					srcs/usage_utils.c \
 					srcs/utils.c
 

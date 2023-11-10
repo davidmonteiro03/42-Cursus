@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:44:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/10 15:56:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/10 16:05:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ struct					t_inf;
 typedef struct s_ph
 {
 	int				id;
+	int				meal_count;
 	t_f				*lf;
 	t_f				*rf;
 	struct s_inf	*inf;
@@ -71,6 +72,14 @@ void		error_usage(int ac, char **av);
 void		init_forks(t_inf *inf);
 void		init_inf(t_inf *inf, int ac, char **av);
 void		init_philos(t_inf *inf);
+
+/* ************************************************************************** */
+/*                                   ROUTINE                                  */
+/* ************************************************************************** */
+
+void		lock_forks(t_ph *ph);
+void		sleeping(t_ph *ph);
+void		unlock_forks(t_ph *ph);
 
 /* ************************************************************************** */
 /*                                 USAGE UTILS                                */
