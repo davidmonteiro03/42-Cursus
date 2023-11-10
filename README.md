@@ -232,23 +232,23 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 
 ### Not registered in Project
 
-<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" width="50"/>
+<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" width="75"/>
 
 ### Not registered in Rank
 
-<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="50"/>
+<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
 
 ### Project Finished
 
-<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
+<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 
 ### Currently doing the project
 
-<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="50"/>
+<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="125"/>
 
 ### Not ready (only for 'Helpful file' column)
 
-<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="50"/>
+<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="75"/>
 
 ## Download files
 
