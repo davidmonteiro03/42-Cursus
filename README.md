@@ -216,6 +216,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 
 <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="50"/>
 
+### Currently doing the project
+
+<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="50"/>
+
+### Not ready (only for 'Helpful file' column)
+
+<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="50"/>
+
 ## Download files
 
 <p>Go to <a href="https://minhaskamal.github.io/DownGit/#/home" target="_blank">DownGit</a> and copy the link of the folder you want to download, then click on Download button.</p>
