@@ -182,7 +182,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="100"/>
 			</td>
 			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="100"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="100"/>
 			</td>
 		</tr>
 		<!-- RANK 05 -->
@@ -191,7 +191,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="100"/>
 			</td>
 			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="100"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="100"/>
 			</td>
 		</tr>
 		<!-- RANK 06 -->
@@ -200,7 +200,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="100"/>
 			</td>
 			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="100"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="100"/>
 			</td>
 		</tr>
 	</table>
