@@ -81,17 +81,20 @@
 		<!-- RANK 04 -->
 		<tr>
 			<td>RANK 04</td>
-			<td colspan="2">Rank 03 has not yet been completed</td>
+			<td>Not registered</td>
+			<td>Not Ready</td>
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
 			<td>RANK 05</td>
-			<td colspan="2">Rank 03 has not yet been completed</td>
+			<td>Not registered</td>
+			<td>Not Ready</td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
 			<td>RANK 06</td>
-			<td colspan="2">Rank 03 has not yet been completed</td>
+			<td>Not registered</td>
+			<td>Not Ready</td>
 		</tr>
 	</table>
 </div>
