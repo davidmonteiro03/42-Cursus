@@ -133,7 +133,11 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 		<!-- RANK 03 -->
 		<tr>
-			<td>RANK 03</td>
+			<td rowspan="2">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">
+					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="100"/>
+				</a>
+			</td>
 			<td colspan="2">
 				<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="100"/>
 			</td>
