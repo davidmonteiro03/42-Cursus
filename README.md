@@ -104,7 +104,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 		<tr>
 			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" />
+				<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" width="100"/>
 			</td>
 			<td>minishell</td>
 		</tr>
