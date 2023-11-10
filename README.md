@@ -88,7 +88,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td colspan="2">
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">Philosophers</a>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="100"/>
+				</a>
 			</td>
 		</tr>
 		<tr>
