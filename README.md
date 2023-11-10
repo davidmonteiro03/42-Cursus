@@ -12,7 +12,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<tr>
 			<td rowspan="1">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
-					<img src="https://www.svgrepo.com/show/6974/one.svg" width="100"/>
+					<img src="https://raw.githubusercontent.com/dragonfruitnetwork/dragon6-assets/master/public/rank/v4/0.png" width="100"/>
 				</a>
 			</td>
 			<td>
