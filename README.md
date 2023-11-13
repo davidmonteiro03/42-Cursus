@@ -238,10 +238,6 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 
 ## Images
 
-### Not registered in Project
-
-<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" width="75"/>
-
 ### Not registered in Rank
 
 <img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
