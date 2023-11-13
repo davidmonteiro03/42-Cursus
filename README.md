@@ -196,7 +196,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5578/5695859.png" width="125"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
