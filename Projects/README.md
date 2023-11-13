@@ -121,7 +121,7 @@
 				</a>
 			</td>
 			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5578/5695859.png" width="125"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
 			<td>Philosophers</td>
 		</tr>
