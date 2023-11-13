@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 08:42:34 by ade-pinh          #+#    #+#              #
-#    Updated: 2023/11/13 12:37:38 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/13 16:08:16 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,8 +74,8 @@ OTHERFLAGS		= -lreadline
 
 ### ---------- FILES ---------- ###
 MAIN		= main.c
-SRC			= src/errors.c src/exit.c src/free.c \
-				src/init.c
+SRC			= src/errors.c src/exec_mini.c src/exit.c \
+				src/free.c src/init.c src/utils.c
 BONUS_MAIN	=
 BONUS_SRC	=
 OBJ = ${SRC:.c=.o}

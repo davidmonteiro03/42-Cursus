@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   exec_mini.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 12:33:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/13 16:41:37 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/13 15:57:23 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/13 16:49:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
-void	exit_mini(t_mini *mini, int status)
+int	exec_mini(t_mini *mini)
 {
-	multiple_free("%c%a%a", \
-		mini->vars, \
-		mini->command, \
-		mini \
-	);
-	exit(status);
+	char	*line;
+
+	ft_printf("%s ", mini->pwd);
+	line = get_next_line(0);
+	mini->command = ft_strtrim(line, "\n");
+	free(line);
+	if (ft_strncmp(mini->command, EXIT, ft_strlen(mini->command)) == 0)
+		exit_mini(mini, 0);
+	if (ft_strncmp(mini->command, PWD, ft_strlen(mini->command)) == 0)
+		ft_printf("%s\n", mini->pwd);
+	free(mini->command);
+	return (0);
 }

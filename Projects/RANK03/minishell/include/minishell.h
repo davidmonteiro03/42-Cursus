@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 16:39:23 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/13 12:37:26 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/13 16:48:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,16 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+# define EXIT "exit"
+# define PWD "pwd"
+
 typedef struct s_mini
 {
 	char	**args;
+	char	***vars;
 	char	**env;
 	char	*command;
+	char	*pwd;
 }t_mini;
 
 /* ************************************************************************** */
@@ -31,6 +36,12 @@ typedef struct s_mini
 
 void	usage(void);
 void	error(void);
+
+/* ************************************************************************** */
+/*                                    EXEC                                    */
+/* ************************************************************************** */
+
+int		exec_mini(t_mini *mini);
 
 /* ************************************************************************** */
 /*                                    EXIT                                    */
@@ -49,5 +60,13 @@ void	multiple_free(const char *format, ...);
 /* ************************************************************************** */
 
 t_mini	*init_mini(char **env);
+
+/* ************************************************************************** */
+/*                                    UTILS                                   */
+/* ************************************************************************** */
+
+char	*get_value_of(char ***vars, char *var);
+char	*ft_jointfree2(char *s1, char *s2);
+char	*ft_jointfree(char *s1, char *s2);
 
 #endif
