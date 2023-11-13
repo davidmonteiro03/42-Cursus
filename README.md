@@ -117,10 +117,13 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
 				</a>
 			</td>
-			<td colspan="3">
+			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">
-					<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="125"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/philosophersn.png" width="125"/>
 				</a>
+			</td>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5578/5578703.png" width="125"/>
 			</td>
 			<td>Philosophers</td>
 		</tr>
