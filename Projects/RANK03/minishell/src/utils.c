@@ -6,26 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 16:04:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/13 16:29:02 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/13 17:36:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
-
-char	*get_value_of(char ***vars, char *var)
-{
-	char	*value;
-	int		i;
-
-	value = NULL;
-	i = -1;
-	while (vars[++i])
-		if (ft_strncmp(vars[i][0], var, ft_strlen(var)) == 0)
-			value = vars[i][1];
-	if (!value)
-		return (NULL);
-	return (value);
-}
 
 char	*ft_jointfree2(char *s1, char *s2)
 {
