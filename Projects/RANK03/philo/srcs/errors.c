@@ -5,41 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/08 08:40:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/08 12:53:24 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/11 17:53:32 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/11 17:56:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	error_message(void)
+int	error(char *error)
 {
-	printf("Error\n");
-	exit(EXIT_FAILURE);
-}
-
-void	check_num_args(int ac, char **av)
-{
-	if (ac == 1)
-		usage_std();
-	if (ac == 2)
-		usage_1(av);
-	if (ac == 3)
-		usage_2(av);
-	if (ac == 4)
-		usage_3(av);
-}
-
-void	error_usage(int ac, char **av)
-{
-	printf("\n");
-	printf("+------------------------------------------------------------+\n");
-	printf("|%-60s|\n", "");
-	printf("|%-60s|\n", "  USAGE");
-	printf("|%-60s|\n", "");
-	check_num_args(ac, av);
-	printf("|%-60s|\n", "");
-	printf("+------------------------------------------------------------+\n");
-	printf("\n");
-	exit(EXIT_FAILURE);
+	if (!error)
+		printf("Error\n");
+	else
+		printf("%s\n", error);
+	return (EXIT_FAILURE);
 }
