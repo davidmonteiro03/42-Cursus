@@ -193,9 +193,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		<!-- RANK 03 -->
 		<tr>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">
-					<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
-				</a>
+				<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
 			</td>
 			<td colspan="2">
 				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
