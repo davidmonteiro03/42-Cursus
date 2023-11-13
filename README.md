@@ -198,12 +198,12 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 				</a>
 			</td>
 			<td colspan="2">
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
-					<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
-				</a>
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+				</a>
 			</td>
 		</tr>
 		<!-- RANK 04 -->
