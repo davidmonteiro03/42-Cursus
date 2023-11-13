@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 16:38:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/13 12:36:23 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/13 12:33:31 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/13 12:40:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/minishell.h"
+#include "../include/minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	exit_mini(t_mini *mini, int status)
 {
-	t_mini	*mini;
-
-	(void)av;
-	if (ac != 1)
-		usage();
-	mini = init_mini(env);
-	if (!mini)
-		error();
-	exit_mini(mini, 0);
-	return (0);
+	multiple_free("%b%a%a", \
+		mini->args, \
+		mini->command, \
+		mini \
+	);
+	exit(status);
 }

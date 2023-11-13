@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/27 16:38:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/13 12:36:23 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/13 12:20:32 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/13 12:32:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/minishell.h"
+#include "../include/minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	usage(void)
 {
-	t_mini	*mini;
+	printf("Usage: ./minishell\n");
+	exit(EXIT_FAILURE);
+}
 
-	(void)av;
-	if (ac != 1)
-		usage();
-	mini = init_mini(env);
-	if (!mini)
-		error();
-	exit_mini(mini, 0);
-	return (0);
+void	error(void)
+{
+	printf("Error\n");
+	exit(EXIT_FAILURE);
 }

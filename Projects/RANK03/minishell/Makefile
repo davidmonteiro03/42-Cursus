@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 08:42:34 by ade-pinh          #+#    #+#              #
-#    Updated: 2023/11/13 10:44:56 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/13 12:37:38 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,14 +67,15 @@ CC_LIN			= cc
 ### ---------- OTHERS ---------- ###
 NAME			= minishell
 BONUS			=
-CFLAGS			= -Werror -Wextra -Wall -g -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror
 INCLUDE			= include
 LIBS			= libs/libft/libft.a
 OTHERFLAGS		= -lreadline
 
 ### ---------- FILES ---------- ###
 MAIN		= main.c
-SRC			=	src/teste.c
+SRC			= src/errors.c src/exit.c src/free.c \
+				src/init.c
 BONUS_MAIN	=
 BONUS_SRC	=
 OBJ = ${SRC:.c=.o}
