@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/13 08:12:23 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/13 09:11:54 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ OBJS_DIR		= obj/
 INCLUDES_DIR	= includes/
 
 SRCS			= main.c \
+					srcs/clean.c \
 					srcs/check.c \
 					srcs/errors.c \
 					srcs/init.c
