@@ -128,7 +128,10 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>Philosophers</td>
 		</tr>
 		<tr>
-			<td colspan="3">
+			<td>
+				<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/minishelln.png" width="125"/>
+			</td>
+			<td colspan="2">
 				<img src="https://cdn-icons-png.flaticon.com/512/12072/12072893.png" width="75"/>
 			</td>
 			<td>minishell</td>
