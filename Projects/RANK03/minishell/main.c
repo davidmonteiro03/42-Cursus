@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/27 16:38:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/13 18:36:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 08:19:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,8 @@
 
 int	main(int ac, char **av, char **env)
 {
-	t_mini	*mini;
-
 	(void)av;
-	if (ac != 1)
-		usage();
-	mini = init_mini(env);
-	if (!mini)
-		error();
-	while (exec_mini(mini) == 0)
-	{
-	}
-	exit_mini(mini, 0);
+	(void)ac;
+	(void)env;
 	return (0);
 }
