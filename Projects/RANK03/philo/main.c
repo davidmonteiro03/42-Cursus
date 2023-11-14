@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 17:42:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:49:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,24 @@
 
 void	*routine(void *philo)
 {
-	t_ph	*ph;
+	static bool	end;
+	t_ph		*ph;
 
 	ph = (t_ph *)philo;
-	printf("Ola %d\n", ph->ph_id);
+	while (!end)
+	{
+		pthread_mutex_lock(ph->inf->action_lock);
+		if (ph->ph_id == 2)
+		{
+			end = true;
+			printf("AAAA => kkasksd\n");
+			pthread_mutex_unlock(ph->inf->action_lock);
+			pthread_exit(NULL);
+		}
+		else if (!end)
+			printf("AAAA => %d\n", ph->ph_id);
+		pthread_mutex_unlock(ph->inf->action_lock);
+	}
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:56:28 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 17:38:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:47:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	init_forks(t_inf **inf)
 	i = -1;
 	while (++i < (*inf)->num_ph)
 		pthread_mutex_init(&(*inf)->f[i], NULL);
+	pthread_mutex_init((*inf)->action_lock, NULL);
 	return (0);
 }
 
@@ -54,16 +55,12 @@ int	init_inf(t_inf **inf, int ac, char **av)
 	if (ac == 6 && av[5] && *av[5])
 		(*inf)->num_meals_ph = ph_atoi(av[5]);
 	(*inf)->ph = (t_ph *)malloc(sizeof(t_ph) * (*inf)->num_ph);
-	if (!(*inf)->ph)
-		return (free(*inf), 1);
 	(*inf)->f = (t_mutex *)malloc(sizeof(t_mutex) * (*inf)->num_ph);
-	if (!(*inf)->f)
-		return (free((*inf)->ph), free(*inf), 1);
 	(*inf)->th = (t_th *)malloc(sizeof(t_th) * (*inf)->num_ph);
-	if (!(*inf)->th)
-		return (free((*inf)->f), free((*inf)->ph), free(*inf), 1);
-	if (init_forks(inf) != 0 || init_philos(inf) != 0)
-		return (free((*inf)->th), free((*inf)->f), free((*inf)->ph), \
-			free(*inf), 1);
+	(*inf)->action_lock = (t_mutex *)malloc(sizeof(t_mutex) * (*inf)->num_ph);
+	if (!(*inf)->ph || !(*inf)->f || !(*inf)->th || !(*inf)->action_lock)
+		return (clean_inf(inf), 1);
+	init_forks(inf);
+	init_philos(inf);
 	return (0);
 }

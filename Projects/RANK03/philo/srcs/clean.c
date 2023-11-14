@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 14:06:59 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 17:19:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:45:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	clean_inf(t_inf **inf)
 {
 	int	i;
 
-	if (!inf || !*inf)
+	if (!*inf)
 		return (1);
 	i = -1;
 	while (++i < (*inf)->num_ph)
@@ -24,9 +24,15 @@ int	clean_inf(t_inf **inf)
 	i = -1;
 	while (++i < (*inf)->num_ph)
 		pthread_mutex_destroy(&(*inf)->f[i]);
-	free((*inf)->ph);
-	free((*inf)->f);
-	free((*inf)->th);
+	pthread_mutex_destroy((*inf)->action_lock);
+	if ((*inf)->ph)
+		free((*inf)->ph);
+	if ((*inf)->f)
+		free((*inf)->f);
+	if ((*inf)->th)
+		free((*inf)->th);
+	if ((*inf)->action_lock)
+		free((*inf)->action_lock);
 	free(*inf);
 	return (0);
 }
