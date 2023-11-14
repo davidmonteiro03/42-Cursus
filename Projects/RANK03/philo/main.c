@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 19:25:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:51:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ void	*routine(void *philo)
 	ph = (t_ph *)philo;
 	while (!end)
 	{
-		if (ph->meal_count == ph->inf->num_meals_ph || \
-			gettime() - ph->lm > ph->inf->time_die)
+		if (ph->meal_count == ph->inf->num_meals_ph)
 		{
 			end = true;
-			status(ph, DIED);
+			//status(ph, DIED);
 			pthread_mutex_unlock(ph->inf->action_lock);
 			pthread_exit(NULL);
 		}
