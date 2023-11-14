@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:56:28 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 18:47:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:57:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	init_philos(t_inf **inf)
 		(*inf)->ph[i].ph_id = i + 1;
 		(*inf)->ph[i].lf = &((*inf)->f[i]);
 		(*inf)->ph[i].rf = &((*inf)->f[(i + 1) % (*inf)->num_ph]);
+		(*inf)->ph[i].meal_count = 0;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 18:44:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 18:56:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ struct					s_inf;
 
 typedef struct s_ph
 {
+	int				meal_count;
 	int				ph_id;
 	t_mutex			*lf;
 	t_mutex			*rf;
@@ -40,6 +41,7 @@ typedef struct s_inf
 	int		time_eat;
 	int		time_sleep;
 	int		num_meals_ph;
+	long	time_start;
 	t_ph	*ph;
 	t_mutex	*f;
 	t_th	*th;
