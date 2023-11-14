@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 18:49:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:25:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,20 @@ void	*routine(void *philo)
 	ph = (t_ph *)philo;
 	while (!end)
 	{
-		pthread_mutex_lock(ph->inf->action_lock);
-		if (ph->ph_id == 2)
+		if (ph->meal_count == ph->inf->num_meals_ph || \
+			gettime() - ph->lm > ph->inf->time_die)
 		{
 			end = true;
-			printf("AAAA => kkasksd\n");
+			status(ph, DIED);
 			pthread_mutex_unlock(ph->inf->action_lock);
 			pthread_exit(NULL);
 		}
 		else if (!end)
-			printf("AAAA => %d\n", ph->ph_id);
-		pthread_mutex_unlock(ph->inf->action_lock);
+		{
+			think(ph);
+			eat(ph);
+			sleeping(ph);
+		}
 	}
 	return (NULL);
 }
@@ -41,6 +44,7 @@ int	confusion(t_inf **inf)
 
 	if (!*inf)
 		return (1);
+	(*inf)->time_start = gettime();
 	i = -1;
 	while (++i < (*inf)->num_ph)
 		pthread_create(&(*inf)->th[i], NULL, &routine, &(*inf)->ph[i]);

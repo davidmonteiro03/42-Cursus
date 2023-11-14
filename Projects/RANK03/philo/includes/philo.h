@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 18:56:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:11:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # include <sys/time.h>
 # include <stdbool.h>
 
+# define FORK "has taken a fork"
+# define EAT "is eating"
+# define THINK "is thinking"
+# define SLEEP "is sleeping"
+# define DIED "died"
+
 typedef pthread_mutex_t	t_mutex;
 typedef pthread_t		t_th;
 
@@ -29,6 +35,7 @@ typedef struct s_ph
 {
 	int				meal_count;
 	int				ph_id;
+	long			lm;
 	t_mutex			*lf;
 	t_mutex			*rf;
 	struct s_inf	*inf;
@@ -73,10 +80,15 @@ int		error(char *error);
 
 int		init_inf(t_inf **inf, int ac, char **av);
 
+void	eat(t_ph *ph);
+void	think(t_ph *ph);
+void	sleeping(t_ph *ph);
+
 /* ************************************************************************** */
 /*                                    UTILS                                   */
 /* ************************************************************************** */
 
 long	gettime(void);
+void	status(t_ph *ph, char *status);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:39:25 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 15:26:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/14 19:04:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,13 @@ long	gettime(void)
 
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+void	status(t_ph *ph, char *status)
+{
+	printf("%ld %d %s\n", \
+		gettime() - ph->inf->time_start, \
+		ph->ph_id, \
+		status \
+	);
 }

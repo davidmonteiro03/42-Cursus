@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/14 14:09:13 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/14 19:11:50 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRCS			= main.c \
 					srcs/clean.c \
 					srcs/errors.c \
 					srcs/init.c \
+					srcs/routine.c \
 					srcs/utils.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
