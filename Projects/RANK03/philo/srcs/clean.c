@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 14:42:06 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/14 14:06:59 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/14 14:09:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/philo.h"
+#include "../includes/philo.h"
 
-int	main(int ac, char **av)
+int	clean_inf(t_inf **inf)
 {
-	t_inf	*inf;
-
-	if (ac != 5 && ac != 6)
-		return (error("Error usage"));
-	if (!check_args(ac, av))
-		return (error("Error in arguments"));
-	if (init_inf(&inf, ac, av) != 0)
+	if (!inf || !*inf)
 		return (1);
-	if (clean_inf(&inf) != 0)
-		return (1);
+	free(*inf);
 	return (0);
 }

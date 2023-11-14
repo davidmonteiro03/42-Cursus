@@ -3,3 +3,6 @@
 .vscode/launch.json
 *.o
 Projects/RANK03/philo/.nfs0000000009d90240000006d5
+Projects/RANK03/minishell/.vscode/c_cpp_properties.json
+Projects/RANK03/minishell/.vscode/launch.json
+Projects/RANK03/minishell/.vscode/settings.json
