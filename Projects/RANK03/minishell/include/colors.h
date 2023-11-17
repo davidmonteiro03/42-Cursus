@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 07:21:23 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 07:23:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/17 12:37:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@
 # define BHWHT "\e[1;97m"
 
 //Reset
-# define reset "\e[0m"
+# define RESET "\e[0m"
 # define CRESET "\e[0m"
 # define COLOR_RESET "\e[0m"
 
