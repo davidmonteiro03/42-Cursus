@@ -195,9 +195,10 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 			<td>
 				<img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
 			</td>
-			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
+			<td>2023-11-17</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
 					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
