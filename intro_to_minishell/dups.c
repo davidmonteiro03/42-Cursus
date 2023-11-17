@@ -5,27 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/17 11:34:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/17 12:32:32 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/17 13:13:53 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/17 13:16:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <string.h>
 
 int	main(void)
 {
 	int		file_desc;
-	int		copy_desc;
 	char	buf[1024];
+	int		file_desc_in;
+	ssize_t	bytes_read;
 
-	file_desc = open("dup.txt", O_CREAT | O_RDWR | O_TRUNC);
-	if (file_desc < 0)
-		printf("Error opening the file\n");
-	copy_desc = dup(file_desc);
-	write(copy_desc, "This will be output to the file named dup.txt\n", 46);
-	write(file_desc, "This will also be output to the file named dup.txt\n", \
-		51);
+	file_desc = open("dup.txt", O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	file_desc_in = open("dup.txt", O_RDONLY);
+	dup2(file_desc_in, STDIN_FILENO);
+	dup(file_desc);
+	printf("This will also be output to the file named dup.txt\n");
+	bytes_read = read(STDIN_FILENO, buf, sizeof(buf));
+	buf[bytes_read] = '\0';
+	printf("%s", buf);
+	close(file_desc);
+	close(file_desc_in);
 	return (0);
 }
