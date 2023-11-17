@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/16 18:23:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:13:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 # include <sys/time.h>
 # include <stdbool.h>
 
-# define FORK "has taken a fork"
-# define EAT "is eating"
-# define THINK "is thinking"
-# define SLEEP "is sleeping"
-# define DIED "died"
+# define FORK "has taken a fork 🍴"
+# define EAT "is eating 🍝"
+# define THINK "is thinking 💭"
+# define SLEEP "is sleeping 💤"
+# define DIED "died 💀"
 
 typedef pthread_mutex_t	t_mutex;
 typedef pthread_t		t_th;
@@ -66,7 +66,14 @@ bool	check_args(int ac, char **av);
 /*                                    CLEAN                                   */
 /* ************************************************************************** */
 
-int		clean_inf(t_inf **inf);
+int		clean_inf(t_inf **inf, bool join);
+
+/* ************************************************************************** */
+/*                                   DISPLAY                                  */
+/* ************************************************************************** */
+
+void	start(void);
+void	end(void);
 
 /* ************************************************************************** */
 /*                                   ERRORS                                   */
@@ -79,10 +86,6 @@ int		error(char *error);
 /* ************************************************************************** */
 
 int		init_inf(t_inf **inf, int ac, char **av);
-
-void	eat(t_ph *ph);
-void	think(t_ph *ph);
-void	sleeping(t_ph *ph);
 
 /* ************************************************************************** */
 /*                                    UTILS                                   */

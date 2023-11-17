@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:56:28 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/14 19:18:11 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:14:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	init_inf(t_inf **inf, int ac, char **av)
 	(*inf)->th = (t_th *)malloc(sizeof(t_th) * (*inf)->num_ph);
 	(*inf)->action_lock = (t_mutex *)malloc(sizeof(t_mutex) * (*inf)->num_ph);
 	if (!(*inf)->ph || !(*inf)->f || !(*inf)->th || !(*inf)->action_lock)
-		return (clean_inf(inf), 1);
+		return (clean_inf(inf, false), 1);
 	init_forks(inf);
 	init_philos(inf);
 	return (0);

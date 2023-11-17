@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 14:39:25 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/16 19:39:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/17 10:10:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ long	gettime(void)
 void	status(t_ph *ph, char *status)
 {
 	if (ph->lm == -1)
-		printf("%ld %d %s\n", \
+		printf("| %9ldms | %5d | %-25s |\n", \
 			gettime() - ph->inf->time_start, \
 			ph->ph_id, \
 			status \
 		);
 	else
-		printf("%ld %d %s\n", \
+		printf("| %9ldms | %5d | %-25s |\n", \
 			gettime() - ph->lm, \
 			ph->ph_id, \
 			status \
