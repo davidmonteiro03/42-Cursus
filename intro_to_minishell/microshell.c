@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 08:34:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 08:45:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/20 08:59:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,5 @@ int	main(int ac, char **av)
 	i = 0;
 	while (av[++i])
 		printf("%s\n", av[i]);
-	j = 0;
 	return (0);
 }
