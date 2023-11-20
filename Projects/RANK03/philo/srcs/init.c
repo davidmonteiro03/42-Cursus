@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 13:56:28 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/17 10:14:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/20 13:04:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	init_forks(t_inf **inf)
 	i = -1;
 	while (++i < (*inf)->num_ph)
 		pthread_mutex_init(&(*inf)->f[i], NULL);
-	pthread_mutex_init((*inf)->action_lock, NULL);
 	return (0);
 }
 
@@ -63,6 +62,7 @@ int	init_inf(t_inf **inf, int ac, char **av)
 	if (!(*inf)->ph || !(*inf)->f || !(*inf)->th || !(*inf)->action_lock)
 		return (clean_inf(inf, false), 1);
 	init_forks(inf);
+	pthread_mutex_init((*inf)->action_lock, NULL);
 	init_philos(inf);
 	return (0);
 }

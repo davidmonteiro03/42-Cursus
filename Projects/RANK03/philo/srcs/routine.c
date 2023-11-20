@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:39:25 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 13:18:53 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/20 13:19:01 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/20 13:21:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-long	gettime(void)
+void	thinking(t_ph *ph)
 {
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000000 + time.tv_usec);
+	status(ph, THINK);
 }
 
-void	status(t_ph *ph, char *status)
+void	sleeping(t_ph *ph)
 {
-	pthread_mutex_lock(ph->inf->action_lock);
-	printf("| %9ldms | %-5d | %-25s |\n", \
-		(gettime() - ph->inf->time_start) / 1000, \
-		ph->ph_id, \
-		status \
-	);
-	pthread_mutex_unlock(ph->inf->action_lock);
+	status(ph, SLEEP);
+	usleep(ph->inf->time_sleep * 1000);
 }
