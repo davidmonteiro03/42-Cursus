@@ -6,16 +6,32 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 15:22:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:27:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
+void	*routine(void *philo)
+{
+	t_ph	*ph;
+
+	ph = (t_ph *)philo;
+	status(ph, THINK);
+	ph->lm = gettime();
+	return (philo);
+}
+
 int	confusion(t_inf **inf)
 {
+	int	i;
+
 	if ((*inf)->num_ph == 1)
 		return (philo_1(inf), 1);
+	(*inf)->time_start = gettime();
+	i = -1;
+	while (++i < (*inf)->num_ph)
+		pthread_create(&(*inf)->th[i], NULL, &routine, &(*inf)->ph[i]);
 	return (0);
 }
 
