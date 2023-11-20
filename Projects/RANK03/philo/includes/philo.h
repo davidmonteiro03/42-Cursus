@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 14:05:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:22:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int		init_inf(t_inf **inf, int ac, char **av);
 /*                                    UTILS                                   */
 /* ************************************************************************** */
 
+void	philo_1(t_inf **inf);
 long	gettime(void);
 void	status(t_ph *ph, char *status);
 

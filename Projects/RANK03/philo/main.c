@@ -6,11 +6,18 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 14:05:19 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/20 15:22:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
+
+int	confusion(t_inf **inf)
+{
+	if ((*inf)->num_ph == 1)
+		return (philo_1(inf), 1);
+	return (0);
+}
 
 int	main(int ac, char **av)
 {
@@ -26,7 +33,9 @@ int	main(int ac, char **av)
 	if (init_inf(&inf, ac, av) != 0)
 		return (1);
 	start();
-	type = false;
+	type = true;
+	if (confusion(&inf))
+		type = false;
 	status = clean_inf(&inf, type);
 	end();
 	return (status);
