@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 15:27:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:17:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*routine(void *philo)
 
 	ph = (t_ph *)philo;
 	status(ph, THINK);
-	ph->lm = gettime();
 	return (philo);
 }
 
