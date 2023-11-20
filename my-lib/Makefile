@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:06:11 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/20 19:34:43 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/20 21:39:52 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ OBJS		= $(addprefix $(OBJS_DIR), $(notdir $(SRCS:.c=.o)))
 all: $(NAME)
 
 $(EXEC): $(NAME)
-	@$(CC) $(CFLAGS) -o $@ $^ main.c -I $(NAME) -lreadline libft.a
+	@$(CC) $(CFLAGS) -o $@ $^ main.c $(NAME) -lreadline libft.a
 	@echo "$(YELLOW)Compiling $(CYAN)$(EXEC)$(RESET)..."
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
