@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:06:11 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/20 15:45:51 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/20 19:34:43 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ LIB			= ranlib
 INCLUDES	= my_lib.h
 OBJS_DIR	= obj/
 
+EXEC		= test
+
 NAME		= my_lib.a
 SRCS		= buildfree.c \
 				free.c
@@ -32,10 +34,14 @@ OBJS		= $(addprefix $(OBJS_DIR), $(notdir $(SRCS:.c=.o)))
 
 all: $(NAME)
 
+$(EXEC): $(NAME)
+	@$(CC) $(CFLAGS) -o $@ $^ main.c -I $(NAME) -lreadline libft.a
+	@echo "$(YELLOW)Compiling $(CYAN)$(EXEC)$(RESET)..."
+	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
+
 $(OBJS_DIR)%.o: %.c
 	@make -s -C libft
 	@cp libft/libft.a .
-	@mv libft.a $(NAME)
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
 	@$(CC) $(CFLAGS) -c $< -o $@
