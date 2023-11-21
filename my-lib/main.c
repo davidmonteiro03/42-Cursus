@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 17:27:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:36:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 typedef struct s_utils
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	*tmp;
+	int		tmp_i;
 }t_utils;
 
 typedef struct t_test
@@ -41,9 +43,9 @@ void	analyse(t_test *t)
 			t->utils->j = t->utils->i + 1;
 			while (t->line[++t->utils->i] && \
 				t->line[t->utils->i] != '\"')
-				write(1, &t->line[t->utils->i], 1);
-			printf("%s", ft_substr(t->line, t->line[t->utils->j], \
-				t->line[t->utils->i] - t->line[t->utils->j]));
+				;
+			ft_printf("%s", ft_substr(t->line, t->utils->j, \
+				t->utils->i - t->utils->j));
 			continue ;
 		}
 		if (t->line[t->utils->i] == ' ' && t->line[t->utils->i - 1] != ' ')
