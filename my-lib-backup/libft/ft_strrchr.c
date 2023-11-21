@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 16:40:39 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/10/03 13:17:34 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/10/05 17:05:12 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_lib.h"
-#include <readline/readline.h>
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+char	*ft_strrchr(const char *s, int c)
 {
-	return (0);
+	unsigned int	i;
+	char			*last_occurence;
+
+	last_occurence = NULL;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (char)c)
+			last_occurence = (char *)&s[i];
+		i++;
+	}
+	if ((char)c == s[i])
+		return ((char *)&s[i]);
+	return (last_occurence);
 }

@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   buildfree.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 16:40:39 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/20 15:31:19 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/20 15:39:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_lib.h"
-#include <readline/readline.h>
 
-int	main(int ac, char **av, char **env)
+char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *))
 {
-	return (0);
+	char	*str;
+
+	str = f(s1, s2);
+	free(s1);
+	return (str);
 }

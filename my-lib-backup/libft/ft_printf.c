@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 16:40:39 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/10/06 18:06:08 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/10/07 16:00:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_lib.h"
-#include <readline/readline.h>
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+int	ft_printf(const char *str, ...)
 {
-	return (0);
+	va_list	args;
+	int		i;
+	int		length;
+
+	i = 0;
+	length = 0;
+	va_start(args, str);
+	while (*(str + i))
+	{
+		if (*(str + i) == '%')
+		{
+			if (ft_strchr("cspdiuxX%", *(str + i + 1)))
+				length += ft_format(args, *(str + i + 1));
+			i++;
+		}
+		else
+			length += ft_putchar(*(str + i));
+		i++;
+	}
+	va_end(args);
+	return (length);
 }

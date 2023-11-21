@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 16:40:39 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/10/03 09:14:07 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/10/05 15:54:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_lib.h"
-#include <readline/readline.h>
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	return (0);
+	size_t				i;
+	unsigned char		*aux_dest;
+	const unsigned char	*aux_src;
+
+	if (!dest && !src)
+		return (NULL);
+	aux_dest = (unsigned char *)dest;
+	aux_src = (unsigned char *)src;
+	i = -1;
+	while (++i < n)
+		aux_dest[i] = aux_src[i];
+	return (dest);
 }
