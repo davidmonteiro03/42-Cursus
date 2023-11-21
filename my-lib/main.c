@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 19:25:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/21 19:45:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ typedef struct s_utils
 	int		i;
 	int		j;
 	char	*tmp;
+	char	*tmp_2;
 	int		tmp_i;
+	int		tmp_j;
 }t_utils;
 
 typedef struct t_test
@@ -30,7 +32,17 @@ typedef struct t_test
 void	print_str(t_test *t)
 {
 	t->utils->tmp = ft_substr(t->line, t->utils->j, t->utils->i - t->utils->j);
-	printf("%s", t->utils->tmp);
+	t->utils->tmp_i = -1;
+	while (t->utils->tmp[++t->utils->tmp_i])
+	{
+		if (t->utils->tmp[t->utils->tmp_i] == '$')
+		{
+			t->utils->tmp_i++;
+			while (t->utils->tmp[t->utils->tmp_i] && \
+				ft_isalnum(t->utils->tmp[t->utils->tmp_i]))
+				printf("%c", t->utils->tmp[t->utils->tmp_i++]);
+		}
+	}
 	free(t->utils->tmp);
 }
 
