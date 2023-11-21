@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:17:21 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 12:55:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/21 14:33:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ void	build_str(int j, t_quotes **q, char c, int status)
 	}
 }
 
-void	special_print(char *arg, int status, char c)
+void	check_arg(char *arg, int status, char c)
 {
-	int	i;
+	int		i;
 
 	i = -1;
 	while (arg[++i])
@@ -120,9 +120,9 @@ void	analyse(t_quotes **q)
 	i = -1;
 	while ((*q)->args[++i])
 	{
-		special_print((*q)->args[i], 0, 0);
+		check_arg((*q)->args[i], 0, 0);
 		if ((*q)->args[i + 1])
-			printf(" ");
+			printf(" +\n");
 	}
 	printf("\n");
 	multiple_free("%b", (*q)->args);
