@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:06:11 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/20 21:39:52 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/21 17:21:57 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,12 +53,12 @@ $(NAME): $(OBJS)
 
 clean:
 	@$(RM) $(OBJS_DIR)
-	@make -s clean -C libft
+	@make -s clean -C libft > /dev/null
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@make -s fclean -C libft
+	@make -s fclean -C libft > /dev/null
 	@echo "$(CYAN)$(NAME) $(RED)removed$(RESET)!"
 
 re: fclean all
