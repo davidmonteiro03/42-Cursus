@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 19:17:21 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 09:25:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/21 12:49:43 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	count_chars(t_quotes **q, int status, char c)
 			c = 0;
 			continue ;
 		}
+		if (i > 0 && ((*q)->line[i - 1] == c || (*q)->line[i + 1] == c))
+			(*q)->count++;
 		if (((*q)->line[i] == ' ' && (*q)->line[i - 1] != ' ' \
 			&& status == 0) || (((*q)->line[i] != ' ' && status == 0) \
 			|| status == 1))
@@ -57,12 +59,10 @@ char	get_char(char *line, int status, int i)
 	return (0);
 }
 
-void	build_str(int j, t_quotes **q, char c)
+void	build_str(int j, t_quotes **q, char c, int status)
 {
 	int	i;
-	int	status;
 
-	status = 0;
 	i = -1;
 	while ((*q)->line[++i])
 	{
@@ -78,10 +78,37 @@ void	build_str(int j, t_quotes **q, char c)
 			c = 0;
 			continue ;
 		}
+		if (i > 0 && (*q)->line[i - 1] == c)
+			(*q)->buf[j++] = c;
 		if (((*q)->line[i] == ' ' && (*q)->line[i - 1] != ' ' && \
 			status == 0) || (((*q)->line[i] != ' ' && status == 0) \
 			|| status == 1))
 			(*q)->buf[j++] = get_char((*q)->line, status, i);
+		if ((*q)->line[i + 1] == c)
+			(*q)->buf[j++] = c;
+	}
+}
+
+void	special_print(char *arg, int status, char c)
+{
+	int	i;
+
+	i = -1;
+	while (arg[++i])
+	{
+		if (status == 0 && (arg[i] == '\'' || arg[i] == '\"'))
+		{
+			status = 1;
+			c = arg[i];
+			continue ;
+		}
+		if (status == 1 && arg[i] == c)
+		{
+			status = 0;
+			c = 0;
+			continue ;
+		}
+		printf("%c", arg[i]);
 	}
 }
 
@@ -93,7 +120,7 @@ void	analyse(t_quotes **q)
 	i = -1;
 	while ((*q)->args[++i])
 	{
-		printf("%s", (*q)->args[i]);
+		special_print((*q)->args[i], 0, 0);
 		if ((*q)->args[i + 1])
 			printf(" ");
 	}
@@ -112,7 +139,7 @@ int	main(void)
 	count_chars(&q, 0, 0);
 	q->buf = malloc(sizeof(char *) * (q->count + 1));
 	q->index = 0;
-	build_str(0, &q, 0);
+	build_str(0, &q, 0, 0);
 	q->buf[q->count] = '\0';
 	analyse(&q);
 	multiple_free("%a%a%a", q->line, q->buf, q);
