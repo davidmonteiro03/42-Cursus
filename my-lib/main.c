@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 19:45:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/21 22:05:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,20 @@ void	print_str(t_test *t)
 	t->utils->tmp_i = -1;
 	while (t->utils->tmp[++t->utils->tmp_i])
 	{
-		if (t->utils->tmp[t->utils->tmp_i] == '$')
+		if (t->utils->tmp[t->utils->tmp_i] == '$' && ft_isalnum(t->utils->tmp[t->utils->tmp_i + 1]))
 		{
-			t->utils->tmp_i++;
-			while (t->utils->tmp[t->utils->tmp_i] && \
-				ft_isalnum(t->utils->tmp[t->utils->tmp_i]))
-				printf("%c", t->utils->tmp[t->utils->tmp_i++]);
+			t->utils->tmp_j = t->utils->tmp_i + 1;
+			while (t->utils->tmp[t->utils->tmp_i + 1] && \
+				ft_isalnum(t->utils->tmp[t->utils->tmp_i + 1]))
+				t->utils->tmp_i++;
+			t->utils->tmp_2 = ft_substr(t->utils->tmp, t->utils->tmp_j, \
+				t->utils->tmp_i - t->utils->tmp_j + 1);
+			if (getenv(t->utils->tmp_2))
+				printf("%s", getenv(t->utils->tmp_2));
+			free(t->utils->tmp_2);
+			continue ;
 		}
+		printf("%c", t->utils->tmp[t->utils->tmp_i]);
 	}
 	free(t->utils->tmp);
 }
