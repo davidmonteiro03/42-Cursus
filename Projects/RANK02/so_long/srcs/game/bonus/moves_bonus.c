@@ -36,7 +36,7 @@ void	right_bonus(t_game *g)
 		lose_game_bonus(g);
 	if (g->data.m[g->data.x][g->data.y + 1] == c.wall)
 		return ;
-	if (g->data.m[g->data.x][g->data.y + 1] == c.exit)
+	if (g->data.m[g->data.x][g->data.y + 1] == c.exit && g->data.c == 0)
 		exit_game_bonus(g);
 	if (g->data.m[g->data.x][g->data.y + 1] == c.exit)
 		return ;
@@ -60,7 +60,7 @@ void	left_bonus(t_game *g)
 		lose_game_bonus(g);
 	if (g->data.m[g->data.x][g->data.y - 1] == c.wall)
 		return ;
-	if (g->data.m[g->data.x][g->data.y - 1] == c.exit)
+	if (g->data.m[g->data.x][g->data.y - 1] == c.exit && g->data.c == 0)
 		exit_game_bonus(g);
 	if (g->data.m[g->data.x][g->data.y - 1] == c.exit)
 		return ;
@@ -84,7 +84,7 @@ void	up_bonus(t_game *g)
 		lose_game_bonus(g);
 	if (g->data.m[g->data.x - 1][g->data.y] == c.wall)
 		return ;
-	if (g->data.m[g->data.x - 1][g->data.y] == c.exit)
+	if (g->data.m[g->data.x - 1][g->data.y] == c.exit && g->data.c == 0)
 		exit_game_bonus(g);
 	if (g->data.m[g->data.x - 1][g->data.y] == c.exit)
 		return ;
@@ -108,7 +108,7 @@ void	down_bonus(t_game *g)
 		lose_game_bonus(g);
 	if (g->data.m[g->data.x + 1][g->data.y] == c.wall)
 		return ;
-	if (g->data.m[g->data.x + 1][g->data.y] == c.exit)
+	if (g->data.m[g->data.x + 1][g->data.y] == c.exit && g->data.c == 0)
 		exit_game_bonus(g);
 	if (g->data.m[g->data.x + 1][g->data.y] == c.exit)
 		return ;

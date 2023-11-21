@@ -195,7 +195,6 @@ t_img		img_init_bonus(t_game *g);
 //init_game_bonus.c
 void		put_image_bonus(t_game *g, void *img, int x, int y);
 void		draw_game_bonus(t_game *g);
-int			empty_around_bonus(int i, int j, t_game *g);
 void		put_fire_bonus(t_game *g);
 void		init_game_bonus(t_game *g);
 

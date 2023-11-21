@@ -32,6 +32,7 @@ int	lose_game_bonus(t_game *g)
 	free(g->mlx.mlx);
 	multiple_free("%b", g->data.m);
 	print_lose_msg();
+	print_game_info(g);
 	exit(EXIT_SUCCESS);
 	return (0);
 }

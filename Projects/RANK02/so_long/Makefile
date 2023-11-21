@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/05 19:29:09 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/21 13:10:40 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,26 +84,26 @@ $(OBJS_DIR)%.o: srcs/%.c
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
 
 $(EXEC): $(OBJS)
-	@make -C $(LIBFT_DIR) > /dev/null
-	@make -C $(MINILIBX_DIR)
+	@make -s -C $(LIBFT_DIR)
+	@make -s -C $(MINILIBX_DIR) > /dev/null 2>&1
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft -L./$(MINILIBX_DIR) $(MINILIBX_FLAGS)
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 $(EXEC_BONUS): $(OBJS_BONUS)
-	@make -C $(LIBFT_DIR) > /dev/null
-	@make -C $(MINILIBX_DIR)
+	@make -s -C $(LIBFT_DIR)
+	@make -s -C $(MINILIBX_DIR) > /dev/null 2>&1
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft -L./$(MINILIBX_DIR) $(MINILIBX_FLAGS)
 	@echo "$(CYAN)$(EXEC_BONUS) $(GREEN)created$(RESET)!"
 
 clean:
 	@$(RM) $(OBJS_DIR)
-	@make -C $(LIBFT_DIR) clean > /dev/null
-	@make -C $(MINILIBX_DIR)
+	@make -s -C $(LIBFT_DIR) clean > /dev/null 2>&1
+	@make -s -C $(MINILIBX_DIR) clean > /dev/null 2>&1
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
 	@$(RM) $(EXEC) $(EXEC_BONUS)
-	@make -C $(LIBFT_DIR) fclean > /dev/null
+	@make -s -C $(LIBFT_DIR) fclean > /dev/null 2>&1
 	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC_BONUS) $(RED)removed$(RESET)!"
 

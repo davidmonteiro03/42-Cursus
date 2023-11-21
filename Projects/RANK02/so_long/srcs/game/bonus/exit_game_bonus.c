@@ -51,7 +51,6 @@ int	exit_game_bonus(t_game *g)
 	mlx_destroy_window(g->mlx.mlx, g->mlx.win);
 	mlx_destroy_display(g->mlx.mlx);
 	free(g->mlx.mlx);
-	print_game_info(g);
 	multiple_free("%b", g->data.m);
 	exit(EXIT_SUCCESS);
 	return (0);
