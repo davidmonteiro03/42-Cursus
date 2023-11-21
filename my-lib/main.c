@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 22:05:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/21 22:36:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_utils
 	char	*tmp_2;
 	int		tmp_i;
 	int		tmp_j;
+	int		status;
 }t_utils;
 
 typedef struct t_test
@@ -29,13 +30,14 @@ typedef struct t_test
 	t_utils	*utils;
 }t_test;
 
-void	print_str(t_test *t)
+void	print_str(t_test *t, char *str)
 {
-	t->utils->tmp = ft_substr(t->line, t->utils->j, t->utils->i - t->utils->j);
+	t->utils->tmp = ft_substr(str, t->utils->j, t->utils->i - t->utils->j);
 	t->utils->tmp_i = -1;
 	while (t->utils->tmp[++t->utils->tmp_i])
 	{
-		if (t->utils->tmp[t->utils->tmp_i] == '$' && ft_isalnum(t->utils->tmp[t->utils->tmp_i + 1]))
+		if (t->utils->tmp[t->utils->tmp_i] == '$' && \
+			ft_isalnum(t->utils->tmp[t->utils->tmp_i + 1]))
 		{
 			t->utils->tmp_j = t->utils->tmp_i + 1;
 			while (t->utils->tmp[t->utils->tmp_i + 1] && \
@@ -59,26 +61,20 @@ void	analyse(t_test *t)
 	{
 		if (t->line[t->utils->i] == '\'')
 		{
-			while (t->line[++t->utils->i] && \
-				t->line[t->utils->i] != '\'')
+			while (t->line[++t->utils->i] && t->line[t->utils->i] != '\'')
 				printf("%c", t->line[t->utils->i]);
 			continue ;
 		}
 		if (t->line[t->utils->i] == '\"')
 		{
 			t->utils->j = t->utils->i + 1;
-			while (t->line[++t->utils->i] && \
-				t->line[t->utils->i] != '\"')
+			while (t->line[++t->utils->i] && t->line[t->utils->i] != '\"')
 				;
-			print_str(t);
+			print_str(t, t->line);
 			continue ;
 		}
-		if (t->line[t->utils->i] == ' ' && t->line[t->utils->i - 1] != ' ')
-			printf(" ");
-		else if (t->line[t->utils->i] != ' ')
-			printf("%c", t->line[t->utils->i]);
 	}
-	printf("$\n");
+	printf("\n");
 }
 
 int	main(int ac, char **av, char **env)
@@ -93,6 +89,7 @@ int	main(int ac, char **av, char **env)
 	test->line = readline("command $ ");
 	test->line = buildfree(test->line, " ", &ft_strtrim);
 	test->utils->i = -1;
+	test->utils->status = 0;
 	analyse(test);
 	multiple_free("%a%a%a", test->line, test->utils, test);
 	return (0);
