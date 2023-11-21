@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 17:06:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/21 17:11:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ void	analyse(t_test *t)
 				write(1, &t->line[t->utils->i], 1);
 			continue ;
 		}
+		if (t->line[t->utils->i] == ' ' && t->line[t->utils->i - 1] != ' ')
+			write(1, " ", 1);
+		else if (t->line[t->utils->i] != ' ')
+			write(1, &t->line[t->utils->i], 1);
 	}
+	write(1, "$\n", 2);
 }
 
 int	main(int ac, char **av, char **env)
@@ -56,7 +61,7 @@ int	main(int ac, char **av, char **env)
 	test->utils = (t_utils *)malloc(sizeof(t_utils));
 	test->line = readline("command $ ");
 	test->line = buildfree(test->line, " ", &ft_strtrim);
-	t->utils->i = -1;
+	test->utils->i = -1;
 	analyse(test);
 	multiple_free("%a%a%a", test->line, test->utils, test);
 	return (0);
