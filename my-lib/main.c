@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 17:36:53 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/21 19:25:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ typedef struct t_test
 	t_utils	*utils;
 }t_test;
 
+void	print_str(t_test *t)
+{
+	t->utils->tmp = ft_substr(t->line, t->utils->j, t->utils->i - t->utils->j);
+	printf("%s", t->utils->tmp);
+	free(t->utils->tmp);
+}
+
 void	analyse(t_test *t)
 {
 	while (t->line[++t->utils->i])
@@ -35,7 +42,7 @@ void	analyse(t_test *t)
 		{
 			while (t->line[++t->utils->i] && \
 				t->line[t->utils->i] != '\'')
-				write(1, &t->line[t->utils->i], 1);
+				printf("%c", t->line[t->utils->i]);
 			continue ;
 		}
 		if (t->line[t->utils->i] == '\"')
@@ -44,16 +51,15 @@ void	analyse(t_test *t)
 			while (t->line[++t->utils->i] && \
 				t->line[t->utils->i] != '\"')
 				;
-			ft_printf("%s", ft_substr(t->line, t->utils->j, \
-				t->utils->i - t->utils->j));
+			print_str(t);
 			continue ;
 		}
 		if (t->line[t->utils->i] == ' ' && t->line[t->utils->i - 1] != ' ')
-			write(1, " ", 1);
+			printf(" ");
 		else if (t->line[t->utils->i] != ' ')
-			write(1, &t->line[t->utils->i], 1);
+			printf("%c", t->line[t->utils->i]);
 	}
-	write(1, "$\n", 2);
+	printf("$\n");
 }
 
 int	main(int ac, char **av, char **env)
