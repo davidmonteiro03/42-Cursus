@@ -6,11 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 08:10:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/22 09:19:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:56:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_lib.h"
+#include "../includes/my_lib.h"
 
 static size_t	ft_tmpstrlen(t_test *t)
 {

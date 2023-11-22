@@ -5,64 +5,62 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/23 14:06:11 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/22 09:20:53 by dcaetano         ###   ########.fr        #
+#    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
+#    Updated: 2023/11/22 12:11:18 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RED			= \033[1;31m
-GREEN		= \033[1;32m
-YELLOW		= \033[1;33m
-CYAN		= \033[1;36m
-RESET		= \033[1;0m
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-RM			= rm -rf
-AR			= ar rcs
-LIB			= ranlib
+RED				= \033[1;91m
+GREEN			= \033[1;92m
+YELLOW			= \033[1;93m
+CYAN			= \033[1;96m
+RESET			= \033[1;0m
 
-INCLUDES	= my_lib.h
-OBJS_DIR	= obj/
+CC				= cc
+CFLAGS			= -Wall -Wextra -Werror
+RM				= rm -rf
 
-EXEC		= test
+OBJS_DIR		= obj/
+INCLUDES_DIR	= includes/
 
-NAME		= my_lib.a
-SRCS		= buildfree.c \
-				free.c \
-				ft_mnstrlen.c \
-				ft_strbuild.c
+LIBFT_DIR		= libft
+LIBFT_NAME		= libft.a
 
-OBJS		= $(addprefix $(OBJS_DIR), $(notdir $(SRCS:.c=.o)))
+EXEC			= test
 
-all: $(NAME)
+SRCS			= main.c \
+					srcs/buildfree.c \
+					srcs/free.c \
+					srcs/ft_mnstrlen.c \
+					srcs/ft_strbuild.c \
 
-$(EXEC): $(NAME)
-	@$(CC) $(CFLAGS) -o $@ $^ main.c $(NAME) -lreadline libft.a
-	@echo "$(YELLOW)Compiling $(CYAN)$(EXEC)$(RESET)..."
-	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
+OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
-$(OBJS_DIR)%.o: %.c
-	@make -s -C libft
-	@cp libft/libft.a .
+all:
+
+$(OBJS_DIR)%.o: ./%.c
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
 
-$(NAME): $(OBJS)
-	@$(AR) $(NAME) $^
-	@$(LIB) $(NAME)
-	@echo "$(CYAN)$(NAME) $(GREEN)created$(RESET)!"
+$(OBJS_DIR)%.o: srcs/%.c
+	@mkdir -p $(dir $@)
+	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
+
+$(EXEC): $(OBJS)
+	@make -s -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ libft/libft.a -lreadline
+	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:
 	@$(RM) $(OBJS_DIR)
-	@make -s clean -C libft > /dev/null
+	@make -s -C $(LIBFT_DIR) clean
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
-	@$(RM) libft.a $(NAME) $(EXEC)
-	@make -s fclean -C libft > /dev/null
-	@echo "$(CYAN)libft.a $(RED)removed$(RESET)!"
-	@echo "$(CYAN)$(NAME) $(RED)removed$(RESET)!"
+	@$(RM) $(EXEC)
+	@make -s -C $(LIBFT_DIR) fclean
 	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
 
 re: fclean all

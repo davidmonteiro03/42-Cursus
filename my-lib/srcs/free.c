@@ -6,11 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:16:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 15:39:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:56:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_lib.h"
+#include "../includes/my_lib.h"
 
 static void	simplefree(void *pnt)
 {
