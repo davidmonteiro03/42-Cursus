@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/22 12:11:18 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/22 13:30:38 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,17 +50,19 @@ $(OBJS_DIR)%.o: srcs/%.c
 
 $(EXEC): $(OBJS)
 	@make -s -C $(LIBFT_DIR)
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ libft/libft.a -lreadline
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ $(LIBFT_DIR)/$(LIBFT_NAME) \
+		-lreadline
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:
 	@$(RM) $(OBJS_DIR)
-	@make -s -C $(LIBFT_DIR) clean
+	@make -s -C $(LIBFT_DIR) clean > /dev/null 2>&1
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
 	@$(RM) $(EXEC)
-	@make -s -C $(LIBFT_DIR) fclean
+	@make -s -C $(LIBFT_DIR) fclean > /dev/null 2>&1
+	@echo "$(CYAN)$(LIBFT_NAME) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
 
 re: fclean all
