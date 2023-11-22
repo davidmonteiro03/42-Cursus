@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/21 22:36:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/22 07:55:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_utils
 	char	*tmp_2;
 	int		tmp_i;
 	int		tmp_j;
-	int		status;
+	int		print_count;
 }t_utils;
 
 typedef struct t_test
@@ -30,9 +30,9 @@ typedef struct t_test
 	t_utils	*utils;
 }t_test;
 
-void	print_str(t_test *t, char *str)
+void	print_str(t_test *t)
 {
-	t->utils->tmp = ft_substr(str, t->utils->j, t->utils->i - t->utils->j);
+	t->utils->tmp = ft_substr(t->line, t->utils->j, t->utils->i - t->utils->j);
 	t->utils->tmp_i = -1;
 	while (t->utils->tmp[++t->utils->tmp_i])
 	{
@@ -46,13 +46,36 @@ void	print_str(t_test *t, char *str)
 			t->utils->tmp_2 = ft_substr(t->utils->tmp, t->utils->tmp_j, \
 				t->utils->tmp_i - t->utils->tmp_j + 1);
 			if (getenv(t->utils->tmp_2))
-				printf("%s", getenv(t->utils->tmp_2));
+				t->utils->print_count += printf("%s", getenv(t->utils->tmp_2));
 			free(t->utils->tmp_2);
 			continue ;
 		}
-		printf("%c", t->utils->tmp[t->utils->tmp_i]);
+		t->utils->print_count += printf("%c", t->utils->tmp[t->utils->tmp_i]);
 	}
 	free(t->utils->tmp);
+}
+
+void	analyse_op(t_test *t, int op)
+{
+	if (op == 1)
+		while (t->line[++t->utils->i] && t->line[t->utils->i] != '\'')
+			t->utils->print_count += printf("%c", t->line[t->utils->i]);
+	else if (op == 2)
+	{
+		t->utils->j = t->utils->i + 1;
+		while (t->line[++t->utils->i] && t->line[t->utils->i] != '\"')
+			;
+		print_str(t);
+	}
+	else if (op == 3)
+	{
+		t->utils->j = t->utils->i;
+		while (t->line[++t->utils->i] && t->line[t->utils->i] != ' ' && \
+			t->line[t->utils->i] != '\'' && t->line[t->utils->i] != '\"')
+			;
+		print_str(t);
+		t->utils->i--;
+	}
 }
 
 void	analyse(t_test *t)
@@ -61,20 +84,19 @@ void	analyse(t_test *t)
 	{
 		if (t->line[t->utils->i] == '\'')
 		{
-			while (t->line[++t->utils->i] && t->line[t->utils->i] != '\'')
-				printf("%c", t->line[t->utils->i]);
+			analyse_op(t, 1);
 			continue ;
 		}
 		if (t->line[t->utils->i] == '\"')
 		{
-			t->utils->j = t->utils->i + 1;
-			while (t->line[++t->utils->i] && t->line[t->utils->i] != '\"')
-				;
-			print_str(t, t->line);
+			analyse_op(t, 2);
 			continue ;
 		}
+		if (t->line[t->utils->i] == ' ' && t->line[t->utils->i - 1] != ' ')
+			t->utils->print_count += printf(" ");
+		else if (t->line[t->utils->i] != ' ')
+			analyse_op(t, 3);
 	}
-	printf("\n");
 }
 
 int	main(int ac, char **av, char **env)
@@ -89,8 +111,10 @@ int	main(int ac, char **av, char **env)
 	test->line = readline("command $ ");
 	test->line = buildfree(test->line, " ", &ft_strtrim);
 	test->utils->i = -1;
-	test->utils->status = 0;
+	test->utils->print_count = 0;
 	analyse(test);
+	printf("$\n");
+	printf("print_count: %d\n", test->utils->print_count);
 	multiple_free("%a%a%a", test->line, test->utils, test);
 	return (0);
 }
