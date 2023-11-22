@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/22 09:47:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:26:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "my_lib.h"
 
-static void	echo(t_test *t)
+static void	ft_execute(t_test *t)
 {
 	t->utils->new_line = true;
 	t->utils->i = 0;
@@ -31,7 +31,7 @@ static void	echo(t_test *t)
 		printf("\n");
 }
 
-static void	ft_argsprint(t_test *t)
+static void	ft_analyse(t_test *t)
 {
 	t->args = ft_split(t->buf, '\n');
 	if (strcmp(t->args[0], "echo") != 0)
@@ -44,8 +44,18 @@ static void	ft_argsprint(t_test *t)
 		printf("\n");
 		return (multiple_free("%b", t->args));
 	}
-	echo(t);
-	multiple_free("%b", t->args);
+	ft_execute(t);
+	multiple_free("%", t->args);
+}
+
+static void	ft_sendtotrash(t_test *t)
+{
+	multiple_free("%a%a%a%a", \
+		test->buf, \
+		test->line, \
+		test->utils, \
+		test \
+	);
 }
 
 int	main(void)
@@ -63,12 +73,7 @@ int	main(void)
 	test->tmp_i = 0;
 	test->utils->i = -1;
 	ft_strbuild(test);
-	ft_argsprint(test);
-	multiple_free("%a%a%a%a",
-		test->buf, \
-		test->line, \
-		test->utils, \
-		test \
-	);
+	ft_analyse(test);
+	ft_sendtotrash(test);
 	return (0);
 }
