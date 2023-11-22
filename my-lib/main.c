@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/22 11:26:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/22 11:33:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ static void	ft_analyse(t_test *t)
 static void	ft_sendtotrash(t_test *t)
 {
 	multiple_free("%a%a%a%a", \
-		test->buf, \
-		test->line, \
-		test->utils, \
-		test \
+		t->buf, \
+		t->line, \
+		t->utils, \
+		t \
 	);
 }
 
