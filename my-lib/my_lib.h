@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/22 09:21:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:44:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_utils
 	char	*tmp_3;
 	int		tmp_i;
 	int		tmp_j;
+	bool	new_line;
 	size_t	len;
 }t_utils;
 
