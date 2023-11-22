@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/22 08:27:53 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:21:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ typedef struct t_test
 {
 	char	*line;
 	char	*buf;
+	char	**args;
+	int		tmp_i;
 	t_utils	*utils;
 }t_test;
 
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
 size_t	ft_mnstrlen(t_test *t);
+void	ft_strbuild(t_test *t);
 
 #endif

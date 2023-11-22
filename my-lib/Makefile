@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:06:11 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/22 08:26:41 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/22 09:20:53 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ EXEC		= test
 NAME		= my_lib.a
 SRCS		= buildfree.c \
 				free.c \
-				ft_mnstrlen.c
+				ft_mnstrlen.c \
+				ft_strbuild.c
 
 OBJS		= $(addprefix $(OBJS_DIR), $(notdir $(SRCS:.c=.o)))
 
