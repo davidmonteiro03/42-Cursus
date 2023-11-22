@@ -61,18 +61,18 @@ int	animate_bonus(t_game *g)
 {
 	static int	frame;
 
-	if (frame % 1000 < 200)
+	if (frame % 2500 < 500)
 		put_fire_onmap_bonus(g, g->img.fire.fire_1);
-	else if (frame % 1000 < 400)
+	else if (frame % 2500 < 1000)
 		put_fire_onmap_bonus(g, g->img.fire.fire_2);
-	else if (frame % 1000 < 600)
+	else if (frame % 2500 < 1500)
 		put_fire_onmap_bonus(g, g->img.fire.fire_3);
-	else if (frame % 1000 < 800)
+	else if (frame % 2500 < 2000)
 		put_fire_onmap_bonus(g, g->img.fire.fire_4);
 	else
 		put_fire_onmap_bonus(g, g->img.fire.fire_5);
 	frame++;
-	if (frame >= 1000)
+	if (frame >= 2500)
 		frame = 0;
 	return (0);
 }
