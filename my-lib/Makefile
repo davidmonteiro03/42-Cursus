@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/23 14:06:11 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/21 17:21:57 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/22 08:26:41 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ EXEC		= test
 
 NAME		= my_lib.a
 SRCS		= buildfree.c \
-				free.c
+				free.c \
+				ft_mnstrlen.c
 
 OBJS		= $(addprefix $(OBJS_DIR), $(notdir $(SRCS:.c=.o)))
 
@@ -57,9 +58,11 @@ clean:
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
-	@$(RM) $(NAME)
+	@$(RM) libft.a $(NAME) $(EXEC)
 	@make -s fclean -C libft > /dev/null
+	@echo "$(CYAN)libft.a $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(NAME) $(RED)removed$(RESET)!"
+	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
 
 re: fclean all
 
