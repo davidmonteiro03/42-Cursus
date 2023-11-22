@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "compile project",
+			"type": "shell",
+			"command": "make test",
+			"group": "build",
+			"problemMatcher": "$gcc"
+		},
+		{
+			"label": "clean project",
+			"type": "shell",
+			"command": "make fclean",
+			"group": "build",
+			"problemMatcher": "$gcc"
+		}
+	]
+}
