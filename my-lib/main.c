@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/22 13:26:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/22 14:19:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,25 @@ static void	ft_analyse(t_test *t)
 		return (multiple_free("%b", t->args));
 	}
 	ft_execute(t);
-	multiple_free("%", t->args);
+	multiple_free("%b", t->args);
 }
 
 static void	ft_sendtotrash(t_test *t, int pro)
 {
-	if (pro)
+	if (pro == 1)
 		multiple_free("%a%a%a%a%a", \
 			t->buf, t->check, t->utils, t->line, t \
 		);
-	else
+	else if (pro == 0)
+	{
+		printf("You don't know how to use quotes, do you? 😑\n");
 		multiple_free("%a%a%a%a", \
 			t->check, t->utils, t->line, t \
 		);
+	}
 }
 
-static int	invalid_quotes(t_test *t)
+static int	ft_quotes(t_test *t)
 {
 	t->utils->i = -1;
 	t->check->status = FALSE;
@@ -90,13 +93,12 @@ int	main(void)
 
 	test = (t_test *)malloc(sizeof(t_test));
 	test->line = readline("command $ ");
+	if (!test->line)
+		return (free(test), 0);
 	test->utils = (t_utils *)malloc(sizeof(t_utils));
 	test->check = (t_check *)malloc(sizeof(t_check));
-	if (invalid_quotes(test))
-	{
-		printf("You don't know how to use quotes 😑\n");
+	if (ft_quotes(test))
 		return (ft_sendtotrash(test, FALSE), 0);
-	}
 	test->line = buildfree(test->line, " ", &ft_strtrim);
 	test->utils->i = -1;
 	test->utils->len = ft_mnstrlen(test);
