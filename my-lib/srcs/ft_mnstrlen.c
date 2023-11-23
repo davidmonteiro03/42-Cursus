@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 08:10:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/23 08:26:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/23 08:33:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ static int	ft_ststrlen(t_test *t)
 		while (t->u->t_4[t->u->t_i_f])
 			t->u->t_i_f++;
 		t->u->l += t->u->t_i_f;
-		free(t->u->t_4);
-		return (1);
+		return (free(t->u->t_4), 1);
 	}
 	return (0);
 }
