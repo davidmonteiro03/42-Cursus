@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/22 17:40:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/23 08:21:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ typedef struct s_utils
 	char	*t_1;
 	char	*t_2;
 	char	*t_3;
+	char	*t_4;
 	int		t_i;
 	int		t_j;
+	int		t_i_f;
 	int		nl;
 	size_t	l;
+	size_t	len;
 }t_utils;
 
 typedef struct s_check

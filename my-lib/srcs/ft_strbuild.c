@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 08:10:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/22 17:49:40 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/23 08:26:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,32 @@ static void	ft_tmpbuild(t_test *t)
 		t->b[t->t_i++] = t->u->t_3[len++];
 }
 
+static int	ft_stbuild(t_test *t)
+{
+	if (t->u->t_1[t->u->t_i + 1] == '?')
+	{
+		t->u->t_i++;
+		t->u->t_i_f = 0;
+		t->u->t_4 = ft_itoa(t->c->s);
+		while (t->u->t_4[t->u->t_i_f])
+			t->b[t->t_i++] = t->u->t_4[t->u->t_i_f++];
+		free(t->u->t_4);
+		return (1);
+	}
+	return (0);
+}
+
 static void	ft_spbuild(t_test *t)
 {
 	t->u->t_1 = ft_substr(t->l, t->u->j, t->u->i - t->u->j);
 	t->u->t_i = -1;
 	while (t->u->t_1[++t->u->t_i])
 	{
-		if (t->u->t_1[t->u->t_i] == '$' && \
-			ft_isalnum(t->u->t_1[t->u->t_i + 1]))
+		if (t->u->t_1[t->u->t_i] == '$' && (ft_isalnum(t->u->t_1[t->u->t_i \
+			+ 1]) || t->u->t_1[t->u->t_i + 1] == '?'))
 		{
+			if (ft_stbuild(t))
+				continue ;
 			t->u->t_j = t->u->t_i + 1;
 			while (t->u->t_1[t->u->t_i + 1] && \
 				ft_isalnum(t->u->t_1[t->u->t_i + 1]))
