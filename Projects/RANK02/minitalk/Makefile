@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/10/30 09:15:32 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/23 17:09:55 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,33 +54,33 @@ $(OBJS_DIR)%.o: ./%.c
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
 
 $(EXEC_SERVER): $(OBJS_SERVER)
-	@make -C $(LIBFT_DIR) >/dev/null
+	@make -s -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft
 	@echo "$(CYAN)$(EXEC_SERVER) $(GREEN)created$(RESET)!"
 
 $(EXEC_CLIENT): $(OBJS_CLIENT)
-	@make -C $(LIBFT_DIR) >/dev/null
+	@make -s -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft
 	@echo "$(CYAN)$(EXEC_CLIENT) $(GREEN)created$(RESET)!"
 
 $(EXEC_SERVER_BONUS): $(OBJS_SERVER_BONUS)
-	@make -C $(LIBFT_DIR) >/dev/null
+	@make -s -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft
 	@echo "$(CYAN)$(EXEC_SERVER_BONUS) $(GREEN)created$(RESET)!"
 
 $(EXEC_CLIENT_BONUS): $(OBJS_CLIENT_BONUS)
-	@make -C $(LIBFT_DIR) >/dev/null
+	@make -s -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft
 	@echo "$(CYAN)$(EXEC_CLIENT_BONUS) $(GREEN)created$(RESET)!"
 
 clean:
 	@$(RM) $(OBJS_DIR)
-	@make -C $(LIBFT_DIR) clean >/dev/null
+	@make -s -C $(LIBFT_DIR) clean >/dev/null 2>&1
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
 	@$(RM) $(EXEC_SERVER) $(EXEC_CLIENT) $(EXEC_SERVER_BONUS) $(EXEC_CLIENT_BONUS)
-	@make -C $(LIBFT_DIR) fclean >/dev/null
+	@make -s -C $(LIBFT_DIR) fclean >/dev/null 2>&1
 	@echo "$(CYAN)$(EXEC_SERVER) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC_CLIENT) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC_SERVER_BONUS) $(RED)removed$(RESET)!"
