@@ -129,9 +129,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/">42-Cu
 		</tr>
 		<tr>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/minishell">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/minishelln.png" width="125"/>
-				</a>
+				<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/minishelln.png" width="125"/>
 			</td>
 			<td colspan="2">
 				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
