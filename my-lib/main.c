@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/23 07:57:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:38:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ft_execute(t_test *t)
 
 static void	ft_analyse(t_test *t)
 {
-	t->a = ft_split(t->b, '\a');
+	t->a = ft_split(t->b, '\f');
 	if (strcmp(t->a[0], "echo") != 0)
 	{
 		printf("bash: %s: command not found\n", t->a[0]);
