@@ -5,65 +5,63 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 13:56:28 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 13:44:42 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/23 09:31:10 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/23 10:44:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	init_forks(t_inf **inf)
+t_inf	*ph_alloc(void)
 {
-	int	i;
+	t_inf	*inf;
 
-	if (!*inf)
-		return (1);
-	i = -1;
-	while (++i < (*inf)->num_ph)
-		pthread_mutex_init(&(*inf)->f[i], NULL);
-	return (0);
+	inf = (t_inf *)malloc(sizeof(t_inf));
+	if (!inf)
+		return (NULL);
+	return (inf);
 }
 
-int	init_philos(t_inf **inf)
+void	ph_init_mutex(t_inf **inf)
 {
 	int	i;
 
-	if (!*inf)
-		return (1);
+	i = -1;
+	while (++i < (*inf)->num_ph)
+		pthread_mutex_init(&(*inf)->forks[i], NULL);
+	pthread_mutex_init((*inf)->print, NULL);
+}
+
+int	ph_init_ph(t_inf **inf)
+{
+	int	i;
+
 	i = -1;
 	while (++i < (*inf)->num_ph)
 	{
+		(*inf)->ph[i].ph_num = i + 1;
+		(*inf)->ph[i].last_meal = -1;
 		(*inf)->ph[i].inf = *inf;
-		(*inf)->ph[i].ph_id = i + 1;
-		(*inf)->ph[i].lf = &((*inf)->f[i]);
-		(*inf)->ph[i].rf = &((*inf)->f[(i + 1) % (*inf)->num_ph]);
-		(*inf)->ph[i].meal_count = 0;
-		(*inf)->ph[i].lm = -1;
-		(*inf)->ph[i].dead = false;
 	}
 	return (0);
 }
 
-int	init_inf(t_inf **inf, int ac, char **av)
+int	ph_init_inf(t_inf **inf, char **av)
 {
-	*inf = (t_inf *)malloc(sizeof(t_inf));
-	if (!*inf)
-		return (1);
-	(*inf)->num_ph = ph_atoi(av[1]);
-	(*inf)->time_die = ph_atoi(av[2]);
-	(*inf)->time_eat = ph_atoi(av[3]);
-	(*inf)->time_sleep = ph_atoi(av[4]);
-	(*inf)->num_meals_ph = -1;
-	if (ac == 6 && av[5] && *av[5])
-		(*inf)->num_meals_ph = ph_atoi(av[5]);
+	(*inf)->num_ph = ph_atol(av[1]);
+	(*inf)->time_die = ph_atol(av[2]);
+	(*inf)->time_eat = ph_atol(av[3]);
+	(*inf)->time_sleep = ph_atol(av[4]);
+	(*inf)->num_eat = -1;
+	if (av[5])
+		(*inf)->num_eat = ph_atol(av[5]);
 	(*inf)->ph = (t_ph *)malloc(sizeof(t_ph) * (*inf)->num_ph);
-	(*inf)->f = (t_mutex *)malloc(sizeof(t_mutex) * (*inf)->num_ph);
 	(*inf)->th = (t_th *)malloc(sizeof(t_th) * (*inf)->num_ph);
-	(*inf)->action_lock = (t_mutex *)malloc(sizeof(t_mutex) * (*inf)->num_ph);
-	if (!(*inf)->ph || !(*inf)->f || !(*inf)->th || !(*inf)->action_lock)
-		return (clean_inf(inf, false), 1);
-	init_forks(inf);
-	pthread_mutex_init((*inf)->action_lock, NULL);
-	init_philos(inf);
+	(*inf)->forks = (t_mutex *)malloc(sizeof(t_mutex) * (*inf)->num_ph);
+	(*inf)->print = (t_mutex *)malloc(sizeof(t_mutex));
+	if (!(*inf)->ph || !(*inf)->th || !(*inf)->forks)
+		return (ph_exit(inf, 1));
+	ph_init_mutex(inf);
+	ph_init_ph(inf);
 	return (0);
 }

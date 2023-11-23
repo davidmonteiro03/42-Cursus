@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 18:56:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/23 10:58:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,71 +29,12 @@
 typedef pthread_mutex_t	t_mutex;
 typedef pthread_t		t_th;
 
-struct					s_inf;
+/* ERRORS */
+int		ph_error(char *error);
 
-typedef struct s_ph
-{
-	int				meal_count;
-	int				ph_id;
-	long			lm;
-	bool			dead;
-	t_mutex			*lf;
-	t_mutex			*rf;
-	struct s_inf	*inf;
-}t_ph;
-
-typedef struct s_inf
-{
-	int		num_ph;
-	int		time_die;
-	int		time_eat;
-	int		time_sleep;
-	int		num_meals_ph;
-	long	time_start;
-	t_ph	*ph;
-	t_mutex	*f;
-	t_th	*th;
-	t_mutex	*action_lock;
-}t_inf;
-
-/* ************************************************************************** */
-/*                                    CHECK                                   */
-/* ************************************************************************** */
-
-int		ph_atoi(const char *str);
-bool	check_args(int ac, char **av);
-
-/* ************************************************************************** */
-/*                                    CLEAN                                   */
-/* ************************************************************************** */
-
-int		clean_inf(t_inf **inf, bool join);
-
-/* ************************************************************************** */
-/*                                   DISPLAY                                  */
-/* ************************************************************************** */
-
-void	start(void);
-void	end(void);
-
-/* ************************************************************************** */
-/*                                   ERRORS                                   */
-/* ************************************************************************** */
-
-int		error(char *error);
-
-/* ************************************************************************** */
-/*                                    INIT                                    */
-/* ************************************************************************** */
-
-int		init_inf(t_inf **inf, int ac, char **av);
-
-/* ************************************************************************** */
-/*                                    UTILS                                   */
-/* ************************************************************************** */
-
-void	philo_1(t_inf **inf);
-long	gettime(void);
-void	status(t_ph *ph, char *status);
+/* PARSER */
+long	ph_atol(const char *nptr);
+int		ph_parse_args(char **av);
+int		ph_parse_range(char **av);
 
 #endif

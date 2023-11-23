@@ -5,18 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/11 17:53:32 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/11 17:56:41 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/23 09:07:51 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/23 09:40:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	error(char *error)
+int	ph_error(char *error)
 {
 	if (!error)
-		printf("Error\n");
+		printf("Error: Unknown error\n");
 	else
-		printf("%s\n", error);
-	return (EXIT_FAILURE);
+		printf("Error: %s\n", error);
+	return (1);
 }

@@ -5,45 +5,30 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 14:39:25 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 18:56:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/23 10:33:42 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/23 10:54:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-void	philo_1(t_inf **inf)
-{
-	(*inf)->time_start = gettime();
-	status((*inf)->ph, THINK);
-	usleep((*inf)->time_die * 1000);
-	status((*inf)->ph, DIED);
-}
-
-long	gettime(void)
+long	get_time(void)
 {
 	struct timeval	time;
 
 	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000000 + time.tv_usec);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	status(t_ph *ph, char *status)
+void	ph_status(t_ph *ph, char *status)
 {
-	if (ph->lm == -1)
-	{
-		printf("| %9ldms | %-5d | %-25s |\n", \
-			(gettime() - ph->inf->time_start) / 1000, \
-			ph->ph_id, \
-			status \
-		);
-	}
+	long	time;
+
+	pthread_mutex_lock(ph->inf->print);
+	if (ph->last_meal == -1)
+		time = get_time() - ph->inf->start_time;
 	else
-	{
-		printf("| %9ldms | %-5d | %-25s |\n", \
-			(gettime() - ph->lm) / 1000, \
-			ph->ph_id, \
-			status \
-		);
-	}
+		time = get_time() - ph->last_meal;
+	printf("%ld %d %s\n", time, ph->ph_num, status);
+	pthread_mutex_unlock(ph->inf->print);
 }

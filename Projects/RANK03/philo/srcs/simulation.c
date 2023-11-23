@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean.c                                            :+:      :+:    :+:   */
+/*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/14 14:06:59 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 13:07:44 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/23 10:08:17 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/23 10:52:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-int	clean_inf(t_inf **inf, bool join)
+void	*ph_routine(void *arg)
+{
+	t_ph	*ph;
+
+	ph = (t_ph *)arg;
+	ph_status(ph, THINK);
+	ph_eating(ph);
+	return (NULL);
+}
+
+void	ph_start(t_inf **inf)
 {
 	int	i;
 
-	if (!*inf)
-		return (1);
-	if (join)
-	{
-		i = -1;
-		while (++i < (*inf)->num_ph)
-			pthread_join((*inf)->th[i], NULL);
-	}
+	(*inf)->start_time = get_time();
 	i = -1;
 	while (++i < (*inf)->num_ph)
-		pthread_mutex_destroy(&(*inf)->f[i]);
-	pthread_mutex_destroy((*inf)->action_lock);
-	if ((*inf)->ph)
-		free((*inf)->ph);
-	if ((*inf)->f)
-		free((*inf)->f);
-	if ((*inf)->th)
-		free((*inf)->th);
-	if ((*inf)->action_lock)
-		free((*inf)->action_lock);
-	free(*inf);
-	return (0);
+		pthread_create(&(*inf)->th[i], NULL, &ph_routine, &(*inf)->ph[i]);
 }

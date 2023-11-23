@@ -5,44 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 18:24:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/20 18:28:58 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/23 10:32:33 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/23 10:52:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
 
-static void	lock_forks(t_ph *ph)
+void	ph_lock_f(t_ph *ph)
 {
-	pthread_mutex_lock(ph->lf);
-	status(ph, FORK);
-	pthread_mutex_lock(ph->rf);
-	status(ph, FORK);
+	pthread_mutex_lock(&ph->inf->forks[ph->ph_num - 1]);
+	ph_status(ph, FORK);
+	pthread_mutex_lock(&ph->inf->forks[ph->ph_num % ph->inf->num_ph]);
+	ph_status(ph, FORK);
 }
 
-static void	unlock_forks(t_ph *ph)
+void	ph_unlock_f(t_ph *ph)
 {
-	pthread_mutex_unlock(ph->lf);
-	pthread_mutex_unlock(ph->rf);
+	pthread_mutex_unlock(&ph->inf->forks[ph->ph_num - 1]);
+	pthread_mutex_unlock(&ph->inf->forks[ph->ph_num % ph->inf->num_ph]);
 }
 
-void	thinking(t_ph *ph)
+void	ph_eating(t_ph *ph)
 {
-	status(ph, THINK);
-}
-
-void	eating(t_ph *ph)
-{
-	lock_forks(ph);
-	status(ph, EAT);
+	ph_lock_f(ph);
+	ph_status(ph, EAT);
+	ph->last_meal = get_time();
 	usleep(ph->inf->time_eat * 1000);
-	ph->meal_count++;
-	ph->lm = gettime();
-	unlock_forks(ph);
-}
-
-void	sleeping(t_ph *ph)
-{
-	status(ph, SLEEP);
-	usleep(ph->inf->time_sleep * 1000);
+	ph_unlock_f(ph);
 }
