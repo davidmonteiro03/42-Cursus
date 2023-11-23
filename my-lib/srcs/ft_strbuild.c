@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 08:10:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/23 08:34:02 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/23 12:32:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,8 @@ void	ft_strbuild(t_test *t)
 			ft_opbuild(t, 2);
 			continue ;
 		}
-		if (t->l[t->u->i] == ' ' && t->l[t->u->i - 1] != ' ')
+		if (ft_strchr(" \t\n", t->l[t->u->i]) && \
+			!ft_strchr(" \t\n", t->l[t->u->i - 1]))
 			t->b[t->t_i++] = '\a';
 		else if (t->l[t->u->i] != ' ')
 			ft_opbuild(t, 3);
