@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 12:11:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:06:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ t_in	*ph_iin(char **v);
 /* convert string to long */
 long	ph_num(const char *s);
 
-/* check if string is a number */
+/* check if all the arguments are numbers */
 int		ph_arg(char **v);
 
 /* check if number is in range */
