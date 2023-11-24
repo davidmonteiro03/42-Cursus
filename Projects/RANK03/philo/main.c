@@ -6,19 +6,22 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/23 16:03:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:04:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/philo.h"
 
-int	main(int ac, char **av)
+int	main(int c, char **v)
 {
-	if (ac != 5 && ac != 6)
-		return (ph_error("Wrong number of arguments"));
-	if (ph_parse_args(av))
-		return (ph_error("Invalid arguments"));
-	if (ph_parse_range(av))
-		return (ph_error("Invalid range"));
-	return (0);
+	t_in	*in;
+
+	if (c != 5 && c != 6)
+		return (ph_err(ERR_ARG));
+	if (ph_arg(v))
+		return (ph_err(ERR_INV));
+	if (ph_rng(v))
+		return (ph_err(ERR_RNG));
+	in = ph_iin(v);
+	return (ph_clr(in, 0));
 }
