@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 14:06:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:10:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define ERR_ARG "Wrong number of arguments"
 # define ERR_INV "Invalid arguments"
 # define ERR_RNG "Invalid range"
+# define ERR_IIN "Initialization failed"
 
 /* PHILO STATUS STRINGS */
 # define FRK "has taken a fork 🍴"
@@ -104,7 +105,7 @@ t_in	*ph_iin(char **v);
 long	ph_num(const char *s);
 
 /* check if all the arguments are numbers */
-int		ph_arg(char **v);
+int		ph_inv(char **v);
 
 /* check if number is in range */
 int		ph_rng(char **v);

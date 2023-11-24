@@ -6,19 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 09:14:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 14:08:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:09:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philo.h"
-
-static int	ph_chk(const char *p)
-{
-	int	i;
-
-	i = -1;
-	return (0);
-}
 
 long	ph_num(const char *p)
 {
@@ -39,7 +31,7 @@ long	ph_num(const char *p)
 	return (n * s);
 }
 
-int	ph_arg(char **v)
+int	ph_inv(char **v)
 {
 	int	i;
 	int	j;
