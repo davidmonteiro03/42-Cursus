@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 15:38:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/24 15:57:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int c, char **v)
 {
-	if (c != 5 && c != 6)
-		return (ph_err(ERR_USG, NULL, EXIT_FAILURE));
+	(void)c;
+	(void)v;
 	return (0);
 }
