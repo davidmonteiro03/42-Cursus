@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/24 11:40:37 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/24 15:44:10 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,17 +18,13 @@ RESET			:= \033[1;0m
 
 CC				:= cc
 CFLAGS			:= -Wall -Wextra -Werror
-THREADFLAGS		:= -pthread -fsanitize=address -g3
+THREADFLAGS		:= -pthread -fsanitize=thread -g3
 RM				:= rm -rf
 
 OBJS_DIR		:= obj/
 INCLUDES_DIR	:= includes/
 
-SRCS			:= main.c \
-					srcs/clean.c \
-					srcs/errors.c \
-					srcs/init.c \
-					srcs/parser.c
+SRCS			:= main.c
 
 OBJS			:= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
