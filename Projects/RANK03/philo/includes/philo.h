@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 12:04:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/24 12:11:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define PHILO_H
 
 /* HEADERS */
-
 # include <pthread.h> //	pthread_create, pthread_detach, pthread_join,
 //							pthread_mutex_init, pthread_mutex_destroy,
 //							pthread_mutex_lock, pthread_mutex_unlock
@@ -25,26 +24,28 @@
 # include <stdbool.h> //	bool
 
 /* ERROR STRINGS */
-
 # define ERR_ARG "Wrong number of arguments"
 # define ERR_INV "Invalid arguments"
 # define ERR_RNG "Invalid range"
 
 /* PHILO STATUS STRINGS */
-
-# define FORK "has taken a fork 🍴"
+# define FRK "has taken a fork 🍴"
 # define EAT "is eating 🍝"
-# define THINK "is thinking 💭"
-# define SLEEP "is sleeping 💤"
-# define DIED "died 💀"
+# define THK "is thinking 💭"
+# define SLP "is sleeping 💤"
+# define DIE "died 💀"
 
+/* TYPEDEFS */
 typedef pthread_mutex_t	t_mt;
 typedef pthread_t		t_th;
+
+/* ************************************************************************** */
+/*                                   STRUCTS                                  */
+/* ************************************************************************** */
 
 struct					s_in;
 
 /* PHILO STRUCT */
-
 typedef struct s_ph
 {
 	int				id;
@@ -52,7 +53,6 @@ typedef struct s_ph
 }t_ph;
 
 /* DATA STRUCT */
-
 typedef struct s_dt
 {
 	int	np;
@@ -63,7 +63,6 @@ typedef struct s_dt
 }t_dt;
 
 /* INPUT STRUCT */
-
 typedef struct s_in
 {
 	t_dt	*dt;
@@ -74,38 +73,40 @@ typedef struct s_in
 /*                                    CLEAN                                   */
 /* ************************************************************************** */
 
-// clean data
+/* clean data */
 int		ph_clr(t_in *in, int st);
 
 /* ************************************************************************** */
 /*                                    ERROR                                   */
 /* ************************************************************************** */
 
-// print error
+/* print error */
 int		ph_err(char *e);
 
 /* ************************************************************************** */
 /*                                    INIT                                    */
 /* ************************************************************************** */
 
-// init philo
+/* init philo */
 t_ph	*ph_iph(t_in *in);
-// init data
+
+/* init data */
 t_dt	*ph_idt(char **v);
-// init input
+
+/* init input */
 t_in	*ph_iin(char **v);
 
 /* ************************************************************************** */
 /*                                   PARSER                                   */
 /* ************************************************************************** */
 
-// convert string to long
+/* convert string to long */
 long	ph_num(const char *s);
 
-// check if string is a number
+/* check if string is a number */
 int		ph_arg(char **v);
 
-// check if number is in range
+/* check if number is in range */
 int		ph_rng(char **v);
 
 #endif
