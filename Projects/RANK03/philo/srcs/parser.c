@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 09:14:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 11:56:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/24 14:08:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,6 @@ static int	ph_chk(const char *p)
 	int	i;
 
 	i = -1;
-	while (p[++i])
-		if (p[i] < '0' || p[i] > '9')
-			return (1);
 	return (0);
 }
 
@@ -45,11 +42,16 @@ long	ph_num(const char *p)
 int	ph_arg(char **v)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (v[++i])
-		if (ph_chk(v[i]))
-			return (1);
+	{
+		j = -1;
+		while (v[i][++j])
+			if (v[i][j] < '0' || v[i][j] > '9')
+				return (1);
+	}
 	return (0);
 }
 
