@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   iin.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/25 17:16:46 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/25 17:02:25 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/25 17:02:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
-int	main(int c, char **v)
+void	ph_iin(t_in **in, char **v)
 {
-	if (c != 5 && c != 6)
-		return (1);
-	if (ph_chk(v + 1))
-		return (1);
-	return (0);
+	(*in)->np = ph_num(v[1]);
+	(*in)->td = ph_num(v[2]);
+	(*in)->te = ph_num(v[3]);
+	(*in)->ts = ph_num(v[4]);
+	if (v[5])
+		(*in)->ne = ph_num(v[5]);
+	else
+		(*in)->ne = -1;
 }

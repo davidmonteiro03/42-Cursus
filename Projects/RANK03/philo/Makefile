@@ -6,29 +6,30 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/24 15:44:10 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/25 17:04:50 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RED				:= \033[1;91m
-GREEN			:= \033[1;92m
-YELLOW			:= \033[1;93m
-CYAN			:= \033[1;96m
-RESET			:= \033[1;0m
+RED				= \033[1;91m
+GREEN			= \033[1;92m
+YELLOW			= \033[1;93m
+CYAN			= \033[1;96m
+RESET			= \033[1;0m
 
-CC				:= cc
-CFLAGS			:= -Wall -Wextra -Werror
-THREADFLAGS		:= -pthread -fsanitize=thread -g3
-RM				:= rm -rf
+CC				= cc
+CFLAGS			= -Wall -Wextra -Werror -g3 -fsanitize=address
+THREADFLAGS		= -pthread
+RM				= rm -rf
 
-OBJS_DIR		:= obj/
-INCLUDES_DIR	:= includes/
+OBJS_DIR		= obj/
+INCLUDES_DIR	= include/
 
-SRCS			:= main.c
+SRCS			= main.c \
+					src/chk.c
 
-OBJS			:= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
+OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
-EXEC			:= philo
+EXEC			= philo
 
 all: $(EXEC)
 
