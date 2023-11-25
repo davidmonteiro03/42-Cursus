@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 08:10:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 13:20:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:30:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ static void	ft_opbuild(t_test *t, int op)
 			t->l[t->u->i] != '\'' && t->l[t->u->i] != '\"')
 			;
 		ft_spbuild(t);
-		t->u->i--;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 08:10:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 13:19:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/25 19:30:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ static size_t	ft_opstrlen(t_test *t, int op)
 			t->l[t->u->i] != '\'' && t->l[t->u->i] != '\"')
 			;
 		t->u->len += ft_spstrlen(t);
-		t->u->i--;
 	}
 	return (t->u->len);
 }
