@@ -5,111 +5,110 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 16:40:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 13:20:19 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/27 18:24:12 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/27 19:42:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/my_lib.h"
+#include "my_lib.h"
 
-static void	ft_execute(t_test *t)
+int	wildcard_prep(t_g *g, int i)
 {
-	t->u->nl = TRUE;
-	t->u->i = 0;
-	if (strcmp(t->a[1], "-n") == 0)
+	g->d = opendir(".");
+	if (!g->d)
+		return (0);
+	while (1)
 	{
-		t->u->nl = FALSE;
-		t->u->i = 1;
+		g->e = readdir(g->d);
+		if (!g->e)
+			break ;
+		if (!stat(g->e->d_name, &g->st) && !S_ISDIR(g->st.st_mode))
+			i++;
 	}
-	while (t->a[++t->u->i])
-	{
-		printf("%s", t->a[t->u->i]);
-		if (t->a[t->u->i + 1])
-			printf(" ");
-	}
-	if (t->u->nl)
-		printf("\n");
+	closedir(g->d);
+	return (i);
 }
 
-static void	ft_analyse(t_test *t)
+void	wildcard_exec(t_g *g, int i)
 {
-	t->a = ft_split(t->b, '\f');
-	if (strcmp(t->a[0], "echo") != 0)
+	g->d = opendir(".");
+	if (!g->d)
+		return ;
+	while (1)
 	{
-		printf("bash: %s: command not found\n", t->a[0]);
-		return (multiple_free("%b", t->a));
+		g->e = readdir(g->d);
+		if (!g->e)
+			break ;
+		if (!stat(g->e->d_name, &g->st) && !S_ISDIR(g->st.st_mode))
+			g->a[i++] = ft_strdup(g->e->d_name);
 	}
-	if (!t->a[1])
-	{
-		printf("\n");
-		return (multiple_free("%b", t->a));
-	}
-	ft_execute(t);
-	multiple_free("%b", t->a);
+	closedir(g->d);
 }
 
-static void	ft_sendtotrash(t_test *t, int pro)
+char	*ft_strlow(char *s)
 {
-	if (pro == 1)
-		multiple_free("%a%a%a%a%a", \
-			t->b, t->c, t->u, t->l, t \
-		);
-	else if (pro == 0)
-	{
-		printf("You don't know how to use quotes, do you? 😑\n");
-		multiple_free("%a%a%a%a", \
-			t->c, t->u, t->l, t \
-		);
-	}
+	int		i;
+	char	*ret;
+
+	i = -1;
+	ret = ft_strdup(s);
+	while (ret[++i])
+		ret[i] = ft_tolower(ret[i]);
+	return (ret);
 }
 
-static int	ft_quotes(t_test *t)
+void	ft_swap_str(char **s1, char **s2)
 {
-	t->u->i = -1;
-	t->c->s = FALSE;
-	t->c->c = 0;
-	while (t->l[++t->u->i])
+	char	*tmp;
+
+	tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
+}
+
+void	sort_and_dsp(char **a, int i)
+{
+	char	*c;
+	char	*n;
+	int		j;
+
+	while (a[++i])
 	{
-		if (!t->c->s && (t->l[t->u->i] == '\"' || \
-			t->l[t->u->i] == '\''))
+		j = i;
+		while (a[++j])
 		{
-			t->c->s = TRUE;
-			t->c->c = t->l[t->u->i];
-			continue ;
+			c = ft_strlow(a[i]);
+			n = ft_strlow(a[j]);
+			if (ft_strncmp(c, n, ft_strlen(a[i])) > 0)
+				ft_swap_str(&a[i], &a[j]);
+			multiple_free("%a%a", c, n);
 		}
-		if (t->c->s && t->l[t->u->i] == t->c->c)
-		{
-			t->c->s = FALSE;
-			t->c->c = 0;
-			continue ;
-		}
+		if (i > 0)
+			printf("  ");
+		printf("%s", a[i]);
 	}
-	return (t->c->s);
 }
 
-int	main(void)
+int	main(int ac, char **av, char **env)
 {
-	t_test	*t;
+	t_g		*g;
 
-	t = (t_test *)malloc(sizeof(t_test));
-	t->l = readline("command $ ");
-	if (!t->l)
-		return (free(t), 0);
-	t->u = (t_utils *)malloc(sizeof(t_utils));
-	t->c = (t_check *)malloc(sizeof(t_check));
-	if (ft_quotes(t))
-		return (ft_sendtotrash(t, FALSE), 0);
-	t->l = buildfree(t->l, " ", &ft_strtrim);
-	t->u->i = -1;
-	t->u->l = ft_mnstrlen(t);
-	t->b = (char *)malloc(sizeof(char) * t->u->l + 1);
-	t->b[t->u->l] = '\0';
-	t->t_i = 0;
-	t->u->i = -1;
-	ft_strbuild(t);
-	if (!t->b || !*t->b)
-		return (ft_sendtotrash(t, TRUE), 0);
-	ft_analyse(t);
-	ft_sendtotrash(t, TRUE);
-	return (0);
+	g = (t_g *)malloc(sizeof(t_g));
+	g->v = env;
+	g->l = readline("wildcard $ ");
+	g->l = buildfree(g->l, ft_strdup(" "), &ft_strtrim);
+	if (g->l[0] == '\"')
+		g->l = buildfree(g->l, ft_strdup("\""), &ft_strtrim);
+	else if (g->l[0] == '\'')
+		g->l = buildfree(g->l, ft_strdup("\'"), &ft_strtrim);
+	if (!ft_strncmp(g->l, "*", ft_strlen(g->l)))
+	{
+		g->len = wildcard_prep(g, 0);
+		g->a = (char **)malloc(sizeof(char *) * (g->len + 1));
+		g->a[g->len] = NULL;
+		wildcard_exec(g, 0);
+		sort_and_dsp(g->a, -1);
+	}
+	multiple_free("%b%a%a", g->a, g->l, g);
+	return ((void)ac, (void)av, (void)env, 0);
 }

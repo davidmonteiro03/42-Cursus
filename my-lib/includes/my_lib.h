@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/24 13:20:11 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 19:26:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,27 @@
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 # include <readline/readline.h>
+# include <sys/wait.h>
+# include <unistd.h>
+# include <sys/wait.h>
+# include <dirent.h>
+# include <sys/stat.h>
 
 # define TRUE 1
 # define FALSE 0
 
-typedef struct s_utils
+typedef struct s_g
 {
-	int		i;
-	int		j;
-	char	*t_1;
-	char	*t_2;
-	char	*t_3;
-	char	*t_4;
-	int		t_i;
-	int		t_j;
-	int		t_i_f;
-	int		nl;
-	size_t	l;
-	size_t	len;
-}t_utils;
-
-typedef struct s_check
-{
-	int		s;
-	char	c;
-}t_check;
-
-typedef struct t_test
-{
-	char	*l;
-	char	*b;
-	char	**a;
-	int		t_i;
-	t_check	*c;
-	t_utils	*u;
-}t_test;
+	char			*l;
+	DIR				*d;
+	struct dirent	*e;
+	struct stat		st;
+	char			**v;
+	char			**a;
+	int				len;
+}t_g;
 
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
-size_t	ft_mnstrlen(t_test *t);
-void	ft_strbuild(t_test *t);
 
 #endif
