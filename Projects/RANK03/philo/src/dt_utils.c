@@ -1,43 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chk.c                                              :+:      :+:    :+:   */
+/*   dt_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 16:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 11:58:46 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/27 12:14:58 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/27 12:20:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long	ph_num(const char *s)
+int	dt_iin(t_dt **dt, char **v)
 {
-	long	n;
-	size_t	i;
-
-	n = 0;
-	i = 0;
-	while (s[i] && s[i] >= '0' && s[i] <= '9')
-		n = n * 10 + s[i++] - '0';
-	return (n);
-}
-
-int	ph_chk(char **v)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	while (v[++i])
-	{
-		j = -1;
-		while (v[i][++j])
-			if (v[i][j] < '0' || v[i][j] > '9')
-				return (1);
-		if (ph_num(v[i]) > 2147483647 || ph_num(v[i]) <= 0)
-			return (1);
-	}
+	*dt = malloc(sizeof(t_dt));
+	if (!*dt)
+		return (1);
+	(*dt)->np = ph_num(v[0]);
+	(*dt)->td = ph_num(v[1]);
+	(*dt)->te = ph_num(v[2]);
+	(*dt)->ts = ph_num(v[3]);
+	(*dt)->ne = -1;
+	if (v[4])
+		(*dt)->ne = ph_num(v[4]);
 	return (0);
 }
