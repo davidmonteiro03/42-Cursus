@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:44:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 12:40:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:00:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_ph	*ph_new(t_dt *dt, int id)
 	ph = malloc(sizeof(t_ph));
 	if (!ph)
 		return (NULL);
+	ph->th = malloc(sizeof(pthread_t));
 	ph->dt = dt;
 	ph->id = id;
 	ph->nt = NULL;
@@ -48,13 +49,14 @@ void	ph_clr(t_ph **ph)
 	sve = *ph;
 	while (sve)
 	{
-		pthread_join(sve->th, NULL);
+		pthread_join(*sve->th, NULL);
 		sve = sve->nt;
 	}
 	while (*ph)
 	{
 		tmp = *ph;
 		*ph = (*ph)->nt;
+		free(tmp->th);
 		free(tmp);
 	}
 }

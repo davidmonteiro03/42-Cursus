@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 12:36:40 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:59:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	*ph_th(void *arg)
 
 void	ph_run(t_ph *ph)
 {
-	t_ph		*tmp;
+	t_ph	*tmp;
 
 	tmp = ph;
 	while (tmp)
 	{
-		pthread_create(&tmp->th, NULL, &ph_th, tmp);
+		pthread_create(tmp->th, NULL, ph_th, tmp);
 		tmp = tmp->nt;
 	}
 }
@@ -40,7 +40,7 @@ int	main(int c, char **v)
 
 	if (c != 5 && c != 6)
 		return (1);
-	if (ph_chk(v + 1))
+	if (ph_chk(-1, v + 1))
 		return (1);
 	ph = NULL;
 	dt = NULL;

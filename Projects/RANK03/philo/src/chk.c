@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 11:58:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 12:59:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ long	ph_num(const char *s)
 	return (n);
 }
 
-int	ph_chk(char **v)
+int	ph_chk(int i, char **v)
 {
-	int	i;
 	int	j;
 
-	i = -1;
 	while (v[++i])
 	{
 		j = -1;
