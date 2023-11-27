@@ -79,7 +79,7 @@ void	sort_and_dsp(char **a, int i)
 		{
 			c = ft_strlow(a[i]);
 			n = ft_strlow(a[j]);
-			if (ft_strncmp(c, n, ft_strlen(a[i])) > 0)
+			if (ft_strncmp(c, n, ft_strlen(c)) > 0)
 				ft_swap_str(&a[i], &a[j]);
 			multiple_free("%a%a", c, n);
 		}
