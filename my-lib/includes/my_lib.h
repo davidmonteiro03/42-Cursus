@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 21:56:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 23:26:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,13 @@ typedef struct s_g
 	int		l_n;
 }t_g;
 
+
+// Free
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
+
+// Utils
+void	ft_swap_str(char **s1, char **s2);
 
 // Wildcards
 void	ft_wild_1(t_g *g);

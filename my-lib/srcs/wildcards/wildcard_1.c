@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:14:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 23:03:40 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 23:26:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,6 @@ void	wildcard_exec(t_g *g, int i)
 			g->a[i++] = ft_strdup(g->ptr->e->d_name);
 	}
 	return (closedir(g->ptr->d), free(g->ptr));
-}
-
-void	ft_swap_str(char **s1, char **s2)
-{
-	char	*tmp;
-
-	tmp = *s1;
-	*s1 = *s2;
-	*s2 = tmp;
 }
 
 void	sort_and_dsp(char **a, int i)
