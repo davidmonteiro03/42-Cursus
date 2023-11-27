@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:44:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 13:16:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:41:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,60 +19,74 @@ t_ph	*ph_new(t_dt *dt, int id)
 	ph = malloc(sizeof(t_ph));
 	if (!ph)
 		return (NULL);
+	ph->lf = &dt->fk[id - 1];
+	ph->rf = &dt->fk[(id + 1) % dt->np];
 	ph->dt = dt;
 	ph->id = id;
 	ph->nt = NULL;
 	return (ph);
 }
 
-void	ph_add(t_ph **ph, t_ph *new)
+void	ph_add(t_ph **ph, t_ph *nd)
 {
-	t_ph	*tmp;
+	t_ph	*tp;
 
 	if (!*ph)
 	{
-		*ph = new;
+		*ph = nd;
 		return ;
 	}
-	tmp = *ph;
-	while (tmp->nt)
-		tmp = tmp->nt;
-	tmp->nt = new;
+	tp = *ph;
+	while (tp->nt)
+		tp = tp->nt;
+	tp->nt = nd;
 }
 
-void	ph_clr(t_ph **ph)
+void	ph_clr(t_dt **dt, int i)
 {
-	t_ph	*tmp;
-	t_ph	*sve;
+	t_ph	*tp;
 
-	sve = *ph;
-	while (sve)
+	tp = (*dt)->ph;
+	while (tp)
 	{
-		pthread_join(sve->th, NULL);
-		sve = sve->nt;
+		pthread_join(tp->th, NULL);
+		tp = tp->nt;
 	}
-	while (*ph)
+	while ((*dt)->ph)
 	{
-		tmp = *ph;
-		*ph = (*ph)->nt;
-		free(tmp);
+		tp = (*dt)->ph;
+		(*dt)->ph = (*dt)->ph->nt;
+		free(tp);
 	}
+	while (++i < (*dt)->np)
+		pthread_mutex_destroy(&(*dt)->fk[i]);
+	free((*dt)->fk);
+	free(*dt);
 }
 
-int	ph_iin(t_ph **ph, t_dt *dt, int i)
+int	ph_fin(t_dt **dt, int i)
+{
+	while (++i < (*dt)->np)
+		pthread_mutex_init(&(*dt)->fk[i], NULL);
+	return (0);
+}
+
+int	ph_pin(t_dt **dt, int i)
 {
 	t_ph	*nd;
 
-	while (++i < dt->np)
+	(*dt)->ph = NULL;
+	while (++i < (*dt)->np)
 	{
-		nd = ph_new(dt, i + 1);
+		nd = ph_new(*dt, i + 1);
 		if (!nd)
 		{
-			ph_clr(ph);
+			ph_clr(dt, -1);
 			return (1);
 		}
-		ph_add(ph, nd);
+		ph_add(&(*dt)->ph, nd);
 	}
+	ph_fin(dt, -1);
 	return (0);
 }
 

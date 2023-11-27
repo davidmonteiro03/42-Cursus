@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:14:58 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 12:52:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:41:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	dt_iin(t_dt **dt, char **v)
+int	ph_din(t_dt **dt, char **v)
 {
 	*dt = malloc(sizeof(t_dt));
 	if (!*dt)
@@ -24,5 +24,6 @@ int	dt_iin(t_dt **dt, char **v)
 	(*dt)->ne = -1;
 	if (v[4])
 		(*dt)->ne = ph_num(v[4]);
+	(*dt)->fk = malloc(sizeof(t_mt) * (*dt)->np);
 	return (0);
 }

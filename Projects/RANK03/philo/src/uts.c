@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   uts.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 16:44:35 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/27 15:37:55 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/27 15:38:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
-int	main(int c, char **v)
+long	ph_gtm(void)
 {
-	t_dt	*dt;
+	struct timeval	tv;
 
-	if (c != 5 && c != 6)
-		return (1);
-	if (ph_chk(-1, v + 1))
-		return (1);
-	dt = NULL;
-	if (ph_din(&dt, v + 1) != 0)
-		return (1);
-	if (ph_pin(&dt, -1) != 0)
-		return (1);
-	ph_run(dt);
-	ph_clr(&dt, -1);
-	return (0);
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000000 + tv.tv_usec);
 }

@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   run.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 16:44:35 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/27 15:01:04 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/27 16:23:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/philo.h"
+#include "../include/philo.h"
 
-int	main(int c, char **v)
+void	*ph_th(void *ag)
 {
-	t_dt	*dt;
+	t_ph	*ph;
 
-	if (c != 5 && c != 6)
-		return (1);
-	if (ph_chk(-1, v + 1))
-		return (1);
-	dt = NULL;
-	if (ph_din(&dt, v + 1) != 0)
-		return (1);
-	if (ph_pin(&dt, -1) != 0)
-		return (1);
-	ph_run(dt);
-	ph_clr(&dt, -1);
-	return (0);
+	ph = (t_ph *)ag;
+	return (NULL);
+}
+
+void	ph_run(t_dt *dt)
+{
+	t_ph	*tp;
+
+	tp = dt->ph;
+	while (tp)
+	{
+		pthread_create(&tp->th, NULL, &ph_th, tp);
+		tp = tp->nt;
+	}
 }
