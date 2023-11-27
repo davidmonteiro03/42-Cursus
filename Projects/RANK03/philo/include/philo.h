@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 12:59:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:16:28 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_dt
 typedef struct s_ph
 {
 	int			id;
-	pthread_t	*th;
+	pthread_t	th;
 	t_dt		*dt;
 	struct s_ph	*nt;
 }t_ph;

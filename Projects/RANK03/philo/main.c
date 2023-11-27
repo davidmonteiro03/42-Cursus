@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 12:59:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:18:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ph_run(t_ph *ph)
 	tmp = ph;
 	while (tmp)
 	{
-		pthread_create(tmp->th, NULL, ph_th, tmp);
+		pthread_create(&tmp->th, NULL, ph_th, tmp);
 		tmp = tmp->nt;
 	}
 }
