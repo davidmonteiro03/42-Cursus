@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/27 16:56:32 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/27 21:32:30 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ EXEC			= test
 
 SRCS			= main.c \
 					srcs/buildfree.c \
-					srcs/free.c
+					srcs/free.c \
+					srcs/wildcards/wildcard_1.c \
+					srcs/wildcards/wildcard_2.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 

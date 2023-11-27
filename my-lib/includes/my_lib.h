@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 19:26:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/27 21:56:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,28 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef struct s_g
+typedef struct s_d
 {
-	char			*l;
 	DIR				*d;
 	struct dirent	*e;
-	struct stat		st;
-	char			**v;
-	char			**a;
-	int				len;
+}t_d;
+
+typedef struct s_g
+{
+	char	*l;
+	t_d		*ptr;
+	char	**v;
+	char	**a;
+	int		len;
+	char	**d;
+	int		l_n;
 }t_g;
 
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
+
+// Wildcards
+void	ft_wild_1(t_g *g);
+void	ft_wild_2(t_g *g);
 
 #endif
