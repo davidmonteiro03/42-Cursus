@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/28 14:15:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:42:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,9 @@
 # include <readline/readline.h>
 # include <sys/wait.h>
 # include <unistd.h>
-# include <sys/wait.h>
-# include <dirent.h>
-# include <sys/stat.h>
 
 # define TRUE 1
 # define FALSE 0
-
-typedef struct s_g
-{
-	char	*l;
-}t_g;
 
 // Free
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));

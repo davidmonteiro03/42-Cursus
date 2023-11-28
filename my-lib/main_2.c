@@ -6,30 +6,56 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 08:17:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/28 14:22:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:33:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/my_lib_2.h"
 
-static void	ft_trash(t_g *g)
+int	check_quotes(char *line, char c, int i, int s)
 {
-	if (!g)
-		return ;
-	if (g->l)
-		free(g->l);
-	free(g);
+	while (line[++i])
+	{
+		if (s == 0 && (line[i] == '\'' || line[i] == '\"'))
+		{
+			s = 1;
+			c = line[i];
+			continue ;
+		}
+		if (s == 1 && line[i] == c)
+		{
+			s = 0;
+			c = '\0';
+			continue ;
+		}
+	}
+	return (s);
 }
 
 int	main(void)
 {
-	t_g	*g;
+	char	*line;
+	char	c;
+	char	*tmp;
+	char	*tmp2;
 
-	g = (t_g *)malloc(sizeof(t_g));
-	if (!g)
-		return (0);
-	g->l = readline("wildcard (parser) $ ");
-	g->l = buildfree(g->l, ft_strdup(" "), &ft_strtrim);
-	if
-	return (ft_trash(g), 0);
+	c = '\0';
+	line = readline("prompt> ");
+	if (check_quotes(line, c, -1, 0))
+	{
+		tmp = ft_strdup(line);
+		while (1)
+		{
+			if (!check_quotes(tmp, c, -1, 0))
+				break ;
+			tmp = buildfree(tmp, ft_strdup("\n"), &ft_strjoin);
+			tmp = buildfree(tmp, readline("heardoc> "), &ft_strjoin);
+		}
+		tmp2 = line;
+		line = buildfree(tmp, ft_strdup(""), &ft_strjoin);
+		free(tmp2);
+	}
+	printf("%s\n", line);
+	free(line);
+	return (0);
 }
