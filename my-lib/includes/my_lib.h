@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/28 07:59:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:45:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_g
 	int		l_n;
 	char	**t;
 }t_g;
-
 
 // Free
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
