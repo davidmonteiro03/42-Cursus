@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 08:17:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/28 15:33:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/28 19:09:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,5 @@ int	main(void)
 		line = buildfree(tmp, ft_strdup(""), &ft_strjoin);
 		free(tmp2);
 	}
-	printf("%s\n", line);
-	free(line);
-	return (0);
+	return (free(line), 0);
 }
