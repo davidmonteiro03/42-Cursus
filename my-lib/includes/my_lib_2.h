@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   my_lib.h                                           :+:      :+:    :+:   */
+/*   my_lib_2.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/28 07:59:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/28 08:21:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MY_LIB_H
-# define MY_LIB_H
+#ifndef MY_LIB_2_H
+# define MY_LIB_2_H
 
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
@@ -25,34 +25,14 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef struct s_d
-{
-	DIR				*d;
-	struct dirent	*e;
-}t_d;
-
 typedef struct s_g
 {
 	char	*l;
-	t_d		*ptr;
 	char	**v;
-	char	**a;
-	int		len;
-	char	**d;
-	int		l_n;
-	char	**t;
 }t_g;
-
 
 // Free
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
-
-// Utils
-void	ft_swap_str(char **s1, char **s2);
-
-// Wildcards
-void	ft_wild_1(t_g *g);
-void	ft_wild_2(t_g *g);
 
 #endif

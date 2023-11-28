@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:14:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 23:26:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/28 07:18:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	wildcard_exec(t_g *g, int i)
 
 void	sort_and_dsp(char **a, int i)
 {
-	int		j;
+	int	j;
 
 	while (a[++i])
 	{

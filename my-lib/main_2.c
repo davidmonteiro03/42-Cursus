@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 18:24:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/28 08:13:35 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/28 08:17:16 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/28 08:23:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/my_lib.h"
+#include "includes/my_lib_2.h"
 
 int	main(int ac, char **av, char **env)
 {
-	t_g		*g;
+	t_g	*g;
 
 	g = (t_g *)malloc(sizeof(t_g));
+	if (!g)
+		return (1);
+	g->l = readline("wildcard (pro) $ ");
+	if (!g->l)
+		return (free(g), 0);
+	if (!*g->l)
+		return (free(g->l), free(g), 0);
 	g->v = env;
-	g->l = readline("wildcard $ ");
-	g->l = buildfree(g->l, ft_strdup(" "), &ft_strtrim);
-	if (g->l[0] == '\"')
-		g->l = buildfree(g->l, ft_strdup("\""), &ft_strtrim);
-	else if (g->l[0] == '\'')
-		g->l = buildfree(g->l, ft_strdup("\'"), &ft_strtrim);
-	if (!ft_strncmp(g->l, "*\0", 2))
-	{
-		ft_wild_1(g);
-		ft_wild_2(g);
-	}
-	multiple_free("%a%a", g->l, g);
-	return ((void)ac, (void)av, (void)env, 0);
+	return (multiple_free("%a%a", g->l, g), (void)ac, (void)av, 0);
 }

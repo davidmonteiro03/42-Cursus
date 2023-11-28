@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/27 23:28:14 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/28 08:17:00 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ LIBFT_DIR		= libft
 LIBFT_NAME		= libft.a
 
 EXEC			= test
+EXEC_2			= test2
 
 SRCS			= main.c \
 					srcs/buildfree.c \
@@ -35,7 +36,12 @@ SRCS			= main.c \
 					srcs/wildcards/wildcard_1.c \
 					srcs/wildcards/wildcard_2.c
 
+SRCS_2			= main_2.c \
+					srcs/buildfree.c \
+					srcs/free.c
+
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
+OBJS_2			= $(addprefix $(OBJS_DIR), $(SRCS_2:.c=.o))
 
 all:
 
@@ -55,16 +61,23 @@ $(EXEC): $(OBJS)
 		-lreadline
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
+$(EXEC_2): $(OBJS_2)
+	@make -s -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ $(LIBFT_DIR)/$(LIBFT_NAME) \
+		-lreadline
+	@echo "$(CYAN)$(EXEC_2) $(GREEN)created$(RESET)!"
+
 clean:
 	@$(RM) $(OBJS_DIR)
 	@make -s -C $(LIBFT_DIR) clean > /dev/null 2>&1
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
-	@$(RM) $(EXEC)
+	@$(RM) $(EXEC) $(EXEC_2)
 	@make -s -C $(LIBFT_DIR) fclean > /dev/null 2>&1
 	@echo "$(CYAN)$(LIBFT_NAME) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
+	@echo "$(CYAN)$(EXEC_2) $(RED)removed$(RESET)!"
 
 re: fclean all
 
