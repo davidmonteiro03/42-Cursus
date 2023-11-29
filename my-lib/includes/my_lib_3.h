@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/29 14:58:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:04:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libft/get_next_line.h"
 # include <sys/wait.h>
 # include <readline/readline.h>
+# include <readline/history.h>
 # include <dirent.h>
 # include <sys/stat.h>
 # include <signal.h>

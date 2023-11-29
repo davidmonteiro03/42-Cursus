@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:17:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/29 16:22:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/29 18:05:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,27 @@ void	new_prompt(int sig)
 	}
 }
 
+void	ft_exec(char *cm, char **ag, char **ev)
+{
+	if (fork() == 0)
+	{
+		execve(cm, ag, ev);
+		printf("%s: command not found\n", ag[0]);
+		exit(0);
+	}
+	else
+		wait(NULL);
+}
+
 int	exec(t_gb *gb, char **e)
 {
 	gb->ln = readline("wildcard $ ");
 	if (!gb->ln)
 		return (0);
 	if (!*gb->ln)
-		return (free(gb->ln), 0);
+		return (free(gb->ln), 1);
 	gb->as = ft_split(gb->ln, ' ');
+	add_history(gb->ln);
 	if (!gb->as)
 		return (free(gb->ln), 1);
 	if (!*gb->as)
@@ -39,17 +52,14 @@ int	exec(t_gb *gb, char **e)
 	gb->cm = buildfree(ft_strdup("/bin/"), ft_strdup(gb->as[0]), &ft_strjoin);
 	if (!gb->cm)
 		return (multiple_free("%b%a", gb->as, gb->ln), 1);
-	if (!ft_strncmp(gb->cm, "exit\0", 5))
+	if (!ft_strncmp(gb->cm, "/bin/exit\0", 5))
 		return (multiple_free("%b%a%a", gb->as, gb->ln, gb->cm), 0);
 	wild_get(gb);
 	if (!gb->ag)
 		return (multiple_free("%a%a%b", gb->ln, gb->cm, gb->as), 1);
 	if (!*gb->ag)
 		return (multiple_free("%a%a%b%a", gb->ln, gb->cm, gb->as, gb->ag), 1);
-	if (!fork())
-		execve(gb->cm, gb->ag, e);
-	else
-		wait(NULL);
+	ft_exec(gb->cm, gb->ag, e);
 	return (multiple_free("%a%a%b%b", gb->ln, gb->cm, gb->as, gb->ag), 1);
 }
 
@@ -66,7 +76,6 @@ t_gb	*init_gb(void)
 	gb->cm = NULL;
 	gb->as = NULL;
 	gb->ai = 0;
-	gb->fg = 0;
 	gb->ag = NULL;
 	return (gb);
 }
@@ -82,6 +91,7 @@ int	main(int ac, char **av, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	while (exec(gb, env))
 		;
+	rl_clear_history();
 	printf("exit\n");
 	return ((void)ac, (void)av, free(gb), 0);
 }
