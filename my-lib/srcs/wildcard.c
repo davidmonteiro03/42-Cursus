@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:53:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/29 14:57:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:02:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	handle_asterisk(char *path, char *ptrn)
 
 int	handle_square_brackets(char *path, char **ptrn, int mtch, int invt)
 {
-	mtch = 0;
-	invt = 0;
 	(*ptrn)++;
 	if (**ptrn == '!')
 	{
