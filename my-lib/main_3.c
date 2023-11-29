@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:17:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/29 15:00:02 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:18:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	exec(t_gb *gb, char **e)
 {
 	gb->ln = readline("wildcard $ ");
 	if (!gb->ln)
-		return (0);
+		return (0);jklocker
 	if (!*gb->ln)
 		return (free(gb->ln), 0);
 	gb->as = ft_split(gb->ln, ' ');
