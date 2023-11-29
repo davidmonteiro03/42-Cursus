@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:17:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/29 13:44:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:00:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	new_prompt(int sig)
 {
 	(void)sig;
-
 	if (sig == SIGINT)
 	{
 		rl_replace_line("", 0);
@@ -67,6 +66,7 @@ t_gb	*init_gb(void)
 	gb->cm = NULL;
 	gb->as = NULL;
 	gb->ai = 0;
+	gb->fg = 0;
 	gb->ag = NULL;
 	return (gb);
 }
@@ -82,5 +82,6 @@ int	main(int ac, char **av, char **env)
 	signal(SIGQUIT, SIG_IGN);
 	while (exec(gb, env))
 		;
+	printf("exit\n");
 	return ((void)ac, (void)av, free(gb), 0);
 }

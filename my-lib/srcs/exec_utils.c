@@ -6,30 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:19:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/29 13:43:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:58:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/my_lib_3.h"
-
-int	wildcmp(const char *path, const char *ptrn)
-{
-	if (!*ptrn)
-		return (!*path);
-	if (*ptrn == '*')
-	{
-		while (*path)
-		{
-			if (wildcmp(path, ptrn + 1))
-				return (1);
-			path++;
-		}
-		return (wildcmp(path, ptrn + 1));
-	}
-	if (*ptrn == '?' || *path == *ptrn)
-		return (wildcmp(path + 1, ptrn + 1));
-	return (0);
-}
 
 void	chk(t_gb *gb, int mode, char *str)
 {
@@ -37,6 +18,15 @@ void	chk(t_gb *gb, int mode, char *str)
 		gb->ag[gb->ai++] = ft_strdup(str);
 	else
 		gb->ai++;
+}
+
+int	chk_wild(t_gb *gb, char *str, int mode)
+{
+	if (gb->pt->d_name[0] != '.' && \
+		!stat(gb->pt->d_name, &gb->st) && \
+		wildcmp(gb->pt->d_name, str))
+		return (chk(gb, mode, gb->pt->d_name), 1);
+	return (0);
 }
 
 void	wild_prep(t_gb *gb, char **as, int mode, int i)
@@ -49,16 +39,17 @@ void	wild_prep(t_gb *gb, char **as, int mode, int i)
 			return ;
 		if (ft_strchr(as[i], '*') || ft_strchr(as[i], '?'))
 		{
+			gb->fg = 0;
 			while (1)
 			{
 				gb->pt = readdir(gb->dr);
 				if (!gb->pt)
 					break ;
-				if (gb->pt->d_name[0] != '.' && \
-					!stat(gb->pt->d_name, &gb->st) && \
-					wildcmp(gb->pt->d_name, as[i]))
-					chk(gb, mode, gb->pt->d_name);
+				if (chk_wild(gb, as[i], mode))
+					gb->fg = 1;
 			}
+			if (!gb->fg)
+				chk(gb, mode, as[i]);
 		}
 		else
 			chk(gb, mode, as[i]);

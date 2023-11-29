@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/29 13:01:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:58:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_gb
 	char			**as;
 	int				ai;
 	char			**ag;
+	int				fg;
 }t_gb;
 
 // Exec utils
@@ -42,5 +43,8 @@ void	wild_get(t_gb *gb);
 // Free
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
+
+// Wildcard
+int		wildcmp(char *path, char *ptrn);
 
 #endif
