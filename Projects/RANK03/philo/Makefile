@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/28 17:29:49 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/30 19:48:52 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror #-fsanitize=thread
 THREADFLAGS		= -pthread
 RM				= rm -rf
 
@@ -25,11 +25,11 @@ OBJS_DIR		= obj/
 INCLUDES_DIR	= include/
 
 SRCS			= main.c \
-					src/chk.c \
-					src/dt_utils.c \
-					src/ph_utils.c \
-					src/run.c \
-					src/uts.c
+					src/check.c \
+					src/data_utils.c \
+					src/philo_utils.c \
+					src/execute.c \
+					src/utils.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 

@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   run.c                                              :+:      :+:    :+:   */
+/*   uts.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 15:01:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 17:28:02 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/11/27 15:37:55 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/11/30 19:35:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	*ph_th(void *ag)
+long long	ph_get_time(void)
 {
-	t_ph	*ph;
+	struct timeval	tv;
 
-	ph = (t_ph *)ag;
-	printf("philo %d", ph->id);
-	printf(" => timestamp %ld\n", ph_gtm());
-	return (NULL);
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	ph_run(t_dt *dt)
+void	wait_ms(long long time)
 {
-	t_ph	*tp;
+	long long	start;
 
-	tp = dt->ph;
-	while (tp)
-	{
-		pthread_create(&tp->th, NULL, &ph_th, tp);
-		tp = tp->nt;
-	}
+	start = ph_get_time();
+	while ((ph_get_time() - start) < time)
+		usleep(1);
 }

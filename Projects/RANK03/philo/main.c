@@ -6,26 +6,26 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 17:49:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:48:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
 
-int	main(int c, char **v)
+int	main(int ac, char **av)
 {
-	t_dt	*dt;
+	t_data	*data;
 
-	if (c != 5 && c != 6)
+	if (ac != 5 && ac != 6)
 		return (1);
-	if (ph_chk(-1, v + 1))
+	if (ph_check(-1, av + 1))
 		return (1);
-	dt = NULL;
-	if (ph_din(&dt, v + 1))
+	data = NULL;
+	if (ph_data_init(&data, av + 1))
 		return (1);
-	if (ph_pin(&dt, -1))
+	if (ph_philo_init(&data, -1))
 		return (1);
-	ph_run(dt);
-	ph_clr(&dt, -1);
+	ph_execute(data);
+	ph_clear(&data, -1);
 	return (0);
 }

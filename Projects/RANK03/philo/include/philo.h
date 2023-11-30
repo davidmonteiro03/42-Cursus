@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 17:02:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 19:39:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,47 +19,49 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-typedef pthread_t		t_th;
-typedef pthread_mutex_t	t_mt;
-struct					s_dt;
+typedef pthread_t		t_thread;
+typedef pthread_mutex_t	t_mutex;
+struct					s_data;
 
-typedef struct s_ph
+typedef struct s_philo
 {
-	int			id;
-	t_th		th;
-	t_mt		*lf;
-	t_mt		*rf;
-	struct s_dt	*dt;
-	struct s_ph	*nt;
-}t_ph;
+	int				id;
+	t_thread		thread;
+	t_mutex			*left_fork;
+	t_mutex			*right_fork;
+	struct s_data	*data;
+	struct s_philo	*next;
+}t_philo;
 
-typedef struct s_dt
+typedef struct s_data
 {
-	int		np;
-	int		td;
-	int		te;
-	int		ts;
-	int		ne;
-	t_ph	*ph;
-	t_mt	*fk;
-}t_dt;
+	int			num_philos;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			num_of_meals_for_ph;
+	t_philo		*philos;
+	t_mutex		*forks;
+	long long	start;
+}t_data;
 
-// chk
-long	ph_num(const char *s);
-int		ph_chk(int i, char **v);
+// check
+long		ph_atol(const char *str);
+int			ph_check(int i, char **av);
 
-// dt utils
-int		ph_din(t_dt **dt, char **v);
+// data utils
+int			ph_data_init(t_data **data, char **av);
 
-// ph utils
-int		ph_pin(t_dt **dt, int i);
-void	ph_clr(t_dt **dt, int i);
+// philo utils
+int			ph_philo_init(t_data **data, int i);
+void		ph_clear(t_data **data, int i);
 
-// run
-void	*ph_th(void *ag);
-void	ph_run(t_dt *dt);
+// execute
+void		*ph_routine(void *arg);
+void		ph_execute(t_data *data);
 
-// uts
-long	ph_gtm(void);
+// utils
+long long	ph_get_time(void);
+void		wait_ms(long long time);
 
 #endif
