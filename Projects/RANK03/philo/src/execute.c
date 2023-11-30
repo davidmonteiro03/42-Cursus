@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 20:32:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:56:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void	*ph_routine(void *arg)
 	t_philo		*philo;
 
 	philo = (t_philo *)arg;
-	while (1)
-		ph_eating(philo);
+	ph_eating(philo);
+	ph_sleeping(philo);
+	ph_thinking(philo);
 	return (NULL);
 }
 

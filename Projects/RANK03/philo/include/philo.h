@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 20:28:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:57:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_data
 void		ph_take_forks(t_philo *philo);
 void		ph_leave_forks(t_philo *philo);
 void		ph_eating(t_philo *philo);
+void		ph_thinking(t_philo *philo);
+void		ph_sleeping(t_philo *philo);
 
 // CHECK
 long		ph_atol(const char *str);
