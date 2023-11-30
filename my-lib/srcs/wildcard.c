@@ -6,25 +6,25 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:53:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 14:54:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:56:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/my_lib_3.h"
 
-int	handle_question_mark(char *path, char *ptrn)
+int	wildqst(char *path, char *ptrn)
 {
 	return (*path && wildcmp(path + 1, ptrn + 1));
 }
 
-int	handle_asterisk(char *path, char *ptrn)
+int	wildast(char *path, char *ptrn)
 {
 	if (wildcmp(path, ptrn + 1))
 		return (1);
 	return (*path && wildcmp(path + 1, ptrn));
 }
 
-int	handle_square_brackets(char *path, char **ptrn, int mtch, int invt)
+int	wildsqb(char *path, char **ptrn, int mtch, int invt)
 {
 	(*ptrn)++;
 	if (**ptrn == '!')
@@ -55,10 +55,10 @@ int	wildcmp(char *path, char *ptrn)
 	if (!*ptrn)
 		return (!*path);
 	if (*ptrn == '?')
-		return (handle_question_mark(path, ptrn));
+		return (wildqst(path, ptrn));
 	if (*ptrn == '*')
-		return (handle_asterisk(path, ptrn));
+		return (wildast(path, ptrn));
 	if (*ptrn == '[')
-		return (handle_square_brackets(path, &ptrn, 0, 0));
+		return (wildsqb(path, &ptrn, 0, 0));
 	return (*path == *ptrn && wildcmp(path + 1, ptrn + 1));
 }
