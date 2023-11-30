@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:17:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 14:42:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 16:01:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,17 @@ int	exec(t_gb *gb, char **ev)
 	if (!*gb->as)
 		return (free(gb->ln), free(gb->as), 1);
 	add_history(gb->ln);
-	gb->cm = buildfree(ft_strdup("/bin/"), ft_strdup(gb->as[0]), &ft_strjoin);
-	if (!gb->cm)
-		return (multiple_free("%b%a", gb->as, gb->ln), 1);
-	if (!ft_strncmp(gb->cm, "/bin/exit\0", 10))
-		return (multiple_free("%b%a%a", gb->as, gb->cm, gb->ln), 0);
 	wild_get(gb);
 	if (!gb->ag)
-		return (multiple_free("%b%a%a%a", gb->as, gb->ln, gb->cm, gb->tb), 1);
+		return (multiple_free("%b%a%a", gb->as, gb->ln, gb->tb), 1);
 	if (!*gb->ag)
-		return (multiple_free("%b%a%a%a%a", gb->as, gb->ag, gb->tb, gb->cm, \
-			gb->ln), 1);
+		return (multiple_free("%b%a%a%a", gb->as, gb->ag, gb->tb, gb->ln), 1);
+	gb->cm = buildfree(ft_strdup("/bin/"), ft_strdup(gb->ag[0]), &ft_strjoin);
+	if (!gb->cm)
+		return (multiple_free("%b%b%a%a", gb->as, gb->ag, gb->ln, gb->tb), 1);
+	if (!ft_strncmp(gb->cm, "/bin/exit\0", 10))
+		return (multiple_free("%b%b%a%a%a", gb->as, gb->ag, gb->cm, \
+			gb->ln, gb->tb), 0);
 	ft_exec(gb, ev);
 	return (multiple_free("%b%b%a%a%a", gb->as, gb->ag, gb->tb, gb->cm, \
 		gb->ln), 1);
