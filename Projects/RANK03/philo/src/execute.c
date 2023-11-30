@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:01:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 19:49:40 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:07:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,17 @@
 
 void	*ph_routine(void *arg)
 {
-	t_philo	*philo;
+	t_philo		*philo;
+	long long	start;
+	long long	end;
 
 	philo = (t_philo *)arg;
-	if (philo->id % 2 == 0)
-	{
-		pthread_mutex_lock(philo->right_fork);
-		pthread_mutex_lock(philo->left_fork);
-	}
-	else
-	{
-		pthread_mutex_lock(philo->left_fork);
-		pthread_mutex_lock(philo->right_fork);
-	}
-	wait_ms(1);
-	printf("start time: %lld\n", ph_get_time() - philo->data->start);
-	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
+	ph_take_forks(philo);
+	start = ph_get_time();
+	wait_ms(philo->data->time_to_eat);
+	end = ph_get_time();
+	printf("Duration: %lld ms\n", end - start);
+	ph_leave_forks(philo);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 19:39:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:04:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ typedef struct s_data
 	t_mutex		*forks;
 	long long	start;
 }t_data;
+
+// actions
+void		ph_take_forks(t_philo *philo);
+void		ph_leave_forks(t_philo *philo);
 
 // check
 long		ph_atol(const char *str);
