@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:17:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 14:38:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:42:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,30 +79,11 @@ int	exec(t_gb *gb, char **ev)
 		gb->ln), 1);
 }
 
-t_gb	*init_gb(void)
-{
-	t_gb	*gb;
-
-	gb = (t_gb *)malloc(sizeof(t_gb));
-	if (!gb)
-		return (NULL);
-	gb->ln = NULL;
-	gb->dr = NULL;
-	gb->pt = NULL;
-	gb->cm = NULL;
-	gb->as = NULL;
-	gb->ai = 0;
-	gb->ag = NULL;
-	gb->tb = NULL;
-	gb->tp = NULL;
-	return (gb);
-}
-
 int	main(int ac, char **av, char **ev)
 {
 	t_gb	*gb;
 
-	gb = init_gb();
+	gb = (t_gb *)malloc(sizeof(t_gb));
 	if (!gb)
 		return (0);
 	signal(SIGINT, new_prompt);
