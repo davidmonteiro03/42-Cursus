@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:19:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/29 17:48:47 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 09:13:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,16 @@ void	wild_prep(t_gb *gb, char **as, int mode, int i)
 		gb->dr = opendir(".");
 		if (!gb->dr)
 			return ;
-		if (ft_strchr(as[i], '*') || ft_strchr(as[i], '?'))
+		gb->fg = 0;
+		while (1)
 		{
-			gb->fg = 0;
-			while (1)
-			{
-				gb->pt = readdir(gb->dr);
-				if (!gb->pt)
-					break ;
-				if (chk_wild(gb, as[i], mode))
-					gb->fg = 1;
-			}
-			if (!gb->fg)
-				chk(gb, mode, as[i]);
+			gb->pt = readdir(gb->dr);
+			if (!gb->pt)
+				break ;
+			if (chk_wild(gb, as[i], mode))
+				gb->fg = 1;
 		}
-		else
+		if (!gb->fg)
 			chk(gb, mode, as[i]);
 		closedir(gb->dr);
 	}
