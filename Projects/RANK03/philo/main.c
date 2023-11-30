@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/27 16:44:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 15:05:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	main(int c, char **v)
 	if (ph_chk(-1, v + 1))
 		return (1);
 	dt = NULL;
-	if (ph_din(&dt, v + 1) != 0)
+	if (ph_din(&dt, v + 1))
 		return (1);
-	if (ph_pin(&dt, -1) != 0)
+	if (ph_pin(&dt, -1))
 		return (1);
 	ph_run(dt);
 	ph_clr(&dt, -1);
