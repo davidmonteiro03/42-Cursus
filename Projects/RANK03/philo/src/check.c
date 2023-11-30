@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 19:37:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:15:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ long	ph_atol(const char *str)
 	return (num);
 }
 
-int	ph_check(int i, char **av)
+int	ph_check_input(int i, char **av)
 {
 	int	j;
 

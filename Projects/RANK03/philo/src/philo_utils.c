@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:44:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 19:49:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 20:17:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ t_philo	*ph_create_node(t_data *data, int id)
 	philo = malloc(sizeof(t_philo));
 	if (!philo)
 		return (NULL);
+	philo->id = id;
+	philo->last_meal = -1;
 	philo->left_fork = &data->forks[id - 1];
 	philo->right_fork = &data->forks[(id + 1) % data->num_philos];
-	philo->data = data;
-	philo->id = id;
 	philo->next = NULL;
 	return (philo);
 }
@@ -42,7 +42,7 @@ void	ph_add_node(t_philo **philo, t_philo *node)
 	temp->next = node;
 }
 
-void	ph_clear(t_data **data, int i)
+void	ph_clear_all(t_data **data, int i)
 {
 	t_philo	*temp;
 
@@ -81,7 +81,7 @@ int	ph_philo_init(t_data **data, int i)
 		node = ph_create_node(*data, i + 1);
 		if (!node)
 		{
-			ph_clear(data, -1);
+			ph_clear_all(data, -1);
 			return (1);
 		}
 		ph_add_node(&(*data)->philos, node);

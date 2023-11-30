@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/30 20:04:35 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/11/30 20:20:30 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS			= main.c \
 					src/actions.c \
 					src/check.c \
 					src/data_utils.c \
+					src/display.c \
 					src/execute.c \
 					src/philo_utils.c \
 					src/utils.c
