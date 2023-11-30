@@ -6,28 +6,20 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 20:57:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 21:02:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-// pthread_create, pthread_detach, pthread_join, pthread_mutex_init
-// pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
-# include <pthread.h>
-
-// usleep
-# include <unistd.h>
-
-// printf
-# include <stdio.h>
-
-// malloc, free
-# include <stdlib.h>
-
-// gettimeofday
-# include <sys/time.h>
+# include <pthread.h>	// pthread_create, pthread_detach, pthread_join
+						// pthread_mutex_init, pthread_mutex_destroy
+						// pthread_mutex_lock, pthread_mutex_unlock
+# include <unistd.h>	// usleep
+# include <stdio.h>		// printf
+# include <stdlib.h>	// malloc, free
+# include <sys/time.h>	// gettimeofday
 
 // MACROS
 # define FORK "has taken a fork"
