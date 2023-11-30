@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 14:25:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:41:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define BCYN "\033[1;36m"
 # define BRED "\033[1;31m"
 # define BGRN "\033[1;32m"
-# define BBLK "\033[1;30m"
 # define RESET "\033[0m"
 
 typedef struct s_gb
