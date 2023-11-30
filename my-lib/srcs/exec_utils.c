@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:19:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 11:54:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:22:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,6 @@ void	wild_get(t_gb *gb)
 	wild_prep(gb, gb->as, 0, -1);
 	gb->ag = (char **)malloc(sizeof(char *) * (gb->ai + 1));
 	gb->ag[gb->ai] = NULL;
-	gb->tb = (int *)malloc(sizeof(int) * (get_strs_size(gb->as, -1)));
+	gb->tb = (int *)malloc(sizeof(int) * (dsp_sz(gb->as, -1, FALSE)));
 	wild_prep(gb, gb->as, 1, -1);
 }

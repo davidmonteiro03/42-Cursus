@@ -6,11 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:17:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 13:01:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:25:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/my_lib_3.h"
+
+int	g_status = 0;
 
 void	new_prompt(int sig)
 {
@@ -25,24 +27,27 @@ void	new_prompt(int sig)
 
 void	ft_exec(t_gb *gb, char **ev)
 {
-	if (!fork())
+	gb->pd = fork();
+	if (!gb->pd)
 	{
 		execve(gb->cm, gb->ag, ev);
 		gb->tp = strs_rng(gb->ag, 0, gb->tb[0], -1);
-		if (get_strs_size(gb->tp, -1) == 1)
-			printf("%s: command not found\n", gb->tp[0]);
+		if (dsp_sz(gb->tp, -1, FALSE) == 1)
+			dsp_err(gb->tp[0]);
 		else
-			printf("%s: command not found\n", \
-				get_arg(gb, \
-					gb->tp[0], \
-					gb->tp[get_strs_size(gb->tp, -1) - 1] \
-				) \
-			);
+			dsp_err(get_arg(gb, gb->tp[0], \
+				gb->tp[dsp_sz(gb->tp, -1, FALSE) - 1]));
 		multiple_free("%b", gb->tp);
-		exit(0);
+		exit(127);
 	}
 	else
-		wait(NULL);
+	{
+		waitpid(gb->pd, &gb->ss, 0);
+		if (WIFEXITED(gb->ss))
+			g_status = WEXITSTATUS(gb->ss);
+		else
+			g_status = 1;
+	}
 }
 
 int	exec(t_gb *gb, char **ev)
@@ -81,7 +86,6 @@ t_gb	*init_gb(void)
 	gb = (t_gb *)malloc(sizeof(t_gb));
 	if (!gb)
 		return (NULL);
-	gb->in = ft_strdup("wildcard $ ");
 	gb->ln = NULL;
 	gb->dr = NULL;
 	gb->pt = NULL;
@@ -103,9 +107,17 @@ int	main(int ac, char **av, char **ev)
 		return (0);
 	signal(SIGINT, new_prompt);
 	signal(SIGQUIT, SIG_IGN);
-	while (exec(gb, ev))
-		;
+	while (1)
+	{
+		if (g_status == 0)
+			gb->in = ft_strdup(BCYN "shell " BGRN "$" RESET " ");
+		else
+			gb->in = ft_strdup(BCYN "shell " BRED "$" RESET " ");
+		if (!exec(gb, ev))
+			break ;
+		free(gb->in);
+	}
 	rl_clear_history();
 	printf("exit\n");
-	return ((void)ac, (void)av, free(gb->in), free(gb), 0);
+	return ((void)ac, (void)av, free(gb->in), free(gb), g_status);
 }
