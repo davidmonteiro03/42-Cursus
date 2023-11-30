@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:23:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 14:26:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 14:31:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,5 @@ char	*get_arg(t_gb *gb, char *first, char *last)
 
 void	dsp_err(char *err)
 {
-	printf(BCYN "%s" \
-		RESET ":" \
-		BRED " command not found\n" RESET, \
-		err \
-	);
+	printf("%s: command not found\n", err);
 }
