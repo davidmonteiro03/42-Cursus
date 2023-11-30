@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:17:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 10:08:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 12:01:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,17 @@ void	ft_exec(t_gb *gb, char **ev)
 	if (!fork())
 	{
 		execve(gb->cm, gb->ag, ev);
-		printf("%s: command not found\n", get_arg(gb, gb->ag, -1, NULL));
+		gb->tp = strs_rng(gb->ag, 0, gb->tb[0], -1);
+		if (get_strs_size(gb->tp, -1) == 1)
+			printf("%s: command not found\n", gb->tp[0]);
+		else
+			printf("%s: command not found\n", \
+				get_arg(gb, \
+					gb->tp[0], \
+					gb->tp[get_strs_size(gb->tp, -1) - 1] \
+				) \
+			);
+		multiple_free("%b", gb->tp);
 		exit(0);
 	}
 	else
@@ -52,14 +62,16 @@ int	exec(t_gb *gb, char **ev)
 	if (!gb->cm)
 		return (multiple_free("%b%a", gb->as, gb->ln), 1);
 	if (!ft_strncmp(gb->cm, "/bin/exit\0", 10))
-		return (multiple_free("%b%a%a", gb->as, gb->ln, gb->cm), 0);
+		return (multiple_free("%b%a%a", gb->as, gb->cm, gb->ln), 0);
 	wild_get(gb);
 	if (!gb->ag)
-		return (multiple_free("%a%a%b", gb->ln, gb->cm, gb->as), 1);
+		return (multiple_free("%b%a%a%a", gb->as, gb->ln, gb->cm, gb->tb), 1);
 	if (!*gb->ag)
-		return (multiple_free("%a%a%b%a", gb->ln, gb->cm, gb->as, gb->ag), 1);
+		return (multiple_free("%b%a%a%a%a", gb->as, gb->ag, gb->tb, gb->cm, \
+			gb->ln), 1);
 	ft_exec(gb, ev);
-	return (multiple_free("%a%a%b%b", gb->ln, gb->cm, gb->as, gb->ag), 1);
+	return (multiple_free("%b%b%a%a%a", gb->as, gb->ag, gb->tb, gb->cm, \
+		gb->ln), 1);
 }
 
 t_gb	*init_gb(void)
@@ -77,6 +89,8 @@ t_gb	*init_gb(void)
 	gb->as = NULL;
 	gb->ai = 0;
 	gb->ag = NULL;
+	gb->tb = NULL;
+	gb->tp = NULL;
 	return (gb);
 }
 

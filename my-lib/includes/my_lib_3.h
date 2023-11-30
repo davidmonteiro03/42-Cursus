@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 10:08:02 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:33:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_gb
 	int				ai;
 	char			**ag;
 	int				fg;
+	int				*tb;
+	char			**tp;
 }t_gb;
 
 // Exec utils
@@ -46,8 +48,11 @@ void	wild_get(t_gb *gb);
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
 
-/* BASH IS SO DUMB */
-char	*get_arg(t_gb *gb, char **strs, int i, char *last_file);
+// Utils
+int		get_strs_size(char **strs, int i);
+void	print_strs(char **strs, int i);
+char	**strs_rng(char **strs, int bgn, int end, int i);
+char	*get_arg(t_gb *gb, char *first, char *last);
 
 // Wildcard
 int		wildcmp(char *path, char *ptrn);

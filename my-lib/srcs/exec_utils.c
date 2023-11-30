@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 12:19:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 09:13:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/11/30 11:54:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ void	wild_prep(t_gb *gb, char **as, int mode, int i)
 			if (!gb->pt)
 				break ;
 			if (chk_wild(gb, as[i], mode))
-				gb->fg = 1;
+				gb->fg++;
 		}
 		if (!gb->fg)
 			chk(gb, mode, as[i]);
+		if (mode)
+			gb->tb[i] = gb->ai;
 		closedir(gb->dr);
 	}
 }
@@ -57,5 +59,6 @@ void	wild_get(t_gb *gb)
 	wild_prep(gb, gb->as, 0, -1);
 	gb->ag = (char **)malloc(sizeof(char *) * (gb->ai + 1));
 	gb->ag[gb->ai] = NULL;
+	gb->tb = (int *)malloc(sizeof(int) * (get_strs_size(gb->as, -1)));
 	wild_prep(gb, gb->as, 1, -1);
 }
