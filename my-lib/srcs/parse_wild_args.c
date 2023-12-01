@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 23:10:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 00:06:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 09:30:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,24 @@ void	sort_strs(t_gb *gb, char **aux)
 	int		i;
 	int		j;
 	char	*tmp;
+	char	*tmp2;
 
 	i = -1;
+	if (stat(gb->ag[0], &gb->st))
+		i = 0;
 	while (gb->ag[++i])
 	{
 		j = i;
 		while (gb->ag[++j])
 		{
-			if (ft_strcmp(aux[i], aux[j]) > 0)
+			if (ft_strcmp(ft_strlow(aux[i]), ft_strlow(aux[j])) > 0)
 			{
 				tmp = gb->ag[i];
 				gb->ag[i] = gb->ag[j];
 				gb->ag[j] = tmp;
-				tmp = aux[i];
+				tmp2 = aux[i];
 				aux[i] = aux[j];
-				aux[j] = tmp;
+				aux[j] = tmp2;
 			}
 		}
 	}
@@ -84,7 +87,7 @@ char	**new_args(char **src, int size)
 	dest = malloc((size + 1) * sizeof(char *));
 	i = -1;
 	while (++i < size)
-		dest[i] = new_args_util(ft_strlow(src[i]));
+		dest[i] = new_args_util(src[i]);
 	dest[size] = NULL;
 	return (dest);
 }
