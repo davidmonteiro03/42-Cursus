@@ -6,25 +6,25 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 14:53:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 13:07:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:52:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/my_lib_4.h"
 
-int	wildqst(char *path, char *pattern)
+int	wild_question_mark(char *path, char *pattern)
 {
-	return (*path && wildcmp(path + 1, pattern + 1));
+	return (*path && wild_match(path + 1, pattern + 1));
 }
 
-int	wildast(char *path, char *pattern)
+int	wild_asterisk(char *path, char *pattern)
 {
-	if (wildcmp(path, pattern + 1))
+	if (wild_match(path, pattern + 1))
 		return (1);
-	return (*path && wildcmp(path + 1, pattern));
+	return (*path && wild_match(path + 1, pattern));
 }
 
-int	wildsqb(char *path, char **pattern, int match, int invert)
+int	wild_brakets(char *path, char **pattern, int match, int invert)
 {
 	(*pattern)++;
 	if (**pattern == '!')
@@ -47,18 +47,20 @@ int	wildsqb(char *path, char **pattern, int match, int invert)
 			(*pattern)++;
 		}
 	}
-	return ((match ^ invert) && wildcmp(path + 1, *pattern + 1));
+	return ((match ^ invert) && wild_match(path + 1, *pattern + 1));
 }
 
-int	wildcmp(char *path, char *pattern)
+int	wild_match(char *path, char *pattern)
 {
 	if (!*pattern)
 		return (!*path);
 	if (*pattern == '?')
-		return (wildqst(path, pattern));
+		return (wild_question_mark(path, pattern));
 	if (*pattern == '*')
-		return (wildast(path, pattern));
+		return (wild_asterisk(path, pattern));
 	if (*pattern == '[')
-		return (wildsqb(path, &pattern, 0, 0));
-	return (*path == *pattern && wildcmp(path + 1, pattern + 1));
+		return (wild_brakets(path, &pattern, 0, 0));
+	if (*pattern == '/')
+		return (*path == '/' && wild_match(path + 1, pattern + 1));
+	return (*path == *pattern && wild_match(path + 1, pattern + 1));
 }

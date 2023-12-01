@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:39:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 14:31:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:48:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	read_dir(char *pattern, int count)
 		if (!sd)
 			break ;
 		if (!stat(sd->d_name, &st) && sd->d_name[0] != '.' \
-			&& wildcmp(sd->d_name, pattern))
+			&& wild_match(sd->d_name, pattern))
 			count++;
 	}
 	if (!count)
@@ -50,7 +50,7 @@ int	construct_args(char *pattern, int count, char ***temp)
 		if (!sd)
 			break ;
 		if (!stat(sd->d_name, &st) && sd->d_name[0] != '.' \
-			&& wildcmp(sd->d_name, pattern))
+			&& wild_match(sd->d_name, pattern))
 			(*temp)[count++] = ft_strdup(sd->d_name);
 	}
 	if (!count)

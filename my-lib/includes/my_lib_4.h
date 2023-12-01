@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 14:31:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:48:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int		count_print_strs(char **strs, int i, int count);
 char	*new_args_util(const char *src);
 
 // Wildcard
-int		wildcmp(char *path, char *pattern);
+int		wild_match(char *path, char *pattern);
 
 #endif
