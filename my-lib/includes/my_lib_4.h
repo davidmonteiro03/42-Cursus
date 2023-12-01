@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 14:48:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:49:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int		read_dir_args(t_global *global, char **strs, int i, int total);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strlow(char *str);
 void	sort_strs(char ***old, char **new, int i);
-int		count_print_strs(char **strs, int i, int count);
+int		count_print_strs(char **strs, int i, int print);
 char	*new_args_util(const char *src);
 
 // Wildcard

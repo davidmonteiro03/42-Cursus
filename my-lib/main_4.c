@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:41:53 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 16:43:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:53:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	execute_loop(t_global *global, char **envp)
 	execute(global, envp);
 	multiple_free("%c%c%b%b%a%a", global->new_args, global->old_args, \
 		global->exec_args, global->input_args, global->line, global->command);
-	return (1);
+	return ((void)envp, 1);
 }
 
 int	main(int argc, char **argv, char **envp)
