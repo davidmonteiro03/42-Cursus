@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:41:53 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 18:43:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 21:24:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ void	execute(t_global *global, char **envp)
 	if (!global->pid)
 	{
 		execve(global->command, global->exec_args, envp);
-		printf("%s: command not found\n", global->exec_args[0]);
+		if (global->exec_args[0][ft_strlen(global->exec_args[0]) - 1] == '/')
+			printf("bash: %s: No such file or directory\n", \
+			global->exec_args[0]);
+		else
+			printf("%s: command not found\n", global->exec_args[0]);
 		exit(127);
 	}
 	else
