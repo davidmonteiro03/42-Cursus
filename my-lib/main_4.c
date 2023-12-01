@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:41:53 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 12:45:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:02:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,52 +49,48 @@ char	**new_args(char **src, int size)
 	return (dest);
 }
 
-int	read_dir_args(char **strs, int i, int total)
+int	read_dir_args(t_global *global, char **strs, int i, int total)
 {
-	char	***old;
-	char	***new;
-
-	old = (char ***)malloc(sizeof(char **) * \
+	global->old_args = (char ***)malloc(sizeof(char **) * \
 		(count_print_strs(strs, -1, 0) + 1));
-	old[count_print_strs(strs, -1, 0)] = NULL;
-	new = (char ***)malloc(sizeof(char **) * \
+	global->old_args[count_print_strs(strs, -1, 0)] = NULL;
+	global->new_args = (char ***)malloc(sizeof(char **) * \
 		(count_print_strs(strs, -1, 0) + 1));
-	new[count_print_strs(strs, -1, 0)] = NULL;
+	global->new_args[count_print_strs(strs, -1, 0)] = NULL;
 	while (strs[++i])
 	{
-		old[i] = (char **)malloc(sizeof(char *) * \
+		global->old_args[i] = (char **)malloc(sizeof(char *) * \
 			(read_dir(strs[i], 0) + 1));
-		old[i][read_dir(strs[i], 0)] = NULL;
-		construct_args(strs[i], 0, &old[i]);
-		printf("\nold[%d]:\n\n", i);
-		total += count_print_strs(old[i], -1, 1);
-		new[i] = new_args(old[i], \
-			count_print_strs(old[i], -1, 0));
-		printf("\nnew[%d]:\n\n", i);
-		count_print_strs(new[i], -1, 1);
+		global->old_args[i][read_dir(strs[i], 0)] = NULL;
+		construct_args(strs[i], 0, &global->old_args[i]);
+		total += count_print_strs(global->old_args[i], -1, 0);
+		global->new_args[i] = new_args(global->old_args[i], \
+			count_print_strs(global->old_args[i], -1, 0));
+		sort_strs(&global->old_args[i], global->new_args[i], -1);
+		count_print_strs(global->old_args[i], -1, 1);
 	}
-	multiple_free("%c", old);
-	multiple_free("%c", new);
 	return (i);
 }
 
-int	main(int ac, char **av, char **ev)
+int	main(int ac, char **av)
 {
-	char	*line;
-	char	**args1;
+	t_global	*global;
 
-	line = readline("wildcard (final) $ ");
-	if (!line)
+	global = (t_global *)malloc(sizeof(t_global));
+	if (!global)
 		return (0);
-	if (!*line)
-		return (free(line), 0);
-	args1 = ft_split(line, ' ');
-	if (!args1)
-		return (free(line), 0);
-	if (!*args1)
-		return (free(line), free(args1), 0);
-	read_dir_args(args1, -1, 0);
-	multiple_free("%b%a", args1, line);
-	(void)ev;
+	global->line = readline("wildcard (final) $ ");
+	if (!global->line)
+		return (free(global), 0);
+	if (!*global->line)
+		return (free(global->line), free(global), 0);
+	global->input_args = ft_split(global->line, ' ');
+	if (!global->input_args)
+		return (free(global->line), free(global), 0);
+	if (!*global->input_args)
+		return (free(global->line), free(global->input_args), free(global), 0);
+	read_dir_args(global, global->input_args, -1, 0);
+	multiple_free("%c%c%b%a%a", global->new_args, global->old_args, \
+		global->input_args, global->line, global);
 	return ((void)ac, (void)av, 0);
 }

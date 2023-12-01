@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/01 12:39:53 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/01 12:52:50 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ SRCS_4			= main_4.c \
 					srcs/buildfree.c \
 					srcs/free.c \
 					srcs/parse_dir.c \
+					srcs/utils_4.c \
 					srcs/wildcard.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
