@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 09:23:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 14:31:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 00:06:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,17 @@ char	**strs_rng(char **strs, int bgn, int end, int i)
 	return (rng);
 }
 
-char	*get_arg(t_gb *gb, char *first, char *last)
-{
-	if (stat(first, &gb->st))
-		return (first);
-	if (S_ISDIR(gb->st.st_mode))
-		return (first);
-	return (last);
-}
-
 void	dsp_err(char *err)
 {
 	printf("%s: command not found\n", err);
+}
+
+char	*ft_strlow(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		str[i] = ft_tolower(str[i]);
+	return (str);
 }

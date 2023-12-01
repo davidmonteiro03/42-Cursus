@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 07:17:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 16:11:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 00:10:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,20 @@ void	new_prompt(int sig)
 
 void	ft_exec(t_gb *gb, char **ev)
 {
+	char	*tmp;
+
 	gb->pd = fork();
 	if (!gb->pd)
 	{
-		execve(gb->cm, gb->ag, ev);
-		gb->tp = strs_rng(gb->ag, 0, gb->tb[0], -1);
-		if (dsp_sz(gb->tp, -1, FALSE) == 1)
-			dsp_err(gb->tp[0]);
-		else
-			dsp_err(get_arg(gb, gb->tp[0], \
-				gb->tp[dsp_sz(gb->tp, -1, FALSE) - 1]));
+		gb->tp = new_args(gb->ag, gb->ai);
+		tmp = gb->ag[0];
+		sort_strs(gb, gb->tp);
 		multiple_free("%b", gb->tp);
+		execve(gb->cm, gb->ag, ev);
+		if (stat(tmp, &gb->st))
+			dsp_err(tmp);
+		else
+			dsp_err(gb->ag[0]);
 		exit(127);
 	}
 	else

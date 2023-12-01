@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 14:41:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 00:06:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct s_gb
 	char			**ag;
 	int				fg;
 	int				*tb;
-	char			**tp;
 	pid_t			pd;
 	int				ss;
+	char			**tp;
 }t_gb;
 
 // Exec utils
@@ -55,11 +55,15 @@ void	wild_get(t_gb *gb);
 char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
 
+// Parse wild args
+char	**new_args(char **src, int size);
+void	sort_strs(t_gb *gb, char **aux);
+
 // Utils
 int		dsp_sz(char **strs, int i, int print);
 char	**strs_rng(char **strs, int bgn, int end, int i);
-char	*get_arg(t_gb *gb, char *first, char *last);
 void	dsp_err(char *err);
+char	*ft_strlow(char *str);
 
 // Wildcard
 int		wildcmp(char *path, char *ptrn);
