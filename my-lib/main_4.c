@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:41:53 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 14:59:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 16:25:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ void	new_prompt(int sig)
 		printf("\n");
 		rl_redisplay();
 	}
+}
+
+void	presentation(t_global *global)
+{
+	if (g_status == 0)
+		global->line = readline(BCYN "shell " BGRN "$" RESET " ");
+	else
+		global->line = readline(BCYN "shell " BRED "$" RESET " ");
 }
 
 void	execute(t_global *global, char **envp)
@@ -42,14 +50,6 @@ void	execute(t_global *global, char **envp)
 		else
 			g_status = 1;
 	}
-}
-
-void	presentation(t_global *global)
-{
-	if (g_status == 0)
-		global->line = readline(BCYN "shell " BGRN "$" RESET " ");
-	else
-		global->line = readline(BCYN "shell " BRED "$" RESET " ");
 }
 
 int	execute_loop(t_global *global, char **envp)
