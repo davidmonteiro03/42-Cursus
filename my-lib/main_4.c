@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:41:53 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 21:24:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 21:37:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,18 @@ void	presentation(t_global *global)
 
 void	execute(t_global *global, char **envp)
 {
+	struct stat	st;
+
 	global->pid = fork();
 	if (!global->pid)
 	{
 		execve(global->command, global->exec_args, envp);
-		if (global->exec_args[0][ft_strlen(global->exec_args[0]) - 1] == '/')
+		if (!stat(global->exec_args[0], &st) && S_ISDIR(st.st_mode) && \
+			ft_strchr(global->exec_args[0], '/'))
+			printf("bash: %s: Is a directory\n", global->exec_args[0]);
+		else if (ft_strchr(global->exec_args[0], '/'))
 			printf("bash: %s: No such file or directory\n", \
-			global->exec_args[0]);
+				global->exec_args[0]);
 		else
 			printf("%s: command not found\n", global->exec_args[0]);
 		exit(127);
