@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 13:55:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:31:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,15 @@
 # include <readline/history.h>
 # include <dirent.h>
 # include <sys/stat.h>
+# include <signal.h>
 
 # define TRUE 1
 # define FALSE 0
+
+# define BCYN "\033[1;36m"
+# define BGRN "\033[1;32m"
+# define BRED "\033[1;31m"
+# define RESET "\033[0m"
 
 typedef struct s_global
 {
@@ -33,6 +39,8 @@ typedef struct s_global
 	char	**exec_args;
 	char	*command;
 	int		total;
+	pid_t	pid;
+	int		status;
 }t_global;
 
 // Free
@@ -44,6 +52,7 @@ int		read_dir(char *pattern, int count);
 int		construct_args(char *pattern, int count, char ***temp);
 char	**new_args(char **src, int size);
 void	olg_args_to_exec_args(t_global *global, char ***strs, int i, int k);
+int		read_dir_args(t_global *global, char **strs, int i, int total);
 
 // Utils
 int		ft_strcmp(const char *s1, const char *s2);

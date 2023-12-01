@@ -6,49 +6,55 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:41:53 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 14:07:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:31:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/my_lib_4.h"
 
-int	read_dir_args(t_global *global, char **strs, int i, int total)
+int	g_status = 0;
+
+void	new_prompt(int sig)
 {
-	global->old_args = (char ***)malloc(sizeof(char **) * \
-		(count_print_strs(strs, -1, 0) + 1));
-	global->old_args[count_print_strs(strs, -1, 0)] = NULL;
-	global->new_args = (char ***)malloc(sizeof(char **) * \
-		(count_print_strs(strs, -1, 0) + 1));
-	global->new_args[count_print_strs(strs, -1, 0)] = NULL;
-	while (strs[++i])
+	if (sig == SIGINT)
 	{
-		global->old_args[i] = (char **)malloc(sizeof(char *) * \
-			(read_dir(strs[i], 0) + 1));
-		global->old_args[i][read_dir(strs[i], 0)] = NULL;
-		construct_args(strs[i], 0, &global->old_args[i]);
-		total += count_print_strs(global->old_args[i], -1, 0);
-		global->new_args[i] = new_args(global->old_args[i], \
-			count_print_strs(global->old_args[i], -1, 0));
-		sort_strs(&global->old_args[i], global->new_args[i], -1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		printf("\n");
+		rl_redisplay();
 	}
-	return (total);
 }
 
-void	execute(char *command, char **args, char **envp)
+void	execute(t_global *global, char **envp)
 {
-	if (!fork())
+	global->pid = fork();
+	if (!global->pid)
 	{
-		execve(command, args, envp);
-		printf("%s: command not found\n", args[0]);
-		exit(0);
+		execve(global->command, global->exec_args, envp);
+		printf("%s: command not found\n", global->exec_args[0]);
+		exit(127);
 	}
 	else
-		wait(NULL);
+	{
+		waitpid(global->pid, &global->status, 0);
+		if (WIFEXITED(global->status))
+			g_status = WEXITSTATUS(global->status);
+		else
+			g_status = 1;
+	}
+}
+
+void	presentation(t_global *global)
+{
+	if (g_status == 0)
+		global->line = readline(BCYN "shell " BGRN "$" RESET " ");
+	else
+		global->line = readline(BCYN "shell " BRED "$" RESET " ");
 }
 
 int	execute_loop(t_global *global, char **envp)
 {
-	global->line = readline("wildcard (final) $ ");
+	presentation(global);
 	if (!global->line)
 		return (0);
 	if (!*global->line)
@@ -68,7 +74,7 @@ int	execute_loop(t_global *global, char **envp)
 			global->line), 0);
 	global->command = buildfree(ft_strdup("/bin/"), \
 		ft_strdup(global->exec_args[0]), &ft_strjoin);
-	execute(global->command, global->exec_args, envp);
+	execute(global, envp);
 	multiple_free("%c%c%b%b%a%a", global->new_args, global->old_args, \
 		global->exec_args, global->input_args, global->line, global->command);
 	return (1);
@@ -81,9 +87,11 @@ int	main(int argc, char **argv, char **envp)
 	global = (t_global *)malloc(sizeof(t_global));
 	if (!global)
 		return (0);
+	signal(SIGINT, new_prompt);
+	signal(SIGQUIT, SIG_IGN);
 	while (execute_loop(global, envp))
 		;
 	rl_clear_history();
 	printf("exit\n");
-	return ((void)argc, (void)argv, free(global), 0);
+	return ((void)argc, (void)argv, free(global), g_status);
 }

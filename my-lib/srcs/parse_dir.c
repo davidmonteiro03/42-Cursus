@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:39:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 13:53:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 14:31:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,26 @@ void	olg_args_to_exec_args(t_global *global, char ***strs, int i, int k)
 			global->exec_args[k++] = ft_strdup(strs[i][j]);
 	}
 	global->exec_args[k] = NULL;
+}
+
+int	read_dir_args(t_global *global, char **strs, int i, int total)
+{
+	global->old_args = (char ***)malloc(sizeof(char **) * \
+		(count_print_strs(strs, -1, 0) + 1));
+	global->old_args[count_print_strs(strs, -1, 0)] = NULL;
+	global->new_args = (char ***)malloc(sizeof(char **) * \
+		(count_print_strs(strs, -1, 0) + 1));
+	global->new_args[count_print_strs(strs, -1, 0)] = NULL;
+	while (strs[++i])
+	{
+		global->old_args[i] = (char **)malloc(sizeof(char *) * \
+			(read_dir(strs[i], 0) + 1));
+		global->old_args[i][read_dir(strs[i], 0)] = NULL;
+		construct_args(strs[i], 0, &global->old_args[i]);
+		total += count_print_strs(global->old_args[i], -1, 0);
+		global->new_args[i] = new_args(global->old_args[i], \
+			count_print_strs(global->old_args[i], -1, 0));
+		sort_strs(&global->old_args[i], global->new_args[i], -1);
+	}
+	return (total);
 }
