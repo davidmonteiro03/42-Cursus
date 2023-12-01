@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:39:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 13:16:11 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:53:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,17 @@ char	**new_args(char **src, int size)
 		dest[i] = new_args_util(src[i]);
 	dest[size] = NULL;
 	return (dest);
+}
+
+void	olg_args_to_exec_args(t_global *global, char ***strs, int i, int k)
+{
+	int	j;
+
+	while (strs[++i])
+	{
+		j = -1;
+		while (strs[i][++j])
+			global->exec_args[k++] = ft_strdup(strs[i][j]);
+	}
+	global->exec_args[k] = NULL;
 }
