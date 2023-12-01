@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:49:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 16:49:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:41:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/my_lib_4.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_strscmp(const char *s1, const char *s2)
 {
 	unsigned char	*aux_s1;
 	unsigned char	*aux_s2;
@@ -55,7 +55,7 @@ void	sort_strs(char ***old, char **new, int i)
 		j = i;
 		while ((*old)[++j])
 		{
-			if (ft_strcmp(ft_strlow(new[i]), ft_strlow(new[j])) > 0)
+			if (ft_strscmp(ft_strlow(new[i]), ft_strlow(new[j])) > 0)
 			{
 				tmp = (*old)[i];
 				(*old)[i] = (*old)[j];

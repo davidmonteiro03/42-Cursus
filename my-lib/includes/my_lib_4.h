@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 16:49:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 18:41:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	olg_args_to_exec_args(t_global *global, char ***strs, int i, int k);
 int		read_dir_args(t_global *global, char **strs, int i, int total);
 
 // Utils
-int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strscmp(const char *s1, const char *s2);
 char	*ft_strlow(char *str);
 void	sort_strs(char ***old, char **new, int i);
 int		count_print_strs(char **strs, int i, int print);
