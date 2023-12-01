@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 12:56:53 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:07:28 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ int		construct_args(char *pattern, int count, char ***temp);
 void	sort_strs(char ***old, char **new, int i);
 
 // Wildcard
-int		wildcmp(char *path, char *ptrn);
+int		wildcmp(char *path, char *pattern);
 
 #endif
