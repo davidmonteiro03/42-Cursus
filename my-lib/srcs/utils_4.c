@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 12:49:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 12:52:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:16:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,28 @@ void	sort_strs(char ***old, char **new, int i)
 			}
 		}
 	}
+}
+
+int	count_print_strs(char **strs, int i, int print)
+{
+	while (strs[++i])
+		if (print)
+			printf("%s\n", strs[i]);
+	return (i);
+}
+
+char	*new_args_util(const char *src)
+{
+	int		i;
+	int		j;
+	char	*dest;
+
+	dest = malloc(ft_strlen(src) + 1);
+	i = -1;
+	j = 0;
+	while (src[++i])
+		if (src[i] != '_')
+			dest[j++] = src[i];
+	dest[j] = '\0';
+	return (dest);
 }

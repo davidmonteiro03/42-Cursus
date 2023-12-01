@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 13:07:28 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:17:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_global
 	char	**input_args;
 	char	***old_args;
 	char	***new_args;
+	int		total;
 }t_global;
 
 // Free
@@ -39,9 +40,14 @@ void	multiple_free(const char *format, ...);
 // Parse dir
 int		read_dir(char *pattern, int count);
 int		construct_args(char *pattern, int count, char ***temp);
+char	**new_args(char **src, int size);
 
 // Utils
+int		ft_strcmp(const char *s1, const char *s2);
+char	*ft_strlow(char *str);
 void	sort_strs(char ***old, char **new, int i);
+int		count_print_strs(char **strs, int i, int count);
+char	*new_args_util(const char *src);
 
 // Wildcard
 int		wildcmp(char *path, char *pattern);

@@ -6,48 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 11:41:53 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/01 13:02:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/01 13:15:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/my_lib_4.h"
-
-int	count_print_strs(char **strs, int i, int print)
-{
-	while (strs[++i])
-		if (print)
-			printf("%s\n", strs[i]);
-	return (i);
-}
-
-char	*new_args_util(const char *src)
-{
-	int		i;
-	int		j;
-	char	*dest;
-
-	dest = malloc(ft_strlen(src) + 1);
-	i = -1;
-	j = 0;
-	while (src[++i])
-		if (src[i] != '_')
-			dest[j++] = src[i];
-	dest[j] = '\0';
-	return (dest);
-}
-
-char	**new_args(char **src, int size)
-{
-	char	**dest;
-	int		i;
-
-	dest = malloc(sizeof(char *) * (size + 1));
-	i = -1;
-	while (++i < size)
-		dest[i] = new_args_util(src[i]);
-	dest[size] = NULL;
-	return (dest);
-}
 
 int	read_dir_args(t_global *global, char **strs, int i, int total)
 {
@@ -69,7 +32,7 @@ int	read_dir_args(t_global *global, char **strs, int i, int total)
 		sort_strs(&global->old_args[i], global->new_args[i], -1);
 		count_print_strs(global->old_args[i], -1, 1);
 	}
-	return (i);
+	return (total);
 }
 
 int	main(int ac, char **av)
@@ -89,7 +52,8 @@ int	main(int ac, char **av)
 		return (free(global->line), free(global), 0);
 	if (!*global->input_args)
 		return (free(global->line), free(global->input_args), free(global), 0);
-	read_dir_args(global, global->input_args, -1, 0);
+	global->total = read_dir_args(global, global->input_args, -1, 0);
+	printf("total: %d\n", global->total);
 	multiple_free("%c%c%b%a%a", global->new_args, global->old_args, \
 		global->input_args, global->line, global);
 	return ((void)ac, (void)av, 0);
