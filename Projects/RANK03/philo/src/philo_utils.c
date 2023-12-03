@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:44:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/03 15:19:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:57:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ t_philo	*ph_create_node(t_data *data, int id)
 {
 	t_philo	*philo;
 
-	philo = malloc(sizeof(t_philo));
+	philo = (t_philo *)malloc(sizeof(t_philo));
 	if (!philo)
 		return (NULL);
 	philo->id = id;
 	philo->last_meal = -1;
+	philo->num_of_meals = 0;
 	philo->left_fork = &data->forks[id - 1];
 	philo->right_fork = &data->forks[(id + 1) % data->num_philos];
 	philo->next = NULL;

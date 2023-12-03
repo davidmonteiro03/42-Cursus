@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 12:14:58 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 20:57:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:25:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ph_data_init(t_data **data, char **av)
 {
-	*data = malloc(sizeof(t_data));
+	*data = (t_data *)malloc(sizeof(t_data));
 	if (!*data)
 		return (1);
 	(*data)->num_philos = ph_atol(av[0]);
@@ -24,6 +24,8 @@ int	ph_data_init(t_data **data, char **av)
 	(*data)->num_of_meals_for_ph = -1;
 	if (av[4])
 		(*data)->num_of_meals_for_ph = ph_atol(av[4]);
-	(*data)->forks = malloc(sizeof(t_mutex) * (*data)->num_philos);
+	(*data)->forks = (t_mutex *)malloc(sizeof(t_mutex) * (*data)->num_philos);
+	if (!(*data)->forks)
+		return (free(*data), 1);
 	return (0);
 }

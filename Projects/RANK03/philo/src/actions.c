@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 19:57:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/03 15:09:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:57:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,11 @@ void	ph_eating(t_philo *philo)
 {
 	ph_take_forks(philo);
 	ph_status(philo, EATING);
-	ph_wait_ms(philo->data->time_to_eat);
 	philo->last_meal = ph_get_time();
+	ph_wait_ms(philo->data->time_to_eat);
+	if (philo->data->num_of_meals_for_ph != -1 && \
+		philo->num_of_meals < philo->data->num_of_meals_for_ph)
+		philo->num_of_meals++;
 	ph_leave_forks(philo);
 }
 

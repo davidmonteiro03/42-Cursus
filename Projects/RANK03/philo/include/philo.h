@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/03 15:17:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:51:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>		// printf
 # include <stdlib.h>	// malloc, free
 # include <sys/time.h>	// gettimeofday
+# include <stdbool.h>	// bool
 
 // MACROS
 # define FORK "has taken a fork"
@@ -38,6 +39,7 @@ typedef struct s_philo
 {
 	int				id;
 	long long		last_meal;
+	int				num_of_meals;
 	t_thread		thread;
 	t_mutex			*left_fork;
 	t_mutex			*right_fork;
