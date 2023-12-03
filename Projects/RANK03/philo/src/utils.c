@@ -5,26 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 15:37:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/03 15:12:45 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/03 18:43:57 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/03 18:44:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long long	ph_get_time(void)
+long	ph_get_time(void)
 {
-	struct timeval	tv;
+	struct timeval	time;
 
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
-}
-
-void	ph_wait_ms(long long time)
-{
-	long long	start;
-
-	start = ph_get_time();
-	while ((ph_get_time() - start) < time)
-		usleep(1);
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }

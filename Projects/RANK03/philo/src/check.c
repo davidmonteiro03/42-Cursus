@@ -6,16 +6,16 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/03 14:59:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 18:30:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long	ph_atol(const char *str)
+long int	ph_atol(const char *str)
 {
-	long	num;
-	size_t	i;
+	long int	num;
+	size_t		i;
 
 	num = 0;
 	i = 0;

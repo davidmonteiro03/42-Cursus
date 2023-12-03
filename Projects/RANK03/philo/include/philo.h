@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/03 15:51:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 22:15:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdio.h>		// printf
 # include <stdlib.h>	// malloc, free
 # include <sys/time.h>	// gettimeofday
-# include <stdbool.h>	// bool
 
 // MACROS
 # define FORK "has taken a fork"
@@ -32,61 +31,44 @@
 // TYPEDEFS
 typedef pthread_t		t_thread;
 typedef pthread_mutex_t	t_mutex;
-struct					s_data;
 
-// PHILO STRUCT
-typedef struct s_philo
-{
-	int				id;
-	long long		last_meal;
-	int				num_of_meals;
-	t_thread		thread;
-	t_mutex			*left_fork;
-	t_mutex			*right_fork;
-	struct s_data	*data;
-	struct s_philo	*next;
-}t_philo;
-
-// DATA STRUCT
 typedef struct s_data
 {
-	int			num_philos;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			num_of_meals_for_ph;
-	t_philo		*philos;
-	t_mutex		*forks;
-	long long	start;
+	int		num_philos;
+	int		time_to_die;
+	int		time_to_eat;
+	int		time_to_sleep;
+	int		num_meals_per_philo;
+	long	start_time;
+	t_mutex	*display;
 }t_data;
 
+typedef struct s_philo
+{
+	int			id;
+	int			meals_count;
+	int			last_meal;
+	t_thread	thread;
+	t_mutex		*left_fork;
+	t_mutex		*right_fork;
+	t_data		*data;
+}t_philo;
+
 // ACTIONS
-void		ph_take_forks(t_philo *philo);
-void		ph_leave_forks(t_philo *philo);
-void		ph_eating(t_philo *philo);
-void		ph_thinking(t_philo *philo);
-void		ph_sleeping(t_philo *philo);
+int			ph_status(t_philo philo, char *status);
+int			ph_eating(t_philo philo);
+void		*ph_routine(void *arg);
+int			ph_execute(t_philo *philo, int i);
 
 // CHECK
-long		ph_atol(const char *str);
+long int	ph_atol(const char *str);
 int			ph_check_input(int i, char **argv);
 
-// DATA UTILS
-int			ph_data_init(t_data **data, char **argv);
-
-// DISPLAY
-void		ph_status(t_philo *philo, char *status);
-
-// PHILO UTILS
-int			ph_philo_init(t_data **data, int i);
-void		ph_clear_all(t_data **data, int i);
-
-// EXECUTE
-void		*ph_routine(void *arg);
-void		ph_execute(t_data *data);
+// INIT
+t_data		*ph_data(char **argv);
+int			ph_init(t_philo **philo, char **argv, int i);
 
 // UTILS
-long long	ph_get_time(void);
-void		ph_wait_ms(long long time);
+long int	ph_get_time(void);
 
 #endif

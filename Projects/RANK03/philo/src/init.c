@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/03 18:20:45 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/03 22:10:53 by dcaetano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/philo.h"
+
+t_data	*ph_data(char **argv)
+{
+	t_data	*data;
+
+	data = malloc(sizeof(t_data));
+	if (!data)
+		return (NULL);
+	data->num_philos = ph_atol(argv[1]);
+	data->time_to_die = ph_atol(argv[2]);
+	data->time_to_eat = ph_atol(argv[3]);
+	data->time_to_sleep = ph_atol(argv[4]);
+	data->num_meals_per_philo = -1;
+	if (argv[5])
+		data->num_meals_per_philo = ph_atol(argv[5]);
+	data->display = (t_mutex *)malloc(sizeof(t_mutex));
+	if (!data->display)
+		return (free(data), NULL);
+	return (pthread_mutex_init(data->display, NULL), data);
+}
+
+int	ph_init(t_philo **philo, char **argv, int i)
+{
+	t_data	*data;
+
+	data = ph_data(argv);
+	if (!data)
+		return (1);
+	*philo = malloc(sizeof(t_philo) * ph_atol(argv[1]));
+	if (!*philo)
+		return (pthread_mutex_destroy(data->display), free(data), 1);
+	while (++i < ph_atol(argv[1]))
+	{
+		(*philo)[i].id = i + 1;
+		(*philo)[i].meals_count = 0;
+		(*philo)[i].last_meal = 0;
+		(*philo)[i].data = data;
+		(*philo)[i].right_fork = (t_mutex *)malloc(sizeof(t_mutex));
+		pthread_mutex_init((*philo)[i].right_fork, NULL);
+	}
+	return (0);
+}
