@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 19:57:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 20:57:26 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:09:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ph_eating(t_philo *philo)
 {
 	ph_take_forks(philo);
 	ph_status(philo, EATING);
-	wait_ms(philo->data->time_to_eat);
+	ph_wait_ms(philo->data->time_to_eat);
 	philo->last_meal = ph_get_time();
 	ph_leave_forks(philo);
 }
@@ -53,5 +53,5 @@ void	ph_thinking(t_philo *philo)
 void	ph_sleeping(t_philo *philo)
 {
 	ph_status(philo, SLEEPING);
-	wait_ms(philo->data->time_to_sleep);
+	ph_wait_ms(philo->data->time_to_sleep);
 }

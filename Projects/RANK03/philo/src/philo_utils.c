@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 11:44:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 20:57:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:19:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,3 @@ int	ph_philo_init(t_data **data, int i)
 	ph_mutexes_init(data, -1);
 	return (0);
 }
-
-/* void	ph_dsp(t_ph *ph)
-{
-	t_ph	*tmp;
-
-	tmp = ph;
-	while (tmp)
-	{
-		printf("philo %d\n", tmp->id);
-		tmp = tmp->nt;
-	}
-} */

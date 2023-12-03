@@ -6,22 +6,22 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 20:58:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:17:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "include/philo.h"
 
-int	main(int ac, char **av)
+int	main(int argc, char **argv)
 {
 	t_data	*data;
 
-	if (ac != 5 && ac != 6)
+	if (argc != 5 && argc != 6)
 		return (1);
-	if (ph_check_input(-1, av + 1))
+	if (ph_check_input(-1, argv + 1))
 		return (1);
 	data = NULL;
-	if (ph_data_init(&data, av + 1))
+	if (ph_data_init(&data, argv + 1))
 		return (1);
 	if (ph_philo_init(&data, -1))
 		return (1);

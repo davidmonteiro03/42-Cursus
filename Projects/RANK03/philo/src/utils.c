@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   uts.c                                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:37:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 19:35:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:12:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ long long	ph_get_time(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	wait_ms(long long time)
+void	ph_wait_ms(long long time)
 {
 	long long	start;
 

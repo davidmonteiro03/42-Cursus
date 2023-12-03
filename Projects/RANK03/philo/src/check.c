@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 16:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 20:15:00 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 14:59:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@ long	ph_atol(const char *str)
 	return (num);
 }
 
-int	ph_check_input(int i, char **av)
+int	ph_check_input(int i, char **argv)
 {
 	int	j;
 
-	while (av[++i])
+	while (argv[++i])
 	{
 		j = -1;
-		while (av[i][++j])
-			if (av[i][j] < '0' || av[i][j] > '9')
+		while (argv[i][++j])
+			if (argv[i][j] < '0' || argv[i][j] > '9')
 				return (1);
-		if (ph_atol(av[i]) > 2147483647 || ph_atol(av[i]) <= 0)
+		if (ph_atol(argv[i]) > 2147483647 || ph_atol(argv[i]) <= 0)
 			return (1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/30 21:02:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/03 15:17:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void		ph_sleeping(t_philo *philo);
 
 // CHECK
 long		ph_atol(const char *str);
-int			ph_check_input(int i, char **av);
+int			ph_check_input(int i, char **argv);
 
 // DATA UTILS
-int			ph_data_init(t_data **data, char **av);
+int			ph_data_init(t_data **data, char **argv);
 
 // DISPLAY
 void		ph_status(t_philo *philo, char *status);
@@ -85,6 +85,6 @@ void		ph_execute(t_data *data);
 
 // UTILS
 long long	ph_get_time(void);
-void		wait_ms(long long time);
+void		ph_wait_ms(long long time);
 
 #endif

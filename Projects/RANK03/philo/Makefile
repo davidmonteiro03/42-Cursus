@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/30 20:58:51 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/03 15:02:52 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror -fsanitize=thread
 THREADFLAGS		= -pthread
 RM				= rm -rf
 
