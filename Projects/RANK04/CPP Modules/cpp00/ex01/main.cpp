@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:27:27 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 21:54:19 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 21:57:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	main(void)
 		else if (str == "SEARCH")
 			myphonebook.search_contact();
 	}
+	myphonebook.~PhoneBook();
 	return (0);
 }
