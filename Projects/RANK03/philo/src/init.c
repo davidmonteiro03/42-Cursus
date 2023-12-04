@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:40:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 09:04:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:40:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,27 @@ t_data	*ph_init_data(char **argv)
 	data->num_meals_per_philo = -1;
 	if (argv[5])
 		data->num_meals_per_philo = ph_atol(argv[5]);
-	data->philo_died = 0;
-	data->print = (t_mutex *)malloc(sizeof(t_mutex));
-	if (!data->print)
+	data->philo_died = false;
+	data->display = (t_mutex *)malloc(sizeof(t_mutex));
+	if (!data->display)
 		return (free(data), NULL);
-	return (pthread_mutex_init(data->print, NULL), data);
+	return (pthread_mutex_init(data->display, NULL), data);
 }
 
-int	ph_init_philos(t_philo **philo, char **argv, int i)
+void	ph_init_philos(t_philo **philo, t_data *data, int i)
+{
+	while (++i < data->num_philos)
+	{
+		(*philo)[i].id = i + 1;
+		(*philo)[i].meals_count = 0;
+		(*philo)[i].last_meal = -1;
+		(*philo)[i].data = data;
+		(*philo)[i].right_fork = (t_mutex *)malloc(sizeof(t_mutex));
+		pthread_mutex_init((*philo)[i].right_fork, NULL);
+	}
+}
+
+int	ph_init_all(t_philo **philo, char **argv, int i)
 {
 	t_data	*data;
 
@@ -42,14 +55,15 @@ int	ph_init_philos(t_philo **philo, char **argv, int i)
 		return (1);
 	*philo = (t_philo *)malloc(sizeof(t_philo) * data->num_philos);
 	if (!*philo)
-		return (pthread_mutex_destroy(data->print), free(data->print), \
-			free(data), 1);
+		return (ph_clear_data(data), 1);
+	ph_init_philos(philo, data, -1);
 	while (++i < data->num_philos)
 	{
-		(*philo)[i].id = i + 1;
-		(*philo)[i].meals_count = 0;
-		(*philo)[i].last_meal = -1;
-		(*philo)[i].data = data;
+		if (i == 0)
+			(*philo)[i].left_fork = (*philo)[data->num_philos - 1].right_fork;
+		else
+			(*philo)[i].left_fork = (*philo)[i - 1].right_fork;
+		pthread_mutex_init((*philo)[i].left_fork, NULL);
 	}
 	return (0);
 }

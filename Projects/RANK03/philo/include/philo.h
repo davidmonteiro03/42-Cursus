@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 09:02:05 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:44:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>		// printf
 # include <stdlib.h>	// malloc, free
 # include <sys/time.h>	// gettimeofday
+# include <stdbool.h>	// bool
 
 // MACROS
 # define FORK "has taken a fork"
@@ -41,7 +42,7 @@ typedef struct s_data
 	int		num_meals_per_philo;
 	long	start_time;
 	int		philo_died;
-	t_mutex	*print;
+	t_mutex	*display;
 }t_data;
 
 typedef struct s_philo
@@ -49,7 +50,7 @@ typedef struct s_philo
 	int			id;
 	int			meals_count;
 	long		last_meal;
-	t_thread	*thread;
+	t_thread	thread;
 	t_mutex		*left_fork;
 	t_mutex		*right_fork;
 	t_data		*data;
@@ -60,13 +61,20 @@ long int	ph_atol(const char *str);
 int			ph_check_input(int i, char **argv);
 
 // CLEAR
-int			ph_clear_all(t_philo *philo);
+void		ph_clear_data(t_data *data);
+int			ph_clear_all(t_philo *philo, int i);
+
+// DISPLAY
+int			ph_display_status(t_philo *philo, char *status);
+void		ph_display(bool start);
 
 // EXECUTE
-int			ph_execute(t_philo *philo);
+int			ph_execute(t_philo *philo, int i);
 
 // INIT
-int			ph_init_philos(t_philo **philo, char **argv, int i);
+t_data		*ph_init_data(char **argv);
+void		ph_init_philos(t_philo **philo, t_data *data, int i);
+int			ph_init_all(t_philo **philo, char **argv, int i);
 
 // TIME
 long		ph_get_time(void);
