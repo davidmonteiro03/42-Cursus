@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/01 14:49:31 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/04 13:00:28 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ EXEC			= test
 EXEC_2			= test2
 EXEC_3			= test3
 EXEC_4			= test4
+EXEC_5			= test5
 
 SRCS			= main.c \
 					srcs/buildfree.c \
@@ -57,10 +58,16 @@ SRCS_4			= main_4.c \
 					srcs/utils_4.c \
 					srcs/wildcard_4.c
 
+SRCS_5			= main_5.c \
+					srcs/buildfree.c \
+					srcs/free.c \
+					srcs/utils_5.c
+
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 OBJS_2			= $(addprefix $(OBJS_DIR), $(SRCS_2:.c=.o))
 OBJS_3			= $(addprefix $(OBJS_DIR), $(SRCS_3:.c=.o))
 OBJS_4			= $(addprefix $(OBJS_DIR), $(SRCS_4:.c=.o))
+OBJS_5			= $(addprefix $(OBJS_DIR), $(SRCS_5:.c=.o))
 
 all:
 
@@ -98,19 +105,26 @@ $(EXEC_4): $(OBJS_4)
 		-lreadline
 	@echo "$(CYAN)$(EXEC_4) $(GREEN)created$(RESET)!"
 
+$(EXEC_5): $(OBJS_5)
+	@make -s -C $(LIBFT_DIR)
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ $(LIBFT_DIR)/$(LIBFT_NAME) \
+		-lreadline
+	@echo "$(CYAN)$(EXEC_5) $(GREEN)created$(RESET)!"
+
 clean:
 	@$(RM) $(OBJS_DIR)
 	@make -s -C $(LIBFT_DIR) clean > /dev/null 2>&1
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
-	@$(RM) $(EXEC) $(EXEC_2) $(EXEC_3) $(EXEC_4)
+	@$(RM) $(EXEC) $(EXEC_2) $(EXEC_3) $(EXEC_4) $(EXEC_5)
 	@make -s -C $(LIBFT_DIR) fclean > /dev/null 2>&1
 	@echo "$(CYAN)$(LIBFT_NAME) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC_2) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC_3) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC_4) $(RED)removed$(RESET)!"
+	@echo "$(CYAN)$(EXEC_5) $(RED)removed$(RESET)!"
 
 re: fclean all
 
