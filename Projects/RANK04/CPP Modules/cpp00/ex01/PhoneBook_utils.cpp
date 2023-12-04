@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:50:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 20:23:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 20:31:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	print_trunc(std::string str)
 {
-	if (str.size() >= 10)
+	if (str.size() > 10)
 	{
 		for (int i = 0; i < 9; i++)
 			std::cout << (char)str[i];
