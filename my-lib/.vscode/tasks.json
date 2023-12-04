@@ -4,7 +4,7 @@
 		{
 			"label": "compile project",
 			"type": "shell",
-			"command": "make test3",
+			"command": "make test5",
 			"group": "build",
 			"problemMatcher": "$gcc"
 		},

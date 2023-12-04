@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 15:38:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 13:07:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:00:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <dirent.h>
 # include <sys/stat.h>
 # include <signal.h>
+# include <errno.h>
 
 # define TRUE 1
 # define FALSE 0
@@ -38,7 +39,9 @@ typedef struct s_global
 	char	*tmp2;
 	int		count;
 	char	*buff;
+	int		valid;
 	char	**args;
+	char	**args2;
 }t_global;
 
 // Free
@@ -46,6 +49,7 @@ char	*buildfree(char *s1, char *s2, char *(*f)(const char *, const char *));
 void	multiple_free(const char *format, ...);
 
 // Utils
-void	print_strs(char **strs, int i, char *sep);
+void	valid_args(t_global *global, int k, int i, bool init);
+void	print_strs(char **strs, int i);
 
 #endif

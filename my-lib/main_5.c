@@ -6,11 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 10:28:32 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 13:21:57 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:03:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "my_lib_5.h"
+#include "includes/my_lib_5.h"
 
 int	check_quotes(char *line, char *c, int i, int s)
 {
@@ -129,7 +129,12 @@ int	main(void)
 	global->buff[global->count] = '\0';
 	construct_args(global, -1, 0);
 	global->args = ft_split(global->buff, '\v');
-	print_strs(global->args, -1, " ");
-	return (multiple_free("%b%a%a%a", global->args, global->buff, \
+	global->valid = 0;
+	valid_args(global, 0, -1, false);
+	global->args2 = malloc(sizeof(char *) * (global->valid + 1));
+	global->args2[global->valid] = NULL;
+	valid_args(global, 0, -1, true);
+	print_strs(global->args2, -1);
+	return (multiple_free("%b%b%a%a%a", global->args2, global->args, global->buff, \
 		global->line, global), 0);
 }
