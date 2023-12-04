@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 17:46:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/03 21:45:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 08:58:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int	main(int argc, char **argv)
 	t_philo	*philo;
 
 	if (argc != 5 && argc != 6)
-		return (1);
+		return (printf("Invalid number of arguments\n"), 1);
 	if (ph_check_input(-1, argv + 1))
-		return (1);
+		return (printf("Invalid arguments\n"), 1);
 	philo = NULL;
-	if (ph_init(&philo, argv, -1))
-		return (1);
-	if (ph_execute(philo, -1))
-		return (1);
-	return (0);
+	if (ph_init_philos(&philo, argv, -1))
+		return (printf("Error on initialization of structure\n"), 1);
+	if (ph_execute(philo))
+		return (printf("Error on execution\n"), 1);
+	return (ph_clear_all(philo));
 }

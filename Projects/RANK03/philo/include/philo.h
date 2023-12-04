@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/03 22:15:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 09:02:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,35 @@ typedef struct s_data
 	int		time_to_sleep;
 	int		num_meals_per_philo;
 	long	start_time;
-	t_mutex	*display;
+	int		philo_died;
+	t_mutex	*print;
 }t_data;
 
 typedef struct s_philo
 {
 	int			id;
 	int			meals_count;
-	int			last_meal;
-	t_thread	thread;
+	long		last_meal;
+	t_thread	*thread;
 	t_mutex		*left_fork;
 	t_mutex		*right_fork;
 	t_data		*data;
 }t_philo;
 
-// ACTIONS
-int			ph_status(t_philo philo, char *status);
-int			ph_eating(t_philo philo);
-void		*ph_routine(void *arg);
-int			ph_execute(t_philo *philo, int i);
-
 // CHECK
 long int	ph_atol(const char *str);
 int			ph_check_input(int i, char **argv);
 
-// INIT
-t_data		*ph_data(char **argv);
-int			ph_init(t_philo **philo, char **argv, int i);
+// CLEAR
+int			ph_clear_all(t_philo *philo);
 
-// UTILS
-long int	ph_get_time(void);
+// EXECUTE
+int			ph_execute(t_philo *philo);
+
+// INIT
+int			ph_init_philos(t_philo **philo, char **argv, int i);
+
+// TIME
+long		ph_get_time(void);
 
 #endif
