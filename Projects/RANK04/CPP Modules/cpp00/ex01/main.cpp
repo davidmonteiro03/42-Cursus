@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:27:27 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 20:25:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/04 21:54:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	main(void)
 			myphonebook.add_contact();
 		else if (str == "SEARCH")
 			myphonebook.search_contact();
-		else
-			std::cout << "Invalid option." << std::endl;
 	}
 	return (0);
 }
