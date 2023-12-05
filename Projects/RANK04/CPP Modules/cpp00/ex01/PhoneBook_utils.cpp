@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:50:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 20:31:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/05 08:19:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	search_contact_util(Contact contacts[8])
 
 	if (!contacts[0].get_first_name().size())
 		return (0);
+	std::cout << std::endl;
 	std::cout << "+----------+----------+----------+----------+" << std::endl;
 	std::cout << "|     INDEX|FIRST NAME| LAST NAME|  NICKNAME|" << std::endl;
 	std::cout << "+----------+----------+----------+----------+" << std::endl;

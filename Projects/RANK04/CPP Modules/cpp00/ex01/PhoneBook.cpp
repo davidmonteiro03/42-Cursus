@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 18:40:46 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 20:19:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/05 08:20:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	PhoneBook::add_contact(void)
 		if (std::getline(std::cin, str) && str != "")
 		{
 			this->contacts[this->index % 8].set_darkest_secret(str);
-			std::cout << "This contact was added to phonebook." \
+			std::cout << std::endl << "This contact was added to phonebook." \
 				<< std::endl;
 		}
 	}
@@ -113,7 +113,7 @@ void	PhoneBook::search_contact(void)
 	}
 	while (!std::cin.eof())
 	{
-		std::cout << "Enter an index to look for: ";
+		std::cout << std::endl << "Enter an index to look for: ";
 		if (std::getline(std::cin, str) && str != "")
 		{
 			if (str.size() == 1 && str[0] >= '1' && str[0] <= '8' && \
