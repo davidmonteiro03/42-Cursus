@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:58:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 17:36:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:13:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,29 @@
 
 int	ph_eating(t_philo *philo)
 {
-	pthread_mutex_lock(philo->left_fork);
-	pthread_mutex_lock(philo->right_fork);
+	t_mutex	*first;
+	t_mutex	*last;
+
+	first = philo->right_fork;
+	last = philo->left_fork;
+	if (philo->id % 2 == 0)
+	{
+		first = philo->left_fork;
+		last = philo->right_fork;
+	}
+	pthread_mutex_lock(first);
+	pthread_mutex_lock(last);
 	if (ph_display_status(philo, FORK))
-		return (pthread_mutex_unlock(philo->left_fork), \
-			pthread_mutex_unlock(philo->right_fork), 1);
+		return (pthread_mutex_unlock(first), \
+			pthread_mutex_unlock(last), 1);
 	if (ph_display_status(philo, EATING))
-		return (pthread_mutex_unlock(philo->left_fork), \
-			pthread_mutex_unlock(philo->right_fork), 1);
+		return (pthread_mutex_unlock(first), \
+			pthread_mutex_unlock(last), 1);
 	philo->last_meal = ph_get_time();
 	usleep(philo->data->time_to_eat * 1000);
 	philo->meals_count++;
-	return (pthread_mutex_unlock(philo->left_fork), \
-		pthread_mutex_unlock(philo->right_fork), 0);
+	return (pthread_mutex_unlock(first), \
+		pthread_mutex_unlock(last), 0);
 }
 
 void	*ph_routine(void *arg)
