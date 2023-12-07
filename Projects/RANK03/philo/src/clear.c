@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:52:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 09:25:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 08:45:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ void	ph_clear_data(t_data *data)
 {
 	if (!data)
 		return ;
-	pthread_mutex_destroy(data->display);
-	free(data->display);
+	if (data->display)
+	{
+		pthread_mutex_destroy(data->display);
+		free(data->display);
+	}
 	free(data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:40:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 09:40:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 09:20:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ t_data	*ph_init_data(char **argv)
 	data->num_meals_per_philo = -1;
 	if (argv[5])
 		data->num_meals_per_philo = ph_atol(argv[5]);
-	data->philo_died = false;
 	data->display = (t_mutex *)malloc(sizeof(t_mutex));
 	if (!data->display)
-		return (free(data), NULL);
+		return (ph_clear_data(data), NULL);
 	return (pthread_mutex_init(data->display, NULL), data);
 }
 

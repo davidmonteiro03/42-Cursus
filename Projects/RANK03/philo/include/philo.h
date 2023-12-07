@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/04 09:44:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 09:20:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 typedef pthread_t		t_thread;
 typedef pthread_mutex_t	t_mutex;
 
+struct					s_philo;
+
 typedef struct s_data
 {
 	int		num_philos;
@@ -41,7 +43,6 @@ typedef struct s_data
 	int		time_to_sleep;
 	int		num_meals_per_philo;
 	long	start_time;
-	int		philo_died;
 	t_mutex	*display;
 }t_data;
 

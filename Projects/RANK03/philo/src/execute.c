@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:58:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/06 10:48:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 09:18:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,29 @@ int	ph_eating(t_philo *philo)
 	pthread_mutex_lock(first);
 	pthread_mutex_lock(last);
 	if (ph_display_status(philo, FORK))
-		return (pthread_mutex_unlock(first), \
-			pthread_mutex_unlock(last), 1);
+		return (pthread_mutex_unlock(first), pthread_mutex_unlock(last), 1);
 	if (ph_display_status(philo, EATING))
-		return (pthread_mutex_unlock(first), \
-			pthread_mutex_unlock(last), 1);
+		return (pthread_mutex_unlock(first), pthread_mutex_unlock(last), 1);
 	philo->last_meal = ph_get_time();
 	usleep(philo->data->time_to_eat * 1000);
 	philo->meals_count++;
-	return (pthread_mutex_unlock(first), \
-		pthread_mutex_unlock(last), 0);
+	return (pthread_mutex_unlock(first), pthread_mutex_unlock(last), 0);
+}
+
+bool	ph_check_for_deaths(t_philo *philo)
+{
+	long	now;
+
+	now = ph_get_time();
+	if ((philo->last_meal == -1 && \
+		now - philo->data->start_time > philo->data->time_to_die) || \
+		(philo->last_meal != -1 && \
+		now - philo->last_meal > philo->data->time_to_die))
+	{
+		ph_display_status(philo, DIED);
+		return (true);
+	}
+	return (false);
 }
 
 void	*ph_routine(void *arg)
@@ -48,6 +61,8 @@ void	*ph_routine(void *arg)
 	{
 		if (ph_display_status(philo, THINKING))
 			return (NULL);
+		if (ph_check_for_deaths(philo))
+			break ;
 		if (ph_eating(philo))
 			return (NULL);
 		if (ph_display_status(philo, SLEEPING))
