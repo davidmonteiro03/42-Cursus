@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:58:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 17:08:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:23:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	ph_small_data_update(t_philo *philo)
 	pthread_mutex_lock(&philo->data->check);
 	if (philo->meals_count == philo->data->num_meals_per_philo)
 	{
+		pthread_mutex_unlock(&philo->data->check);
+		ph_display_status(philo, SLEEPING);
+		pthread_mutex_lock(&philo->data->check);
 		philo->done = true;
 		philo->data->num_finish_meals++;
 	}
@@ -26,22 +29,29 @@ void	ph_small_data_update(t_philo *philo)
 
 int	ph_eating(t_philo *philo)
 {
-	pthread_mutex_lock(philo->right_fork);
+	t_mutex	*left;
+	t_mutex	*right;
+
+	left = philo->left_fork;
+	right = philo->right_fork;
+	if (philo->id % 2)
+	{
+		left = philo->right_fork;
+		right = philo->left_fork;
+	}
+	pthread_mutex_lock(right);
 	ph_display_status(philo, FORK);
-	if (pthread_mutex_lock(philo->left_fork))
-		return (pthread_mutex_unlock(philo->right_fork), 1);
+	if (pthread_mutex_lock(left))
+		return (pthread_mutex_unlock(right), 1);
 	if (ph_display_status(philo, FORK))
-		return (pthread_mutex_unlock(philo->right_fork), \
-			pthread_mutex_unlock(philo->left_fork), 1);
+		return (pthread_mutex_unlock(right), pthread_mutex_unlock(left), 1);
 	if (ph_display_status(philo, EATING))
-		return (pthread_mutex_unlock(philo->right_fork), \
-			pthread_mutex_unlock(philo->left_fork), 1);
+		return (pthread_mutex_unlock(right), pthread_mutex_unlock(left), 1);
 	philo->last_meal = ph_get_time();
 	usleep(philo->data->time_to_eat * 1000);
 	if (philo->meals_count < philo->data->num_meals_per_philo)
 		ph_small_data_update(philo);
-	return (pthread_mutex_unlock(philo->right_fork), \
-		pthread_mutex_unlock(philo->left_fork), 0);
+	return (pthread_mutex_unlock(right), pthread_mutex_unlock(left), 0);
 }
 
 void	*ph_routine(void *arg)
