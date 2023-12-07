@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 09:20:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:33:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,10 @@ typedef struct s_data
 	int		time_to_sleep;
 	int		num_meals_per_philo;
 	long	start_time;
-	t_mutex	*display;
+	int		num_finish_meals;
+	bool	simulation_end;
+	t_mutex	display;
+	t_mutex	check;
 }t_data;
 
 typedef struct s_philo
@@ -68,6 +71,10 @@ int			ph_clear_all(t_philo *philo, int i);
 // DISPLAY
 int			ph_display_status(t_philo *philo, char *status);
 void		ph_display(bool start);
+
+// CHECK END OF SIMULATION
+bool		ph_check_for_deaths(t_philo *philo);
+bool		ph_check_finish_meals(t_philo *philo);
 
 // EXECUTE
 int			ph_execute(t_philo *philo, int i);

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:40:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 09:20:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:42:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ t_data	*ph_init_data(char **argv)
 	data->time_to_eat = ph_atol(argv[3]);
 	data->time_to_sleep = ph_atol(argv[4]);
 	data->num_meals_per_philo = -1;
+	data->simulation_end = false;
 	if (argv[5])
 		data->num_meals_per_philo = ph_atol(argv[5]);
-	data->display = (t_mutex *)malloc(sizeof(t_mutex));
-	if (!data->display)
-		return (ph_clear_data(data), NULL);
-	return (pthread_mutex_init(data->display, NULL), data);
+	data->num_finish_meals = 0;
+	pthread_mutex_init(&data->check, NULL);
+	return (pthread_mutex_init(&data->display, NULL), data);
 }
 
 void	ph_init_philos(t_philo **philo, t_data *data, int i)

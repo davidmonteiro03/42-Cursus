@@ -6,50 +6,39 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:58:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 10:56:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:54:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-int	ph_eating(t_philo *philo)
+void	ph_small_data_update(t_philo *philo)
 {
-	t_mutex	*first;
-	t_mutex	*last;
-
-	first = philo->right_fork;
-	last = philo->left_fork;
-	if (philo->id % 2 == 0)
-	{
-		first = philo->left_fork;
-		last = philo->right_fork;
-	}
-	pthread_mutex_lock(first);
-	pthread_mutex_lock(last);
-	if (ph_display_status(philo, FORK) || ph_display_status(philo, FORK))
-		return (pthread_mutex_unlock(first), pthread_mutex_unlock(last), 1);
-	if (ph_display_status(philo, EATING))
-		return (pthread_mutex_unlock(first), pthread_mutex_unlock(last), 1);
-	philo->last_meal = ph_get_time();
-	usleep(philo->data->time_to_eat * 1000);
 	philo->meals_count++;
-	return (pthread_mutex_unlock(first), pthread_mutex_unlock(last), 0);
+	pthread_mutex_lock(&philo->data->check);
+	if (philo->meals_count == philo->data->num_meals_per_philo)
+		philo->data->num_finish_meals++;
+	pthread_mutex_unlock(&philo->data->check);
 }
 
-bool	ph_check_for_deaths(t_philo *philo)
+int	ph_eating(t_philo *philo)
 {
-	long	now;
-
-	now = ph_get_time();
-	if ((philo->last_meal == -1 && \
-		now - philo->data->start_time > philo->data->time_to_die) || \
-		(philo->last_meal != -1 && \
-		now - philo->last_meal > philo->data->time_to_die))
-	{
-		ph_display_status(philo, DIED);
-		return (true);
-	}
-	return (false);
+	pthread_mutex_lock(philo->right_fork);
+	ph_display_status(philo, FORK);
+	if (pthread_mutex_lock(philo->left_fork))
+		return (pthread_mutex_unlock(philo->right_fork), 1);
+	if (ph_display_status(philo, FORK))
+		return (pthread_mutex_unlock(philo->right_fork), \
+			pthread_mutex_unlock(philo->left_fork), 1);
+	if (ph_display_status(philo, EATING))
+		return (pthread_mutex_unlock(philo->right_fork), \
+			pthread_mutex_unlock(philo->left_fork), 1);
+	philo->last_meal = ph_get_time();
+	usleep(philo->data->time_to_eat * 1000);
+	if (philo->meals_count < philo->data->num_meals_per_philo)
+		ph_small_data_update(philo);
+	return (pthread_mutex_unlock(philo->right_fork), \
+		pthread_mutex_unlock(philo->left_fork), 0);
 }
 
 void	*ph_routine(void *arg)
@@ -62,6 +51,9 @@ void	*ph_routine(void *arg)
 		if (ph_display_status(philo, THINKING))
 			return (NULL);
 		if (ph_check_for_deaths(philo))
+			break ;
+		if (ph_check_finish_meals(philo) && \
+			philo->data->num_meals_per_philo != -1)
 			break ;
 		if (ph_eating(philo))
 			return (NULL);
