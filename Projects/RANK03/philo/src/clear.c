@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:52:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 14:20:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 16:06:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ph_clear_all(t_philo *philo, int i)
 		return (1);
 	while (++i < philo->data->num_philos)
 	{
+		pthread_mutex_destroy(philo[i].left_fork);
 		pthread_mutex_destroy(philo[i].right_fork);
 		free(philo[i].right_fork);
 	}
