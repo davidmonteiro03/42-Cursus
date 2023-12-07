@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 15:33:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:07:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_philo
 	int			id;
 	int			meals_count;
 	long		last_meal;
+	bool		done;
 	t_thread	thread;
 	t_mutex		*left_fork;
 	t_mutex		*right_fork;
@@ -73,7 +74,7 @@ int			ph_display_status(t_philo *philo, char *status);
 void		ph_display(bool start);
 
 // CHECK END OF SIMULATION
-bool		ph_check_for_deaths(t_philo *philo);
+bool		ph_check_deaths(t_philo *philo);
 bool		ph_check_finish_meals(t_philo *philo);
 
 // EXECUTE

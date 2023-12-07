@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 09:25:28 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 16:17:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:07:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	ph_display_status(t_philo *philo, char *status)
 {
 	if (pthread_mutex_lock(&philo->data->display))
 		return (1);
+	if (philo->done)
+		return (pthread_mutex_unlock(&philo->data->display), 1);
 	pthread_mutex_lock(&philo->data->check);
 	if (philo->data->simulation_end)
 		return (pthread_mutex_unlock(&philo->data->display), \

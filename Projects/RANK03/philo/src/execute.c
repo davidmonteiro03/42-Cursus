@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:58:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 15:54:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 17:08:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ void	ph_small_data_update(t_philo *philo)
 	philo->meals_count++;
 	pthread_mutex_lock(&philo->data->check);
 	if (philo->meals_count == philo->data->num_meals_per_philo)
+	{
+		philo->done = true;
 		philo->data->num_finish_meals++;
+	}
 	pthread_mutex_unlock(&philo->data->check);
 }
 
@@ -50,15 +53,14 @@ void	*ph_routine(void *arg)
 	{
 		if (ph_display_status(philo, THINKING))
 			return (NULL);
-		if (ph_check_for_deaths(philo))
-			break ;
-		if (ph_check_finish_meals(philo) && \
-			philo->data->num_meals_per_philo != -1)
-			break ;
 		if (ph_eating(philo))
 			return (NULL);
+		if (ph_check_finish_meals(philo))
+			break ;
 		if (ph_display_status(philo, SLEEPING))
 			return (NULL);
+		if (ph_check_deaths(philo))
+			break ;
 		usleep(philo->data->time_to_sleep * 1000);
 	}
 	return (NULL);
