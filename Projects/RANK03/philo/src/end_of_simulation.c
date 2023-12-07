@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 14:50:52 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 17:05:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 19:28:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,8 @@ bool	ph_check_deaths(t_philo *philo)
 {
 	long	now;
 
-	now = ph_get_time();
-	if ((philo->last_meal == -1 && \
-		now - philo->data->start_time > philo->data->time_to_die) || \
-		(philo->last_meal != -1 && \
-		now - philo->last_meal > philo->data->time_to_die))
+	now = philo->data->time_to_die - (ph_get_time() - philo->last_meal);
+	if (now < philo->data->time_to_eat)
 	{
 		ph_display_status(philo, DIED);
 		pthread_mutex_lock(&philo->data->check);

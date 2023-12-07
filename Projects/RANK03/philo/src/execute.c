@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:58:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 17:23:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 19:27:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ void	*ph_routine(void *arg)
 	philo = (t_philo *)arg;
 	while (1)
 	{
-		if (ph_display_status(philo, THINKING))
-			return (NULL);
 		if (ph_eating(philo))
-			return (NULL);
-		if (ph_check_finish_meals(philo))
-			break ;
-		if (ph_display_status(philo, SLEEPING))
 			return (NULL);
 		if (ph_check_deaths(philo))
 			break ;
+		if (ph_check_finish_meals(philo))
+			break ;
+		if (ph_display_status(philo, THINKING))
+			return (NULL);
+		if (ph_display_status(philo, SLEEPING))
+			return (NULL);
 		usleep(philo->data->time_to_sleep * 1000);
 	}
 	return (NULL);

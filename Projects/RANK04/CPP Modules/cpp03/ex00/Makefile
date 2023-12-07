@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/07 19:20:18 by dcaetano         ###   ########.fr        #
+#    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
+#    Updated: 2023/12/07 18:07:49 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,41 +16,27 @@ YELLOW			= \033[1;93m
 CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
-CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=thread
-THREADFLAGS		= -pthread
+CC				= c++
+CFLAGS			= -Wall -Wextra -Werror -std=c++98
 RM				= rm -rf
 
 OBJS_DIR		= obj/
-INCLUDES_DIR	= include/
 
-SRCS			= main.c \
-					src/check.c \
-					src/clear.c \
-					src/display.c \
-					src/end_of_simulation.c \
-					src/execute.c \
-					src/init.c \
-					src/time.c
+SRCS			= main.cpp ClapTrap.cpp
 
-OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
+OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
 
-EXEC			= philo
+EXEC			= clap_trap
 
 all: $(EXEC)
 
-$(OBJS_DIR)%.o: ./%.c
+$(OBJS_DIR)%.o: ./%.cpp
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $(THREADFLAGS) -c $< -o $@
-
-$(OBJS_DIR)%.o: srcs/%.c
-	@mkdir -p $(dir $@)
-	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $(THREADFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(EXEC): $(OBJS)
-	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $(THREADFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) $^ -o $@
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:
@@ -64,3 +50,4 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
