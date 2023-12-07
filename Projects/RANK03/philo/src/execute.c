@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:58:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 09:18:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/07 10:56:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ph_eating(t_philo *philo)
 	}
 	pthread_mutex_lock(first);
 	pthread_mutex_lock(last);
-	if (ph_display_status(philo, FORK))
+	if (ph_display_status(philo, FORK) || ph_display_status(philo, FORK))
 		return (pthread_mutex_unlock(first), pthread_mutex_unlock(last), 1);
 	if (ph_display_status(philo, EATING))
 		return (pthread_mutex_unlock(first), pthread_mutex_unlock(last), 1);
