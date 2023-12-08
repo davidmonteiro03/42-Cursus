@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:51:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 15:39:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:49:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class WrongAnimal
 {
 	protected:
-		std::string	_type;
+		std::string	type;
 	public:
 		WrongAnimal();
 		WrongAnimal(WrongAnimal &ref);

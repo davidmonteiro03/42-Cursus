@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:51:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 15:21:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:48:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 Dog::Dog()
 {
-	this->_type = "Dog";
+	this->type = "Dog";
 	std::cout << "Dog default constructor called" << std::endl;
 }
 
 Dog::Dog(Dog &ref)
 {
-	this->_type = ref._type;
+	this->type = ref.type;
 	std::cout << "Dog copy constructor called" << std::endl;
 }
 
 Dog& Dog::operator=(Dog const &ref)
 {
-	this->_type = ref._type;
+	this->type = ref.type;
 	return (*this);
 }
 
@@ -42,5 +42,5 @@ void	Dog::makeSound() const
 
 std::string	Dog::getType(void) const
 {
-	return (this->_type);
+	return (this->type);
 }

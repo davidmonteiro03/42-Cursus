@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:51:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 15:21:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:48:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 Cat::Cat()
 {
-	this->_type = "Cat";
+	this->type = "Cat";
 	std::cout << "Cat default constructor called" << std::endl;
 }
 
 Cat::Cat(Cat &ref)
 {
-	this->_type = ref._type;
+	this->type = ref.type;
 	std::cout << "Cat copy constructor called" << std::endl;
 }
 
 Cat& Cat::operator=(Cat const &ref)
 {
-	this->_type = ref._type;
+	this->type = ref.type;
 	return (*this);
 }
 
@@ -42,5 +42,5 @@ void	Cat::makeSound() const
 
 std::string	Cat::getType(void) const
 {
-	return (this->_type);
+	return (this->type);
 }

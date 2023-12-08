@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:04:45 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 15:34:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:49:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class WrongCat : public WrongAnimal
 {
 	private:
-		std::string	_type;
+		std::string	type;
 	public:
 		WrongCat();
 		WrongCat(WrongCat &ref);

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 14:51:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 15:08:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:47:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Animal
 {
 	protected:
-		std::string	_type;
+		std::string	type;
 	public:
 		Animal();
 		Animal(Animal &ref);

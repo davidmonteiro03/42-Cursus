@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 15:04:45 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 15:19:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:48:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class Cat : public Animal
 {
 	private:
-		std::string	_type;
+		std::string	type;
 	public:
 		Cat();
 		Cat(Cat &ref);
