@@ -6,25 +6,19 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 11:27:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:50:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-int	main(void)
+int main( void )
 {
-	ClapTrap	John("John");
-	ClapTrap	Doe("Doe");
-	ClapTrap	ClapTrap3(John);
+	ClapTrap	clap("name");
 
-	John.beRepaired(10);
-	Doe.beRepaired(10);
-	John.attack("Doe");
-	Doe.takeDamage(5);
-	Doe.attack("John");
-	John.takeDamage(5);
-	John.attack("Doe");
-	Doe.takeDamage(5);
+	clap.attack("target");
+	clap.beRepaired(10);
+	clap.takeDamage(5);
+	clap.takeDamage(5);
 	return (0);
 }
