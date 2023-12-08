@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 19:11:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 19:54:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 20:05:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**cub_read_file(char *filename, int i)
 	line = get_next_line(fd);
 	while (line)
 	{
-		file_content[i++] = ft_strdup(line);
+		file_content[i++] = ft_strtrim(line, "\n");
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -62,5 +62,10 @@ void	cub_check_file_content(char *filename, int i)
 
 	file_content = cub_read_file(filename, 0);
 	while (file_content[++i])
-		ft_printf("%s", file_content[i]);
+	{
+		if (!file_content[i][0])
+			continue ;
+		ft_printf("%s\n", file_content[i]);
+	}
+	multiple_free("%b", file_content);
 }
