@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/08 17:12:06 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/08 18:12:57 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ MINILIBX_DIR	= minilibx-linux
 MINILIBX_NAME	= libmlx.a
 MINILIBX_FLAGS	= -g -lmlx -lXext -lX11 -lm -lz -lbsd
 
-SRCS			= main.c
+SRCS			= main.c \
+					src/parser/parse_input.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
