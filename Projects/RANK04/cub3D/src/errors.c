@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 16:25:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 19:53:41 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/08 18:23:31 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/08 19:07:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3D.h"
+#include "../include/cub3D.h"
 
-int	main(int argc, char **argv)
+void	cub_error(char *error, bool perror_flag)
 {
-	char	*filename;
+	char	*tmp;
 
-	filename = cub_check_input(argc, argv);
-	cub_check_file_content(filename, -1);
-	return (0);
+	tmp = error;
+	write(2, "Error\n", 6);
+	if (perror_flag)
+		perror(error);
+	else
+	{
+		while (*error)
+			write(2, error++, 1);
+		write(2, "\n", 1);
+	}
+	free(tmp);
+	exit(1);
 }
