@@ -6,19 +6,21 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 14:41:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:42:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main( void )
 {
-	ScavTrap	scav("scav");
+	DiamondTrap	diamond("diamond");
 
-	scav.attack("him");
-	scav.beRepaired(10);
-	scav.takeDamage(5);
-	scav.guardGate();
+	diamond.beRepaired(10);
+	diamond.attack("all");
+	diamond.takeDamage(5);
+	diamond.guardGate();
+	diamond.highFivesGuys();
+	diamond.whoAmI();
 	return (0);
 }

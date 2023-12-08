@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 13:13:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 14:41:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int main( void )
 {
-	ClapTrap	clap("name");
+	ClapTrap	clap("clap");
 
-	clap.attack("target");
+	clap.attack("you");
 	clap.beRepaired(10);
 	clap.takeDamage(5);
 	return (0);

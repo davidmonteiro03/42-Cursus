@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 14:41:42 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/08 14:20:20 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/08 14:27:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef DIAMONDTRAP_HPP
+# define DIAMONDTRAP_HPP
 
-int main( void )
+# include "FragTrap.hpp"
+# include "ScavTrap.hpp"
+
+class DiamondTrap : public FragTrap, public ScavTrap
 {
-	ScavTrap	scav("scav");
+	private:
+		std::string	_name;
+	public:
+		DiamondTrap(std::string name);
+		~DiamondTrap();
 
-	scav.attack("him");
-	scav.beRepaired(10);
-	scav.takeDamage(5);
-	scav.guardGate();
-	return (0);
-}
+		void	whoAmI();
+};
+
+#endif

@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 14:42:15 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/08 14:04:52 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/08 14:09:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
-int main( void )
+FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
-	FragTrap	frag("frag");
+	this->_hitPoints = 100;
+	this->_energyPoints = 100;
+	this->_attackDamage = 30;
+	std::cout << "FragTrap default constructor called" << std::endl;
+}
 
-	frag.attack("me");
-	frag.beRepaired(10);
-	frag.takeDamage(5);
-	frag.highFivesGuys();
-	return (0);
+FragTrap::~FragTrap()
+{
+	std::cout << "FragTrap destructor called" << std::endl;
+}
+
+void	FragTrap::highFivesGuys(void)
+{
+	std::cout << "FlagTrap " << this->_name << " high fives" << std::endl;
 }
