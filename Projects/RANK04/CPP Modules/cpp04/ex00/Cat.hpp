@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 14:48:32 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/08 15:04:45 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/08 15:19:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "DiamondTrap.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
 
-int	main(void)
+# include "Animal.hpp"
+
+class Cat : public Animal
 {
-	DiamondTrap	diamond("diamond");
+	private:
+		std::string	_type;
+	public:
+		Cat();
+		Cat(Cat &ref);
+		Cat& operator=(Cat const &ref);
+		~Cat();
 
-	diamond.beRepaired(10);
-	diamond.attack("all");
-	diamond.takeDamage(5);
-	diamond.guardGate();
-	diamond.highFivesGuys();
-	diamond.whoAmI();
-	return (0);
-}
+		std::string	getType(void) const;
+		void	makeSound() const;
+};
+
+#endif

@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 14:48:32 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/08 14:51:12 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/08 15:39:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "DiamondTrap.hpp"
+#ifndef WRONGANIMAL_HPP
+# define WRONGANIMAL_HPP
 
-int	main(void)
+# include <iostream>
+
+class WrongAnimal
 {
-	DiamondTrap	diamond("diamond");
+	protected:
+		std::string	_type;
+	public:
+		WrongAnimal();
+		WrongAnimal(WrongAnimal &ref);
+		WrongAnimal& operator=(WrongAnimal const &ref);
+		virtual	~WrongAnimal();
 
-	diamond.beRepaired(10);
-	diamond.attack("all");
-	diamond.takeDamage(5);
-	diamond.guardGate();
-	diamond.highFivesGuys();
-	diamond.whoAmI();
-	return (0);
-}
+		virtual void	makeSound() const;
+};
+
+#endif
