@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 18:39:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:27:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 int	main(void)
 {
-	ClapTrap	claptrap("MAIN");
-	ClapTrap	claptrap2("SEC");
+	ClapTrap	John("John");
+	ClapTrap	Doe("Doe");
+	ClapTrap	ClapTrap3(John);
 
-	claptrap.attack("SEC");
-	claptrap2.beRepaired(10);
-	claptrap2.takeDamage(3);
+	John.beRepaired(10);
+	Doe.beRepaired(10);
+	John.attack("Doe");
+	Doe.takeDamage(5);
+	Doe.attack("John");
+	John.takeDamage(5);
+	John.attack("Doe");
+	Doe.takeDamage(5);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:40:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 17:06:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 12:19:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	ph_init_all(t_philo **philo, char **argv, int i)
 			(*philo)[i].left_fork = (*philo)[data->num_philos - 1].right_fork;
 		else
 			(*philo)[i].left_fork = (*philo)[i - 1].right_fork;
-		pthread_mutex_init((*philo)[i].left_fork, NULL);
 	}
 	return (0);
 }

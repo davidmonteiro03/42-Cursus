@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:43:05 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 18:35:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:25:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(0), \
 	_energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap default constructor called" << std::endl;
+	std::cout << "ClapTrap " << _name << " is born" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &ref)
@@ -42,8 +42,7 @@ void	ClapTrap::attack(const std::string& target)
 {
 	if (_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << _name << " does not have energy points";
-		std::cout << std::endl;
+		std::cout << "ClapTrap " << _name << " has no energy" << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << _name << " attacks " << target << ", causing ";
@@ -55,13 +54,11 @@ void	ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hitPoints <= amount)
 	{
-		std::cout << "ClapTrap " << _name << " does not have hit points";
-		std::cout << std::endl;
+		std::cout << "ClapTrap " << _name << " died" << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << _name << " takes " << amount;
-	std::cout << " of damage" << std::endl;
-	_energyPoints--;
+	std::cout << " damage" << std::endl;
 	_hitPoints -= amount;
 }
 
@@ -69,8 +66,7 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << _name << " does not have energy points";
-		std::cout << std::endl;
+		std::cout << "ClapTrap " << _name << " has no energy" << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << _name << " repairs itself for " << amount;
