@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 15:37:31 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 15:52:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-int main( void )
+int	main(void)
 {
 	const Animal* animal = new Animal();
 	const Animal* dog = new Dog();
