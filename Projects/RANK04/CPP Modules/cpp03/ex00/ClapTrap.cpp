@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:43:05 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 12:51:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/08 13:57:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(0), \
 	_energyPoints(10), _attackDamage(0)
 {
-	std::cout << "ClapTrap " << _name << " is born" << std::endl;
+	std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &ref)
