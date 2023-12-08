@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 16:25:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 16:29:56 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/08 17:31:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3d.h"
+#ifndef CUB3D_H
+# define CUB3D_H
 
-int	main(void)
+# include "../libft/libft.h"
+# include "../libft/get_next_line.h"
+# include "../minilibx-linux/mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
+
+typedef struct s_cub
 {
-	return (0);
-}
+}t_cub;
+
+#endif
