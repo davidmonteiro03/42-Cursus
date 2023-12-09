@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/08 19:45:27 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/09 22:02:16 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,15 +25,17 @@ INCLUDES_DIR	= includes/
 
 LIBFT_DIR		= libft
 LIBFT_NAME		= libft.a
-MINILIBX_DIR	= #minilibx-linux
-MINILIBX_NAME	= #libmlx.a
-MINILIBX_FLAGS	= #-g -lmlx -lXext -lX11 -lm -lz -lbsd
+MINILIBX_DIR	= minilibx-linux
+MINILIBX_NAME	= libmlx.a
+MINILIBX_FLAGS	= -g -lmlx -lXext -lX11 -lm -lz -lbsd
 
 SRCS			= main.c \
+					src/parser/get_textures.c \
 					src/parser/parse_file.c \
 					src/parser/parse_input.c \
 					src/errors.c \
 					src/utils/free.c \
+					src/utils/sort_strs.c \
 					src/utils/strcmp.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
@@ -54,14 +56,14 @@ $(OBJS_DIR)%.o: srcs/%.c
 
 $(EXEC): $(OBJS)
 	@make -s -C $(LIBFT_DIR)
-#	@make -s -C $(MINILIBX_DIR) > /dev/null 2>&1
+	@make -s -C $(MINILIBX_DIR) > /dev/null 2>&1
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft -L./$(MINILIBX_DIR) $(MINILIBX_FLAGS)
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:
 	@$(RM) $(OBJS_DIR)
 	@make -s -C $(LIBFT_DIR) clean > /dev/null 2>&1
-#	@make -s -C $(MINILIBX_DIR) clean > /dev/null 2>&1
+	@make -s -C $(MINILIBX_DIR) clean > /dev/null 2>&1
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean

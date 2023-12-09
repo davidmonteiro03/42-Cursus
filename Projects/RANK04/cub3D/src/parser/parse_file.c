@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 19:11:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 20:05:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/09 20:46:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,10 @@ int	cub_count_lines(int fd, int count)
 		return (0);
 	while (line)
 	{
+		if (line[0] != '\n')
+			count++;
 		free(line);
 		line = get_next_line(fd);
-		count++;
 	}
 	return (count);
 }
@@ -48,7 +49,8 @@ char	**cub_read_file(char *filename, int i)
 	line = get_next_line(fd);
 	while (line)
 	{
-		file_content[i++] = ft_strtrim(line, "\n");
+		if (line[0] != '\n')
+			file_content[i++] = ft_strtrim(line, "\n\t ");
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -56,16 +58,8 @@ char	**cub_read_file(char *filename, int i)
 	return (free(filename), close(fd), file_content);
 }
 
-void	cub_check_file_content(char *filename, int i)
+void	cub_check_file_content(char *filename, t_cub *cub)
 {
-	char	**file_content;
-
-	file_content = cub_read_file(filename, 0);
-	while (file_content[++i])
-	{
-		if (!file_content[i][0])
-			continue ;
-		ft_printf("%s\n", file_content[i]);
-	}
-	multiple_free("%b", file_content);
+	cub->textures.file_content = cub_read_file(filename, 0);
+	cub_strs_sort(&cub->textures.file_content, -1);
 }
