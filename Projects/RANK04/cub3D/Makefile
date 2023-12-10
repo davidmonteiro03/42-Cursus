@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/10 17:40:00 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/10 19:00:15 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,15 +32,10 @@ MINILIBX_FLAGS	= -g -lmlx -lXext -lX11 -lm -lz -lbsd
 SRCS			= main.c \
 					src/errors.c \
 					src/exit.c \
-					src/mlx/draw.c \
-					src/mlx/key_handler.c \
-					src/parser/check_colors.c \
-					src/parser/check_config.c \
-					src/parser/get_data.c \
+					src/free.c \
+					src/init.c \
 					src/parser/parse_file.c \
 					src/parser/parse_input.c \
-					src/parser/set_config.c \
-					src/parser/struct.c \
 					src/utils/atol.c \
 					src/utils/buildfree.c \
 					src/utils/display_file.c \
