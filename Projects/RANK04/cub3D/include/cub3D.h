@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 14:54:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:54:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,28 @@
 # define ERROR_LENGTH "Invalid length in given argument"
 # define ERROR_EMPTY "Empty file"
 # define ERROR_CONFIG "Invalid configuration"
-# define ERROR_MAP "Invalid map"
-# define ERROR_ORDER "Map must be after configuration"
 
 typedef struct s_util
 {
-	int	pos;
-	int	count;
+	int	start;
+	int	end;
 }t_util;
 
-typedef struct s_paths
+typedef struct s_img
 {
-	char	*north;
-	char	*south;
-	char	*west;
-	char	*east;
-}t_paths;
+	char	*path;
+	void	*img;
+	int		width;
+	int		height;
+}t_img;
+
+typedef struct s_directions
+{
+	t_img	north;
+	t_img	south;
+	t_img	west;
+	t_img	east;
+}t_directions;
 
 typedef struct s_color
 {
@@ -65,8 +71,9 @@ typedef struct s_data
 
 typedef struct s_mlx
 {
-	void	*mlx;
-	void	*win;
+	void			*mlx;
+	void			*win;
+	t_directions	directions;
 }t_mlx;
 
 typedef struct s_config
@@ -112,6 +119,7 @@ void			cub_error_parsing(t_cub *cub, char *error);
 // error parsing 1
 void			cub_clear_error1(t_cub *cub, char *error);
 void			cub_clear_error2(t_cub *cub, char *error);
+void			cub_clear_error3(t_cub *cub, char *error, bool perror_flag);
 
 /* ************************************************************************** */
 /*                                   PARSER                                   */
@@ -125,7 +133,10 @@ char			*cub_get_config(char *str, int i);
 char			*cub_get_map(char *str, int i);
 
 // parse file
+int				cub_count_lines(int fd, int count);
+char			**cub_read_file(t_cub *cub, char *filename, int i);
 void			cub_check_file_content(char *filename, t_cub *cub);
+char			**cub_read_file_texture(t_cub *cub, char *filename, int i);
 
 // parse input
 char			*cub_check_extension(t_cub *cub, char *arg, char *extension);
@@ -146,6 +157,7 @@ void			cub_set_config(t_cub *cub, char ***data, int i);
 // struct
 t_color			cub_get_color(char **tmp);
 t_coord			cub_coord(int x, int y);
+t_img			cub_img(char *path);
 
 /* ************************************************************************** */
 /*                                    UTILS                                   */
@@ -159,7 +171,7 @@ char			*cub_buildfree(char *s1, char *s2, \
 	char *(*f)(const char *, const char *));
 
 // display file content
-void			cub_display_strs(char **file_content, int i);
+void			cub_display_strs(char **file_content, int start, int end);
 
 // get num
 int				cub_get_num_chars(char *str, char c);

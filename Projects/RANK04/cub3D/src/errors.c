@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:23:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 14:26:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:18:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,24 @@ void	cub_clear_error2(t_cub *cub, char *error)
 	multiple_free("%b%c", cub->config.data.file_content, \
 		cub->config.data.data);
 	cub_error_parsing(cub, error);
+}
+
+void	cub_clear_error3(t_cub *cub, char *error, bool perror_flag)
+{
+	char	*tmp;
+
+	multiple_free("%b%c%a", cub->config.data.file_content, \
+		cub->config.data.data, cub);
+	tmp = error;
+	write(2, "Error\n", 6);
+	if (perror_flag)
+		perror(error);
+	else
+	{
+		while (*error)
+			write(2, error++, 1);
+		write(2, "\n", 1);
+	}
+	free(tmp);
+	exit(1);
 }

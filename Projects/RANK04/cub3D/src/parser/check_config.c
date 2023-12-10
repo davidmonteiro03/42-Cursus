@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 09:32:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 14:16:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:46:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,13 @@ void	cub_check_extension_texture(t_cub *cub, char *arg, char *extension)
 
 void	cub_check_texture(t_cub *cub, char **strs)
 {
+	char	**buf;
+
 	if (cub_strs_size(strs) != 2)
 		cub_clear_error2(cub, ERROR_CONFIG);
 	cub_check_extension_texture(cub, strs[1], ".xpm");
+	buf = cub_read_file_texture(cub, strs[1], 0);
+	multiple_free("%b", buf);
 }
 
 void	cub_check_data(t_cub *cub, char ***data, int i)

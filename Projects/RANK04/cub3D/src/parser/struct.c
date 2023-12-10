@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 13:23:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 13:23:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 16:53:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,15 @@ t_coord	cub_coord(int x, int y)
 	coord.x = x;
 	coord.y = y;
 	return (coord);
+}
+
+t_img	cub_img(char *path)
+{
+	t_img	img;
+
+	img.path = ft_strdup(path);
+	img.width = 0;
+	img.height = 0;
+	img.img = NULL;
+	return (img);
 }
