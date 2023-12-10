@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 00:56:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 09:49:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # define ERROR_EXTENSION "Invalid extension"
 # define ERROR_LENGTH "Invalid length in given argument"
 # define ERROR_EMPTY "Empty file"
-# define ERROR_TEXTURES "Error parsing given textures"
+# define ERROR_CONFIG "Invalid configuration"
+# define ERROR_MAP "Invalid map"
 
 typedef struct s_paths
 {
@@ -34,13 +35,12 @@ typedef struct s_paths
 	char	*east;
 }t_paths;
 
-typedef struct s_textures
+typedef struct s_data
 {
 	char	*filename;
 	char	**file_content;
-	char	***textures;
-	t_paths	paths;
-}t_textures;
+	char	***data;
+}t_data;
 
 typedef struct s_mlx
 {
@@ -48,11 +48,23 @@ typedef struct s_mlx
 	void	*win;
 }t_mlx;
 
+typedef struct s_config
+{
+	t_data	data;
+}t_config;
+
 typedef struct s_cub
 {
-	t_textures	textures;
+	t_config	config;
 	t_mlx		mlx;
 }t_cub;
+
+/* ************************************************************************** */
+/*                                    EXIT                                    */
+/* ************************************************************************** */
+
+// cub exit
+void	cub_exit(t_cub *cub);
 
 /* ************************************************************************** */
 /*                                   ERRORS                                   */
@@ -64,9 +76,17 @@ void	cub_error(char *error, bool perror_flag);
 // error parsing
 void	cub_error_parsing(t_cub *cub, char *error);
 
+// error parsing 1
+void	cub_clear_error1(t_cub *cub, char *error);
+void	cub_clear_error2(t_cub *cub, char *error);
+
 /* ************************************************************************** */
 /*                                   PARSER                                   */
 /* ************************************************************************** */
+
+// get data
+char	*cub_get_config(char *str, int i);
+char	*cub_get_map(char *str, int i);
 
 // parse file
 void	cub_check_file_content(char *filename, t_cub *cub);
@@ -75,12 +95,18 @@ void	cub_check_file_content(char *filename, t_cub *cub);
 char	*cub_check_extension(char *arg, char *extension);
 char	*cub_check_input(int argc, char **argv);
 
+// check config
+bool	cub_check_each_config(char *str);
+void	cub_check_config(t_cub *cub, char **strs, int i);
+void	cub_set_config(t_cub *cub, char **strs, int i, int count);
+void	cub_check_data(t_cub *cub, char ***data, int i);
+
 /* ************************************************************************** */
 /*                                    UTILS                                   */
 /* ************************************************************************** */
 
 // display file content
-void	cub_display_file_content(char **file_content, int i);
+void	cub_display_strs(char **file_content, int i);
 
 // multiple free
 void	multiple_free(const char *format, ...);

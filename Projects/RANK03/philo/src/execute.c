@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:58:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 12:27:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:39:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ph_small_data_update(t_philo *philo)
 		pthread_mutex_unlock(&philo->data->check);
 		ph_display_status(philo, SLEEPING);
 		pthread_mutex_lock(&philo->data->check);
-		philo->done = true;
 		philo->data->num_finish_meals++;
 	}
 	pthread_mutex_unlock(&philo->data->check);

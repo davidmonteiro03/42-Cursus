@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 19:11:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 06:52:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 09:47:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,36 +56,38 @@ char	**cub_read_file(char *filename, int i)
 	return (free(filename), close(fd), file_content);
 }
 
-char	*cub_find_config(char **file_content, int i)
+int	cub_count(char **strs, int i, int count, char *(*f)(char *str, int i))
 {
 	char	*tmp;
 
-	while (file_content[++i])
+	while (strs[++i])
 	{
-		tmp = file_content[i];
-		while (*tmp)
-		{
-			while (*tmp && ft_strchr("\t ", *tmp))
-				tmp++;
-			if (ft_isalpha(*tmp))
-				return (ft_strdup(file_content[i]));
-			tmp++;
-		}
+		tmp = f(strs[i], 0);
+		if (!tmp)
+			continue ;
+		count++;
+		free(tmp);
 	}
-	return (NULL);
+	return (count);
 }
 
 void	cub_check_file_content(char *filename, t_cub *cub)
 {
-	char	*tmp;
-	int		i;
+	int	count_config;
+	int	count_map;
 
-	cub->textures.file_content = cub_read_file(filename, 0);
-	i = -1;
-	while (cub->textures.file_content[++i])
-	{
-		tmp = cub_find_config(&cub->textures.file_content[i], -1);
-		printf("%s\n", tmp);
-		free(tmp);
-	}
+	cub->config.data.file_content = cub_read_file(filename, 0);
+	count_config = cub_count(cub->config.data.file_content, -1, 0, \
+		&cub_get_config);
+	count_map = cub_count(cub->config.data.file_content, -1, 0, \
+		&cub_get_map);
+	if (count_config != 6)
+		return (multiple_free("%b", cub->config.data.file_content), \
+			cub_error_parsing(cub, ERROR_CONFIG));
+	if (count_map <= 0)
+		return (multiple_free("%b", cub->config.data.file_content), \
+			cub_error_parsing(cub, ERROR_MAP));
+	cub_check_config(cub, cub->config.data.file_content, -1);
+	cub_set_config(cub, cub->config.data.file_content, -1, 0);
+	cub_check_data(cub, cub->config.data.data, -1);
 }

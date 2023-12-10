@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 08:40:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 12:19:38 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:40:43 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ph_init_philos(t_philo **philo, t_data *data, int i)
 		(*philo)[i].meals_count = 0;
 		(*philo)[i].last_meal = -1;
 		(*philo)[i].data = data;
-		(*philo)[i].done = false;
 		(*philo)[i].right_fork = (t_mutex *)malloc(sizeof(t_mutex));
 		pthread_mutex_init((*philo)[i].right_fork, NULL);
 	}

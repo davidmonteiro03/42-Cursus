@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 18:23:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/09 21:36:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 09:47:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ void	cub_error_parsing(t_cub *cub, char *error)
 	while (*error)
 		write(2, error++, 1);
 	write(2, "\n", 1);
-	multiple_free("%c%a", cub->textures.textures, cub);
+	multiple_free("%a", cub);
 	exit(1);
+}
+
+void	cub_clear_error1(t_cub *cub, char *error)
+{
+	multiple_free("%b", cub->config.data.file_content);
+	cub_error_parsing(cub, error);
+}
+
+void	cub_clear_error2(t_cub *cub, char *error)
+{
+	multiple_free("%b%c", cub->config.data.file_content, \
+		cub->config.data.data);
+	cub_error_parsing(cub, error);
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 17:50:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 17:07:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:38:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ typedef struct s_philo
 	int			id;
 	int			meals_count;
 	long		last_meal;
-	bool		done;
 	t_thread	thread;
 	t_mutex		*left_fork;
 	t_mutex		*right_fork;
