@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:25:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 21:18:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 21:26:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,7 @@ int	main(int argc, char **argv)
 		return (1);
 	cub_check_input(cub, argc, argv);
 	cub_check_file_content(cub);
-	printf("count_config: %d\n", \
-		cub_check_map(cub->config.content, 0, 0, 0).count_config);
-	printf("count_map: %d\n", \
-		cub_check_map(cub->config.content, 0, 0, 0).count_map);
+	cub_check_map(cub->config.content, 0, 0, 0);
 	cub_exit(cub);
 	return (0);
 }
