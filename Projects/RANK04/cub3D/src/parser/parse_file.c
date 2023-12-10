@@ -6,20 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 19:11:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 00:57:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 06:52:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-bool	cub_empty_line(char *line, int i)
-{
-	while (line[++i])
-		if (line[i] != '\n' && line[i] != '\t' && line[i] != ' ' && \
-			line[i] && line[i] != '\r' && line[i] != '\v' && line[i] != '\f')
-			return (false);
-	return (true);
-}
 
 int	cub_count_lines(int fd, int count)
 {
@@ -65,7 +56,7 @@ char	**cub_read_file(char *filename, int i)
 	return (free(filename), close(fd), file_content);
 }
 
-char	*cub_find_line(char **file_content, int i, char *to_find)
+char	*cub_find_config(char **file_content, int i)
 {
 	char	*tmp;
 
@@ -76,8 +67,8 @@ char	*cub_find_line(char **file_content, int i, char *to_find)
 		{
 			while (*tmp && ft_strchr("\t ", *tmp))
 				tmp++;
-			if (!ft_strncmp(tmp, to_find, ft_strlen(to_find)))
-				return (file_content[i]);
+			if (ft_isalpha(*tmp))
+				return (ft_strdup(file_content[i]));
 			tmp++;
 		}
 	}
@@ -86,25 +77,15 @@ char	*cub_find_line(char **file_content, int i, char *to_find)
 
 void	cub_check_file_content(char *filename, t_cub *cub)
 {
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	char	*floor;
-	char	*ceiling;
+	char	*tmp;
+	int		i;
 
 	cub->textures.file_content = cub_read_file(filename, 0);
-	north = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "NO"), "\t ");
-	south = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "SO"), "\t ");
-	east = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "EA"), "\t ");
-	west = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "WE"), "\t ");
-	floor = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "F"), "\t ");
-	ceiling = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "C"), "\t ");
-	printf("%s\n", north);
-	printf("%s\n", south);
-	printf("%s\n", east);
-	printf("%s\n", west);
-	printf("%s\n", floor);
-	printf("%s\n", ceiling);
-	multiple_free("%a%a%a%a%a%a", north, south, east, west, floor, ceiling);
+	i = -1;
+	while (cub->textures.file_content[++i])
+	{
+		tmp = cub_find_config(&cub->textures.file_content[i], -1);
+		printf("%s\n", tmp);
+		free(tmp);
+	}
 }
