@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 21:13:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 21:28:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_file
 typedef struct s_cub
 {
 	t_file	config;
+	t_count	count;
 }t_cub;
 
 /* ************************************************************************** */
@@ -73,6 +74,7 @@ void			free_file(t_file file);
 /* ************************************************************************** */
 
 // init
+t_count			cub_count_init(void);
 t_file			cub_file_init(void);
 t_cub			*cub_init(void);
 
