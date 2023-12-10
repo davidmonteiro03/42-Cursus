@@ -6,11 +6,20 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 19:11:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/09 20:46:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 00:57:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+bool	cub_empty_line(char *line, int i)
+{
+	while (line[++i])
+		if (line[i] != '\n' && line[i] != '\t' && line[i] != ' ' && \
+			line[i] && line[i] != '\r' && line[i] != '\v' && line[i] != '\f')
+			return (false);
+	return (true);
+}
 
 int	cub_count_lines(int fd, int count)
 {
@@ -21,8 +30,7 @@ int	cub_count_lines(int fd, int count)
 		return (0);
 	while (line)
 	{
-		if (line[0] != '\n')
-			count++;
+		count++;
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -49,8 +57,7 @@ char	**cub_read_file(char *filename, int i)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0] != '\n')
-			file_content[i++] = ft_strtrim(line, "\n\t ");
+		file_content[i++] = ft_strtrim(line, "\n");
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -58,8 +65,46 @@ char	**cub_read_file(char *filename, int i)
 	return (free(filename), close(fd), file_content);
 }
 
+char	*cub_find_line(char **file_content, int i, char *to_find)
+{
+	char	*tmp;
+
+	while (file_content[++i])
+	{
+		tmp = file_content[i];
+		while (*tmp)
+		{
+			while (*tmp && ft_strchr("\t ", *tmp))
+				tmp++;
+			if (!ft_strncmp(tmp, to_find, ft_strlen(to_find)))
+				return (file_content[i]);
+			tmp++;
+		}
+	}
+	return (NULL);
+}
+
 void	cub_check_file_content(char *filename, t_cub *cub)
 {
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+	char	*floor;
+	char	*ceiling;
+
 	cub->textures.file_content = cub_read_file(filename, 0);
-	cub_strs_sort(&cub->textures.file_content, -1);
+	north = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "NO"), "\t ");
+	south = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "SO"), "\t ");
+	east = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "EA"), "\t ");
+	west = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "WE"), "\t ");
+	floor = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "F"), "\t ");
+	ceiling = ft_strtrim(cub_find_line(cub->textures.file_content, -1, "C"), "\t ");
+	printf("%s\n", north);
+	printf("%s\n", south);
+	printf("%s\n", east);
+	printf("%s\n", west);
+	printf("%s\n", floor);
+	printf("%s\n", ceiling);
+	multiple_free("%a%a%a%a%a%a", north, south, east, west, floor, ceiling);
 }

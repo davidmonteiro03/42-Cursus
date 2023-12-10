@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/09 22:27:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 00:56:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,22 @@ void	cub_error_parsing(t_cub *cub, char *error);
 /*                                   PARSER                                   */
 /* ************************************************************************** */
 
-// check textures
-bool	cub_check_textures(char ***strs, int i);
-
-// get textures
-void	cub_get_textures(t_cub *cub, char **strs, int i);
-
 // parse file
 void	cub_check_file_content(char *filename, t_cub *cub);
 
 // parse input
+char	*cub_check_extension(char *arg, char *extension);
 char	*cub_check_input(int argc, char **argv);
 
 /* ************************************************************************** */
 /*                                    UTILS                                   */
 /* ************************************************************************** */
 
+// display file content
+void	cub_display_file_content(char **file_content, int i);
+
 // multiple free
 void	multiple_free(const char *format, ...);
-
-// sort_strs
-void	cub_strs_sort(char ***strs_ptr, int i);
 
 // strcmp
 int		cub_strcmp(const char *s1, const char *s2);

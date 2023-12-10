@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/09 22:02:16 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/10 00:24:28 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,12 +30,11 @@ MINILIBX_NAME	= libmlx.a
 MINILIBX_FLAGS	= -g -lmlx -lXext -lX11 -lm -lz -lbsd
 
 SRCS			= main.c \
-					src/parser/get_textures.c \
 					src/parser/parse_file.c \
 					src/parser/parse_input.c \
 					src/errors.c \
+					src/utils/display_file.c \
 					src/utils/free.c \
-					src/utils/sort_strs.c \
 					src/utils/strcmp.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
