@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 09:32:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 09:46:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 14:16:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,20 +52,26 @@ void	cub_check_config(t_cub *cub, char **strs, int i)
 	}
 }
 
-void	cub_set_config(t_cub *cub, char **strs, int i, int count)
+void	cub_check_extension_texture(t_cub *cub, char *arg, char *extension)
 {
-	char	*tmp;
+	char	*input_extension;
+	size_t	extension_len;
 
-	cub->config.data.data = (char ***)malloc(sizeof(char **) * 7);
-	cub->config.data.data[6] = NULL;
-	while (strs[++i])
-	{
-		tmp = cub_get_config(strs[i], 0);
-		if (!tmp)
-			continue ;
-		cub->config.data.data[count++] = ft_split(tmp, ' ');
-		free(tmp);
-	}
+	extension_len = ft_strlen(extension);
+	if (ft_strlen(arg) < extension_len + 1)
+		return (cub_clear_error2(cub, ERROR_CONFIG));
+	input_extension = ft_substr(arg, ft_strlen(arg) - \
+		extension_len, extension_len);
+	if (cub_strcmp(input_extension, extension))
+		return (free(input_extension), cub_clear_error2(cub, ERROR_EXTENSION));
+	free(input_extension);
+}
+
+void	cub_check_texture(t_cub *cub, char **strs)
+{
+	if (cub_strs_size(strs) != 2)
+		cub_clear_error2(cub, ERROR_CONFIG);
+	cub_check_extension_texture(cub, strs[1], ".xpm");
 }
 
 void	cub_check_data(t_cub *cub, char ***data, int i)
@@ -78,5 +84,13 @@ void	cub_check_data(t_cub *cub, char ***data, int i)
 		while (data[++j])
 			if (i != j && !cub_strcmp(data[i][0], data[j][0]))
 				return (cub_clear_error2(cub, ERROR_CONFIG));
+	}
+	i = -1;
+	while (data[++i])
+	{
+		if (!cub_strcmp(data[i][0], "F") || !cub_strcmp(data[i][0], "C"))
+			cub_check_color(cub, &data[i][1], -1);
+		else
+			cub_check_texture(cub, data[i]);
 	}
 }

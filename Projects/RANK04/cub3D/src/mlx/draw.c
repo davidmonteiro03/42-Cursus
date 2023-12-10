@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 16:25:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 14:24:20 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/10 13:26:11 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/10 13:26:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3D.h"
+#include "../../include/cub3D.h"
 
-int	main(int argc, char **argv)
+void	cub_draw_square(t_cub *cub, t_coord coord, int size, int color)
 {
-	t_cub	*cub;
+	int	tmp_x;
+	int	tmp_y;
 
-	cub = (t_cub *)malloc(sizeof(t_cub));
-	if (!cub)
-		return (1);
-	cub_check_input(cub, argc, argv);
-	cub_check_file_content(cub->config.data.filename, cub);
-	cub_set_config(cub, cub->config.data.data, -1);
-	cub_exit(cub);
-	return (0);
+	tmp_x = coord.x - 1;
+	while (++tmp_x < size + coord.x)
+	{
+		tmp_y = coord.y - 1;
+		while (++tmp_y < size + coord.y)
+			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, tmp_x, tmp_y, color);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 19:11:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 09:47:53 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 15:07:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	cub_count_lines(int fd, int count)
 	return (count);
 }
 
-char	**cub_read_file(char *filename, int i)
+char	**cub_read_file(t_cub *cub, char *filename, int i)
 {
 	char	*line;
 	char	**file_content;
@@ -39,7 +39,8 @@ char	**cub_read_file(char *filename, int i)
 		return (cub_error(filename, true), NULL);
 	num_lines = cub_count_lines(fd, 0);
 	if (num_lines == 0)
-		cub_error(ft_strdup(ERROR_EMPTY), false);
+		return (multiple_free("%a%a", cub->config.data.filename, cub), \
+			cub_error(ft_strdup(ERROR_EMPTY), false), NULL);
 	file_content = (char **)malloc(sizeof(char *) * (num_lines + 1));
 	if (!file_content)
 		return (close(fd), NULL);
@@ -56,38 +57,48 @@ char	**cub_read_file(char *filename, int i)
 	return (free(filename), close(fd), file_content);
 }
 
-int	cub_count(char **strs, int i, int count, char *(*f)(char *str, int i))
+t_util	cub_count(char **strs, int i, int count, char *(*f)(char *str, int i))
 {
+	t_util	util;
 	char	*tmp;
 
+	util.count = count;
+	util.pos = i + 1;
 	while (strs[++i])
 	{
 		tmp = f(strs[i], 0);
 		if (!tmp)
 			continue ;
-		count++;
+		util.count++;
+		util.pos = i;
 		free(tmp);
 	}
-	return (count);
+	return (util);
 }
 
 void	cub_check_file_content(char *filename, t_cub *cub)
 {
-	int	count_config;
-	int	count_map;
+	t_util	count_config;
+	t_util	count_map;
 
-	cub->config.data.file_content = cub_read_file(filename, 0);
+	cub->config.data.file_content = cub_read_file(cub, filename, 0);
 	count_config = cub_count(cub->config.data.file_content, -1, 0, \
 		&cub_get_config);
 	count_map = cub_count(cub->config.data.file_content, -1, 0, \
 		&cub_get_map);
-	if (count_config != 6)
+	if (count_config.count != 6)
 		return (multiple_free("%b", cub->config.data.file_content), \
 			cub_error_parsing(cub, ERROR_CONFIG));
-	if (count_map <= 0)
+	if (count_map.count <= 0)
 		return (multiple_free("%b", cub->config.data.file_content), \
 			cub_error_parsing(cub, ERROR_MAP));
+	if (count_config.pos > count_map.pos)
+		return (multiple_free("%b", cub->config.data.file_content), \
+			cub_error_parsing(cub, ERROR_ORDER));
+	// if (cub->config.data.file_content[count_map.pos])
+	// 	return (multiple_free("%b", cub->config.data.file_content), \
+	// 		cub_error_parsing(cub, ERROR_CONFIG));
 	cub_check_config(cub, cub->config.data.file_content, -1);
-	cub_set_config(cub, cub->config.data.file_content, -1, 0);
+	cub_set_config_util(cub, cub->config.data.file_content, -1, 0);
 	cub_check_data(cub, cub->config.data.data, -1);
 }

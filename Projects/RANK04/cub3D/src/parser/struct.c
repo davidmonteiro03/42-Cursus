@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   struct.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 16:25:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 14:24:20 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/10 13:23:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/10 13:23:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3D.h"
+#include "../../include/cub3D.h"
 
-int	main(int argc, char **argv)
+t_color	cub_get_color(char **tmp)
 {
-	t_cub	*cub;
+	t_color	color;
 
-	cub = (t_cub *)malloc(sizeof(t_cub));
-	if (!cub)
-		return (1);
-	cub_check_input(cub, argc, argv);
-	cub_check_file_content(cub->config.data.filename, cub);
-	cub_set_config(cub, cub->config.data.data, -1);
-	cub_exit(cub);
-	return (0);
+	color.red = (int)cub_atol(tmp[0]);
+	color.green = (int)cub_atol(tmp[1]);
+	color.blue = (int)cub_atol(tmp[2]);
+	color.color = cub_rgb_to_hex(color.red, color.green, color.blue);
+	return (color);
+}
+
+t_coord	cub_coord(int x, int y)
+{
+	t_coord	coord;
+
+	coord.x = x;
+	coord.y = y;
+	return (coord);
 }

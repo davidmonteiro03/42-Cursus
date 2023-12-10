@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_size.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 16:25:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 14:24:20 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/10 12:24:45 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/10 13:45:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/cub3D.h"
+#include "../../include/cub3D.h"
 
-int	main(int argc, char **argv)
+int	cub_get_num_chars(char *str, char c)
 {
-	t_cub	*cub;
+	int	i;
+	int	count;
 
-	cub = (t_cub *)malloc(sizeof(t_cub));
-	if (!cub)
-		return (1);
-	cub_check_input(cub, argc, argv);
-	cub_check_file_content(cub->config.data.filename, cub);
-	cub_set_config(cub, cub->config.data.data, -1);
-	cub_exit(cub);
-	return (0);
+	i = -1;
+	count = 0;
+	while (str[++i])
+		if (str[i] == c)
+			count++;
+	return (count);
+}
+
+int	cub_strs_size(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+		i++;
+	return (i);
 }
