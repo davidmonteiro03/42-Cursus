@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 16:54:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:07:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define ERROR_LENGTH "Invalid length in given argument"
 # define ERROR_EMPTY "Empty file"
 # define ERROR_CONFIG "Invalid configuration"
+# define ERROR_MAP "Invalid map"
 
 typedef struct s_util
 {

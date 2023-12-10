@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:15:09 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 16:54:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/10 17:27:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,17 @@ void	cub_set_color(t_cub *cub, char **strs, char *type, int i)
 
 	buf = ft_strdup("");
 	while (strs[++i])
+	{
 		buf = cub_buildfree(buf, ft_strdup(strs[i]), &ft_strjoin);
+		buf = cub_buildfree(buf, ft_strdup(" "), &ft_strjoin);
+	}
+	tmp = ft_split(buf, ' ');
+	free(buf);
+	buf = ft_strdup("");
+	i = -1;
+	while (tmp[++i])
+		buf = cub_buildfree(buf, ft_strdup(tmp[i]), &ft_strjoin);
+	multiple_free("%b", tmp);
 	tmp = ft_split(buf, ',');
 	free(buf);
 	if (!cub_strcmp(type, "F"))
@@ -89,18 +99,6 @@ void	cub_set_config(t_cub *cub, char ***data, int i)
 	cub->mlx.mlx = mlx_init();
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx, 600, 600, "Cub3D");
 	cub_init_imgs(cub);
-	auto int x = 0;
-	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, \
-		cub->mlx.directions.north.img, x, 0);
-	x += cub->mlx.directions.north.width;
-	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, \
-		cub->mlx.directions.south.img, x, 0);
-	x += cub->mlx.directions.south.width;
-	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, \
-		cub->mlx.directions.west.img, x, 0);
-	x += cub->mlx.directions.west.width;
-	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, \
-		cub->mlx.directions.east.img, x, 0);
 	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_key_handler, cub);
 	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);
 	mlx_loop(cub->mlx.mlx);
