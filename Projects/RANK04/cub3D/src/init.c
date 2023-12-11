@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:44:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/11 20:57:40 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/11 22:18:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ t_info	cub_info_init(void)
 {
 	t_info	info;
 
-	info.pos = -1;
+	info.pos_start = -1;
+	info.pos_end = -1;
 	info.count = 0;
 	return (info);
 }

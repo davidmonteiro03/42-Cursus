@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:46:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/11 21:49:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/11 22:17:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,20 @@ int	cub_check_mapline(char *line, char *charset, int i)
 
 void	cub_check_maps(char **file_content, int i, t_info *map_info)
 {
-	int	j;
-
 	printf("======MAPS======\n");
 	while (file_content[i])
 	{
 		if (cub_check_mapline(file_content[i], " 012NSEW", -1) == 1)
 		{
-			j = i;
+			map_info->pos_start = i;
 			while (file_content[i] && \
 				cub_check_mapline(file_content[i], " 012NSEW", -1) != 2)
 				i++;
-			map_info->pos = i;
+			map_info->pos_end = i - 1;
 			map_info->count++;
 			printf("---------%d---------\n", map_info->count);
-			cub_display_strs(file_content, j, i - 1);
+			cub_display_strs(file_content, map_info->pos_start, \
+				map_info->pos_end);
 			continue ;
 		}
 		i++;
@@ -47,21 +46,19 @@ void	cub_check_maps(char **file_content, int i, t_info *map_info)
 
 void	cub_check_config(char **file_content, int i, t_info *config_info)
 {
-	int	j;
-
 	printf("======CONFIG======\n");
 	while (file_content[i])
 	{
 		if (cub_check_mapline(file_content[i], " 012NSEW", -1) == 0)
 		{
-			j = i;
+			config_info->pos_start = i;
 			while (file_content[i] && \
-				cub_check_mapline(file_content[i], " 012NSEW", -1) != 1)
+				cub_check_mapline(file_content[i], " 012NSEW", -1) != 1 && \
+				cub_check_mapline(file_content[i], " 012NSEW", -1) != 2)
 				i++;
-			config_info->pos = i;
-			config_info->count++;
-			printf("---------%d---------\n", config_info->count);
-			cub_display_strs(file_content, j, i - 1);
+			config_info->pos_end = i - 1;
+			cub_display_strs(file_content, config_info->pos_start, \
+				config_info->pos_end);
 			continue ;
 		}
 		i++;

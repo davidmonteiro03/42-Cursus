@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/11 21:46:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/11 22:16:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@
 
 typedef struct s_info
 {
-	int	pos;
+	int	pos_start;
+	int	pos_end;
 	int	count;
 }t_info;
 
