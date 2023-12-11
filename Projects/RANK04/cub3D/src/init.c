@@ -6,19 +6,19 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:44:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 21:28:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/11 20:57:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-t_count	cub_count_init(void)
+t_info	cub_info_init(void)
 {
-	t_count	count;
+	t_info	info;
 
-	count.count_map = 0;
-	count.count_config = 0;
-	return (count);
+	info.pos = -1;
+	info.count = 0;
+	return (info);
 }
 
 t_file	cub_file_init(void)
@@ -38,7 +38,7 @@ t_cub	*cub_init(void)
 	cub = (t_cub *)malloc(sizeof(t_cub));
 	if (!cub)
 		return (NULL);
-	cub->config = cub_file_init();
-	cub->count = cub_count_init();
+	cub->map_info = cub_info_init();
+	cub->config_info = cub_info_init();
 	return (cub);
 }
