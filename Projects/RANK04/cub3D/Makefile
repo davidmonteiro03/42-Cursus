@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/10 19:00:15 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/11 21:47:10 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
 RM				= rm -rf
 
 OBJS_DIR		= obj/
@@ -35,6 +35,7 @@ SRCS			= main.c \
 					src/free.c \
 					src/init.c \
 					src/parser/parse_file.c \
+					src/parser/parse_info.c \
 					src/parser/parse_input.c \
 					src/utils/atol.c \
 					src/utils/buildfree.c \

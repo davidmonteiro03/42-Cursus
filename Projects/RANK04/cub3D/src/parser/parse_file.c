@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:54:17 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 19:24:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/11 21:45:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,8 @@ void	cub_check_file_content(t_cub *cub)
 		cub_error_file(cub, ERROR_FILE, false);
 	if (!*cub->config.content)
 		cub_error_file(cub, ERROR_FILE, false);
+	cub_check_maps(cub->config.content, 0, &cub->map_info);
+	cub_check_config(cub->config.content, 0, &cub->config_info);
+	printf("map_info->pos: %d\n", cub->map_info.pos);
+	printf("config_info->pos: %d\n", cub->config_info.pos);
 }

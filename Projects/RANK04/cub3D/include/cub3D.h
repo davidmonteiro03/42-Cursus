@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/11 20:57:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/11 21:46:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,12 @@ t_cub			*cub_init(void);
 
 // parse file
 void			cub_check_file_content(t_cub *cub);
+
+// parse info
+int				cub_check_mapline(char *line, char *charset, int i);
+void			cub_check_maps(char **file_content, int i, t_info *map_info);
+void			cub_check_config(char **file_content, int i, \
+	t_info *config_info);
 
 // parse input
 char			*cub_check_extension(t_cub *cub, char *arg, char *extension);
