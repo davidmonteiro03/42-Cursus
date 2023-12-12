@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 14:13:27 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/12 18:07:02 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/12 18:12:12 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,20 +175,6 @@ void	clear_list(t_list **list)
 	}
 }
 
-bool	is_sorted(t_list *list)
-{
-	t_list	*tmp;
-
-	tmp = list;
-	while (tmp->next)
-	{
-		if (((t_data *)tmp->content)->number > ((t_data *)tmp->next->content)->number)
-			return (false);
-		tmp = tmp->next;
-	}
-	return (true);
-}
-
 void	reverse_list(t_list **list_a, t_list **list_b)
 {
 	while (*list_a)
@@ -200,7 +186,17 @@ void	reverse_list(t_list **list_a, t_list **list_b)
 		push_node(list_b, list_a);
 }
 
-void	sort_list(t_list **list_a, t_list **list_b)
+int	ascending(int a, int b)
+{
+	return (a < b);
+}
+
+int	descending(int a, int b)
+{
+	return (a > b);
+}
+
+void	sort_list(t_list **list_a, t_list **list_b, int (*f)(int, int))
 {
 	t_list	*max_node;
 	t_list	*tmp;
@@ -211,7 +207,7 @@ void	sort_list(t_list **list_a, t_list **list_b)
 		tmp = (*list_a)->next;
 		while (tmp)
 		{
-			if (((t_data *)tmp->content)->number < ((t_data *)max_node->content)->number)
+			if (f(((t_data *)tmp->content)->number, ((t_data *)max_node->content)->number))
 				max_node = tmp;
 			tmp = tmp->next;
 		}
@@ -265,7 +261,9 @@ int	main(void)
 		add_node_end(&list_a, node);
 	}
 	display_list(list_a);
-	sort_list(&list_a, &list_b);
+	sort_list(&list_a, &list_b, ascending);
+	display_list(list_a);
+	sort_list(&list_a, &list_b, descending);
 	display_list(list_a);
 	clear_list(&list_a);
 	clear_list(&list_b);
