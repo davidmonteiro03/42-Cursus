@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/11 21:47:10 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/12 21:40:53 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,12 +34,14 @@ SRCS			= main.c \
 					src/exit.c \
 					src/free.c \
 					src/init.c \
+					src/parser/parse_config.c \
 					src/parser/parse_file.c \
 					src/parser/parse_info.c \
 					src/parser/parse_input.c \
 					src/utils/atol.c \
 					src/utils/buildfree.c \
 					src/utils/display_file.c \
+					src/utils/get_lines.c \
 					src/utils/get_size.c \
 					src/utils/free.c \
 					src/utils/rgb_to_hex.c \

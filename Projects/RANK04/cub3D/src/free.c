@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:41:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 19:25:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/12 19:40:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	free_file(t_file file)
 {
 	if (file.filename)
 		free(file.filename);
-	if (file.content && *file.content)
+	if (file.content)
 		multiple_free("%b", file.content);
-	else if (file.content)
-		free(file.content);
 }

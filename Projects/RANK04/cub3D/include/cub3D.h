@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/11 22:16:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/12 22:28:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,22 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 
+// MACROS
+# define MAP_CHARSET "01NSEW"
+
 // ERRORS
 # define ERROR_INPUT "Invalid input"
 # define ERROR_EXTENSION "Invalid extension"
 # define ERROR_LENGTH "Invalid length in given argument"
-# define ERROR_EMPTY "Empty file"
-# define ERROR_FILE "Error in file content"
+# define ERROR_FILE "Invalid file content"
+# define ERROR_MAP "Invalid map"
+# define ERROR_CONFIG "Invalid configuration"
 
 typedef struct s_info
 {
-	int	pos_start;
-	int	pos_end;
-	int	count;
+	int		pos_start;
+	int		pos_end;
+	char	*content;
 }t_info;
 
 typedef struct s_file
@@ -84,14 +88,19 @@ t_cub			*cub_init(void);
 /*                                   PARSER                                   */
 /* ************************************************************************** */
 
+// parse config
+void			cub_check_config_info(t_cub *cub, t_info config_info);
+
 // parse file
 void			cub_check_file_content(t_cub *cub);
 
 // parse info
+void			cub_check_mixes(t_cub *cub, int start, int end, bool flag);
 int				cub_check_mapline(char *line, char *charset, int i);
 void			cub_check_maps(char **file_content, int i, t_info *map_info);
 void			cub_check_config(char **file_content, int i, \
 	t_info *config_info);
+void			cub_check_data(t_cub *cub);
 
 // parse input
 char			*cub_check_extension(t_cub *cub, char *arg, char *extension);
@@ -111,7 +120,11 @@ char			*cub_buildfree(char *s1, char *s2, \
 // display file content
 void			cub_display_strs(char **file_content, int start, int end);
 
+// get lines
+char			**cub_get_lines(char **content, int start, int end);
+
 // get num
+bool			cub_dif_char_in(char *str, char *charset);
 int				cub_get_num_chars(char *str, char c);
 int				cub_strs_size(char **strs);
 

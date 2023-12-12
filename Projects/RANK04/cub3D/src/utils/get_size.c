@@ -6,11 +6,22 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:24:45 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/10 13:45:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/12 21:48:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+bool	cub_dif_char_in(char *str, char *charset)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (!ft_strchr(charset, str[i]))
+			return (false);
+	return (true);
+}
 
 int	cub_get_num_chars(char *str, char c)
 {
