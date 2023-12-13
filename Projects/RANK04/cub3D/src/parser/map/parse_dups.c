@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_config.c                                     :+:      :+:    :+:   */
+/*   parse_dups.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 21:30:20 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 13:13:20 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/13 14:43:22 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/13 14:43:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3D.h"
 
-void	cub_check_config_info(t_cub *cub, t_info config_info)
+void	cub_check_multiple_maps(t_cub *cub, int start, int end)
 {
-	cub_check_config_args(cub, config_info.pos_start, config_info.pos_end);
-	cub_check_config_content(cub, config_info.pos_start, config_info.pos_end);
-	cub_check_config_duplicates(cub, config_info.pos_start, \
-		config_info.pos_end);
-	cub_check_config_textures(cub, config_info.pos_start, config_info.pos_end);
-	cub_check_config_colors(cub, config_info.pos_start, config_info.pos_end);
+	bool	flag;
+
+	flag = false;
+	while (start <= end)
+	{
+		if (!*cub->config.content[start] || \
+			cub_dif_char_in(cub->config.content[start], " \t"))
+		{
+			flag = true;
+			start++;
+			continue ;
+		}
+		if (flag)
+			cub_error_file(cub, ERROR_MAP, false);
+		start++;
+	}
 }

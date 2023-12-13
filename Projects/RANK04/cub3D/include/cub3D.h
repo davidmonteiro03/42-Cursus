@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 12:49:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:43:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@
 # define ERROR_FILE "Invalid file content"
 # define ERROR_MAP "Invalid map"
 # define ERROR_CONFIG "Invalid configuration"
+# define ERROR_TEXTURES "Invalid textures configuration"
+# define ERROR_XPM "XPM file not found or invalid format"
+# define ERROR_COLOR "Invalid color configuration"
 
 typedef struct s_count
 {
@@ -118,6 +121,10 @@ t_cub			*cub_init(void);
 void			cub_check_config_arg(t_cub *cub, char *str);
 void			cub_check_config_args(t_cub *cub, int start, int end);
 
+// // parse colors
+void			cub_check_color_args(t_cub *cub, char *type, char *line);
+void			cub_check_config_colors(t_cub *cub, int start, int end);
+
 // // parse config
 void			cub_check_config_info(t_cub *cub, t_info config_info);
 
@@ -135,6 +142,13 @@ void			cub_check_config_content(t_cub *cub, int start, int end);
 bool			cub_check_texture(char *texture, char *extension);
 void			cub_check_texture_args(t_cub *cub, char *type, char *line);
 void			cub_check_config_textures(t_cub *cub, int start, int end);
+
+// map
+// // parse dups
+void			cub_check_multiple_maps(t_cub *cub, int start, int end);
+
+// // parse map
+void			cub_check_map_info(t_cub *cub, t_info map_info);
 
 // parse file
 void			cub_check_file_content(t_cub *cub);

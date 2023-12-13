@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:49:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 12:52:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 13:33:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,12 @@ bool	cub_check_texture(char *texture, char *extension)
 		return (free(input_extension), false);
 	free(input_extension);
 	tmp.mlx = mlx_init();
-	tmp.img.path = texture;
-	tmp.img.img = mlx_xpm_file_to_image(tmp.mlx, tmp.img.path, \
+	tmp.img.img = mlx_xpm_file_to_image(tmp.mlx, texture, \
 		&tmp.img.width, &tmp.img.height);
 	if (!tmp.img.img)
-		return (mlx_destroy_image(tmp.mlx, tmp.img.img), \
-			mlx_destroy_display(tmp.mlx), free(tmp.mlx), false);
-	return (mlx_destroy_image(tmp.mlx, tmp.img.img), \
-		mlx_destroy_display(tmp.mlx), free(tmp.mlx), true);
+		return (mlx_destroy_display(tmp.mlx), free(tmp.mlx), false);
+	mlx_destroy_image(tmp.mlx, tmp.img.img);
+	return (mlx_destroy_display(tmp.mlx), free(tmp.mlx), true);
 }
 
 void	cub_check_texture_args(t_cub *cub, char *type, char *line)
@@ -49,11 +47,12 @@ void	cub_check_texture_args(t_cub *cub, char *type, char *line)
 	args = cub_get_args(line);
 	size = cub_strs_size(args);
 	if (size != 2)
-		return (multiple_free("%b", args), cub_error_file(cub, ERROR_CONFIG, false));
+		return (multiple_free("%b", args), \
+			cub_error_file(cub, ERROR_TEXTURES, false));
 	texture = ft_strdup(args[1]);
 	multiple_free("%b", args);
 	if (!cub_check_texture(texture, ".xpm"))
-		return (free(texture), cub_error_file(cub, ERROR_CONFIG, false));
+		return (free(texture), cub_error_file(cub, ERROR_XPM, false));
 	free(texture);
 }
 

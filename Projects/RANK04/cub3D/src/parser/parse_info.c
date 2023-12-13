@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:46:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 12:15:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:19:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void	cub_check_data(t_cub *cub)
 	cub_check_mixes(cub, cub->map_info.pos_start, cub->map_info.pos_end, \
 		false);
 	cub_check_config_info(cub, cub->config_info);
+	cub_check_map_info(cub, cub->map_info);
 }
