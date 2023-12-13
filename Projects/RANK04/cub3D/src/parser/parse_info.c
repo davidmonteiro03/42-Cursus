@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 21:46:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/12 22:30:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:15:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	cub_check_config(char **file_content, int i, t_info *config_info)
 void	cub_check_mixes(t_cub *cub, int start, int end, bool flag)
 {
 	while (start <= end)
-		if (cub_check_mapline(cub->config.content[start++], MAP_CHARSET, -1) == flag)
+		if (cub_check_mapline(cub->config.content[start++], MAP_CHARSET, -1) \
+			== flag)
 			cub_error_file(cub, ERROR_FILE, false);
 }
 
@@ -81,7 +82,9 @@ void	cub_check_data(t_cub *cub)
 		cub_error_file(cub, ERROR_FILE, false);
 	if (cub->config_info.pos_start > cub->map_info.pos_start)
 		cub_error_file(cub, ERROR_FILE, false);
-	cub_check_mixes(cub, cub->config_info.pos_start, cub->config_info.pos_end, true);
-	cub_check_mixes(cub, cub->map_info.pos_start, cub->map_info.pos_end, false);
+	cub_check_mixes(cub, cub->config_info.pos_start, cub->config_info.pos_end, \
+		true);
+	cub_check_mixes(cub, cub->map_info.pos_start, cub->map_info.pos_end, \
+		false);
 	cub_check_config_info(cub, cub->config_info);
 }

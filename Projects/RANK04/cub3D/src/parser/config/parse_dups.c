@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:09:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 12:10:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:28:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,5 @@ void	cub_check_config_duplicates(t_cub *cub, int start, int end)
 	}
 	if (!(count.north == 1 && count.south == 1 && count.west == 1 && \
 		count.east == 1 && count.floor == 1 && count.ceiling == 1))
-		cub_error_file(cub, ERROR_FILE, false);
+		cub_error_file(cub, ERROR_CONFIG, false);
 }

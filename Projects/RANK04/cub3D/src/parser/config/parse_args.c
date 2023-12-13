@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:36:23 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 11:45:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:28:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	cub_check_config_arg(t_cub *cub, char *str)
 	size = cub_strs_size(tmp);
 	multiple_free("%b", tmp);
 	if (size < 2)
-		cub_error_file(cub, ERROR_FILE, false);
+		cub_error_file(cub, ERROR_CONFIG, false);
 }
 
 void	cub_check_config_args(t_cub *cub, int start, int end)

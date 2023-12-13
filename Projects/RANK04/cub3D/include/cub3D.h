@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 12:10:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:49:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ typedef struct s_count
 	int	floor;
 	int	ceiling;
 }t_count;
+
+typedef struct s_img
+{
+	char	*path;
+	void	*img;
+	int		width;
+	int		height;
+}t_img;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+}t_mlx;
 
 typedef struct s_info
 {
@@ -115,6 +130,11 @@ void			cub_check_config_duplicates(t_cub *cub, int start, int end);
 bool			cub_config_type(char *type);
 void			cub_check_config_type(t_cub *cub, char *str);
 void			cub_check_config_content(t_cub *cub, int start, int end);
+
+// // parse textures
+bool			cub_check_texture(char *texture, char *extension);
+void			cub_check_texture_args(t_cub *cub, char *type, char *line);
+void			cub_check_config_textures(t_cub *cub, int start, int end);
 
 // parse file
 void			cub_check_file_content(t_cub *cub);
