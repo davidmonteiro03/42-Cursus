@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 12:49:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 12:50:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:52:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ bool	cub_check_texture(char *texture, char *extension)
 	if (!tmp.img.img)
 		return (mlx_destroy_image(tmp.mlx, tmp.img.img), \
 			mlx_destroy_display(tmp.mlx), free(tmp.mlx), false);
-	return mlx_destroy_image(tmp.mlx, tmp.img.img), \
-		(mlx_destroy_display(tmp.mlx), free(tmp.mlx), true);
+	return (mlx_destroy_image(tmp.mlx, tmp.img.img), \
+		mlx_destroy_display(tmp.mlx), free(tmp.mlx), true);
 }
 
 void	cub_check_texture_args(t_cub *cub, char *type, char *line)
