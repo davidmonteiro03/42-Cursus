@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 19:16:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 19:46:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:12:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	free_pnts(void **pnts)
 		return ;
 	i = -1;
 	while (pnts[++i])
-		free(pnts[i]);
-	free(pnts);
+		simplefree(pnts[i]);
+	simplefree(pnts);
 }
 
 void	free_ppnts(void ***ppnts)
@@ -40,7 +40,7 @@ void	free_ppnts(void ***ppnts)
 	i = -1;
 	while (ppnts[++i])
 		free_pnts(ppnts[i]);
-	free(ppnts);
+	simplefree(ppnts);
 }
 
 void	type_free(va_list args, const char format)
