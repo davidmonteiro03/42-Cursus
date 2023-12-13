@@ -6,11 +6,24 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:44:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/12 18:52:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:05:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+t_count	cub_count_init(void)
+{
+	t_count	count;
+
+	count.north = 0;
+	count.south = 0;
+	count.west = 0;
+	count.east = 0;
+	count.floor = 0;
+	count.ceiling = 0;
+	return (count);
+}
 
 t_info	cub_info_init(void)
 {

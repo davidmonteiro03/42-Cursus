@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/12 22:28:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 12:10:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,20 @@
 # define ERROR_MAP "Invalid map"
 # define ERROR_CONFIG "Invalid configuration"
 
+typedef struct s_count
+{
+	int	north;
+	int	south;
+	int	west;
+	int	east;
+	int	floor;
+	int	ceiling;
+}t_count;
+
 typedef struct s_info
 {
 	int		pos_start;
 	int		pos_end;
-	char	*content;
 }t_info;
 
 typedef struct s_file
@@ -80,6 +89,7 @@ void			free_file(t_file file);
 /* ************************************************************************** */
 
 // init
+t_count			cub_count_init(void);
 t_info			cub_info_init(void);
 t_file			cub_file_init(void);
 t_cub			*cub_init(void);
@@ -88,8 +98,23 @@ t_cub			*cub_init(void);
 /*                                   PARSER                                   */
 /* ************************************************************************** */
 
-// parse config
+// config
+// // parse args
+void			cub_check_config_arg(t_cub *cub, char *str);
+void			cub_check_config_args(t_cub *cub, int start, int end);
+
+// // parse config
 void			cub_check_config_info(t_cub *cub, t_info config_info);
+
+// // parse duplicates
+char			*cub_get_config_type(char *str);
+void			cub_update_count(t_count *count, char *type);
+void			cub_check_config_duplicates(t_cub *cub, int start, int end);
+
+// // parse type
+bool			cub_config_type(char *type);
+void			cub_check_config_type(t_cub *cub, char *str);
+void			cub_check_config_content(t_cub *cub, int start, int end);
 
 // parse file
 void			cub_check_file_content(t_cub *cub);
@@ -121,6 +146,7 @@ char			*cub_buildfree(char *s1, char *s2, \
 void			cub_display_strs(char **file_content, int start, int end);
 
 // get lines
+char			**cub_get_args(char *str);
 char			**cub_get_lines(char **content, int start, int end);
 
 // get num
