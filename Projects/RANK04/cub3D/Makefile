@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/13 14:44:00 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/13 17:00:48 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,13 +45,13 @@ SRCS			= main.c \
 					src/parser/parse_file.c \
 					src/parser/parse_info.c \
 					src/parser/parse_input.c \
+					src/setup/set_config.c \
 					src/utils/atol.c \
 					src/utils/buildfree.c \
 					src/utils/display_file.c \
 					src/utils/get_lines.c \
 					src/utils/get_size.c \
 					src/utils/free.c \
-					src/utils/rgb_to_hex.c \
 					src/utils/strcmp.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))

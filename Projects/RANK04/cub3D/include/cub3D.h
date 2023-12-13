@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 14:43:40 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:00:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,19 @@
 # define ERROR_XPM "XPM file not found or invalid format"
 # define ERROR_COLOR "Invalid color configuration"
 
+typedef struct s_info
+{
+	int		pos_start;
+	int		pos_end;
+}t_info;
+
+typedef struct s_file
+{
+	int		fd;
+	char	*filename;
+	char	**content;
+}t_file;
+
 typedef struct s_count
 {
 	int	north;
@@ -58,24 +71,31 @@ typedef struct s_mlx
 	t_img	img;
 }t_mlx;
 
-typedef struct s_info
+typedef struct s_directions
 {
-	int		pos_start;
-	int		pos_end;
-}t_info;
+	t_img	north;
+	t_img	south;
+	t_img	west;
+	t_img	east;
+}t_directions;
 
-typedef struct s_file
+typedef struct s_color
 {
-	int		fd;
-	char	*filename;
-	char	**content;
-}t_file;
+	int				red;
+	int				green;
+	int				blue;
+	unsigned long	hex;
+}t_color;
 
 typedef struct s_cub
 {
-	t_file	config;
-	t_info	map_info;
-	t_info	config_info;
+	t_file			config;
+	t_info			map_info;
+	t_info			config_info;
+	t_mlx			mlx;
+	t_directions	directions;
+	t_color			floor;
+	t_color			ceiling;
 }t_cub;
 
 /* ************************************************************************** */
@@ -100,6 +120,7 @@ void			cub_error_file(t_cub *cub, char *file, bool perror_flag);
 /* ************************************************************************** */
 
 // free_file
+void			free_img(t_img img);
 void			free_file(t_file file);
 
 /* ************************************************************************** */
@@ -107,6 +128,7 @@ void			free_file(t_file file);
 /* ************************************************************************** */
 
 // init
+t_img			cub_img_init(char *path);
 t_count			cub_count_init(void);
 t_info			cub_info_init(void);
 t_file			cub_file_init(void);
@@ -166,6 +188,13 @@ char			*cub_check_extension(t_cub *cub, char *arg, char *extension);
 void			cub_check_input(t_cub *cub, int argc, char **argv);
 
 /* ************************************************************************** */
+/*                                    SETUP                                   */
+/* ************************************************************************** */
+
+// config
+void			cub_set_config(t_cub *cub);
+
+/* ************************************************************************** */
 /*                                    UTILS                                   */
 /* ************************************************************************** */
 
@@ -190,9 +219,6 @@ int				cub_strs_size(char **strs);
 
 // multiple free
 void			multiple_free(const char *format, ...);
-
-// rgb to hex
-unsigned long	cub_rgb_to_hex(int red, int green, int blue);
 
 // strcmp
 int				cub_strcmp(const char *s1, const char *s2);

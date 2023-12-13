@@ -6,11 +6,22 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:44:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 13:12:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:45:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+t_img	cub_img_init(char *path)
+{
+	t_img	img;
+
+	img.height = 0;
+	img.width = 0;
+	img.path = ft_strdup(path);
+	img.img = NULL;
+	return (img);
+}
 
 t_count	cub_count_init(void)
 {
