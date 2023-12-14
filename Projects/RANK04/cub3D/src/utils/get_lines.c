@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:48:24 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 11:44:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:57:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,29 @@ char	**cub_get_args(char *str)
 	tmp = ft_split(buf, '\t');
 	free(buf);
 	return (tmp);
+}
+
+char	**cub_copy(char **map, int i, int max_len)
+{
+	char	**save;
+	int		j;
+
+	save = (char **)malloc(sizeof(char *) * (cub_strs_size(map) + 1));
+	while (map[++i])
+	{
+		save[i] = (char *)malloc(sizeof(char) * (max_len + 1));
+		j = -1;
+		while (++j < max_len)
+		{
+			if (j < (int)ft_strlen(map[i]))
+				save[i][j] = map[i][j];
+			else
+				save[i][j] = ' ';
+		}
+		save[i][j] = '\0';
+	}
+	save[i] = NULL;
+	return (save);
 }
 
 char	**cub_get_lines(char **content, int start, int end)

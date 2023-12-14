@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 17:00:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/14 15:03:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define ERROR_TEXTURES "Invalid textures configuration"
 # define ERROR_XPM "XPM file not found or invalid format"
 # define ERROR_COLOR "Invalid color configuration"
+# define ERROR_WALLS "Map must be surrounded by walls"
 
 typedef struct s_info
 {
@@ -45,6 +46,12 @@ typedef struct s_file
 	char	*filename;
 	char	**content;
 }t_file;
+
+typedef struct s_coord
+{
+	int	x;
+	int	y;
+}t_coord;
 
 typedef struct s_count
 {
@@ -166,6 +173,9 @@ void			cub_check_texture_args(t_cub *cub, char *type, char *line);
 void			cub_check_config_textures(t_cub *cub, int start, int end);
 
 // map
+// // parse border
+void			cub_check_border(t_cub *cub, int start, int end);
+
 // // parse dups
 void			cub_check_multiple_maps(t_cub *cub, int start, int end);
 
@@ -210,9 +220,11 @@ void			cub_display_strs(char **file_content, int start, int end);
 
 // get lines
 char			**cub_get_args(char *str);
+char			**cub_copy(char **map, int i, int max_len);
 char			**cub_get_lines(char **content, int start, int end);
 
-// get num
+// get size
+size_t			cub_get_max_len(char **map, int i);
 bool			cub_dif_char_in(char *str, char *charset);
 int				cub_get_num_chars(char *str, char c);
 int				cub_strs_size(char **strs);
