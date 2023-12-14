@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/14 15:03:31 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/14 21:48:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,18 @@
 # define ERROR_XPM "XPM file not found or invalid format"
 # define ERROR_COLOR "Invalid color configuration"
 # define ERROR_WALLS "Map must be surrounded by walls"
+
+typedef struct s_parse
+{
+	int	up;
+	int	left;
+	int	right;
+	int	down;
+	int	spc_up;
+	int	spc_left;
+	int	spc_right;
+	int	spc_down;
+}t_parse;
 
 typedef struct s_info
 {
@@ -173,6 +185,23 @@ void			cub_check_texture_args(t_cub *cub, char *type, char *line);
 void			cub_check_config_textures(t_cub *cub, int start, int end);
 
 // map
+// // parse border utils
+void			cub_update_parse_up(t_parse *parse, char **strs, \
+	int k, int l);
+void			cub_update_parse_left(t_parse *parse, char **strs, \
+	int k, int l);
+void			cub_update_parse_right(t_parse *parse, char **strs, \
+	int k, int l);
+void			cub_update_parse_down(t_parse *parse, char **strs, \
+	int k, int l);
+void			cub_little_update(char **strs);
+
+// // parse border utils2
+t_parse			cub_init_parse(void);
+bool			cub_check_space(t_parse parse, char c);
+void			cub_check_char(char **strs, int i, int j);
+void			cub_prepare_copy(char **strs, int i);
+
 // // parse border
 void			cub_check_border(t_cub *cub, int start, int end);
 
