@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/14 21:48:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 09:21:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define ERROR_XPM "XPM file not found or invalid format"
 # define ERROR_COLOR "Invalid color configuration"
 # define ERROR_WALLS "Map must be surrounded by walls"
+# define ERROR_PLAYER_NONE "Map must contain a player"
+# define ERROR_PLAYER_MULTIPLE "Map must contain only one player"
 
 typedef struct s_parse
 {
@@ -45,6 +47,15 @@ typedef struct s_parse
 	int	spc_right;
 	int	spc_down;
 }t_parse;
+
+typedef struct s_adj
+{
+	char	up;
+	char	left;
+	char	center;
+	char	right;
+	char	down;
+}t_adj;
 
 typedef struct s_info
 {
@@ -202,14 +213,44 @@ bool			cub_check_space(t_parse parse, char c);
 void			cub_check_char(char **strs, int i, int j);
 void			cub_prepare_copy(char **strs, int i);
 
+// // parse border utils3
+bool			cub_check_char_util(t_adj adj);
+bool			cub_check_char_border(char **map, int i, int j);
+bool			cub_check_walls(char **map, int i);
+void			cub_check_border_pro(t_cub *cub, int start, int end);
+
+// // parse border utils4
+void			cub_check_1(t_adj *adj, char **map, int i, int j);
+void			cub_check_2(t_adj *adj, char **map, int i, int j);
+void			cub_check_3(t_adj *adj, char **map, int i, int j);
+
+// // parse border utils5
+void			cub_update_1(t_adj *adj, char **map, int i, int j);
+void			cub_update_2(t_adj *adj, char **map, int i, int j);
+void			cub_update_3(t_adj *adj, char **map, int i, int j);
+
+// // parse border utils6
+void			cub_update_4(t_adj *adj, char **map, int i, int j);
+void			cub_update_5(t_adj *adj, char **map, int i, int j);
+void			cub_update_6(t_adj *adj, char **map, int i, int j);
+
+// // parse border utils7
+void			cub_update_7(t_adj *adj, char **map, int i, int j);
+void			cub_update_8(t_adj *adj, char **map, int i, int j);
+void			cub_update_9(t_adj *adj, char **map, int i, int j);
+
 // // parse border
 void			cub_check_border(t_cub *cub, int start, int end);
 
 // // parse dups
+void			cub_check_player(t_cub *cub, int start, int end);
 void			cub_check_multiple_maps(t_cub *cub, int start, int end);
 
 // // parse map
 void			cub_check_map_info(t_cub *cub, t_info map_info);
+
+// // parse player
+void			cub_check_player(t_cub *cub, int start, int end);
 
 // parse file
 void			cub_check_file_content(t_cub *cub);

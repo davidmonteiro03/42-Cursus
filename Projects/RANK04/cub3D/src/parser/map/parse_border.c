@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:52:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/14 21:51:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 08:29:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	cub_check_border(t_cub *cub, int start, int end)
 {
 	t_coord	coord;
 	char	**map;
-	char	**tmp;
 	char	**copy;
 
 	map = cub_get_lines(cub->config.content, start, end);
@@ -77,12 +76,4 @@ void	cub_check_border(t_cub *cub, int start, int end)
 		coord = cub_get_coord(copy, -1);
 	}
 	multiple_free("%b", copy);
-	map = cub_get_lines(cub->config.content, start, end);
-	tmp = map;
-	map = cub_copy(map, -1, cub_get_max_len(map, -1));
-	multiple_free("%b", tmp);
-	cub_little_update(map);
-	cub_prepare_copy(map, -1);
-	cub_display_strs(map, 0, cub_strs_size(map) - 1);
-	multiple_free("%b", map);
 }

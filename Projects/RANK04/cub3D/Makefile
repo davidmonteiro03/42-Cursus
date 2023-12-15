@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/14 21:38:21 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/15 09:17:16 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,15 @@ SRCS			= main.c \
 					src/parser/config/parse_type.c \
 					src/parser/map/parse_border_utils.c \
 					src/parser/map/parse_border_utils2.c \
+					src/parser/map/parse_border_utils3.c \
+					src/parser/map/parse_border_utils4.c \
+					src/parser/map/parse_border_utils5.c \
+					src/parser/map/parse_border_utils6.c \
+					src/parser/map/parse_border_utils7.c \
 					src/parser/map/parse_border.c \
 					src/parser/map/parse_dups.c \
 					src/parser/map/parse_map.c \
+					src/parser/map/parse_player.c \
 					src/parser/parse_file.c \
 					src/parser/parse_info.c \
 					src/parser/parse_input.c \
