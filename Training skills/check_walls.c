@@ -6,17 +6,30 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:24:21 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/14 01:13:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/14 11:34:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
-int	get_max_len(char **map, int i)
+typedef struct s_adj
 {
-	int	max_len;
+	char	a1;
+	char	a2;
+	char	a3;
+	char	b1;
+	char	b3;
+	char	c1;
+	char	c2;
+	char	c3;
+}t_adj;
+
+size_t	get_max_len(char **map, int i)
+{
+	size_t	max_len;
 
 	max_len = 0;
 	while (map[++i])
@@ -25,26 +38,35 @@ int	get_max_len(char **map, int i)
 	return (max_len);
 }
 
+int	strs_size(char **strs)
+{
+	int	i;
+
+	i = -1;
+	while (strs[++i])
+		;
+	return (i);
+}
+
 char	**construct_map(void)
 {
 	char	**map;
 
-	map = (char **)malloc(sizeof(char *) * 15);
-	map[0] =  strdup("111     1111111111111111111111111");
-	map[1] =  strdup("101  1  1000    00110000000000001");
-	map[2] =  strdup("111 111 1011000001110000000000001");
-	map[3] =  strdup("     1  1001000000000000000000001");
-	map[4] =  strdup("111111111011000001110000000000001");
-	map[5] =  strdup("100000000011000001110111111111111");
-	map[6] =  strdup("11110111111111011100000010001");
-	map[7] =  strdup("11110111111111011101010010001");
-	map[8] =  strdup("110000     101011100000010001");
-	map[9] =  strdup("10000000000000001100000010001");
-	map[10] = strdup("10000000000000001101010010001");
-	map[11] = strdup("11000001110101011111011110N0111");
-	map[12] = strdup("11110111 1110101 101111010001");
-	map[13] = strdup("  111111 1111111 111111111111");
-	map[14] = NULL;
+	map = (char **)malloc(sizeof(char *) * 14);
+	map[0] =  strdup("        1111111111111111111111111");
+	map[1] =  strdup("       11000001000110000000000001");
+	map[2] =  strdup("        1011000001110000000000001");
+	map[3] =  strdup("        1001000000100000000001111");
+	map[4] =  strdup("111111  10110001111111111111111 ");
+	map[5] =  strdup("1111011 11111101 100000010001   ");
+	map[6] =  strdup("1111011 11111111 101010010001   ");
+	map[7] =  strdup("11000000110101011100000010001   ");
+	map[8] =  strdup("10000000000000000000000010001   ");
+	map[9] =  strdup("10000000000000011101010010001   ");
+	map[10] = strdup("1100000111010101 111011110N0111 ");
+	map[11] = strdup("11110111 1110101 101111010001   ");
+	map[12] = strdup("11111111 1111111 111111111111   ");
+	map[13] = NULL;
 	return (map);
 }
 
@@ -53,7 +75,7 @@ char	**copy(char **map, int i, int max_len)
 	char	**save;
 	int		j;
 
-	save = (char **)malloc(sizeof(char *) * 15);
+	save = (char **)malloc(sizeof(char *) * (strs_size(map) + 1));
 	while (map[++i])
 	{
 		save[i] = (char *)malloc(sizeof(char) * (max_len + 1));
@@ -71,267 +93,155 @@ char	**copy(char **map, int i, int max_len)
 	return (save);
 }
 
-int	strs_size(char **strs)
+void	update(t_adj *adj, char **strs, int i, int j)
 {
-	int	i;
-
-	i = -1;
-	while (strs[++i])
-		;
-	return (i);
+	adj->a1 = strs[i - 1][j - 1];
+	adj->a2 = strs[i - 1][j];
+	adj->a3 = strs[i - 1][j + 1];
+	adj->b1 = strs[i][j - 1];
+	adj->b3 = strs[i][j + 1];
+	adj->c1 = strs[i + 1][j - 1];
+	adj->c2 = strs[i + 1][j];
+	adj->c3 = strs[i + 1][j + 1];
 }
 
-void	check_adj(char a1, char a2, char a3, \
-	char b1, char b3, \
-	char c1, char c2, char c3)
+void	update1(t_adj *adj, char **strs, int i, int j)
 {
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		strchr(" \0", b1) && strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && !strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && !strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		!strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && !strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("+"), (void)0);
-	if (strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		strchr(" \0", b1) && strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("|"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (!strchr(" \0", a1) && !strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (!strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && !strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (!strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && !strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		!strchr(" \0", c1) && strchr(" \0", c2) && strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	if (strchr(" \0", a1) && strchr(" \0", a2) && strchr(" \0", a3) && \
-		!strchr(" \0", b1) && !strchr(" \0", b3) && \
-		strchr(" \0", c1) && strchr(" \0", c2) && !strchr(" \0", c3))
-		return (printf("-"), (void)0);
-	printf(" ");
+	adj->a1 = ' ';
+	adj->a2 = ' ';
+	adj->a3 = ' ';
+	adj->b1 = ' ';
+	adj->b3 = strs[i][j + 1];
+	adj->c1 = ' ';
+	adj->c2 = strs[i + 1][j];
+	adj->c3 = strs[i + 1][j + 1];
 }
 
-void	check_pos(char **strs, int i, int j)
+void	update2(t_adj *adj, char **strs, int i, int j)
 {
+	adj->a1 = ' ';
+	adj->a2 = ' ';
+	adj->a3 = ' ';
+	adj->b1 = strs[i][j - 1];
+	adj->b3 = ' ';
+	adj->c1 = strs[i + 1][j - 1];
+	adj->c2 = strs[i + 1][j];
+	adj->c3 = ' ';
+}
+
+void	update3(t_adj *adj, char **strs, int i, int j)
+{
+	adj->a1 = ' ';
+	adj->a2 = ' ';
+	adj->a3 = ' ';
+	adj->b1 = strs[i][j - 1];
+	adj->b3 = strs[i][j + 1];
+	adj->c1 = strs[i + 1][j - 1];
+	adj->c2 = strs[i + 1][j];
+	adj->c3 = strs[i + 1][j + 1];
+}
+
+void	update4(t_adj *adj, char **strs, int i, int j)
+{
+	adj->a1 = ' ';
+	adj->a2 = strs[i - 1][j];
+	adj->a3 = strs[i - 1][j + 1];
+	adj->b1 = ' ';
+	adj->b3 = ' ';
+	adj->c1 = ' ';
+	adj->c2 = ' ';
+	adj->c3 = ' ';
+}
+
+void	update5(t_adj *adj, char **strs, int i, int j)
+{
+	adj->a1 = strs[i - 1][j - 1];
+	adj->a2 = strs[i - 1][j];
+	adj->a3 = ' ';
+	adj->b1 = strs[i][j - 1];
+	adj->b3 = ' ';
+	adj->c1 = ' ';
+	adj->c2 = ' ';
+	adj->c3 = ' ';
+}
+
+void	update6(t_adj *adj, char **strs, int i, int j)
+{
+	adj->a1 = strs[i - 1][j - 1];
+	adj->a2 = strs[i - 1][j];
+	adj->a3 = strs[i - 1][j + 1];
+	adj->b1 = strs[i][j - 1];
+	adj->b3 = strs[i][j + 1];
+	adj->c1 = ' ';
+	adj->c2 = ' ';
+	adj->c3 = ' ';
+}
+
+void	update7(t_adj *adj, char **strs, int i, int j)
+{
+	adj->a1 = ' ';
+	adj->a2 = strs[i - 1][j];
+	adj->a3 = strs[i - 1][j + 1];
+	adj->b1 = ' ';
+	adj->b3 = strs[i][j + 1];
+	adj->c1 = ' ';
+	adj->c2 = strs[i + 1][j];
+	adj->c3 = strs[i + 1][j + 1];
+}
+
+void	update8(t_adj *adj, char **strs, int i, int j)
+{
+	adj->a1 = strs[i - 1][j - 1];
+	adj->a2 = strs[i - 1][j];
+	adj->a3 = ' ';
+	adj->b1 = strs[i][j - 1];
+	adj->b3 = ' ';
+	adj->c1 = strs[i + 1][j - 1];
+	adj->c2 = strs[i + 1][j];
+	adj->c3 = ' ';
+}
+
+bool	check_wall(t_adj adj, char c)
+{
+	if (adj.b1 == ' ' || adj.b3 == ' ' || \
+		adj.a2 == ' ' || adj.c2 == ' ')
+	{
+		if (c == '1')
+			return (true);
+		else
+			return (false);
+	}
+	return (true);
+}
+
+bool	check(char **strs, int i, int j)
+{
+	t_adj	adj;
+
 	if (i == 0)
 	{
 		if (j == 0)
-		{
-			check_adj(' ', ' ', ' ', \
-				' ', strs[i][j + 1], \
-				' ', strs[i + 1][j], strs[i + 1][j + 1]);
-			return ;
-		}
+			return (update1(&adj, strs, i, j), check_wall(adj, strs[i][j]));
 		if (j == (int)strlen(strs[i]) - 1)
-		{
-			check_adj(' ', ' ', ' ', \
-				strs[i][j - 1], ' ', \
-				strs[i + 1][j - 1], strs[i + 1][j], ' ');
-			return ;
-		}
-		check_adj(' ', ' ', ' ', \
-			strs[i][j - 1], strs[i][j + 1], \
-			strs[i + 1][j - 1], strs[i + 1][j], strs[i + 1][j + 1]);
-		return ;
+			return (update2(&adj, strs, i, j), check_wall(adj, strs[i][j]));
+		return (update3(&adj, strs, i, j), check_wall(adj, strs[i][j]));
 	}
 	if (i == (int)strs_size(strs) - 1)
 	{
 		if (j == 0)
-		{
-			check_adj(' ', strs[i - 1][j], strs[i - 1][j + 1], \
-				' ', ' ', \
-				' ', ' ', ' ');
-			return ;
-		}
+			return (update4(&adj, strs, i, j), check_wall(adj, strs[i][j]));
 		if (j == (int)strlen(strs[i]) - 1)
-		{
-			check_adj(strs[i - 1][j - 1], strs[i - 1][j], ' ', \
-				strs[i][j - 1], ' ', \
-				' ', ' ', ' ');
-			return ;
-		}
-		check_adj(strs[i - 1][j - 1], strs[i - 1][j], strs[i - 1][j + 1], \
-			strs[i][j - 1], strs[i][j + 1], \
-			' ', ' ', ' ');
-		return ;
+			return (update5(&adj, strs, i, j), check_wall(adj, strs[i][j]));
+		return (update6(&adj, strs, i, j), check_wall(adj, strs[i][j]));
 	}
 	if (j == 0)
-	{
-		check_adj(' ', strs[i - 1][j], strs[i - 1][j + 1], \
-			' ', strs[i][j + 1], \
-			' ', strs[i + 1][j], strs[i + 1][j + 1]);
-		return ;
-	}
+		return (update7(&adj, strs, i, j), check_wall(adj, strs[i][j]));
 	if (j == (int)strlen(strs[i]) - 1)
-	{
-		check_adj(strs[i - 1][j - 1], strs[i - 1][j], ' ', \
-			strs[i][j - 1], ' ', \
-			strs[i + 1][j - 1], strs[i + 1][j], ' ');
-		return ;
-	}
-	check_adj(strs[i - 1][j - 1], strs[i - 1][j], strs[i - 1][j + 1], \
-		strs[i][j - 1], strs[i][j + 1], \
-		strs[i + 1][j - 1], strs[i + 1][j], strs[i + 1][j + 1]);
+		return (update8(&adj, strs, i, j), check_wall(adj, strs[i][j]));
+	return (update(&adj, strs, i, j), check_wall(adj, strs[i][j]));
 }
 
-void	display_strs(char **strs, int i)
+bool	check_walls(char **strs, int i)
 {
 	int	j;
 
@@ -341,14 +251,12 @@ void	display_strs(char **strs, int i)
 		while (strs[i][++j])
 		{
 			if (strs[i][j] == ' ')
-			{
-				printf(" ");
 				continue ;
-			}
-			check_pos(strs, i, j);
+			if (!check(strs, i, j))
+				return (false);
 		}
-		printf("\n");
 	}
+	return (true);
 }
 
 int	main(void)
@@ -365,7 +273,10 @@ int	main(void)
 	while (map[++i])
 		free(map[i]);
 	free(map);
-	display_strs(save, -1);
+	if (check_walls(save, -1))
+		printf("OK\n");
+	else
+		printf("KO\n");
 	i = -1;
 	while (save[++i])
 		free(save[i]);
