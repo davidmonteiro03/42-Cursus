@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/04 17:52:00 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/15 11:35:15 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,4 +50,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
-

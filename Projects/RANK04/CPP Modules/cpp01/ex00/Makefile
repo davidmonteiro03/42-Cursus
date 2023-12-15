@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/05 19:13:02 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/15 11:36:01 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ CFLAGS			= -Wall -Wextra -Werror -std=c++98
 RM				= rm -rf
 
 OBJS_DIR		= obj/
+INCLUDES_DIR	= ./
 
 SRCS			= main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 
@@ -33,10 +34,10 @@ all: $(EXEC)
 $(OBJS_DIR)%.o: ./%.cpp
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
 
 $(EXEC): $(OBJS)
-	@$(CC) $(CFLAGS) $^ -o $@
+	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:
