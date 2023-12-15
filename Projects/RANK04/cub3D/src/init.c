@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:44:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/13 16:45:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:05:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,12 @@ t_cub	*cub_init(void)
 	cub = (t_cub *)malloc(sizeof(t_cub));
 	if (!cub)
 		return (NULL);
+	cub->config = cub_file_init();
 	cub->map_info = cub_info_init();
 	cub->config_info = cub_info_init();
+	cub->mlx = cub_mlx_init();
+	cub->ceiling = cub_color_init();
+	cub->floor = cub_color_init();
+	cub->map = cub_map_init();
 	return (cub);
 }

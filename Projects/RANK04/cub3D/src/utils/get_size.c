@@ -6,20 +6,36 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:24:45 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/14 11:56:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:25:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-size_t	cub_get_max_len(char **map, int i)
+size_t	cub_strlen(char *str, char c)
+{
+	size_t	i;
+	size_t	len;
+
+	len = 0;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] && str[i] != c)
+			len = i + 1;
+		i++;
+	}
+	return (len);
+}
+
+size_t	cub_get_max_len(char **map, char c, int i)
 {
 	size_t	max_len;
 
 	max_len = 0;
 	while (map[++i])
-		if (ft_strlen(map[i]) > max_len)
-			max_len = ft_strlen(map[i]);
+		if (cub_strlen(map[i], c) > max_len)
+			max_len = cub_strlen(map[i], c);
 	return (max_len);
 }
 

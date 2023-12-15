@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 18:36:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 15:36:06 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/15 15:40:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
-int	cub_exit(t_cub *cub)
+void	cub_mlx(t_cub *cub)
 {
-	free_mlx(cub->mlx);
-	free_img(cub->directions.north);
-	free_img(cub->directions.south);
-	free_img(cub->directions.west);
-	free_img(cub->directions.east);
-	free_file(cub->config);
-	free_map(cub->map);
-	free(cub);
-	exit(0);
+	cub->mlx.mlx = mlx_init();
+	cub->mlx.win = mlx_new_window(cub->mlx.mlx, cub->map.width * 32, \
+		cub->map.height * 32, "cub3D");
+	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_key_handler, cub);
+	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);
+	mlx_loop(cub->mlx.mlx);
 }

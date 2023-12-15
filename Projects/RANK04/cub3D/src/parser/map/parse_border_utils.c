@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:19:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/14 21:32:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 14:13:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,7 @@ void	cub_little_update(char **strs)
 	{
 		j = -1;
 		while (strs[i][++j])
-		{
 			if (strs[i][j] == ' ')
 				strs[i][j] = '-';
-		}
 	}
 }

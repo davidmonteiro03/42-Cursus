@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 18:36:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 15:36:06 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/15 15:40:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3D.h"
+#include "../../include/cub3D.h"
 
-int	cub_exit(t_cub *cub)
+int	cub_key_handler(int keycode, t_cub *cub)
 {
-	free_mlx(cub->mlx);
-	free_img(cub->directions.north);
-	free_img(cub->directions.south);
-	free_img(cub->directions.west);
-	free_img(cub->directions.east);
-	free_file(cub->config);
-	free_map(cub->map);
-	free(cub);
-	exit(0);
+	if (keycode == XK_Escape)
+		cub_exit(cub);
+	return (0);
 }

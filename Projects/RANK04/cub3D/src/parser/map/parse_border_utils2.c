@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 21:37:59 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/14 21:48:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 12:27:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ t_parse	cub_init_parse(void)
 	return (parse);
 }
 
-bool	cub_check_space(t_parse parse, char c)
+bool	cub_check_space(t_parse parse, char **strs, int i, int j)
 {
 	return (parse.up != parse.spc_up && parse.left != parse.spc_left && \
 		parse.right != parse.spc_right && parse.down != parse.spc_down && \
-		c == '-');
+		strs[i][j] == '-');
 }
 
 void	cub_check_char(char **strs, int i, int j)
@@ -59,7 +59,7 @@ void	cub_check_char(char **strs, int i, int j)
 				cub_update_parse_down(&parse, strs, k, l);
 		}
 	}
-	if (cub_check_space(parse, strs[i][j]))
+	if (cub_check_space(parse, strs, i, j))
 		strs[i][j] = ' ';
 }
 

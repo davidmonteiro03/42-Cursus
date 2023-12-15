@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 09:21:31 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:40:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,13 @@ typedef struct s_color
 	unsigned long	hex;
 }t_color;
 
+typedef struct s_map
+{
+	char	**map;
+	int		height;
+	int		width;
+}t_map;
+
 typedef struct s_cub
 {
 	t_file			config;
@@ -126,6 +133,7 @@ typedef struct s_cub
 	t_directions	directions;
 	t_color			floor;
 	t_color			ceiling;
+	t_map			map;
 }t_cub;
 
 /* ************************************************************************** */
@@ -133,7 +141,7 @@ typedef struct s_cub
 /* ************************************************************************** */
 
 // cub exit
-void			cub_exit(t_cub *cub);
+int				cub_exit(t_cub *cub);
 
 /* ************************************************************************** */
 /*                                   ERRORS                                   */
@@ -151,7 +159,9 @@ void			cub_error_file(t_cub *cub, char *file, bool perror_flag);
 
 // free_file
 void			free_img(t_img img);
+void			free_map(t_map map);
 void			free_file(t_file file);
+void			free_mlx(t_mlx mlx);
 
 /* ************************************************************************** */
 /*                                    INIT                                    */
@@ -163,6 +173,21 @@ t_count			cub_count_init(void);
 t_info			cub_info_init(void);
 t_file			cub_file_init(void);
 t_cub			*cub_init(void);
+
+// init 2
+t_map			cub_map_init(void);
+t_color			cub_color_init(void);
+t_mlx			cub_mlx_init(void);
+
+/* ************************************************************************** */
+/*                                    MLX                                     */
+/* ************************************************************************** */
+
+// draw
+void			cub_mlx(t_cub *cub);
+
+// key handler
+int				cub_key_handler(int keycode, t_cub *cub);
 
 /* ************************************************************************** */
 /*                                   PARSER                                   */
@@ -209,7 +234,7 @@ void			cub_little_update(char **strs);
 
 // // parse border utils2
 t_parse			cub_init_parse(void);
-bool			cub_check_space(t_parse parse, char c);
+bool			cub_check_space(t_parse parse, char **strs, int i, int j);
 void			cub_check_char(char **strs, int i, int j);
 void			cub_prepare_copy(char **strs, int i);
 
@@ -240,6 +265,10 @@ void			cub_update_8(t_adj *adj, char **map, int i, int j);
 void			cub_update_9(t_adj *adj, char **map, int i, int j);
 
 // // parse border
+t_coord			cub_get_coord(char **map, int i);
+void			cub_flood_fill(t_cub *cub, char **map, int x, int y);
+void			cub_fix_check(char **copy, int i, int j);
+void			cub_fix_copy(char **copy);
 void			cub_check_border(t_cub *cub, int start, int end);
 
 // // parse dups
@@ -271,6 +300,9 @@ void			cub_check_input(t_cub *cub, int argc, char **argv);
 /*                                    SETUP                                   */
 /* ************************************************************************** */
 
+// map
+void			cub_set_map(t_cub *cub);
+
 // config
 void			cub_set_config(t_cub *cub);
 
@@ -294,7 +326,8 @@ char			**cub_copy(char **map, int i, int max_len);
 char			**cub_get_lines(char **content, int start, int end);
 
 // get size
-size_t			cub_get_max_len(char **map, int i);
+size_t			cub_strlen(char *str, char c);
+size_t			cub_get_max_len(char **map, char c, int i);
 bool			cub_dif_char_in(char *str, char *charset);
 int				cub_get_num_chars(char *str, char c);
 int				cub_strs_size(char **strs);
