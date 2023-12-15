@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 15:40:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:25:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,13 @@ typedef struct s_map
 	int		width;
 }t_map;
 
+typedef struct s_player
+{
+	int		x;
+	int		y;
+	char	c;
+}t_player;
+
 typedef struct s_cub
 {
 	t_file			config;
@@ -134,6 +141,7 @@ typedef struct s_cub
 	t_color			floor;
 	t_color			ceiling;
 	t_map			map;
+	t_player		player;
 }t_cub;
 
 /* ************************************************************************** */
@@ -178,12 +186,14 @@ t_cub			*cub_init(void);
 t_map			cub_map_init(void);
 t_color			cub_color_init(void);
 t_mlx			cub_mlx_init(void);
+t_player		cub_player_init(void);
 
 /* ************************************************************************** */
 /*                                    MLX                                     */
 /* ************************************************************************** */
 
 // draw
+t_player		cub_get_player_pos(char **map);
 void			cub_mlx(t_cub *cub);
 
 // key handler

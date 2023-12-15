@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:58:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 15:09:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/15 20:13:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ t_mlx	cub_mlx_init(void)
 	mlx.mlx = NULL;
 	mlx.win = NULL;
 	return (mlx);
+}
+
+t_player	cub_player_init(void)
+{
+	t_player	player;
+
+	player.x = -1;
+	player.y = -1;
+	player.c = '0';
+	return (player);
 }
