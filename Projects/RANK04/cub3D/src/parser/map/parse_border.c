@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:52:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/16 01:15:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/16 21:29:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	cub_check_border(t_cub *cub, int start, int end)
 	cub_little_update(copy);
 	cub_prepare_copy(copy, -1);
 	cub_fix_copy(copy);
-	cub_display_strs(copy, 0, cub_strs_size(copy) - 1);
 	coord = cub_get_coord(copy, -1);
 	while (coord.x != -1 && coord.y != -1)
 	{
