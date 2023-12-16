@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 11:34:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/16 19:21:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:45:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ char	*ft_strlow(char *str)
 	return (str);
 }
 
+int	strs_size(char **strs)
+{
+	int	i;
+
+	i = 0;
+	while (strs[i])
+		i++;
+	return (i);
+}
+
 void	sort_strs(char ***old, char **new, int i)
 {
 	int		j;
@@ -72,67 +82,6 @@ void	sort_strs(char ***old, char **new, int i)
 			}
 		}
 	}
-}
-
-int	read_dir(char *pattern, int count)
-{
-	DIR				*dir;
-	struct dirent	*sd;
-	struct stat		st;
-
-	dir = opendir(".");
-	if (!dir)
-		return (count);
-	while (1)
-	{
-		sd = readdir(dir);
-		if (!sd)
-			break ;
-		if (!stat(sd->d_name, &st) && sd->d_name[0] != '.' \
-			&& wild_match(sd->d_name, pattern))
-			count++;
-	}
-	if (!count)
-		return (closedir(dir), 1);
-	return (closedir(dir), count);
-}
-
-int	strs_size(char **strs)
-{
-	int	i;
-
-	i = 0;
-	while (strs[i])
-		i++;
-	return (i);
-}
-
-int	construct_args(char *pattern, int count, char ***temp)
-{
-	DIR				*dir;
-	struct dirent	*sd;
-	struct stat		st;
-
-	dir = opendir(".");
-	if (!dir)
-		return (count);
-	while (1)
-	{
-		sd = readdir(dir);
-		if (!sd)
-			break ;
-		if (!stat(sd->d_name, &st) && sd->d_name[0] != '.' \
-			&& wild_match(sd->d_name, pattern))
-			(*temp)[count++] = ft_strdup(sd->d_name);
-	}
-	if (!count)
-	{
-		(*temp)[0] = ft_strdup(pattern);
-		(*temp)[1] = NULL;
-		return (closedir(dir), 1);
-	}
-	(*temp)[count] = NULL;
-	return (closedir(dir), count);
 }
 
 char	*new_args_util(const char *src)
@@ -173,6 +122,57 @@ void	display_strs(char **strs, int i)
 			printf(" => ");
 	}
 	printf("\n");
+}
+
+int	read_dir(char *pattern, int count)
+{
+	DIR				*dir;
+	struct dirent	*sd;
+	struct stat		st;
+
+	dir = opendir(".");
+	if (!dir)
+		return (count);
+	while (1)
+	{
+		sd = readdir(dir);
+		if (!sd)
+			break ;
+		if (!stat(sd->d_name, &st) && sd->d_name[0] != '.' \
+			&& wild_match(sd->d_name, pattern))
+			count++;
+	}
+	if (!count)
+		return (closedir(dir), 1);
+	return (closedir(dir), count);
+}
+
+int	construct_args(char *pattern, int count, char ***temp)
+{
+	DIR				*dir;
+	struct dirent	*sd;
+	struct stat		st;
+
+	dir = opendir(".");
+	if (!dir)
+		return (count);
+	while (1)
+	{
+		sd = readdir(dir);
+		if (!sd)
+			break ;
+		if (!stat(sd->d_name, &st) && sd->d_name[0] != '.' \
+			&& wild_match(sd->d_name, pattern))
+			(*temp)[count++] = ft_strdup(sd->d_name);
+	}
+	if (!count)
+	{
+		(*temp)[0] = ft_strdup(pattern);
+		(*temp)[1] = NULL;
+		return (closedir(dir), 1);
+	}
+	(*temp)[count] = NULL;
+	return (closedir(dir), count);
 }
 
 t_wild	read_dir_args(char **strs, int i)
