@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 11:52:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 15:26:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/16 01:15:43 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,21 +58,27 @@ void	cub_flood_fill(t_cub *cub, char **map, int x, int y)
 		cub_flood_fill(cub, map, x, y + 1);
 }
 
-void	cub_fix_check(char **copy, int i, int j)
+bool	cub_fix_check(char **copy, int *i, int *j)
 {
 	t_adj	adj;
 
 	adj = (t_adj){'-', '-', '-', '-', '-'};
-	if (i == 0)
-		cub_check_1(&adj, copy, i, j);
-	else if (i == cub_strs_size(copy) - 1)
-		cub_check_2(&adj, copy, i, j);
+	if (*i == 0)
+		cub_check_1(&adj, copy, *i, *j);
+	else if (*i == cub_strs_size(copy) - 1)
+		cub_check_2(&adj, copy, *i, *j);
 	else
-		cub_check_3(&adj, copy, i, j);
+		cub_check_3(&adj, copy, *i, *j);
 	if ((adj.up == '-' || adj.down == '-' || \
 		adj.left == '-' || adj.right == '-') && \
-		copy[i][j] == ' ')
-		copy[i][j] = '-';
+		copy[*i][*j] == ' ')
+	{
+		copy[*i][*j] = '-';
+		*i = -1;
+		*j = -1;
+		return (true);
+	}
+	return (false);
 }
 
 void	cub_fix_copy(char **copy)
@@ -85,7 +91,8 @@ void	cub_fix_copy(char **copy)
 	{
 		j = -1;
 		while (copy[i][++j])
-			cub_fix_check(copy, i, j);
+			if (cub_fix_check(copy, &i, &j))
+				break ;
 	}
 }
 
@@ -101,6 +108,7 @@ void	cub_check_border(t_cub *cub, int start, int end)
 	cub_little_update(copy);
 	cub_prepare_copy(copy, -1);
 	cub_fix_copy(copy);
+	cub_display_strs(copy, 0, cub_strs_size(copy) - 1);
 	coord = cub_get_coord(copy, -1);
 	while (coord.x != -1 && coord.y != -1)
 	{

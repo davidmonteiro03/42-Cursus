@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 22:05:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/16 01:14:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,7 +277,7 @@ void			cub_update_9(t_adj *adj, char **map, int i, int j);
 // // parse border
 t_coord			cub_get_coord(char **map, int i);
 void			cub_flood_fill(t_cub *cub, char **map, int x, int y);
-void			cub_fix_check(char **copy, int i, int j);
+bool			cub_fix_check(char **copy, int *i, int *j);
 void			cub_fix_copy(char **copy);
 void			cub_check_border(t_cub *cub, int start, int end);
 
