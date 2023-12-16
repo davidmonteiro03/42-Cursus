@@ -6,11 +6,17 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 11:34:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/16 17:10:19 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/16 19:21:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/my_lib_6.h"
+
+typedef struct s_wild
+{
+	char	***sstrs;
+	int		total;
+}t_wild;
 
 int	ft_strscmp(const char *s1, const char *s2)
 {
@@ -169,40 +175,62 @@ void	display_strs(char **strs, int i)
 	printf("\n");
 }
 
-int	read_dir_args(char **strs, int i, int total)
+t_wild	read_dir_args(char **strs, int i)
 {
-	char	***old_args;
+	t_wild	wild;
 	char	***new_args;
 
-	old_args = (char ***)malloc(sizeof(char **) * (strs_size(strs) + 1));
-	old_args[(strs_size(strs))] = NULL;
+	wild.total = 0;
+	wild.sstrs = (char ***)malloc(sizeof(char **) * (strs_size(strs) + 1));
+	wild.sstrs[(strs_size(strs))] = NULL;
 	new_args = (char ***)malloc(sizeof(char **) * (strs_size(strs) + 1));
 	new_args[(strs_size(strs))] = NULL;
 	while (strs[++i])
 	{
-		old_args[i] = (char **)malloc(sizeof(char *) * \
+		wild.sstrs[i] = (char **)malloc(sizeof(char *) * \
 			(read_dir(strs[i], 0) + 1));
-		old_args[i][read_dir(strs[i], 0)] = NULL;
-		construct_args(strs[i], 0, &old_args[i]);
-		total += strs_size(old_args[i]);
-		new_args[i] = ft_new_args(old_args[i], strs_size(old_args[i]));
-		sort_strs(&old_args[i], new_args[i], -1);
-		display_strs(old_args[i], -1);
+		wild.sstrs[i][read_dir(strs[i], 0)] = NULL;
+		construct_args(strs[i], 0, &wild.sstrs[i]);
+		wild.total += strs_size(wild.sstrs[i]);
+		new_args[i] = ft_new_args(wild.sstrs[i], strs_size(wild.sstrs[i]));
+		sort_strs(&wild.sstrs[i], new_args[i], -1);
 	}
-	return (total);
+	multiple_free("%c", new_args);
+	return (wild);
 }
 
 char	**wild_args(char **strs)
 {
-	char	**exec_args;
+	char	**wild_args;
+	int		i;
+	int		j;
+	int		k;
+	t_wild	wild;
 
-	read_dir_args(strs, -1, 0);
-	return (NULL);
+	if (!strs)
+		return (NULL);
+	wild = read_dir_args(strs, -1);
+	wild_args = (char **)malloc(sizeof(char *) * (wild.total + 1));
+	k = 0;
+	i = -1;
+	while (wild.sstrs[++i])
+	{
+		j = -1;
+		while (wild.sstrs[i][++j])
+			wild_args[k++] = ft_strdup(wild.sstrs[i][j]);
+	}
+	wild_args[k] = NULL;
+	multiple_free("%c", wild.sstrs);
+	return (wild_args);
 }
 
 int	main(int argc, char **argv)
 {
+	char	**args;
+
 	(void)argc;
-	wild_args(argv + 1);
+	args = wild_args(argv + 1);
+	display_strs(args, -1);
+	multiple_free("%b", args);
 	return (0);
 }

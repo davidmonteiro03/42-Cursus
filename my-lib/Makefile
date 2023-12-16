@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/16 11:41:27 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/16 19:18:08 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRCS_5			= main_5.c \
 					srcs/utils_5.c
 
 SRCS_6			= main_6.c \
+					srcs/free.c \
 					srcs/wildcard_6.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
