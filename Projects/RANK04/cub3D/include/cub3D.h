@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/16 21:47:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:21:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 // MACROS
 # define MAP_CHARSET "01NSEW"
+# define M_PI 3.14159265358979323846
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"
@@ -130,6 +131,7 @@ typedef struct s_player
 	int		x;
 	int		y;
 	char	c;
+	int		angle;
 }t_player;
 
 typedef struct s_cub
@@ -194,7 +196,10 @@ t_player		cub_player_init(void);
 /* ************************************************************************** */
 
 // draw
+void			cub_draw_shape(t_mlx mlx, int x, int y, int color);
+void			cub_draw_map(t_cub *cub, char **map, int y);
 t_player		cub_get_player_pos(char **map);
+void			cub_draw_view(t_cub *cub);
 void			cub_mlx(t_cub *cub);
 
 // key handler
@@ -335,6 +340,7 @@ void			cub_display_strs(char **file_content, int start, int end);
 char			**cub_get_args(char *str);
 char			**cub_copy(char **map, int i, int max_len);
 char			**cub_get_lines(char **content, int start, int end);
+int				cub_get_angle(char c);
 
 // get size
 size_t			cub_strlen(char *str, char c);

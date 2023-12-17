@@ -6,11 +6,43 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/16 21:54:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/17 19:27:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	cub_draw_shape(t_mlx mlx, int x, int y, int color)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < 32)
+	{
+		j = -1;
+		while (++j < 32)
+			mlx_pixel_put(mlx.mlx, mlx.win, x * 32 + j, y * 32 + i, color);
+	}
+}
+
+void	cub_draw_map(t_cub *cub, char **map, int y)
+{
+	int	x;
+
+	while (map[++y])
+	{
+		x = -1;
+		while (map[y][++x])
+		{
+			if (map[y][x] == '1')
+				cub_draw_shape(cub->mlx, x, y, cub->ceiling.hex);
+			else if (map[y][x] == '0' || map[y][x] == ' ' ||
+				ft_strchr("NSEW", map[y][x]))
+				cub_draw_shape(cub->mlx, x, y, cub->floor.hex);
+		}
+	}
+}
 
 t_player	cub_get_player_pos(char **map)
 {
@@ -27,8 +59,8 @@ t_player	cub_get_player_pos(char **map)
 		{
 			if (ft_strchr("NSEW", map[i][j]))
 			{
-				player.x = j;
-				player.y = i;
+				player.x = j * 32 + 16;
+				player.y = i * 32 + 16;
 				player.c = map[i][j];
 				return (player);
 			}
@@ -37,39 +69,30 @@ t_player	cub_get_player_pos(char **map)
 	return (player);
 }
 
-void	cub_draw_square(t_mlx *mlx, int x, int y, int color)
+void	cub_draw_view(t_cub *cub)
 {
-	int	i;
-	int	j;
-
-	i = -1;
-	while (++i < 32)
+	auto double player_x = cub->player.x;
+	auto double player_y = cub->player.y;
+	auto double view_angle = 90;
+	auto int ray_count = 1000;
+	auto int i = -1;
+	while (++i < ray_count)
 	{
-		j = -1;
-		while (++j < 32)
-			mlx_pixel_put(mlx->mlx, mlx->win, x + i, y + j, color);
-	}
-}
-
-void	cub_draw_map(t_mlx *mlx, char **map, int i)
-{
-	int	j;
-
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
+		auto double ray_angle = cub->player.angle - (view_angle / 2) + \
+			(view_angle * i / ray_count);
+		auto double ray_x = cos(ray_angle * M_PI / 180.0);
+		auto double ray_y = sin(ray_angle * M_PI / 180.0);
+		auto double x = player_x;
+		auto double y = player_y;
+		while (x >= 0 && y >= 0 && x < cub->map.width * 32 && \
+			y < cub->map.height * 32 && \
+			cub->map.map[(int)(y / 32)][(int)(x / 32)] != '1' && \
+			cub->map.map[(int)(y / 32)][(int)(x / 32)] != '-')
 		{
-			if (map[i][j] == '1')
-				cub_draw_square(mlx, j * 32, i * 32, 0xFFFFFF);
-			else if (map[i][j] == '0' || map[i][j] == ' ')
-				cub_draw_square(mlx, j * 32, i * 32, 0x444444);
-			else if (ft_strchr("NSEW", map[i][j]))
-			{
-				cub_draw_square(mlx, j * 32, i * 32, 0x444444);
-				mlx_pixel_put(mlx->mlx, mlx->win, j * 32 + 16, \
-					i * 32 + 16, 0xFF0000);
-			}
+			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
+				(int)x, (int)y, 0x666666);
+			x += ray_x * 1;
+			y += ray_y * 1;
 		}
 	}
 }
@@ -80,7 +103,9 @@ void	cub_mlx(t_cub *cub)
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx, \
 		cub->map.width * 32, cub->map.height * 32, "cub3D");
 	cub->player = cub_get_player_pos(cub->map.map);
-	cub_draw_map(&cub->mlx, cub->map.map, -1);
+	cub->player.angle = cub_get_angle(cub->player.c);
+	cub_draw_map(cub, cub->map.map, -1);
+	cub_draw_view(cub);
 	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_key_handler, cub);
 	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);
 	mlx_loop(cub->mlx.mlx);
