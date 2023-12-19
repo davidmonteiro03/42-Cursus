@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/17 19:22:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/19 16:19:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ int	cub_key_handler(int keycode, t_cub *cub)
 		return (cub_draw_map(cub, cub->map.map, -1), cub_draw_view(cub), 0);
 	}
 	else if (keycode == XK_w)
-		cub_player_move(cub, cos(cub->player.angle * M_PI / 180.0) * 2, \
-			sin(cub->player.angle * M_PI / 180.0) * 2);
+		return (cub_player_move(cub, cos(cub->player.angle * M_PI / 180) * 5, \
+			sin(cub->player.angle * M_PI / 180) * 2), 0);
 	else if (keycode == XK_s)
-		cub_player_move(cub, -cos(cub->player.angle * M_PI / 180.0) * 2, \
-			-sin(cub->player.angle * M_PI / 180.0) * 2);
-	else if (keycode == XK_d)
-		cub_player_move(cub, -sin(cub->player.angle * M_PI / 180.0) * 2, \
-			cos(cub->player.angle * M_PI / 180.0) * 2);
+		return (cub_player_move(cub, -cos(cub->player.angle * M_PI / 180) * 5, \
+			-sin(cub->player.angle * M_PI / 180) * 2), 0);
 	else if (keycode == XK_a)
-		cub_player_move(cub, sin(cub->player.angle * M_PI / 180.0) * 2, \
-			-cos(cub->player.angle * M_PI / 180.0) * 2);
+		return (cub_player_move(cub, -cos((cub->player.angle + 90) * M_PI / \
+			180) * 5, -sin((cub->player.angle + 90) * M_PI / 180) * 2), 0);
+	else if (keycode == XK_d)
+		return (cub_player_move(cub, cos((cub->player.angle + 90) * M_PI / \
+			180) * 5, sin((cub->player.angle + 90) * M_PI / 180) * 2), 0);
 	else if (keycode == XK_Escape)
 		cub_exit(cub);
 	return (0);

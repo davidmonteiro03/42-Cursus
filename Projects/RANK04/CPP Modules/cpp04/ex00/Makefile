@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/19 07:52:02 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/19 16:24:57 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ RM				= rm -rf
 OBJS_DIR		= obj/
 INCLUDES_DIR	= ./
 
-SRCS			= main.cpp ClapTrap.cpp
+SRCS			= main.cpp Animal.cpp
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
 
