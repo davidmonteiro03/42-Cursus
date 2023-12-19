@@ -1,55 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:28:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 20:44:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/19 20:46:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
-Animal::Animal(void) : _type("animal")
+AAnimal::AAnimal(void) : _type("aanimal")
 {
 	std::cout << this->_type << " created" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+AAnimal::AAnimal(std::string type) : _type(type)
 {
-	std::cout << "Default Animal " << this->_type << " created" << std::endl;
+	std::cout << "Default AAnimal " << this->_type << " created" << std::endl;
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
-	std::cout << "Animal " << this->_type << " destroyed" << std::endl;
+	std::cout << "AAnimal " << this->_type << " destroyed" << std::endl;
 }
 
-Animal::Animal(const Animal &ref)
+AAnimal::AAnimal(const AAnimal &ref)
 {
-	std::cout << "Animal " << ref._type << " copied to a new animal";
+	std::cout << "AAnimal " << ref._type << " copied to a new aanimal";
 	std::cout << std::endl;
 	*this = ref;
 }
 
-Animal&	Animal::operator=(const Animal &rhs)
+AAnimal&	AAnimal::operator=(const AAnimal &rhs)
 {
-	std::cout << "Animal " << rhs._type << " changed its value";
+	std::cout << "AAnimal " << rhs._type << " changed its value";
 	std::cout << std::endl;
 	if (this != &rhs)
 		this->_type = rhs._type;
 	return (*this);
 }
 
-void	Animal::makeSound(void) const
+void	AAnimal::makeSound(void) const
 {
-	std::cout << "What is Animal " << this->getType();
+	std::cout << "What is AAnimal " << this->getType();
 	std::cout << " saying???" << std::endl;
 }
 
-std::string	Animal::getType(void) const
+std::string	AAnimal::getType(void) const
 {
 	return (this->_type);
 }

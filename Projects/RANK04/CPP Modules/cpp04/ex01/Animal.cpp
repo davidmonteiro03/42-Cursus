@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   AAnimal.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 16:28:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 20:44:59 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/19 20:42:58 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/19 20:43:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 
-Animal::Animal(void) : _type("animal")
+Animal::Animal(void) : _type("Animal")
 {
 	std::cout << this->_type << " created" << std::endl;
 }
@@ -29,7 +29,7 @@ Animal::~Animal()
 
 Animal::Animal(const Animal &ref)
 {
-	std::cout << "Animal " << ref._type << " copied to a new animal";
+	std::cout << "Animal " << ref._type << " copied to a new Animal";
 	std::cout << std::endl;
 	*this = ref;
 }

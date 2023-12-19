@@ -1,55 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:28:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 20:44:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/19 19:53:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-Animal::Animal(void) : _type("animal")
+WrongAnimal::WrongAnimal(void) : _type("wronganimal")
 {
 	std::cout << this->_type << " created" << std::endl;
 }
 
-Animal::Animal(std::string type) : _type(type)
+WrongAnimal::WrongAnimal(std::string type) : _type(type)
 {
-	std::cout << "Default Animal " << this->_type << " created" << std::endl;
+	std::cout << "Default WrongAnimal " << this->_type << " created" << std::endl;
 }
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "Animal " << this->_type << " destroyed" << std::endl;
+	std::cout << "WrongAnimal " << this->_type << " destroyed" << std::endl;
 }
 
-Animal::Animal(const Animal &ref)
+WrongAnimal::WrongAnimal(const WrongAnimal &ref)
 {
-	std::cout << "Animal " << ref._type << " copied to a new animal";
+	std::cout << "WrongAnimal " << ref._type << " copied to a new animal";
 	std::cout << std::endl;
 	*this = ref;
 }
 
-Animal&	Animal::operator=(const Animal &rhs)
+WrongAnimal&	WrongAnimal::operator=(const WrongAnimal &rhs)
 {
-	std::cout << "Animal " << rhs._type << " changed its value";
+	std::cout << "WrongAnimal " << rhs._type << " changed its value";
 	std::cout << std::endl;
 	if (this != &rhs)
 		this->_type = rhs._type;
 	return (*this);
 }
 
-void	Animal::makeSound(void) const
+void	WrongAnimal::makeSound(void) const
 {
-	std::cout << "What is Animal " << this->getType();
-	std::cout << " saying???" << std::endl;
+	std::cout << "What is WrongAnimal " << this->getType();
+	std::cout << " saying??? (you're not even an animal)" << std::endl;
 }
 
-std::string	Animal::getType(void) const
+std::string	WrongAnimal::getType(void) const
 {
 	return (this->_type);
 }

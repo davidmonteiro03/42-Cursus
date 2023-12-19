@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/19 20:02:25 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/19 20:41:53 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,11 @@ OBJS_DIR		= obj/
 INCLUDES_DIR	= ./
 
 SRCS			= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp \
-					WrongCat.cpp
+					WrongCat.cpp Brain.cpp
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
 
-EXEC			= polymorphism
+EXEC			= animalBrains
 
 all: $(EXEC)
 

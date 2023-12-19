@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 16:25:17 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 19:07:00 by dcaetano         ###   ########.fr       */
+/*   Created: 2023/12/19 19:08:48 by dcaetano          #+#    #+#             */
+/*   Updated: 2023/12/19 20:46:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#include "Dog.hpp"
 
-# include <iostream>
-
-class Animal
+Dog::Dog(void) : AAnimal("Dog")
 {
-	protected:
-		std::string	_type;
-	public:
-		Animal(void);
-		Animal(std::string type);
-		virtual	~Animal();
-		Animal(const Animal &ref);
-		Animal& operator=(const Animal &rhs);
+	std::cout << this->_type << " created" << std::endl;
+	this->_brain = new Brain();
+}
 
-		virtual void	makeSound(void) const;
-		std::string		getType(void) const;
-};
+Dog::~Dog(void)
+{
+	delete this->_brain;
+	std::cout << this->_type << " destroyed" << std::endl;
+}
 
-#endif
+void	Dog::makeSound(void) const
+{
+	std::cout << "AAnimal " << this->getType();
+	std::cout << " said woof woof" << std::endl;
+}
