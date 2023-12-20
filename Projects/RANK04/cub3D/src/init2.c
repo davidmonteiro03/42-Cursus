@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:58:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/17 19:02:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:50:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,12 @@ t_player	cub_player_init(void)
 	player.c = '0';
 	player.angle = -1;
 	return (player);
+}
+
+void	*cub_new_image(void *mlx, t_img *img)
+{
+	void	*image;
+
+	image = mlx_xpm_file_to_image(mlx, img->path, &img->width, &img->height);
+	return (image);
 }

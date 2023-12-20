@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/20 15:26:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:48:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 // MACROS
 # define MAP_CHARSET "01NSEW"
+# define MMAP_SZ 9
 # define M_PI 3.14159265358979323846
 
 // ERRORS
@@ -169,6 +170,7 @@ void			cub_error_file(t_cub *cub, char *file, bool perror_flag);
 /* ************************************************************************** */
 
 // free_file
+void			free_mlx_imgs(t_cub *cub);
 void			free_img(t_img img);
 void			free_map(t_map map);
 void			free_file(t_file file);
@@ -190,6 +192,7 @@ t_map			cub_map_init(void);
 t_color			cub_color_init(void);
 t_mlx			cub_mlx_init(void);
 t_player		cub_player_init(void);
+void			*cub_new_image(void *mlx, t_img *img);
 
 /* ************************************************************************** */
 /*                                    MLX                                     */
@@ -204,6 +207,7 @@ void			cub_mlx(t_cub *cub);
 
 // key handler
 int				cub_key_handler(int keycode, t_cub *cub);
+int				mouse_render(t_cub *cub);
 
 /* ************************************************************************** */
 /*                                   PARSER                                   */

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:44:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 20:12:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/20 18:41:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_img	cub_img_init(char *path)
 	img.height = 0;
 	img.width = 0;
 	img.path = ft_strdup(path);
-	img.img = NULL;
 	return (img);
 }
 

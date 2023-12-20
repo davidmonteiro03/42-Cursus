@@ -6,11 +6,19 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:41:44 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 15:36:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:33:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+void	free_mlx_imgs(t_cub *cub)
+{
+	mlx_destroy_image(cub->mlx.mlx, cub->directions.east.img);
+	mlx_destroy_image(cub->mlx.mlx, cub->directions.north.img);
+	mlx_destroy_image(cub->mlx.mlx, cub->directions.south.img);
+	mlx_destroy_image(cub->mlx.mlx, cub->directions.west.img);
+}
 
 void	free_mlx(t_mlx mlx)
 {
