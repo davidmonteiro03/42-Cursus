@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 16:19:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:26:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	cub_key_handler(int keycode, t_cub *cub)
 		cub->player.angle--;
 		return (cub_draw_map(cub, cub->map.map, -1), cub_draw_view(cub), 0);
 	}
-	else if (keycode == XK_w)
+	/* else if (keycode == XK_w)
 		return (cub_player_move(cub, cos(cub->player.angle * M_PI / 180) * 5, \
 			sin(cub->player.angle * M_PI / 180) * 2), 0);
 	else if (keycode == XK_s)
@@ -46,7 +46,7 @@ int	cub_key_handler(int keycode, t_cub *cub)
 			180) * 5, -sin((cub->player.angle + 90) * M_PI / 180) * 2), 0);
 	else if (keycode == XK_d)
 		return (cub_player_move(cub, cos((cub->player.angle + 90) * M_PI / \
-			180) * 5, sin((cub->player.angle + 90) * M_PI / 180) * 2), 0);
+			180) * 5, sin((cub->player.angle + 90) * M_PI / 180) * 2), 0); */
 	else if (keycode == XK_Escape)
 		cub_exit(cub);
 	return (0);
