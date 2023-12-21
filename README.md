@@ -142,7 +142,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 		</tr>
 		<!-- RANK 04 -->
 		<tr>
-			<td rowspan="2">
+			<td rowspan="3">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04">
 					<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
 				</a>
