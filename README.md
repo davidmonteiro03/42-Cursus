@@ -145,7 +145,12 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			<td>
 				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
 			</td>
-			<td colspan="4">
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/philosopherse.png" width="125"/>
+				</a>
+			</td>
+			<td colspan="3">
 				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
 			</td>
 		</tr>
