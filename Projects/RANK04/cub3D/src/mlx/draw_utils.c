@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 02:12:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 06:13:23 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 04:02:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	cub_draw_view_line(t_cub *cub)
 		auto double ray_y = sin(ray_angle * M_PI / 180.0);
 		auto double x = cub->player.x;
 		auto double y = cub->player.y;
+		if (ray_angle != cub->player.angle)
+			continue ;
 		while (x >= 0 && y >= 0 && x < cub->map.width * MMAP_SZ && \
 			y < cub->map.height * MMAP_SZ && \
 			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '1' && \
@@ -81,10 +83,8 @@ void	cub_draw_view_line(t_cub *cub)
 	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
 }
 
-void	cub_draw_view_line_left(t_cub *cub, double *old_angle)
+void	cub_clear_view_line(t_cub *cub)
 {
-	if (old_angle)
-		printf("%f %d\n", *old_angle, cub->player.angle);
 	auto double view_angle = 90;
 	auto int ray_count = 1000;
 	auto int i = -1;
@@ -96,74 +96,18 @@ void	cub_draw_view_line_left(t_cub *cub, double *old_angle)
 		auto double ray_y = sin(ray_angle * M_PI / 180.0);
 		auto double x = cub->player.x;
 		auto double y = cub->player.y;
+		if (ray_angle != cub->player.angle)
+			continue ;
 		while (x >= 0 && y >= 0 && x < cub->map.width * MMAP_SZ && \
 			y < cub->map.height * MMAP_SZ && \
 			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '1' && \
 			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '-')
 		{
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, (int)x, (int)y, \
-				cub_contrast_color(cub->floor.hex, 0x007700, 0x00FF00));
+			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
+				(int)x, (int)y, cub->floor.hex);
 			x += ray_x;
 			y += ray_y;
 		}
 	}
-	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
-}
-
-void	cub_draw_view_line_right(t_cub *cub, double *old_angle)
-{
-	if (old_angle)
-	{
-		auto double view_angle = 90;
-		auto double ray_angle = *old_angle - (view_angle / 2);
-		auto double x = cub->player.x;
-		auto double y = cub->player.y;
-		while (x >= 0 && y >= 0 && x < cub->map.width * MMAP_SZ && \
-			y < cub->map.height * MMAP_SZ && \
-			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '1' && \
-			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '-')
-		{
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, (int)x, (int)y,
-				cub->floor.hex);
-			x += cos(ray_angle * M_PI / 180.0);
-			y += sin(ray_angle * M_PI / 180.0);
-		}
-	}
-	auto double view_angle = 90;
-	auto int ray_count = 1000;
-	auto int i = -1;
-	auto int frst_ray_angle = (int)(cub->player.angle - (view_angle / 2));
-	while (++i < ray_count)
-	{
-		auto double ray_angle = cub->player.angle - (view_angle / 2) + \
-			(view_angle * i / ray_count);
-		auto double x = cub->player.x;
-		auto double y = cub->player.y;
-		auto int color = cub_contrast_color(cub->floor.hex, 0x007700, 0x00FF00);
-		if ((int)ray_angle == frst_ray_angle || \
-			(int)ray_angle == frst_ray_angle + 1)
-			color = cub->floor.hex;
-		while (x >= 0 && y >= 0 && x < cub->map.width * MMAP_SZ && \
-			y < cub->map.height * MMAP_SZ && \
-			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '1' && \
-			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '-')
-		{
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, (int)x, (int)y, color);
-			x += cos(ray_angle * M_PI / 180.0);
-			y += sin(ray_angle * M_PI / 180.0);
-		}
-	}
-	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
-}
-
-void	cub_check_field_of_view(t_cub *cub, double *old_angle, bool left, bool right)
-{
-	if (left && right)
-		return (cub_draw_view_line_left(cub, NULL), \
-			cub_draw_view_line_right(cub, NULL));
-	if (left)
-		return (cub_draw_view_line_left(cub, old_angle));
-	if (right)
-		return (cub_draw_view_line_right(cub, old_angle));
-	cub_draw_view_line(cub);
+	cub_clear_circle(cub, cub->player.x, cub->player.y, -1);
 }
