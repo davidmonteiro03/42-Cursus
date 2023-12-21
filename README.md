@@ -142,8 +142,10 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 		</tr>
 		<!-- RANK 04 -->
 		<tr>
-			<td>
-				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
+			<td rowspan="2">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04">
+					<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
+				</a>
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/NetPractice">
@@ -154,6 +156,17 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
 			<td>NetPractice</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/cub3D">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cub3dn.png" width="125"/>
+				</a>
+			</td>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			</td>
+			<td>cub3d</td>
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
