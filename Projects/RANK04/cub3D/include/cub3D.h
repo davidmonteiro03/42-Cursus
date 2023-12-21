@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/20 23:50:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 04:17:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@
 
 // MACROS
 # define MAP_CHARSET "01NSEW"
-# define MMAP_SZ 9
+# define MMAP_SZ 10
+# define STEP MMAP_SZ / 32 * 2
+# define PLAYER_SZ MMAP_SZ / 3
 # define M_PI 3.14159265358979323846
 
 // ERRORS
@@ -198,10 +200,13 @@ void			*cub_new_image(void *mlx, t_img *img);
 /*                                    MLX                                     */
 /* ************************************************************************** */
 
+// draw utils
+void			cub_draw_view_line(t_cub *cub);
+void			cub_clear_view_line(t_cub *cub);
+
 // draw
 void			cub_draw_shape(t_mlx mlx, int x, int y, int color);
 void			cub_draw_map(t_cub *cub, char **map, int y);
-t_player		cub_get_player_pos(char **map);
 void			cub_draw_view(t_cub *cub);
 void			cub_mlx(t_cub *cub);
 
@@ -321,6 +326,7 @@ void			cub_check_input(t_cub *cub, int argc, char **argv);
 /* ************************************************************************** */
 
 // map
+t_player		cub_get_player_pos(char **map);
 void			cub_set_map(t_cub *cub);
 
 // config
@@ -330,7 +336,12 @@ void			cub_set_config(t_cub *cub);
 /*                                    UTILS                                   */
 /* ************************************************************************** */
 
-// atol
+// utils1
+int				cub_get_angle(char c);
+unsigned long	ft_min(unsigned long a, unsigned long b);
+unsigned long	ft_max(unsigned long a, unsigned long b);
+unsigned long	cub_contrast_color(unsigned long color, \
+	unsigned long dark, unsigned long light);
 long int		cub_atol(const char *nptr);
 
 // build free

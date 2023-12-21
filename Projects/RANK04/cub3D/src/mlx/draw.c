@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/20 21:58:26 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 02:18:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,31 +51,6 @@ void	cub_draw_map(t_cub *cub, char **map, int y)
 		cub->player.angle += 360;
 }
 
-t_player	cub_get_player_pos(char **map)
-{
-	t_player	player;
-	int			i;
-	int			j;
-
-	player = cub_player_init();
-	i = -1;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (ft_strchr("NSEW", map[i][j]))
-			{
-				player.x = j * MMAP_SZ + MMAP_SZ / 2;
-				player.y = i * MMAP_SZ + MMAP_SZ / 2;
-				player.c = map[i][j];
-				return (player);
-			}
-		}
-	}
-	return (player);
-}
-
 void	cub_draw_view(t_cub *cub)
 {
 	auto double player_x = cub->player.x;
@@ -91,15 +66,15 @@ void	cub_draw_view(t_cub *cub)
 		auto double ray_y = sin(ray_angle * M_PI / 180.0);
 		auto double x = player_x;
 		auto double y = player_y;
-		while (x >= 0 && y >= 0 && x < cub->map.width * 32 && \
+		while (x >= 0 && y >= 0 && x < cub->map.width * MMAP_SZ && \
 			y < cub->map.height * MMAP_SZ && \
 			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '1' && \
 			cub->map.map[(int)(y / MMAP_SZ)][(int)(x / MMAP_SZ)] != '-')
 		{
 			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
 				(int)x, (int)y, 0x666666);
-			x += ray_x * 1;
-			y += ray_y * 1;
+			x += ray_x;
+			y += ray_y;
 		}
 	}
 }
@@ -120,7 +95,7 @@ void	cub_mlx(t_cub *cub)
 	cub->player = cub_get_player_pos(cub->map.map);
 	cub->player.angle = cub_get_angle(cub->player.c);
 	cub_draw_map(cub, cub->map.map, -1);
-	cub_draw_view(cub);
+	cub_draw_view_line(cub);
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->map.width * MMAP_SZ / 2, \
 		cub->map.height * MMAP_SZ / 2);

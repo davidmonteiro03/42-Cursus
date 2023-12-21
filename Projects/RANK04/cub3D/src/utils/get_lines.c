@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/12 19:48:24 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/17 19:15:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 02:26:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,4 @@ char	**cub_get_lines(char **content, int start, int end)
 		lines[i++] = ft_strdup(content[start++]);
 	lines[i] = NULL;
 	return (lines);
-}
-
-int	cub_get_angle(char c)
-{
-	if (c == 'N')
-		return (270);
-	if (c == 'S')
-		return (90);
-	if (c == 'E')
-		return (0);
-	return (180);
 }
