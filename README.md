@@ -146,7 +146,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
 			</td>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/NetPractice">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/netpracticen.png" width="125"/>
 				</a>
 			</td>
