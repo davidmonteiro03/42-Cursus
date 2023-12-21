@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:31:45 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 11:22:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:08:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ int	cub_get_angle(t_cub *cub, char c)
 		angle = 0;
 	else
 		angle = 180;
-	cub->player.dir_x = cos(angle * M_PI / 180);
-	cub->player.dir_y = sin(angle * M_PI / 180);
-	return (angle);
+	return ((void)cub, angle);
 }
 
 unsigned long	ft_min(unsigned long a, unsigned long b)

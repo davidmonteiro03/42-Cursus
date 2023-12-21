@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:58:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/20 18:50:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:06:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_mlx	cub_mlx_init(void)
 
 	mlx.mlx = NULL;
 	mlx.win = NULL;
+	mlx.win_size = -1;
 	return (mlx);
 }
 

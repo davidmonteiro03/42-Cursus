@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 11:19:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:06:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
+	int		win_size;
 	t_img	img;
 }t_mlx;
 
@@ -131,12 +132,10 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double		x;
-	double		y;
-	char		c;
-	int			angle;
-	double		dir_x;
-	double		dir_y;
+	double	x;
+	double	y;
+	char	c;
+	int		angle;
 }t_player;
 
 typedef struct s_cub

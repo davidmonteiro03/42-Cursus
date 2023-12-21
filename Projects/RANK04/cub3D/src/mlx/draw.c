@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 12:51:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 16:05:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	cub_draw_map(t_cub *cub, char **map, int y)
 	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
 }
 
-void	cub_mlx(t_cub *cub)
+void	cub_init_mlx(t_cub *cub)
 {
 	cub->mlx.mlx = mlx_init();
 	cub->directions.east.img = \
@@ -59,10 +59,10 @@ void	cub_mlx(t_cub *cub)
 		cub_new_image(cub->mlx.mlx, &cub->directions.north);
 	cub->directions.west.img = \
 		cub_new_image(cub->mlx.mlx, &cub->directions.west);
-	cub->mlx.win = mlx_new_window(cub->mlx.mlx, \
-		ft_max(cub->map.width, cub->map.height) * MMAP_SZ * 2 + \
-			MMAP_SZ * 10, ft_max(cub->map.width, cub->map.height) * \
-			MMAP_SZ * 2 + MMAP_SZ * 10, "cub3D");
+	cub->mlx.win_size = ft_max(cub->map.width, cub->map.height) * \
+		MMAP_SZ * 2 + MMAP_SZ * 7;
+	cub->mlx.win = mlx_new_window(cub->mlx.mlx, cub->mlx.win_size, \
+		cub->mlx.win_size, "cub3D");
 	cub->player = cub_get_player_pos(cub->map.map);
 	cub->player.angle = cub_get_angle(cub, cub->player.c);
 	cub_draw_map(cub, cub->map.map, -1);
@@ -70,6 +70,11 @@ void	cub_mlx(t_cub *cub)
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->map.width * MMAP_SZ / 2, \
 		cub->map.height * MMAP_SZ / 2);
+}
+
+void	cub_mlx(t_cub *cub)
+{
+	cub_init_mlx(cub);
 	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_key_handler, cub);
 	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);
 	mlx_loop_hook(cub->mlx.mlx, &cub_render, cub);
