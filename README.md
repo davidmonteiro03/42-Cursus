@@ -147,12 +147,13 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/netpracticee.png" width="125"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/netpracticen.png" width="125"/>
 				</a>
 			</td>
-			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
+			<td>NetPractice</td>
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
