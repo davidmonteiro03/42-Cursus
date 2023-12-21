@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 04:17:02 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 06:06:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,13 +201,15 @@ void			*cub_new_image(void *mlx, t_img *img);
 /* ************************************************************************** */
 
 // draw utils
+void			cub_draw_circle(t_cub *cub, int x, int y, int i);
+void			cub_clear_circle(t_cub *cub, int x, int y, int i);
 void			cub_draw_view_line(t_cub *cub);
-void			cub_clear_view_line(t_cub *cub);
+void			cub_check_field_of_view(t_cub *cub, double *old_angle, \
+	bool left, bool right);
 
 // draw
 void			cub_draw_shape(t_mlx mlx, int x, int y, int color);
 void			cub_draw_map(t_cub *cub, char **map, int y);
-void			cub_draw_view(t_cub *cub);
 void			cub_mlx(t_cub *cub);
 
 // key handler
