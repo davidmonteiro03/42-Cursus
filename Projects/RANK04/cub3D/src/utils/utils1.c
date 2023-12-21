@@ -6,21 +6,28 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:31:45 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 03:58:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:22:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-int	cub_get_angle(char c)
+int	cub_get_angle(t_cub *cub, char c)
 {
+	int	angle;
+
+	angle = -1;
 	if (c == 'N')
-		return (270);
-	if (c == 'S')
-		return (90);
-	if (c == 'E')
-		return (0);
-	return (180);
+		angle = 270;
+	else if (c == 'S')
+		angle = 90;
+	else if (c == 'E')
+		angle = 0;
+	else
+		angle = 180;
+	cub->player.dir_x = cos(angle * M_PI / 180);
+	cub->player.dir_y = sin(angle * M_PI / 180);
+	return (angle);
 }
 
 unsigned long	ft_min(unsigned long a, unsigned long b)

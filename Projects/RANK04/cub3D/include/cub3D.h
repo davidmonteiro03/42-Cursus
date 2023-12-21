@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 08:11:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 11:19:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ typedef struct s_adj
 
 typedef struct s_info
 {
-	int		pos_start;
-	int		pos_end;
+	int	pos_start;
+	int	pos_end;
 }t_info;
 
 typedef struct s_file
@@ -131,10 +131,12 @@ typedef struct s_map
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
-	char	c;
-	int		angle;
+	double		x;
+	double		y;
+	char		c;
+	int			angle;
+	double		dir_x;
+	double		dir_y;
 }t_player;
 
 typedef struct s_cub
@@ -201,13 +203,12 @@ void			*cub_new_image(void *mlx, t_img *img);
 /* ************************************************************************** */
 
 // draw utils
-void			cub_draw_view_line(t_cub *cub);
-void			cub_clear_view_line(t_cub *cub);
+void			cub_draw_circle(t_cub *cub, int x, int y, int i);
+void			cub_clear_circle(t_cub *cub, int x, int y, int i);
 
 // draw
 void			cub_draw_shape(t_mlx mlx, int x, int y, int color);
 void			cub_draw_map(t_cub *cub, char **map, int y);
-void			cub_draw_view(t_cub *cub);
 void			cub_mlx(t_cub *cub);
 
 // key handler
@@ -337,7 +338,7 @@ void			cub_set_config(t_cub *cub);
 /* ************************************************************************** */
 
 // utils1
-int				cub_get_angle(char c);
+int				cub_get_angle(t_cub *cub, char c);
 unsigned long	ft_min(unsigned long a, unsigned long b);
 unsigned long	ft_max(unsigned long a, unsigned long b);
 unsigned long	cub_contrast_color(unsigned long color, \
@@ -355,7 +356,6 @@ void			cub_display_strs(char **file_content, int start, int end);
 char			**cub_get_args(char *str);
 char			**cub_copy(char **map, int i, int max_len);
 char			**cub_get_lines(char **content, int start, int end);
-int				cub_get_angle(char c);
 
 // get size
 size_t			cub_strlen(char *str, char c);
