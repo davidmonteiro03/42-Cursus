@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 03:57:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 07:42:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	cub_key_handler(int keycode, t_cub *cub)
 	return (0);
 }
 
-int	mouse_render(t_cub *cub)
+int	cub_render(t_cub *cub)
 {
 	auto int x, y;
 	mlx_mouse_get_pos(cub->mlx.mlx, cub->mlx.win, &x, &y);

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 02:18:26 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/21 07:42:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,12 @@ void	cub_mlx(t_cub *cub)
 	cub->player.angle = cub_get_angle(cub->player.c);
 	cub_draw_map(cub, cub->map.map, -1);
 	cub_draw_view_line(cub);
+	mlx_mouse_hide(cub->mlx.mlx, cub->mlx.win);
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->map.width * MMAP_SZ / 2, \
 		cub->map.height * MMAP_SZ / 2);
 	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_key_handler, cub);
 	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);
-	mlx_loop_hook(cub->mlx.mlx, &mouse_render, cub);
+	mlx_loop_hook(cub->mlx.mlx, &cub_render, cub);
 	mlx_loop(cub->mlx.mlx);
 }

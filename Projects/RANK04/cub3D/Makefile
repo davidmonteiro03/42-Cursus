@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/21 02:26:06 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/21 08:08:38 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CFLAGS			= -Wall -Wextra -Werror -g #-fsanitize=address
 RM				= rm -rf
 
 OBJS_DIR		= obj/
-INCLUDES_DIR	= includes/
+INCLUDES_DIR	= include/
 
 LIBFT_DIR		= libft
 LIBFT_NAME		= libft.a
