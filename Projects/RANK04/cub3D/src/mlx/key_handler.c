@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/21 10:15:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:43:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,29 @@
 
 void	move_player(t_cub *cub, double x, double y)
 {
-	if (cub->map.map[(int)(cub->player.y + y) / MMAP_SZ] \
-		[(int)(cub->player.x + x) / MMAP_SZ] == '1' || \
-		cub->map.map[(int)(cub->player.y + y) / MMAP_SZ] \
-		[(int)(cub->player.x + x) / MMAP_SZ] == '-')
-		return ;
+	char	*char_1;
+	char	*char_2;
+
+	char_1 = &cub->map.map[(int)((cub->player.y + y) / MMAP_SZ)] \
+		[(int)(cub->player.x / MMAP_SZ)];
+	char_2 = &cub->map.map[(int)((cub->player.y) / MMAP_SZ)] \
+		[(int)((cub->player.x + x) / MMAP_SZ)];
+	cub_clear_view_line(cub);
 	cub_clear_circle(cub, cub->player.x, cub->player.y, -1);
-	auto char *old_c = &cub->map.map[(int)(cub->player.y) / MMAP_SZ] \
-		[(int)(cub->player.x) / MMAP_SZ];
-	cub->player.x += x;
-	cub->player.y += y;
-	auto char *new_c = &cub->map.map[(int)(cub->player.y) / MMAP_SZ] \
-		[(int)(cub->player.x) / MMAP_SZ];
-	if (*old_c != *new_c)
-	{
-		*new_c = *old_c;
-		*old_c = '0';
-	}
+	if (*char_1 != '1' && *char_1 != '-')
+		cub->player.y += y;
+	if (*char_2 != '1' && *char_2 != '-')
+		cub->player.x += x;
+	cub_draw_view_line(cub);
 	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
 }
 
 void	cub_update_angle(t_cub *cub, int angle)
 {
+	cub_clear_view_line(cub);
 	cub_clear_circle(cub, cub->player.x, cub->player.y, -1);
 	cub->player.angle += angle;
+	cub_draw_view_line(cub);
 	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
 }
 
@@ -70,9 +69,9 @@ int	cub_render(t_cub *cub)
 	auto int x, y;
 	mlx_mouse_get_pos(cub->mlx.mlx, cub->mlx.win, &x, &y);
 	if (x < cub->map.width * MMAP_SZ / 2)
-		cub->player.angle--;
+		cub_update_angle(cub, -1);
 	else if (x > cub->map.width * MMAP_SZ / 2)
-		cub->player.angle++;
+		cub_update_angle(cub, 1);
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->map.width * MMAP_SZ / 2, \
 		cub->map.height * MMAP_SZ / 2);
