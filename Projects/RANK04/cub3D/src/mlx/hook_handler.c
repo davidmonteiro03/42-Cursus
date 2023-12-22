@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key_handler.c                                      :+:      :+:    :+:   */
+/*   hook_handler.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/22 13:43:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:49:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,14 @@ int	cub_key_handler(int keycode, t_cub *cub)
 			STEP, sin((cub->player.angle + 90) * M_PI / 180) * STEP), 0);
 	else if (keycode == XK_Escape)
 		cub_exit(cub);
+	return (0);
+}
+
+int	cub_mouse_handler(int keycode, t_cub *cub)
+{
+	(void)cub;
+	if (keycode == 1)
+		printf("Shoooooooooooooooooot\n");
 	return (0);
 }
 

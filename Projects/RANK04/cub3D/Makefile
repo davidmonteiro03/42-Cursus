@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/21 11:13:07 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/22 13:48:46 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ SRCS			= main.c \
 					src/init2.c \
 					src/mlx/draw_utils.c \
 					src/mlx/draw.c \
-					src/mlx/key_handler.c \
+					src/mlx/hook_handler.c \
 					src/parser/config/parse_args.c \
 					src/parser/config/parse_colors.c \
 					src/parser/config/parse_config.c \

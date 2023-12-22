@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/22 13:39:05 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/22 13:48:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,9 @@ void			cub_draw_shape(t_mlx mlx, int x, int y, int color);
 void			cub_draw_map(t_cub *cub, char **map, int y);
 void			cub_mlx(t_cub *cub);
 
-// key handler
+// hook handler
 int				cub_key_handler(int keycode, t_cub *cub);
+int				cub_mouse_handler(int keycode, t_cub *cub);
 int				cub_render(t_cub *cub);
 
 /* ************************************************************************** */
