@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/23 00:51:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/23 00:52:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,5 @@ int	cub_render(t_cub *cub)
 	auto int x, y;
 	mlx_mouse_get_pos(cub->mlx.mlx, cub->mlx.win, &x, &y);
 	printf("%d %d\n", x, y);
-	return (usleep(10000), 0);
+	return (0);
 }
