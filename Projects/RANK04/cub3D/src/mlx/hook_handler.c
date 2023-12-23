@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/23 00:08:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/23 00:12:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,10 @@ int	cub_render(t_cub *cub)
 {
 	auto int x, y;
 	mlx_mouse_get_pos(cub->mlx.mlx, cub->mlx.win, &x, &y);
+	if (x > cub->map.width * MMAP_SZ / 2)
+		cub_update_angle(cub, 1);
+	else if (x < cub->map.width * MMAP_SZ / 2)
+		cub_update_angle(cub, -1);
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->map.width * MMAP_SZ / 2, \
 		cub->map.height * MMAP_SZ / 2);
@@ -95,10 +99,6 @@ int	cub_render(t_cub *cub)
 		cub_update_angle(cub, -1);
 	else if (cub->keys.right)
 		cub_update_angle(cub, 1);
-	else if (x > cub->map.width * MMAP_SZ / 2)
-		cub_update_angle(cub, 1);
-	else if (x < cub->map.width * MMAP_SZ / 2)
-		cub_update_angle(cub, -1);
 	if (cub->keys.w)
 		move_player(cub, cos(cub->player.angle * M_PI / 180) * \
 			STEP, sin(cub->player.angle * M_PI / 180) * STEP);
