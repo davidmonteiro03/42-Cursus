@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/22 13:48:46 by dcaetano         ###   ########.fr        #
+#    Updated: 2023/12/22 21:19:17 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS			= main.c \
 					src/free.c \
 					src/init.c \
 					src/init2.c \
+					src/init3.c \
 					src/mlx/draw_utils.c \
 					src/mlx/draw.c \
 					src/mlx/hook_handler.c \

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/22 13:47:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/22 21:31:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ void	cub_init_mlx(t_cub *cub)
 void	cub_mlx(t_cub *cub)
 {
 	cub_init_mlx(cub);
-	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_key_handler, cub);
+	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_press_key, cub);
+	mlx_hook(cub->mlx.win, KeyRelease, KeyReleaseMask, &cub_release_key, cub);
 	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);
 	mlx_mouse_hook(cub->mlx.win, &cub_mouse_handler, cub);
 	mlx_loop_hook(cub->mlx.mlx, &cub_render, cub);

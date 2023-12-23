@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/22 13:49:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/22 21:50:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,39 @@ void	cub_update_angle(t_cub *cub, int angle)
 	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
 }
 
-int	cub_key_handler(int keycode, t_cub *cub)
+int	cub_press_key(int keycode, t_cub *cub)
 {
 	if (keycode == XK_Right)
-		return (cub_update_angle(cub, 1), 0);
-	else if (keycode == XK_Left)
-		return (cub_update_angle(cub, -1), 0);
-	else if (keycode == XK_w)
-		return (move_player(cub, cos(cub->player.angle * M_PI / 180) * \
-			STEP, sin(cub->player.angle * M_PI / 180) * STEP), 0);
-	else if (keycode == XK_s)
-		return (move_player(cub, -cos(cub->player.angle * M_PI / 180) * \
-			STEP, -sin(cub->player.angle * M_PI / 180) * STEP), 0);
-	else if (keycode == XK_a)
-		return (move_player(cub, -cos((cub->player.angle + 90) * \
-			M_PI / 180) * STEP, -sin((cub->player.angle + 90) * \
-			M_PI / 180) * STEP), 0);
-	else if (keycode == XK_d)
-		return (move_player(cub, cos((cub->player.angle + 90) * M_PI / 180) * \
-			STEP, sin((cub->player.angle + 90) * M_PI / 180) * STEP), 0);
+		cub->keys.right = true;
+	if (keycode == XK_Left)
+		cub->keys.left = true;
+	if (keycode == XK_w)
+		cub->keys.w = true;
+	if (keycode == XK_s)
+		cub->keys.s = true;
+	if (keycode == XK_a)
+		cub->keys.a = true;
+	if (keycode == XK_d)
+		cub->keys.d = true;
 	else if (keycode == XK_Escape)
 		cub_exit(cub);
+	return (0);
+}
+
+int	cub_release_key(int keycode, t_cub *cub)
+{
+	if (keycode == XK_Right)
+		cub->keys.right = false;
+	else if (keycode == XK_Left)
+		cub->keys.left = false;
+	else if (keycode == XK_w)
+		cub->keys.w = false;
+	else if (keycode == XK_s)
+		cub->keys.s = false;
+	else if (keycode == XK_a)
+		cub->keys.a = false;
+	else if (keycode == XK_d)
+		cub->keys.d = false;
 	return (0);
 }
 
@@ -76,12 +88,25 @@ int	cub_render(t_cub *cub)
 {
 	auto int x, y;
 	mlx_mouse_get_pos(cub->mlx.mlx, cub->mlx.win, &x, &y);
-	if (x < cub->map.width * MMAP_SZ / 2)
-		cub_update_angle(cub, -1);
-	else if (x > cub->map.width * MMAP_SZ / 2)
-		cub_update_angle(cub, 1);
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->map.width * MMAP_SZ / 2, \
 		cub->map.height * MMAP_SZ / 2);
-	return (0);
+	if (cub->keys.left || x < cub->map.width * MMAP_SZ / 2)
+		cub_update_angle(cub, -1);
+	else if (cub->keys.right || x > cub->map.width * MMAP_SZ / 2)
+		cub_update_angle(cub, 1);
+	if (cub->keys.w)
+		move_player(cub, cos(cub->player.angle * M_PI / 180) * \
+			STEP, sin(cub->player.angle * M_PI / 180) * STEP);
+	else if (cub->keys.s)
+		move_player(cub, -cos(cub->player.angle * M_PI / 180) * \
+			STEP, -sin(cub->player.angle * M_PI / 180) * STEP);
+	else if (cub->keys.a)
+		move_player(cub, -cos((cub->player.angle + 90) * \
+			M_PI / 180) * STEP, -sin((cub->player.angle + 90) * \
+			M_PI / 180) * STEP);
+	else if (cub->keys.d)
+		move_player(cub, cos((cub->player.angle + 90) * M_PI / 180) * \
+			STEP, sin((cub->player.angle + 90) * M_PI / 180) * STEP);
+	return (usleep(10000), 0);
 }

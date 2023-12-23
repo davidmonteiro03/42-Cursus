@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/22 13:48:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/22 21:39:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,16 @@ typedef struct s_player
 	int		angle;
 }t_player;
 
+typedef struct s_keys
+{
+	bool	w;
+	bool	a;
+	bool	s;
+	bool	d;
+	bool	left;
+	bool	right;
+}t_keys;
+
 typedef struct s_cub
 {
 	t_file			config;
@@ -149,6 +159,7 @@ typedef struct s_cub
 	t_color			ceiling;
 	t_map			map;
 	t_player		player;
+	t_keys			keys;
 }t_cub;
 
 /* ************************************************************************** */
@@ -195,6 +206,9 @@ t_map			cub_map_init(void);
 t_color			cub_color_init(void);
 t_mlx			cub_mlx_init(void);
 t_player		cub_player_init(void);
+t_keys			cub_keys_init(void);
+
+// init 3
 void			*cub_new_image(void *mlx, t_img *img);
 
 /* ************************************************************************** */
@@ -213,7 +227,8 @@ void			cub_draw_map(t_cub *cub, char **map, int y);
 void			cub_mlx(t_cub *cub);
 
 // hook handler
-int				cub_key_handler(int keycode, t_cub *cub);
+int				cub_press_key(int keycode, t_cub *cub);
+int				cub_release_key(int keycode, t_cub *cub);
 int				cub_mouse_handler(int keycode, t_cub *cub);
 int				cub_render(t_cub *cub);
 
