@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/22 21:31:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/23 00:57:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void	cub_init_mlx(t_cub *cub)
 	cub_draw_map(cub, cub->map.map, -1);
 	cub_draw_view_line(cub);
 	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
-	mlx_mouse_hide(cub->mlx.mlx, cub->mlx.win);
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->map.width * MMAP_SZ / 2, \
 		cub->map.height * MMAP_SZ / 2);
+	mlx_mouse_hide(cub->mlx.mlx, cub->mlx.win);
 }
 
 void	cub_mlx(t_cub *cub)
