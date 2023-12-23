@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/23 00:57:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/23 00:59:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	cub_init_mlx(t_cub *cub)
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->map.width * MMAP_SZ / 2, \
 		cub->map.height * MMAP_SZ / 2);
-	mlx_mouse_hide(cub->mlx.mlx, cub->mlx.win);
 }
 
 void	cub_mlx(t_cub *cub)
