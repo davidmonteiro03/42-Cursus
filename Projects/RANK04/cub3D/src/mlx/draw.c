@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/23 00:59:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/12/23 01:00:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,14 @@ void	cub_init_mlx(t_cub *cub)
 	cub_draw_map(cub, cub->map.map, -1);
 	cub_draw_view_line(cub);
 	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
-	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
-		cub->map.width * MMAP_SZ / 2, \
-		cub->map.height * MMAP_SZ / 2);
 }
 
 void	cub_mlx(t_cub *cub)
 {
 	cub_init_mlx(cub);
+	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
+		cub->map.width * MMAP_SZ / 2, \
+		cub->map.height * MMAP_SZ / 2);
 	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_press_key, cub);
 	mlx_hook(cub->mlx.win, KeyRelease, KeyReleaseMask, &cub_release_key, cub);
 	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);
