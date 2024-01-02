@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/22 21:39:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/02 17:52:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@
 
 // MACROS
 # define MAP_CHARSET "01NSEW"
-# define MMAP_SZ 10
+# define MMAP_SZ 15
+# define MINIMAP 4
+# define MINIMAP_SZ MINIMAP * 2 + 1
 # define STEP MMAP_SZ / 32 * 2
 # define PLAYER_SZ MMAP_SZ / 3
 # define M_PI 3.14159265358979323846
+# define SENSIBILITY 10
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"
@@ -103,7 +106,6 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	int		win_size;
 	t_img	img;
 }t_mlx;
 
@@ -138,6 +140,12 @@ typedef struct s_player
 	int		angle;
 }t_player;
 
+typedef struct s_tmp
+{
+	double	x;
+	double	y;
+}t_tmp;
+
 typedef struct s_keys
 {
 	bool	w;
@@ -157,9 +165,11 @@ typedef struct s_cub
 	t_directions	directions;
 	t_color			floor;
 	t_color			ceiling;
+	t_color			back;
 	t_map			map;
 	t_player		player;
 	t_keys			keys;
+	t_tmp			tmp;
 }t_cub;
 
 /* ************************************************************************** */
@@ -215,22 +225,53 @@ void			*cub_new_image(void *mlx, t_img *img);
 /*                                    MLX                                     */
 /* ************************************************************************** */
 
+// check moves
+void			cub_small_check(t_cub *cub, double x, double y);
+void			cub_check_keys(t_cub *cub);
+
 // draw utils
 void			cub_draw_circle(t_cub *cub, int x, int y, int i);
 void			cub_clear_circle(t_cub *cub, int x, int y, int i);
-void			cub_draw_view_line(t_cub *cub);
-void			cub_clear_view_line(t_cub *cub);
+void			cub_draw_shape(t_mlx mlx, int x, int y, t_color color);
+void			cub_check_shape(t_cub *cub, int x, int y, char c);
+void			cub_update_angle(t_cub *cub, int angle);
 
 // draw
-void			cub_draw_shape(t_mlx mlx, int x, int y, int color);
-void			cub_draw_map(t_cub *cub, char **map, int y);
+void			cub_init_mlx(t_cub *cub);
 void			cub_mlx(t_cub *cub);
 
 // hook handler
+void			cub_move_player(t_cub *cub, double x, double y);
 int				cub_press_key(int keycode, t_cub *cub);
 int				cub_release_key(int keycode, t_cub *cub);
 int				cub_mouse_handler(int keycode, t_cub *cub);
 int				cub_render(t_cub *cub);
+
+// minimap
+void			cub_mmap_check_1(t_cub *cub, bool draw);
+void			cub_mmap_check_2(t_cub *cub, bool draw);
+void			cub_mmap_check(t_cub *cub, bool draw);
+
+// minimap utils 1
+void			cub_draw_mmap_1(t_cub *cub, bool draw);
+void			cub_draw_mmap_2(t_cub *cub, bool draw);
+void			cub_draw_mmap_3(t_cub *cub, bool draw);
+
+// minimap utils 2
+void			cub_draw_mmap_4(t_cub *cub, bool draw);
+void			cub_draw_mmap_5(t_cub *cub, bool draw);
+void			cub_draw_mmap_6(t_cub *cub, bool draw);
+
+// minimap utils 3
+void			cub_draw_mmap_7(t_cub *cub, bool draw);
+void			cub_draw_mmap_8(t_cub *cub, bool draw);
+void			cub_draw_mmap_9(t_cub *cub, bool draw);
+
+// minimap
+void			cub_mmap_check_1(t_cub *cub, bool draw);
+void			cub_mmap_check_2(t_cub *cub, bool draw);
+void			cub_mmap_check_3(t_cub *cub, bool draw);
+void			cub_mmap_check(t_cub *cub, bool draw);
 
 /* ************************************************************************** */
 /*                                   PARSER                                   */
