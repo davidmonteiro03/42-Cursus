@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:44:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/02 17:40:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 19:50:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,5 @@ t_cub	*cub_init(void)
 	cub->floor = cub_color_init();
 	cub->map = cub_map_init();
 	cub->keys = cub_keys_init();
-	cub->back = cub_color_init();
 	return (cub);
 }

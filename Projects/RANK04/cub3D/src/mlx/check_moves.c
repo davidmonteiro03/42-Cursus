@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 08:01:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 18:58:11 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:10:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,6 @@ void	cub_small_check(t_cub *cub, double x, double y)
 		[(int)((cub->player.x + x) / MMAP_SZ)];
 	auto char *old_c = &cub->map.map[(int)(cub->player.y / MMAP_SZ)] \
 		[(int)(cub->player.x / MMAP_SZ)];
-	if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
-		cub_mmap_check(cub, false);
-	else
-		cub_check_simple_mmap(cub, \
-			ft_min(cub->map.width, cub->map.height), false);
 	cub_draw_player(cub, true);
 	if (*char_1 != '1' && *char_1 != '-')
 		cub->player.y += y;
@@ -98,11 +93,11 @@ void	cub_small_check(t_cub *cub, double x, double y)
 	cub_small_check_2(cub, old_c, new_c);
 }
 
-void	cub_check_keys(t_cub *cub)
+void	cub_check_keys(t_cub *cub, int x)
 {
-	if (cub->keys.right)
+	if (cub->keys.right || (x > 500 && x < 700))
 		cub_update_angle(cub, 1);
-	else if (cub->keys.left)
+	else if (cub->keys.left || (x > 0 && x < 200))
 		cub_update_angle(cub, -1);
 	if (cub->keys.w)
 		cub_move_player(cub, cos(cub->player.angle * M_PI / 180.0) * STEP, \

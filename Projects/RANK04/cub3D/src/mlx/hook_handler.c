@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 17:27:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 19:36:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ int	cub_release_key(int keycode, t_cub *cub)
 	return (0);
 }
 
-int	cub_mouse_handler(int keycode, t_cub *cub)
+int	cub_mouse_handler(int buttoncode, t_cub *cub)
 {
 	(void)cub;
-	if (keycode == 1)
+	if (buttoncode == 1)
 		printf("Shoooooooooooooooooot\n");
 	return (0);
 }
@@ -69,6 +69,6 @@ int	cub_render(t_cub *cub)
 	int	y;
 
 	mlx_mouse_get_pos(cub->mlx.mlx, cub->mlx.win, &x, &y);
-	cub_check_keys(cub);
+	cub_check_keys(cub, x);
 	return (0);
 }

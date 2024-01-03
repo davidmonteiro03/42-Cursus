@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 19:14:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 20:09:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,26 @@ void	cub_check_simple_mmap(t_cub *cub, int mode, bool draw)
 	else if (mode == 5 || mode == 6)
 		cub_mmap_check_b(cub, draw);
 	else if (mode == 7 || mode == 8)
-		cub_mmap_check_b(cub, draw);
+		cub_mmap_check_c(cub, draw);
+}
+
+void	cub_draw_back(t_cub *cub)
+{
+	auto int y = -1;
+	while (++y < 350)
+	{
+		auto int x = -1;
+		while (++x < 700)
+			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
+				x, y, cub->ceiling.hex);
+	}
+	while (++y < 700)
+	{
+		auto int x = -1;
+		while (++x < 700)
+			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
+				x, y, cub->floor.hex);
+	}
 }
 
 void	cub_init_mlx(t_cub *cub)
@@ -36,10 +55,7 @@ void	cub_init_mlx(t_cub *cub)
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx, 700, 700, "cub3D");
 	cub->player = cub_get_player_pos(cub->map.map);
 	cub->player.angle = cub_get_angle(cub, cub->player.c);
-	cub->back.red = 0x99;
-	cub->back.green = 0x99;
-	cub->back.blue = 0x99;
-	cub->back.hex = 0x999999;
+	cub_draw_back(cub);
 	if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
 		cub_mmap_check(cub, true);
 	else
@@ -51,8 +67,7 @@ void	cub_init_mlx(t_cub *cub)
 void	cub_mlx(t_cub *cub)
 {
 	cub_init_mlx(cub);
-	cub->tmp.x = (int)(cub->player.x) % (MINIMAP_SZ * MMAP_SZ);
-	cub->tmp.y = (int)(cub->player.y) % (MINIMAP_SZ * MMAP_SZ);
+	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, 350, 350);
 	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_press_key, cub);
 	mlx_hook(cub->mlx.win, KeyRelease, KeyReleaseMask, &cub_release_key, cub);
 	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);
