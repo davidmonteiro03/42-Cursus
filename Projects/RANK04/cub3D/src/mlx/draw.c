@@ -6,11 +6,21 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 16:27:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 19:14:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	cub_check_simple_mmap(t_cub *cub, int mode, bool draw)
+{
+	if (mode == 3 || mode == 4)
+		cub_mmap_check_a(cub, draw);
+	else if (mode == 5 || mode == 6)
+		cub_mmap_check_b(cub, draw);
+	else if (mode == 7 || mode == 8)
+		cub_mmap_check_b(cub, draw);
+}
 
 void	cub_init_mlx(t_cub *cub)
 {
@@ -31,19 +41,18 @@ void	cub_init_mlx(t_cub *cub)
 	cub->back.blue = 0x99;
 	cub->back.hex = 0x999999;
 	if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
-	{
-		cub_mmap_check(cub, true, false);
-		cub_draw_player(cub, false);
-	}
-	else if (cub->map.width >= MINIMAP_SZ && cub->map.height < MINIMAP_SZ)
-		cub_mmap_check_a(cub);
+		cub_mmap_check(cub, true);
+	else
+		cub_check_simple_mmap(cub, \
+			ft_min(cub->map.width, cub->map.height), true);
+	cub_draw_player(cub, false);
 }
 
 void	cub_mlx(t_cub *cub)
 {
 	cub_init_mlx(cub);
-	cub->tmp.x = (int)(cub->player.x) % ((MINIMAP * 2 + 1) * MMAP_SZ);
-	cub->tmp.y = (int)(cub->player.y) % ((MINIMAP * 2 + 1) * MMAP_SZ);
+	cub->tmp.x = (int)(cub->player.x) % (MINIMAP_SZ * MMAP_SZ);
+	cub->tmp.y = (int)(cub->player.y) % (MINIMAP_SZ * MMAP_SZ);
 	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_press_key, cub);
 	mlx_hook(cub->mlx.win, KeyRelease, KeyReleaseMask, &cub_release_key, cub);
 	mlx_hook(cub->mlx.win, DestroyNotify, NoEventMask, &cub_exit, cub);

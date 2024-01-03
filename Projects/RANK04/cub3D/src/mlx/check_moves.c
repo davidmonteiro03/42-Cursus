@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 08:01:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 16:28:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 18:58:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,20 @@ void	cub_small_check_2(t_cub *cub, char *old_c, char *new_c)
 		*new_c = *old_c;
 		*old_c = '0';
 		if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
-			cub_mmap_check(cub, true, false);
+			cub_mmap_check(cub, true);
+		else
+			cub_check_simple_mmap(cub, \
+				ft_min(cub->map.width, cub->map.height), true);
 	}
-	else if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
-		cub_mmap_check(cub, false, false);
-	if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
-		cub_draw_player(cub, false);
+	else
+	{
+		if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
+			cub_mmap_check(cub, false);
+		else
+			cub_check_simple_mmap(cub, \
+				ft_min(cub->map.width, cub->map.height), false);
+	}
+	cub_draw_player(cub, false);
 }
 
 void	cub_small_check(t_cub *cub, double x, double y)
@@ -75,7 +83,11 @@ void	cub_small_check(t_cub *cub, double x, double y)
 		[(int)((cub->player.x + x) / MMAP_SZ)];
 	auto char *old_c = &cub->map.map[(int)(cub->player.y / MMAP_SZ)] \
 		[(int)(cub->player.x / MMAP_SZ)];
-	cub_mmap_check(cub, false, false);
+	if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
+		cub_mmap_check(cub, false);
+	else
+		cub_check_simple_mmap(cub, \
+			ft_min(cub->map.width, cub->map.height), false);
 	cub_draw_player(cub, true);
 	if (*char_1 != '1' && *char_1 != '-')
 		cub->player.y += y;

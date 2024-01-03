@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 16:17:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 19:09:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,18 @@
 // MACROS
 # define MAP_CHARSET "01NSEW"
 # define MMAP_SZ 15
-# define MINIMAP 4
-# define MINIMAP_SZ MINIMAP * 2 + 1
 # define STEP MMAP_SZ / 32 * 2
 # define M_PI 3.14159265358979323846
 # define SENSIBILITY 10
 # define PLAYER_SZ 4
+# define MMAP_1 1
+# define MMAP_SZ_1 MMAP_1 * 2 + 1
+# define MMAP_2 2
+# define MMAP_SZ_2 MMAP_2 * 2 + 1
+# define MMAP_3 3
+# define MMAP_SZ_3 MMAP_3 * 3 + 1
+# define MINIMAP 4
+# define MINIMAP_SZ MINIMAP * 2 + 1
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"
@@ -238,6 +244,7 @@ void			cub_check_shape(t_cub *cub, int x, int y, char c);
 void			cub_update_angle(t_cub *cub, int angle);
 
 // draw
+void			cub_check_simple_mmap(t_cub *cub, int mode, bool draw);
 void			cub_init_mlx(t_cub *cub);
 void			cub_mlx(t_cub *cub);
 
@@ -248,36 +255,97 @@ int				cub_release_key(int keycode, t_cub *cub);
 int				cub_mouse_handler(int keycode, t_cub *cub);
 int				cub_render(t_cub *cub);
 
-// minimap
-void			cub_small_update(t_cub *cub);
-void			cub_mmap_check_1(t_cub *cub, bool draw, bool print);
-void			cub_mmap_check_2(t_cub *cub, bool draw, bool print);
-void			cub_mmap_check_3(t_cub *cub, bool draw, bool print);
-void			cub_mmap_check(t_cub *cub, bool draw, bool print);
-
+// MINIMAP PRO
 // minimap utils 1
-void			cub_draw_mmap_1(t_cub *cub, bool draw, bool print);
-void			cub_draw_mmap_2(t_cub *cub, bool draw, bool print);
-void			cub_draw_mmap_3(t_cub *cub, bool draw, bool print);
+void			cub_draw_mmap_1(t_cub *cub, bool draw);
+void			cub_draw_mmap_2(t_cub *cub, bool draw);
+void			cub_draw_mmap_3(t_cub *cub, bool draw);
 
 // minimap utils 2
-void			cub_draw_mmap_4(t_cub *cub, bool draw, bool print);
-void			cub_draw_mmap_5(t_cub *cub, bool draw, bool print);
-void			cub_draw_mmap_6(t_cub *cub, bool draw, bool print);
+void			cub_draw_mmap_4(t_cub *cub, bool draw);
+void			cub_draw_mmap_5(t_cub *cub, bool draw);
+void			cub_draw_mmap_6(t_cub *cub, bool draw);
 
 // minimap utils 3
-void			cub_draw_mmap_7(t_cub *cub, bool draw, bool print);
-void			cub_draw_mmap_8(t_cub *cub, bool draw, bool print);
-void			cub_draw_mmap_9(t_cub *cub, bool draw, bool print);
+void			cub_draw_mmap_7(t_cub *cub, bool draw);
+void			cub_draw_mmap_8(t_cub *cub, bool draw);
+void			cub_draw_mmap_9(t_cub *cub, bool draw);
 
 // minimap
-void			cub_mmap_check_1(t_cub *cub, bool draw, bool print);
-void			cub_mmap_check_2(t_cub *cub, bool draw, bool print);
-void			cub_mmap_check_3(t_cub *cub, bool draw, bool print);
-void			cub_mmap_check(t_cub *cub, bool draw, bool print);
+void			cub_small_update(t_cub *cub);
+void			cub_mmap_check_1(t_cub *cub, bool draw);
+void			cub_mmap_check_2(t_cub *cub, bool draw);
+void			cub_mmap_check_3(t_cub *cub, bool draw);
+void			cub_mmap_check(t_cub *cub, bool draw);
 
-// minimap a
-void			cub_mmap_check_a(t_cub *cub);
+// MINIMAP A
+// minimap utils 1
+void			cub_draw_mmap_a_1(t_cub *cub, bool draw);
+void			cub_draw_mmap_a_2(t_cub *cub, bool draw);
+void			cub_draw_mmap_a_3(t_cub *cub, bool draw);
+
+// minimap utils 2
+void			cub_draw_mmap_a_4(t_cub *cub, bool draw);
+void			cub_draw_mmap_a_5(t_cub *cub, bool draw);
+void			cub_draw_mmap_a_6(t_cub *cub, bool draw);
+
+// minimap utils 3
+void			cub_draw_mmap_a_7(t_cub *cub, bool draw);
+void			cub_draw_mmap_a_8(t_cub *cub, bool draw);
+void			cub_draw_mmap_a_9(t_cub *cub, bool draw);
+
+// minimap
+void			cub_small_update_a(t_cub *cub);
+void			cub_mmap_check_a_1(t_cub *cub, bool draw);
+void			cub_mmap_check_a_2(t_cub *cub, bool draw);
+void			cub_mmap_check_a_3(t_cub *cub, bool draw);
+void			cub_mmap_check_a(t_cub *cub, bool draw);
+
+// MINIMAP B
+// minimap utils 1
+void			cub_draw_mmap_b_1(t_cub *cub, bool draw);
+void			cub_draw_mmap_b_2(t_cub *cub, bool draw);
+void			cub_draw_mmap_b_3(t_cub *cub, bool draw);
+
+// minimap utils 2
+void			cub_draw_mmap_b_4(t_cub *cub, bool draw);
+void			cub_draw_mmap_b_5(t_cub *cub, bool draw);
+void			cub_draw_mmap_b_6(t_cub *cub, bool draw);
+
+// minimap utils 3
+void			cub_draw_mmap_b_7(t_cub *cub, bool draw);
+void			cub_draw_mmap_b_8(t_cub *cub, bool draw);
+void			cub_draw_mmap_b_9(t_cub *cub, bool draw);
+
+// minimap
+void			cub_small_update_b(t_cub *cub);
+void			cub_mmap_check_b_1(t_cub *cub, bool draw);
+void			cub_mmap_check_b_2(t_cub *cub, bool draw);
+void			cub_mmap_check_b_3(t_cub *cub, bool draw);
+void			cub_mmap_check_b(t_cub *cub, bool draw);
+
+// MINIMAP C
+// minimap utils 1
+void			cub_draw_mmap_c_1(t_cub *cub, bool draw);
+void			cub_draw_mmap_c_2(t_cub *cub, bool draw);
+void			cub_draw_mmap_c_3(t_cub *cub, bool draw);
+
+// minimap utils 2
+void			cub_draw_mmap_c_4(t_cub *cub, bool draw);
+void			cub_draw_mmap_c_5(t_cub *cub, bool draw);
+void			cub_draw_mmap_c_6(t_cub *cub, bool draw);
+
+// minimap utils 3
+void			cub_draw_mmap_c_7(t_cub *cub, bool draw);
+void			cub_draw_mmap_c_8(t_cub *cub, bool draw);
+void			cub_draw_mmap_c_9(t_cub *cub, bool draw);
+
+// minimap
+void			cub_small_update_c(t_cub *cub);
+void			cub_mmap_check_c_1(t_cub *cub, bool draw);
+void			cub_mmap_check_c_2(t_cub *cub, bool draw);
+void			cub_mmap_check_c_3(t_cub *cub, bool draw);
+void			cub_mmap_check_c(t_cub *cub, bool draw);
 
 /* ************************************************************************** */
 /*                                   PARSER                                   */
