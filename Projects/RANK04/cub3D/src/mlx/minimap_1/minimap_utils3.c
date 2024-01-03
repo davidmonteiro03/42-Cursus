@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:06:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 18:36:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 21:28:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@ void	cub_draw_mmap_a_8(t_cub *cub, bool draw)
 	while (++y < (int)(cub->player.y / MMAP_SZ) - MMAP_1 + MMAP_SZ_1)
 	{
 		++alt_y;
-		auto int x = cub->map.width - MMAP_SZ_1 - 2;
+		auto int x = cub->map.width - MMAP_SZ_1 - 1;
 		auto int alt_x = -1;
 		while (++alt_x < MMAP_SZ_1)
 		{
+			++x;
 			if (draw)
 				cub_check_shape(cub, alt_x, alt_y, cub->map.map[y][x]);
 			if (cub->map.map[y][x] == cub->player.c)
@@ -52,7 +53,6 @@ void	cub_draw_mmap_a_8(t_cub *cub, bool draw)
 				cub->tmp.x = alt_x * MMAP_SZ;
 				cub->tmp.y = alt_y * MMAP_SZ;
 			}
-			x++;
 		}
 	}
 	cub_small_update_a(cub);
