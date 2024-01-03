@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 14:06:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/02 18:08:05 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 11:44:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	cub_draw_mmap_4(t_cub *cub, bool draw)
+void	cub_draw_mmap_4(t_cub *cub, bool draw, bool print)
 {
 	auto int alt_y = -1;
 	auto int y = cub->map.height - MINIMAP_SZ - 2;
@@ -20,21 +20,25 @@ void	cub_draw_mmap_4(t_cub *cub, bool draw)
 	{
 		auto int x = -1;
 		while (++x < MINIMAP_SZ)
+		{
 			if (draw)
 				cub_check_shape(cub, x, alt_y, cub->map.map[y][x]);
+			if (cub->map.map[y][x] == cub->player.c)
+			{
+				cub->tmp.x = x * MMAP_SZ;
+				cub->tmp.y = alt_y * MMAP_SZ;
+			}
+			if (print)
+				printf("%c", cub->map.map[y][x]);
+		}
+		if (print)
+			printf("\n");
 		y++;
 	}
-	cub->tmp.x = cub->player.x;
-	cub->tmp.y = cub->player.y;
-	while (cub->tmp.x > (MINIMAP * 2 + 1) * MMAP_SZ)
-		cub->tmp.x -= MMAP_SZ;
-	while (cub->tmp.y > (MINIMAP * 2 + 1) * MMAP_SZ)
-		cub->tmp.y -= MMAP_SZ;
-	printf("cub->tmp.x: %.lf\n", cub->tmp.x);
-	printf("cub->tmp.y: %.lf\n", cub->tmp.y);
+	cub_small_update(cub);
 }
 
-void	cub_draw_mmap_5(t_cub *cub, bool draw)
+void	cub_draw_mmap_5(t_cub *cub, bool draw, bool print)
 {
 	auto int alt_y = -1;
 	auto int y = cub->map.height - MINIMAP_SZ - 2;
@@ -45,14 +49,24 @@ void	cub_draw_mmap_5(t_cub *cub, bool draw)
 		while (++alt_x < MINIMAP_SZ)
 		{
 			if (draw)
-				cub_check_shape(cub, x, alt_y, cub->map.map[y][x]);
+				cub_check_shape(cub, alt_x, alt_y, cub->map.map[y][x]);
+			if (cub->map.map[y][x] == cub->player.c)
+			{
+				cub->tmp.x = alt_x * MMAP_SZ;
+				cub->tmp.y = alt_y * MMAP_SZ;
+			}
+			if (print)
+				printf("%c", cub->map.map[y][x]);
 			x++;
 		}
+		if (print)
+			printf("\n");
 		y++;
 	}
+	cub_small_update(cub);
 }
 
-void	cub_draw_mmap_6(t_cub *cub, bool draw)
+void	cub_draw_mmap_6(t_cub *cub, bool draw, bool print)
 {
 	auto int alt_y = -1;
 	auto int y = cub->map.height - MINIMAP_SZ - 2;
@@ -64,8 +78,18 @@ void	cub_draw_mmap_6(t_cub *cub, bool draw)
 		{
 			++alt_x;
 			if (draw)
-				cub_check_shape(cub, x, alt_y, cub->map.map[y][x]);
+				cub_check_shape(cub, alt_x, alt_y, cub->map.map[y][x]);
+			if (cub->map.map[y][x] == cub->player.c)
+			{
+				cub->tmp.x = alt_x * MMAP_SZ;
+				cub->tmp.y = alt_y * MMAP_SZ;
+			}
+			if (print)
+				printf("%c", cub->map.map[y][x]);
 		}
+		if (print)
+			printf("\n");
 		y++;
 	}
+	cub_small_update(cub);
 }

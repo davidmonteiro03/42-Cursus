@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/02 17:51:15 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 13:08:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	cub_init_mlx(t_cub *cub)
 	cub->back.blue = 0x99;
 	cub->back.hex = 0x999999;
 	if (cub->map.width > MINIMAP)
-		cub_mmap_check(cub, true);
+		cub_mmap_check(cub, true, false);
 }
 
 void	cub_mlx(t_cub *cub)
@@ -39,7 +39,7 @@ void	cub_mlx(t_cub *cub)
 	cub_init_mlx(cub);
 	cub->tmp.x = (int)(cub->player.x) % ((MINIMAP * 2 + 1) * MMAP_SZ);
 	cub->tmp.y = (int)(cub->player.y) % ((MINIMAP * 2 + 1) * MMAP_SZ);
-	cub_draw_circle(cub, cub->player.x, cub->player.y, -1);
+	cub_draw_player(cub, false);
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \
 		cub->player.x, cub->player.y);
 	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_press_key, cub);
