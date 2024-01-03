@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 08:01:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 13:43:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:28:43 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 void	cub_check_pixel(t_cub *cub, int x, int y, bool erase)
 {
-	mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-		cub->tmp.x + x, cub->tmp.y + y, 0x00FF00);
 	if (!erase)
-		return ;
+		return (mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
+			cub->tmp.x + x, cub->tmp.y + y, 0x00FF00), (void)0);
 	auto int pos_x = (int)((cub->player.x + x) / MMAP_SZ);
 	auto int pos_y = (int)((cub->player.y + y) / MMAP_SZ);
 	if (cub->map.map[pos_y][pos_x] == '1')
@@ -35,15 +34,34 @@ void	cub_check_pixel(t_cub *cub, int x, int y, bool erase)
 
 void	cub_draw_player(t_cub *cub, bool erase)
 {
-/* 	auto int i = -1;
-	while (++i < PLAYER_SZ)
+	auto int i = PLAYER_SZ * -1 - 1;
+	auto int sum = 1;
+	while (++i <= PLAYER_SZ)
 	{
 		auto int j = PLAYER_SZ * -1 - 1;
 		while (++j <= PLAYER_SZ)
-			printf("*");
-		printf("\n");
-	} */
-	cub_check_pixel(cub, 0, 0, erase);
+			if (j >= (sum - 1) * -1 && j <= sum - 1)
+				cub_check_pixel(cub, j, i, erase);
+		if (i < 0)
+			sum++;
+		else
+			sum--;
+	}
+}
+
+void	cub_small_check_2(t_cub *cub, char *old_c, char *new_c)
+{
+	if (*old_c != *new_c)
+	{
+		*new_c = *old_c;
+		*old_c = '0';
+		if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
+			cub_mmap_check(cub, true, false);
+	}
+	else if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
+		cub_mmap_check(cub, false, false);
+	if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
+		cub_draw_player(cub, false);
 }
 
 void	cub_small_check(t_cub *cub, double x, double y)
@@ -57,6 +75,7 @@ void	cub_small_check(t_cub *cub, double x, double y)
 		[(int)((cub->player.x + x) / MMAP_SZ)];
 	auto char *old_c = &cub->map.map[(int)(cub->player.y / MMAP_SZ)] \
 		[(int)(cub->player.x / MMAP_SZ)];
+	cub_mmap_check(cub, false, false);
 	cub_draw_player(cub, true);
 	if (*char_1 != '1' && *char_1 != '-')
 		cub->player.y += y;
@@ -64,15 +83,7 @@ void	cub_small_check(t_cub *cub, double x, double y)
 		cub->player.x += x;
 	auto char *new_c = &cub->map.map[(int)(cub->player.y / MMAP_SZ)] \
 		[(int)(cub->player.x / MMAP_SZ)];
-	if (*old_c != *new_c)
-	{
-		*new_c = *old_c;
-		*old_c = '0';
-		cub_mmap_check(cub, true, false);
-	}
-	else
-		cub_mmap_check(cub, false, false);
-	cub_draw_player(cub, false);
+	cub_small_check_2(cub, old_c, new_c);
 }
 
 void	cub_check_keys(t_cub *cub)

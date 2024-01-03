@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/02 15:30:17 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/03 15:07:56 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS			= main.c \
 					src/mlx/draw.c \
 					src/mlx/hook_handler.c \
 					src/mlx/minimap.c \
+					src/mlx/minimap_a.c \
 					src/mlx/minimap_utils1.c \
 					src/mlx/minimap_utils2.c \
 					src/mlx/minimap_utils3.c \

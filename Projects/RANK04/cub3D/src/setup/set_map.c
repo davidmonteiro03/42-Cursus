@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:35:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/02 17:40:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 15:41:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,29 @@ t_player	cub_get_player_pos(char **map)
 	return (player);
 }
 
+int	cub_get_start(char **content, int i)
+{
+	int	min;
+
+	min = 2147483647;
+	while (content[++i])
+	{
+		auto int j = -1;
+		while (content[i][++j] && content[i][j] == ' ')
+			;
+		if (j < min)
+			min = j;
+	}
+	return (min);
+}
+
 void	cub_set_map(t_cub *cub)
 {
 	char	**tmp;
 
 	tmp = cub_get_lines(cub->config.content, cub->map_info.pos_start, \
 		cub->map_info.pos_end);
-	cub->map.map = cub_copy(tmp, -1, cub_get_max_len(tmp, ' ', -1));
+	cub->map.map = cub_copy_2(tmp, -1, cub_get_max_len(tmp, ' ', -1));
 	multiple_free("%b", tmp);
 	cub_little_update(cub->map.map);
 	cub_prepare_copy(cub->map.map, -1);

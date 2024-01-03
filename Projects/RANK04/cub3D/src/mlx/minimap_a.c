@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   display_file.c                                     :+:      :+:    :+:   */
+/*   minimap_a.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 00:13:31 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 16:25:58 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/03 15:05:19 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/03 15:41:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-void	cub_display_strs(char **file_content, int start, int end)
+void	cub_mmap_check_a(t_cub *cub)
 {
-	while (start <= end)
-		printf("%s\n", file_content[start++]);
-	printf("\n");
+	(void)cub;
+	cub_display_strs(cub->map.map, 0, cub_strs_size(cub->map.map) - 1);
 }

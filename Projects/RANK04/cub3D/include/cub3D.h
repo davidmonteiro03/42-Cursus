@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 13:19:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 16:17:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define STEP MMAP_SZ / 32 * 2
 # define M_PI 3.14159265358979323846
 # define SENSIBILITY 10
-# define PLAYER_SZ 1
+# define PLAYER_SZ 4
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"
@@ -226,7 +226,9 @@ void			*cub_new_image(void *mlx, t_img *img);
 /* ************************************************************************** */
 
 // check moves
+void			cub_check_pixel(t_cub *cub, int x, int y, bool erase);
 void			cub_draw_player(t_cub *cub, bool erase);
+void			cub_small_check_2(t_cub *cub, char *old_c, char *new_c);
 void			cub_small_check(t_cub *cub, double x, double y);
 void			cub_check_keys(t_cub *cub);
 
@@ -273,6 +275,9 @@ void			cub_mmap_check_1(t_cub *cub, bool draw, bool print);
 void			cub_mmap_check_2(t_cub *cub, bool draw, bool print);
 void			cub_mmap_check_3(t_cub *cub, bool draw, bool print);
 void			cub_mmap_check(t_cub *cub, bool draw, bool print);
+
+// minimap a
+void			cub_mmap_check_a(t_cub *cub);
 
 /* ************************************************************************** */
 /*                                   PARSER                                   */
@@ -387,6 +392,7 @@ void			cub_check_input(t_cub *cub, int argc, char **argv);
 
 // map
 t_player		cub_get_player_pos(char **map);
+int				cub_get_start(char **content, int i);
 void			cub_set_map(t_cub *cub);
 
 // config
@@ -414,6 +420,7 @@ void			cub_display_strs(char **file_content, int start, int end);
 // get lines
 char			**cub_get_args(char *str);
 char			**cub_copy(char **map, int i, int max_len);
+char			**cub_copy_2(char **map, int i, int max_len);
 char			**cub_get_lines(char **content, int start, int end);
 
 // get size
