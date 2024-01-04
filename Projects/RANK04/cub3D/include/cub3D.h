@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 19:49:50 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/04 00:58:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,14 @@
 # define STEP MMAP_SZ / 32 * 2
 # define M_PI 3.14159265358979323846
 # define MINIMAP 4
-# define MINIMAP_SZ 9
-# define MMAP_1 1
-# define MMAP_SZ_1 3
-# define MMAP_2 2
-# define MMAP_SZ_2 5
-# define MMAP_3 3
-# define MMAP_SZ_3 7
 # define SENSIBILITY 10
 # define PLAYER_SZ 4
+# define BORDER_COLOR 0xFFFFFF
+# define WALL_COLOR 0x999999
+# define FLOOR_COLOR 0x666666
+# define EMPTY_COLOR 0x333333
+# define PLAYER_COLOR 0x00FF00
+# define STROKE MMAP_SZ / 10 + 1
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"
@@ -136,6 +135,7 @@ typedef struct s_map
 	char	**map;
 	int		height;
 	int		width;
+	int		minimap;
 }t_map;
 
 typedef struct s_player
@@ -230,7 +230,6 @@ void			*cub_new_image(void *mlx, t_img *img);
 /*                                    MLX                                     */
 /* ************************************************************************** */
 
-// MINIMAP PRO
 // minimap utils 1
 void			cub_draw_mmap_1(t_cub *cub, bool draw);
 void			cub_draw_mmap_2(t_cub *cub, bool draw);
@@ -253,75 +252,6 @@ void			cub_mmap_check_2(t_cub *cub, bool draw);
 void			cub_mmap_check_3(t_cub *cub, bool draw);
 void			cub_mmap_check(t_cub *cub, bool draw);
 
-// MINIMAP A
-// minimap utils 1
-void			cub_draw_mmap_a_1(t_cub *cub, bool draw);
-void			cub_draw_mmap_a_2(t_cub *cub, bool draw);
-void			cub_draw_mmap_a_3(t_cub *cub, bool draw);
-
-// minimap utils 2
-void			cub_draw_mmap_a_4(t_cub *cub, bool draw);
-void			cub_draw_mmap_a_5(t_cub *cub, bool draw);
-void			cub_draw_mmap_a_6(t_cub *cub, bool draw);
-
-// minimap utils 3
-void			cub_draw_mmap_a_7(t_cub *cub, bool draw);
-void			cub_draw_mmap_a_8(t_cub *cub, bool draw);
-void			cub_draw_mmap_a_9(t_cub *cub, bool draw);
-
-// minimap
-void			cub_small_update_a(t_cub *cub);
-void			cub_mmap_check_a_1(t_cub *cub, bool draw);
-void			cub_mmap_check_a_2(t_cub *cub, bool draw);
-void			cub_mmap_check_a_3(t_cub *cub, bool draw);
-void			cub_mmap_check_a(t_cub *cub, bool draw);
-
-// MINIMAP B
-// minimap utils 1
-void			cub_draw_mmap_b_1(t_cub *cub, bool draw);
-void			cub_draw_mmap_b_2(t_cub *cub, bool draw);
-void			cub_draw_mmap_b_3(t_cub *cub, bool draw);
-
-// minimap utils 2
-void			cub_draw_mmap_b_4(t_cub *cub, bool draw);
-void			cub_draw_mmap_b_5(t_cub *cub, bool draw);
-void			cub_draw_mmap_b_6(t_cub *cub, bool draw);
-
-// minimap utils 3
-void			cub_draw_mmap_b_7(t_cub *cub, bool draw);
-void			cub_draw_mmap_b_8(t_cub *cub, bool draw);
-void			cub_draw_mmap_b_9(t_cub *cub, bool draw);
-
-// minimap
-void			cub_small_update_b(t_cub *cub);
-void			cub_mmap_check_b_1(t_cub *cub, bool draw);
-void			cub_mmap_check_b_2(t_cub *cub, bool draw);
-void			cub_mmap_check_b_3(t_cub *cub, bool draw);
-void			cub_mmap_check_b(t_cub *cub, bool draw);
-
-// MINIMAP C
-// minimap utils 1
-void			cub_draw_mmap_c_1(t_cub *cub, bool draw);
-void			cub_draw_mmap_c_2(t_cub *cub, bool draw);
-void			cub_draw_mmap_c_3(t_cub *cub, bool draw);
-
-// minimap utils 2
-void			cub_draw_mmap_c_4(t_cub *cub, bool draw);
-void			cub_draw_mmap_c_5(t_cub *cub, bool draw);
-void			cub_draw_mmap_c_6(t_cub *cub, bool draw);
-
-// minimap utils 3
-void			cub_draw_mmap_c_7(t_cub *cub, bool draw);
-void			cub_draw_mmap_c_8(t_cub *cub, bool draw);
-void			cub_draw_mmap_c_9(t_cub *cub, bool draw);
-
-// minimap
-void			cub_small_update_c(t_cub *cub);
-void			cub_mmap_check_c_1(t_cub *cub, bool draw);
-void			cub_mmap_check_c_2(t_cub *cub, bool draw);
-void			cub_mmap_check_c_3(t_cub *cub, bool draw);
-void			cub_mmap_check_c(t_cub *cub, bool draw);
-
 // check moves
 void			cub_check_pixel(t_cub *cub, int x, int y, bool erase);
 void			cub_draw_player(t_cub *cub, bool erase);
@@ -330,6 +260,8 @@ void			cub_small_check(t_cub *cub, double x, double y);
 void			cub_check_keys(t_cub *cub, int x);
 
 // draw utils
+void			cub_draw_last_column(t_cub *cub, int x, int y);
+void			cub_draw_last_line(t_cub *cub, int x, int y);
 void			cub_draw_shape(t_mlx mlx, int x, int y, t_color color);
 void			cub_check_shape(t_cub *cub, int x, int y, char c);
 void			cub_update_angle(t_cub *cub, int angle);

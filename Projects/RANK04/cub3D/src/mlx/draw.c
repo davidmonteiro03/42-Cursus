@@ -6,21 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:32:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 20:09:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/03 23:56:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-void	cub_check_simple_mmap(t_cub *cub, int mode, bool draw)
-{
-	if (mode == 3 || mode == 4)
-		cub_mmap_check_a(cub, draw);
-	else if (mode == 5 || mode == 6)
-		cub_mmap_check_b(cub, draw);
-	else if (mode == 7 || mode == 8)
-		cub_mmap_check_c(cub, draw);
-}
 
 void	cub_draw_back(t_cub *cub)
 {
@@ -55,12 +45,11 @@ void	cub_init_mlx(t_cub *cub)
 	cub->mlx.win = mlx_new_window(cub->mlx.mlx, 700, 700, "cub3D");
 	cub->player = cub_get_player_pos(cub->map.map);
 	cub->player.angle = cub_get_angle(cub, cub->player.c);
+	cub->map.minimap = (int)(ft_min(cub->map.width, cub->map.height) - 1) / 2;
+	if (cub->map.minimap > MINIMAP)
+		cub->map.minimap = MINIMAP;
 	cub_draw_back(cub);
-	if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
-		cub_mmap_check(cub, true);
-	else
-		cub_check_simple_mmap(cub, \
-			ft_min(cub->map.width, cub->map.height), true);
+	cub_mmap_check(cub, true);
 	cub_draw_player(cub, false);
 }
 

@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/03 19:01:18 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/03 23:52:21 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,22 +40,10 @@ SRCS			= main.c \
 					src/mlx/draw_utils.c \
 					src/mlx/draw.c \
 					src/mlx/hook_handler.c \
-					src/mlx/minimap_1/minimap.c \
-					src/mlx/minimap_1/minimap_utils1.c \
-					src/mlx/minimap_1/minimap_utils2.c \
-					src/mlx/minimap_1/minimap_utils3.c \
-					src/mlx/minimap_2/minimap.c \
-					src/mlx/minimap_2/minimap_utils1.c \
-					src/mlx/minimap_2/minimap_utils2.c \
-					src/mlx/minimap_2/minimap_utils3.c \
-					src/mlx/minimap_3/minimap.c \
-					src/mlx/minimap_3/minimap_utils1.c \
-					src/mlx/minimap_3/minimap_utils2.c \
-					src/mlx/minimap_3/minimap_utils3.c \
-					src/mlx/minimap_pro/minimap.c \
-					src/mlx/minimap_pro/minimap_utils1.c \
-					src/mlx/minimap_pro/minimap_utils2.c \
-					src/mlx/minimap_pro/minimap_utils3.c \
+					src/mlx/minimap/minimap.c \
+					src/mlx/minimap/minimap_utils1.c \
+					src/mlx/minimap/minimap_utils2.c \
+					src/mlx/minimap/minimap_utils3.c \
 					src/parser/config/parse_args.c \
 					src/parser/config/parse_colors.c \
 					src/parser/config/parse_config.c \

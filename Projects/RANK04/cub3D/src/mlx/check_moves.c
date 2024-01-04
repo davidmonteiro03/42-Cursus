@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 08:01:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 20:10:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/04 00:58:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,20 @@ void	cub_check_pixel(t_cub *cub, int x, int y, bool erase)
 {
 	if (!erase)
 		return (mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			cub->tmp.x + x, cub->tmp.y + y, 0x00FF00), (void)0);
+			cub->tmp.x + x, cub->tmp.y + y, PLAYER_COLOR), (void)0);
 	auto int pos_x = (int)((cub->player.x + x) / MMAP_SZ);
 	auto int pos_y = (int)((cub->player.y + y) / MMAP_SZ);
 	if (cub->map.map[pos_y][pos_x] == '1')
 		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			cub->tmp.x + x, cub->tmp.y + y, 0xCCCCCC);
+			cub->tmp.x + x, cub->tmp.y + y, WALL_COLOR);
 	else if (cub->map.map[pos_y][pos_x] == '0' || \
 		cub->map.map[pos_y][pos_x] == ' ' || \
 		cub->map.map[pos_y][pos_x] == cub->player.c)
 		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			cub->tmp.x + x, cub->tmp.y + y, 0x666666);
+			cub->tmp.x + x, cub->tmp.y + y, FLOOR_COLOR);
 	else if (cub->map.map[pos_y][pos_x] == '-')
 		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			cub->tmp.x + x, cub->tmp.y + y, 0x333333);
+			cub->tmp.x + x, cub->tmp.y + y, EMPTY_COLOR);
 }
 
 void	cub_draw_player(t_cub *cub, bool erase)
@@ -55,20 +55,10 @@ void	cub_small_check_2(t_cub *cub, char *old_c, char *new_c)
 	{
 		*new_c = *old_c;
 		*old_c = '0';
-		if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
-			cub_mmap_check(cub, true);
-		else
-			cub_check_simple_mmap(cub, \
-				ft_min(cub->map.width, cub->map.height), true);
+		cub_mmap_check(cub, true);
 	}
 	else
-	{
-		if (cub->map.width >= MINIMAP_SZ && cub->map.height >= MINIMAP_SZ)
-			cub_mmap_check(cub, false);
-		else
-			cub_check_simple_mmap(cub, \
-				ft_min(cub->map.width, cub->map.height), false);
-	}
+		cub_mmap_check(cub, false);
 	cub_draw_player(cub, false);
 }
 
@@ -95,9 +85,9 @@ void	cub_small_check(t_cub *cub, double x, double y)
 
 void	cub_check_keys(t_cub *cub, int x)
 {
-	if (cub->keys.right || (x > 500 && x < 700))
+	if (cub->keys.right || (x > 0 && x < 200))
 		cub_update_angle(cub, 1);
-	else if (cub->keys.left || (x > 0 && x < 200))
+	else if (cub->keys.left || (x > 500 && x < 700))
 		cub_update_angle(cub, -1);
 	if (cub->keys.w)
 		cub_move_player(cub, cos(cub->player.angle * M_PI / 180.0) * STEP, \

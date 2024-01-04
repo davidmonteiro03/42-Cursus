@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 15:39:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 19:36:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/04 01:01:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 void	cub_move_player(t_cub *cub, double x, double y)
 {
+	int	mouse_x;
+	int	mouse_y;
+
+	mlx_mouse_get_pos(cub->mlx.mlx, cub->mlx.win, &mouse_x, &mouse_y);
 	cub_small_check(cub, x, y);
-	if (!cub->keys.right && !cub->keys.left)
+	if (!cub->keys.right && !cub->keys.left && \
+		(mouse_x <= 0 || \
+		(mouse_x >= 200 && mouse_x <= 500) || \
+		mouse_x >= 700))
 		usleep(10000);
 }
 
@@ -70,5 +77,7 @@ int	cub_render(t_cub *cub)
 
 	mlx_mouse_get_pos(cub->mlx.mlx, cub->mlx.win, &x, &y);
 	cub_check_keys(cub, x);
+	mlx_hook(cub->mlx.win, KeyPress, KeyPressMask, &cub_press_key, cub);
+	mlx_hook(cub->mlx.win, KeyRelease, KeyReleaseMask, &cub_release_key, cub);
 	return (0);
 }
