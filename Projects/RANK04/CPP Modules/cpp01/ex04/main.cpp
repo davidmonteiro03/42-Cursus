@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 07:21:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/06 08:44:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/04 07:39:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	argv_count(char **argv)
 
 int	main(int argc, char **argv)
 {
-	char			c;
 	std::string		s1;
+	std::string		buf;
 	std::ifstream	file_in;
 
 	if (argc != 4 || argv_count(argv) != 4)
@@ -61,8 +61,14 @@ int	main(int argc, char **argv)
 		std::cout << "Error opening file." << std::endl;
 		return (1);
 	}
-	while (!file_in.eof() && file_in >> std::noskipws >> c)
-		s1 += c;
+	if (file_in.is_open())
+	{
+		while (file_in)
+		{
+			std::getline(file_in, buf);
+			s1 += buf + '\n';
+		}
+	}
 	file_in.close();
 	return (replace(argv, s1));
 }

@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/05 19:38:26 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/04 07:57:02 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ YELLOW			= \033[1;93m
 CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
-CC				= c++
-CFLAGS			= -Wall -Wextra -Werror -std=c++98
+CXX				= c++
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
 RM				= rm -rf
 
 OBJS_DIR		= obj/
@@ -33,10 +33,10 @@ all: $(EXEC)
 $(OBJS_DIR)%.o: ./%.cpp
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(EXEC): $(OBJS)
-	@$(CC) $(CFLAGS) $^ -o $@
+	@$(CXX) $(CXXFLAGS) $^ -o $@
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 clean:
