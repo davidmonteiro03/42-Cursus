@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:23:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/08 20:31:28 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/08 23:21:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ void	cub_mmap_check_2(t_cub *cub, bool draw)
 {
 	if ((int)cub->player.pos_y - cub->map.minimap_size < 0)
 		cub_draw_mmap_4(cub, draw);
-	else if ((int)cub->player.pos_y + cub->map.minimap_size > cub->map.width - 1)
+	else if ((int)cub->player.pos_y + cub->map.minimap_size \
+		> cub->map.width - 1)
 		cub_draw_mmap_5(cub, draw);
 	else
 		cub_draw_mmap_6(cub, draw);
