@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:25:18 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/15 15:36:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/08 18:32:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, char **argv)
 	cub_check_data(cub);
 	cub_set_config(cub);
 	cub_set_map(cub);
-	cub_mlx(cub);
+	cub_init_game(cub);
+	cub_loop_game(cub);
 	cub_exit(cub);
 	return (0);
 }

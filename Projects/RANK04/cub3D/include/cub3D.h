@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/04 00:58:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/08 20:35:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,21 +19,21 @@
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <math.h>
+# include <time.h>
 
 // MACROS
 # define MAP_CHARSET "01NSEW"
-# define MMAP_SZ 15
-# define STEP MMAP_SZ / 32 * 2
-# define M_PI 3.14159265358979323846
-# define MINIMAP 4
-# define SENSIBILITY 10
-# define PLAYER_SZ 4
+# define PLAYER_CHARSET "NSEW"
+# define MARGIN_SIZE 400
+# define MINIMAP_SZ 4
+# define MINIMAP 15
+# define STROKE 2
+# define PLAYER_SZ 5
 # define BORDER_COLOR 0xFFFFFF
-# define WALL_COLOR 0x999999
-# define FLOOR_COLOR 0x666666
-# define EMPTY_COLOR 0x333333
+# define FLOOR_COLOR 0x444444
+# define EMPTY_COLOR 0x000000
 # define PLAYER_COLOR 0x00FF00
-# define STROKE MMAP_SZ / 10 + 1
+# define WALL_COLOR 0x999999
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"
@@ -101,16 +101,24 @@ typedef struct s_count
 
 typedef struct s_img
 {
-	char	*path;
-	void	*img;
-	int		width;
-	int		height;
+	char			*path;
+	void			*img;
+	int				bpp;
+	int				size_line;
+	int				endian;
+	char			*addr;
+	int				width;
+	int				height;
+	unsigned int	*textures;
 }t_img;
 
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
+	int		screen_width;
+	int		screen_height;
+	int		screen_size;
 	t_img	img;
 }t_mlx;
 
@@ -135,15 +143,20 @@ typedef struct s_map
 	char	**map;
 	int		height;
 	int		width;
-	int		minimap;
+	int		minimap_size;
 }t_map;
 
 typedef struct s_player
 {
-	double	x;
-	double	y;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	plane_x;
+	double	plane_y;
+	double	move_speed;
+	double	rot_speed;
 	char	c;
-	int		angle;
 }t_player;
 
 typedef struct s_tmp
@@ -160,14 +173,36 @@ typedef struct s_keys
 	bool	d;
 	bool	left;
 	bool	right;
+	bool	esc;
 }t_keys;
+
+typedef struct s_raycast
+{
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	int		hit;
+	int		step_x;
+	int		step_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	int		side;
+	double	perp_wall_dist;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+}t_raycast;
 
 typedef struct s_cub
 {
 	t_file			config;
 	t_info			map_info;
 	t_info			config_info;
-	t_mlx			mlx;
 	t_directions	directions;
 	t_color			floor;
 	t_color			ceiling;
@@ -175,6 +210,8 @@ typedef struct s_cub
 	t_player		player;
 	t_keys			keys;
 	t_tmp			tmp;
+	t_mlx			mlx;
+	t_raycast		raycast;
 }t_cub;
 
 /* ************************************************************************** */
@@ -199,11 +236,81 @@ void			cub_error_file(t_cub *cub, char *file, bool perror_flag);
 /* ************************************************************************** */
 
 // free_file
-void			free_mlx_imgs(t_cub *cub);
-void			free_img(t_img img);
+void			free_img(void *mlx, t_img img);
 void			free_map(t_map map);
 void			free_file(t_file file);
-void			free_mlx(t_mlx mlx);
+
+/* ************************************************************************** */
+/*                                    GAME                                    */
+/* ************************************************************************** */
+
+// draw utils
+void			cub_check_pixel(t_cub *cub, int x, int y, bool erase);
+void			cub_draw_player(t_cub *cub, bool erase);
+void			cub_draw_square(t_cub *cub, int x, int y, unsigned int color);
+void			cub_check_shape(t_cub *cub, int x, int y, char c);
+
+// game utils
+void			cub_mmap_check(t_cub *cub, bool draw);
+void			cub_update_angle(t_cub *cub, int angle);
+void			cub_move_player(t_cub *cub, double x, double y);
+void			cub_check_keys(t_cub *cub, int x, int y);
+
+// get info
+void			cub_get_minimap_size(t_map *map);
+void			cub_player_position(t_cub *cub);
+void			cub_player_angle(t_player *player);
+
+// hook handler
+int				cub_key_press(int keycode, t_cub *cub);
+int				cub_key_release(int keycode, t_cub *cub);
+
+// img utils
+void			cub_finish_img(void *mlx, t_img *img);
+
+// init game
+t_mlx			cub_init_mlx(void);
+void			cub_init_game(t_cub *cub);
+
+// minimap check 1
+void			cub_draw_mmap_1(t_cub *cub, bool draw);
+void			cub_draw_mmap_2(t_cub *cub, bool draw);
+void			cub_draw_mmap_3(t_cub *cub, bool draw);
+void			cub_mmap_check_1(t_cub *cub, bool draw);
+
+// minimap check 2
+void			cub_draw_mmap_4(t_cub *cub, bool draw);
+void			cub_draw_mmap_5(t_cub *cub, bool draw);
+void			cub_draw_mmap_6(t_cub *cub, bool draw);
+void			cub_mmap_check_2(t_cub *cub, bool draw);
+
+// minimap check 3
+void			cub_draw_mmap_7(t_cub *cub, bool draw);
+void			cub_draw_mmap_8(t_cub *cub, bool draw);
+void			cub_draw_mmap_9(t_cub *cub, bool draw);
+void			cub_mmap_check_3(t_cub *cub, bool draw);
+
+// minimap utils
+void			cub_draw_last_column(t_cub *cub, int x, int y);
+void			cub_draw_last_line(t_cub *cub, int x, int y);
+void			cub_small_update(t_cub *cub);
+
+// play game
+int				cub_render(t_cub *cub);
+void			cub_loop_game(t_cub *cub);
+
+// raycast utils
+void			cub_raycast_util_1(t_cub *cubb);
+void			cub_raycast_draw_wall(t_cub *cub, t_img *img, int x);
+void			cub_draw_floor_and_ceiling(t_cub *cub, int x);
+t_img			*cub_get_wall(t_cub *cub);
+
+// raycast
+void			cub_raycast_part_1(t_cub *cub, int x);
+void			cub_raycast_part_2(t_cub *cub);
+void			cub_raycast_part_3(t_cub *cub);
+void			cub_raycast_part_4(t_cub *cub, int x);
+void			cub_raycast(t_cub *cub);
 
 /* ************************************************************************** */
 /*                                    INIT                                    */
@@ -219,65 +326,13 @@ t_cub			*cub_init(void);
 // init 2
 t_map			cub_map_init(void);
 t_color			cub_color_init(void);
-t_mlx			cub_mlx_init(void);
 t_player		cub_player_init(void);
 t_keys			cub_keys_init(void);
 
 // init 3
+t_tmp			cub_tmp_init(void);
+t_raycast		cub_raycast_init(void);
 void			*cub_new_image(void *mlx, t_img *img);
-
-/* ************************************************************************** */
-/*                                    MLX                                     */
-/* ************************************************************************** */
-
-// minimap utils 1
-void			cub_draw_mmap_1(t_cub *cub, bool draw);
-void			cub_draw_mmap_2(t_cub *cub, bool draw);
-void			cub_draw_mmap_3(t_cub *cub, bool draw);
-
-// minimap utils 2
-void			cub_draw_mmap_4(t_cub *cub, bool draw);
-void			cub_draw_mmap_5(t_cub *cub, bool draw);
-void			cub_draw_mmap_6(t_cub *cub, bool draw);
-
-// minimap utils 3
-void			cub_draw_mmap_7(t_cub *cub, bool draw);
-void			cub_draw_mmap_8(t_cub *cub, bool draw);
-void			cub_draw_mmap_9(t_cub *cub, bool draw);
-
-// minimap
-void			cub_small_update(t_cub *cub);
-void			cub_mmap_check_1(t_cub *cub, bool draw);
-void			cub_mmap_check_2(t_cub *cub, bool draw);
-void			cub_mmap_check_3(t_cub *cub, bool draw);
-void			cub_mmap_check(t_cub *cub, bool draw);
-
-// check moves
-void			cub_check_pixel(t_cub *cub, int x, int y, bool erase);
-void			cub_draw_player(t_cub *cub, bool erase);
-void			cub_small_check_2(t_cub *cub, char *old_c, char *new_c);
-void			cub_small_check(t_cub *cub, double x, double y);
-void			cub_check_keys(t_cub *cub, int x);
-
-// draw utils
-void			cub_draw_last_column(t_cub *cub, int x, int y);
-void			cub_draw_last_line(t_cub *cub, int x, int y);
-void			cub_draw_shape(t_mlx mlx, int x, int y, t_color color);
-void			cub_check_shape(t_cub *cub, int x, int y, char c);
-void			cub_update_angle(t_cub *cub, int angle);
-
-// draw
-void			cub_draw_back(t_cub *cub);
-void			cub_check_simple_mmap(t_cub *cub, int mode, bool draw);
-void			cub_init_mlx(t_cub *cub);
-void			cub_mlx(t_cub *cub);
-
-// hook handler
-void			cub_move_player(t_cub *cub, double x, double y);
-int				cub_press_key(int keycode, t_cub *cub);
-int				cub_release_key(int keycode, t_cub *cub);
-int				cub_mouse_handler(int keycode, t_cub *cub);
-int				cub_render(t_cub *cub);
 
 /* ************************************************************************** */
 /*                                   PARSER                                   */
@@ -403,12 +458,11 @@ void			cub_set_config(t_cub *cub);
 /* ************************************************************************** */
 
 // utils1
-int				cub_get_angle(t_cub *cub, char c);
 unsigned long	ft_min(unsigned long a, unsigned long b);
 unsigned long	ft_max(unsigned long a, unsigned long b);
-unsigned long	cub_contrast_color(unsigned long color, \
-	unsigned long dark, unsigned long light);
 long int		cub_atol(const char *nptr);
+unsigned int	cub_convert_to_rgb(unsigned int value);
+double			cub_double_abs(double num);
 
 // build free
 char			*cub_buildfree(char *s1, char *s2, \

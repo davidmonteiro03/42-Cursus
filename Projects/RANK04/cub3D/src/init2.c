@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:58:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/02 15:29:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/08 19:33:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_map	cub_map_init(void)
 	t_map	map;
 
 	map.map = NULL;
-	map.height = 0;
-	map.width = 0;
+	map.height = -1;
+	map.width = -1;
 	return (map);
 }
 
@@ -46,10 +46,15 @@ t_player	cub_player_init(void)
 {
 	t_player	player;
 
-	player.x = -1;
-	player.y = -1;
-	player.c = '0';
-	player.angle = -1;
+	player.pos_x = -1;
+	player.pos_y = -1;
+	player.dir_x = -1;
+	player.dir_y = -1;
+	player.plane_x = -1;
+	player.plane_y = -1;
+	player.move_speed = -1;
+	player.rot_speed = -1;
+	player.c = '\0';
 	return (player);
 }
 
@@ -63,5 +68,6 @@ t_keys	cub_keys_init(void)
 	keys.d = false;
 	keys.left = false;
 	keys.right = false;
+	keys.esc = false;
 	return (keys);
 }

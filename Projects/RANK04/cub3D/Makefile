@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/03 23:52:21 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/08 20:35:24 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror -g #-fsanitize=address
 RM				= rm -rf
 
 OBJS_DIR		= obj/
@@ -36,14 +36,19 @@ SRCS			= main.c \
 					src/init.c \
 					src/init2.c \
 					src/init3.c \
-					src/mlx/check_moves.c \
-					src/mlx/draw_utils.c \
-					src/mlx/draw.c \
-					src/mlx/hook_handler.c \
-					src/mlx/minimap/minimap.c \
-					src/mlx/minimap/minimap_utils1.c \
-					src/mlx/minimap/minimap_utils2.c \
-					src/mlx/minimap/minimap_utils3.c \
+					src/game/draw_utils.c \
+					src/game/game_utils.c \
+					src/game/get_info.c \
+					src/game/hook_handler.c \
+					src/game/img_utils.c \
+					src/game/init_game.c \
+					src/game/minimap_check_1.c \
+					src/game/minimap_check_2.c \
+					src/game/minimap_check_3.c \
+					src/game/minimap_utils.c \
+					src/game/play_game.c \
+					src/game/raycast_utils.c \
+					src/game/raycast.c \
 					src/parser/config/parse_args.c \
 					src/parser/config/parse_colors.c \
 					src/parser/config/parse_config.c \

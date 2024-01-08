@@ -6,36 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 14:35:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/03 15:41:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/08 21:12:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
-
-t_player	cub_get_player_pos(char **map)
-{
-	t_player	player;
-	int			i;
-	int			j;
-
-	player = cub_player_init();
-	i = -1;
-	while (map[++i])
-	{
-		j = -1;
-		while (map[i][++j])
-		{
-			if (ft_strchr("NSEW", map[i][j]))
-			{
-				player.x = j * MMAP_SZ + MMAP_SZ / 2;
-				player.y = i * MMAP_SZ + MMAP_SZ / 2;
-				player.c = map[i][j];
-				return (player);
-			}
-		}
-	}
-	return (player);
-}
 
 int	cub_get_start(char **content, int i)
 {
