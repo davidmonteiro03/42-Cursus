@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/09 19:43:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:41:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@
 # define BORDER_COLOR 0xFFFFFF
 # define FLOOR_COLOR 0x444444
 # define EMPTY_COLOR 0x000000
-# define PLAYER_COLOR 0x00FF00
+# define PLAYER_COLOR 0xDDDD00
+# define DIR_COLOR 0x000000
 # define WALL_COLOR 0x999999
+# define PI 3.14159265358979323846
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"
@@ -245,6 +247,7 @@ void			free_file(t_file file);
 /* ************************************************************************** */
 
 // draw utils
+bool			cub_check_angle(t_cub *cub, int x, int y);
 void			cub_check_pixel(t_cub *cub, int x, int y, bool erase);
 void			cub_draw_player(t_cub *cub, bool erase);
 void			cub_draw_square(t_cub *cub, int x, int y, unsigned int color);

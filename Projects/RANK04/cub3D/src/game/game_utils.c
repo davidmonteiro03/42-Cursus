@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/08 20:41:26 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:18:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	cub_mmap_check(t_cub *cub, bool draw)
 
 void	cub_update_angle(t_cub *cub, int angle)
 {
+	cub_draw_player(cub, true);
 	auto double oldDirX = cub->player.dir_x;
 	cub->player.dir_x = cub->player.dir_x * cos(cub->player.rot_speed * angle) \
 		- cub->player.dir_y * sin(cub->player.rot_speed * angle);
@@ -35,6 +36,7 @@ void	cub_update_angle(t_cub *cub, int angle)
 		* angle) - cub->player.plane_y * sin(cub->player.rot_speed * angle);
 	cub->player.plane_y = oldPlaneX * sin(cub->player.rot_speed * angle) + \
 		cub->player.plane_y * cos(cub->player.rot_speed * angle);
+	cub_draw_player(cub, false);
 }
 
 void	cub_move_player(t_cub *cub, double x, double y)
@@ -56,8 +58,10 @@ void	cub_move_player(t_cub *cub, double x, double y)
 	{
 		*new_c = *old_c;
 		*old_c = '0';
+		cub_mmap_check(cub, true);
 	}
-	cub_mmap_check(cub, *old_c != *new_c);
+	else
+		cub_mmap_check(cub, false);
 	cub_draw_player(cub, false);
 }
 
