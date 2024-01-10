@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/10 15:18:05 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/10 17:28:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,11 @@ void	cub_move_player(t_cub *cub, double x, double y)
 		cub->player.pos_y += y;
 	auto char *new_c = \
 		&cub->map.map[(int)cub->player.pos_x][(int)cub->player.pos_y];
-	if (*old_c != *new_c)
+	if (*old_c != *new_c && *new_c != '1' && *new_c != '-')
 	{
+		auto char tmp_c = *new_c;
 		*new_c = *old_c;
-		*old_c = '0';
+		*old_c = tmp_c;
 		cub_mmap_check(cub, true);
 	}
 	else
