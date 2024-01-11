@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/10 15:41:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/11 19:40:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,13 @@ typedef struct s_raycast
 	double	wall_x;
 }t_raycast;
 
+typedef struct s_frames
+{
+	t_img	*frames;
+	int		len;
+	int		size;
+}t_frames;
+
 typedef struct s_cub
 {
 	t_file			config;
@@ -214,6 +221,7 @@ typedef struct s_cub
 	t_tmp			tmp;
 	t_mlx			mlx;
 	t_raycast		raycast;
+	t_frames		frames;
 }t_cub;
 
 /* ************************************************************************** */
