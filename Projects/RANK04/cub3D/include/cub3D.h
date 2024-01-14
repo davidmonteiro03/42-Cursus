@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/11 19:40:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:32:27 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@
 # define DIR_COLOR 0x000000
 # define WALL_COLOR 0x999999
 # define PI 3.14159265358979323846
+# define FRAME_WIDTH 64
+# define FRAME_HEIGHT 64
+# define FRAME_TIME 10
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"
@@ -204,7 +207,6 @@ typedef struct s_frames
 {
 	t_img	*frames;
 	int		len;
-	int		size;
 }t_frames;
 
 typedef struct s_cub

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:11:30 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/11 19:46:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:29:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 bool	cub_check_draw(t_cub *cub, int x, int y)
 {
-	return ((y < MINIMAP * (cub->map.minimap_size * 2 + 1) + STROKE && \
-			x < MINIMAP * (cub->map.minimap_size * 2 + 1) + STROKE) || \
-			(y > cub->mlx.screen_size - cub->frames.size - 1 && \
-			x > cub->mlx.screen_size / 2 - cub->frames.size / 2 - 1 && \
-			x < cub->mlx.screen_size / 2 + cub->frames.size / 2));
+	if (y < MINIMAP * (cub->map.minimap_size * 2 + 1) + STROKE && \
+		x < MINIMAP * (cub->map.minimap_size * 2 + 1) + STROKE)
+		return (true);
+	if (y >= cub->mlx.screen_size - FRAME_HEIGHT && \
+		x >= cub->mlx.screen_size / 2 - FRAME_WIDTH / 2 && \
+		x < cub->mlx.screen_size / 2 + FRAME_WIDTH / 2)
+		return (true);
+	return (false);
 }
 
 void	cub_raycast_util_1(t_cub *cub)

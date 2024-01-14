@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:43:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/12 19:13:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/14 19:30:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,7 @@ void	cub_raycast_part_4(t_cub *cub, int x)
 
 void	cub_raycast(t_cub *cub)
 {
-	static int	frame = 0;
-
-	auto int x = -1, num_frames = 3, speed = 50;
+	auto int x = -1;
 	while (++x < cub->mlx.screen_size)
 	{
 		cub_raycast_part_1(cub, x);
@@ -109,11 +107,4 @@ void	cub_raycast(t_cub *cub)
 		cub_raycast_part_3(cub);
 		cub_raycast_part_4(cub, x);
 	}
-	if (frame >= speed)
-		frame = 0;
-	auto int pos_frame;
-	pos_frame = frame / (speed / num_frames);
-	printf("frame: %d\n", pos_frame);
-	frame++;
-	usleep(1000);
 }
