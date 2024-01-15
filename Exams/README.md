@@ -42,8 +42,12 @@
 			<td>
 				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
 			</td>
-			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+			</td>
+			<td>2023-12-22</td>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="75"/>
 			</td>
 		</tr>
 		<!-- RANK 05 -->
