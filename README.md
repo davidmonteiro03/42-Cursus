@@ -240,14 +240,15 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 				</a>
 			</td>
 		</tr>
-		<!-- RANK 04 -->
+		<!-- RANK 04 -->2023-12-22
 		<tr>
 			<td>
 				<img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
 			</td>
-			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
+			<td>2023-12-22</td>
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="75"/>
 			</td>
