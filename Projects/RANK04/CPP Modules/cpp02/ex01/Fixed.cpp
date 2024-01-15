@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:13:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/06 12:25:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 08:11:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (static_cast<float>(this->getRawBits()) / (1 << _fractionalbits));
+	return ((float)this->_fixedpoint / (float)(1 << this->_fractionalbits));
 }
 
 int	Fixed::toInt(void) const

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:13:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 12:50:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 08:18:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,32 +50,32 @@ Fixed::~Fixed()
 
 bool	Fixed::operator>(const Fixed &ref) const
 {
-	return (this->getRawBits() > ref.getRawBits());
+	return (this->toFloat() > ref.toFloat());
 }
 
 bool	Fixed::operator<(const Fixed &ref) const
 {
-	return (this->getRawBits() < ref.getRawBits());
+	return (this->toFloat() < ref.toFloat());
 }
 
 bool	Fixed::operator>=(const Fixed &ref) const
 {
-	return (this->getRawBits() >= ref.getRawBits());
+	return (this->toFloat() >= ref.toFloat());
 }
 
 bool	Fixed::operator<=(const Fixed &ref) const
 {
-	return (this->getRawBits() <= ref.getRawBits());
+	return (this->toFloat() <= ref.toFloat());
 }
 
 bool	Fixed::operator==(const Fixed &ref) const
 {
-	return (this->getRawBits() == ref.getRawBits());
+	return (this->toFloat() == ref.toFloat());
 }
 
 bool	Fixed::operator!=(const Fixed &ref) const
 {
-	return (this->getRawBits() != ref.getRawBits());
+	return (this->toFloat() != ref.toFloat());
 }
 
 // arithmetic operators
@@ -134,28 +134,28 @@ Fixed&	Fixed::operator--(void)
 
 Fixed&	Fixed::min(Fixed &ref1, Fixed &ref2)
 {
-	if (ref1.getRawBits() < ref2.getRawBits())
+	if (ref1 < ref2)
 		return (ref1);
 	return (ref2);
 }
 
 const Fixed&	Fixed::min(const Fixed &ref1, const Fixed &ref2)
 {
-	if (ref1.getRawBits() < ref2.getRawBits())
+	if (ref1 < ref2)
 		return (ref1);
 	return (ref2);
 }
 
 Fixed&	Fixed::max(Fixed &ref1, Fixed &ref2)
 {
-	if (ref1.getRawBits() > ref2.getRawBits())
+	if (ref1 > ref2)
 		return (ref1);
 	return (ref2);
 }
 
 const Fixed&	Fixed::max(const Fixed &ref1, const Fixed &ref2)
 {
-	if (ref1.getRawBits() > ref2.getRawBits())
+	if (ref1 > ref2)
 		return (ref1);
 	return (ref2);
 }
@@ -172,7 +172,7 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (static_cast<float>(this->getRawBits()) / (1 << _fractionalbits));
+	return ((float)this->_fixedpoint / (float)(1 << this->_fractionalbits));
 }
 
 int	Fixed::toInt(void) const
