@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:28:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/19 19:53:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 11:33:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "WrongAnimal.hpp"
 
-WrongAnimal::WrongAnimal(void) : _type("wronganimal")
+WrongAnimal::WrongAnimal(void) : _type("WrongAnimal")
 {
 	std::cout << this->_type << " created" << std::endl;
 }
