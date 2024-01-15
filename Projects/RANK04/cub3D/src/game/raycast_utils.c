@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:11:30 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/15 09:54:44 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 14:53:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	cub_raycast_draw_wall(t_cub *cub, t_img *img, int x)
 	auto double tex_pos = (cub->raycast.draw_start - cub->mlx.screen_size / 2 + \
 		cub->raycast.line_height / 2) * step;
 	auto int y = cub->raycast.draw_start - 1;
-	while (++y <= cub->raycast.draw_end)
+	while (++y < cub->raycast.draw_end)
 	{
 		auto int tex_y = (int)tex_pos & (img->height - 1);
 		tex_pos += step;
@@ -71,7 +71,7 @@ void	cub_draw_floor_and_ceiling(t_cub *cub, int x)
 			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
 				x, aux_y, cub->ceiling.hex);
 	aux_y = cub->raycast.draw_end - 1;
-	while (++aux_y <= cub->mlx.screen_size)
+	while (++aux_y < cub->mlx.screen_size - 1)
 		if (!cub_check_draw(cub, x, aux_y))
 			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
 				x, aux_y, cub->floor.hex);
