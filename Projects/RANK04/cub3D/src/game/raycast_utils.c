@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:11:30 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/14 19:29:00 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 07:51:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ bool	cub_check_draw(t_cub *cub, int x, int y)
 {
 	if (y < MINIMAP * (cub->map.minimap_size * 2 + 1) + STROKE && \
 		x < MINIMAP * (cub->map.minimap_size * 2 + 1) + STROKE)
-		return (true);
-	if (y >= cub->mlx.screen_size - FRAME_HEIGHT && \
-		x >= cub->mlx.screen_size / 2 - FRAME_WIDTH / 2 && \
-		x < cub->mlx.screen_size / 2 + FRAME_WIDTH / 2)
 		return (true);
 	return (false);
 }
@@ -74,8 +70,8 @@ void	cub_draw_floor_and_ceiling(t_cub *cub, int x)
 		if (!cub_check_draw(cub, x, aux_y))
 			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
 				x, aux_y, cub->ceiling.hex);
-	aux_y = cub->raycast.draw_end;
-	while (++aux_y < cub->mlx.screen_size)
+	aux_y = cub->raycast.draw_end - 1;
+	while (++aux_y <= cub->mlx.screen_size)
 		if (!cub_check_draw(cub, x, aux_y))
 			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
 				x, aux_y, cub->floor.hex);

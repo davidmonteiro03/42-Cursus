@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:36:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/11 19:41:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 07:46:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,8 @@ void	free_mlx(t_mlx mlx)
 	free(mlx.mlx);
 }
 
-void	free_frames(void *mlx, t_frames frames)
-{
-	auto int i = -1;
-	while (++i < frames.len)
-		free_img(mlx, frames.frames[i]);
-	free(frames.frames);
-}
-
 int	cub_exit(t_cub *cub)
 {
-	free_frames(cub->mlx.mlx, cub->frames);
 	free_img(cub->mlx.mlx, cub->directions.east);
 	free_img(cub->mlx.mlx, cub->directions.west);
 	free_img(cub->mlx.mlx, cub->directions.north);
