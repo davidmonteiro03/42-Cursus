@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:31:24 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/15 07:55:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 08:55:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	cub_render(t_cub *cub)
 
 void	cub_loop_game(t_cub *cub)
 {
+	cub->map.map[(int)cub->player.pos_x][(int)cub->player.pos_y] = ' ';
 	cub_mmap_check(cub, true);
 	cub_draw_player(cub, false);
 	mlx_mouse_move(cub->mlx.mlx, cub->mlx.win, \

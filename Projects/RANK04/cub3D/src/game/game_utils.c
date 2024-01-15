@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/13 11:08:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 08:58:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,16 @@ void	cub_move_player(t_cub *cub, double x, double y)
 		cub->map.map[(int)(cub->player.pos_x + x)][(int)cub->player.pos_y];
 	auto char char_y = \
 		cub->map.map[(int)cub->player.pos_x][(int)(cub->player.pos_y + y)];
-	auto char *old_c = \
-		&cub->map.map[(int)cub->player.pos_x][(int)cub->player.pos_y];
+	auto int old_x = (int)cub->player.pos_x;
+	auto int old_y = (int)cub->player.pos_y;
 	if (char_x != '1' && char_x != '-')
 		cub->player.pos_x += x;
 	if (char_y != '1' && char_y != '-')
 		cub->player.pos_y += y;
-	auto char *new_c = \
-		&cub->map.map[(int)cub->player.pos_x][(int)cub->player.pos_y];
-	if (*old_c != *new_c && *new_c != '1' && *new_c != '-')
-	{
-		auto char tmp_c = *new_c;
-		*new_c = *old_c;
-		*old_c = tmp_c;
+	auto int new_x = (int)cub->player.pos_x;
+	auto int new_y = (int)cub->player.pos_y;
+	if (old_x != new_x || old_y != new_y)
 		cub_mmap_check(cub, true);
-	}
 	else
 		cub_mmap_check(cub, false);
 	cub_draw_player(cub, false);

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:55:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/08 20:14:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/15 08:48:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	cub_draw_mmap_1(t_cub *cub, bool draw)
 		{
 			if (draw)
 				cub_check_shape(cub, x, y, cub->map.map[y][x]);
-			if (cub->map.map[y][x] == cub->player.c)
+			if (y == (int)cub->player.pos_x && x == (int)cub->player.pos_y)
 			{
 				cub->tmp.x = x * MINIMAP;
 				cub->tmp.y = y * MINIMAP;
@@ -46,7 +46,7 @@ void	cub_draw_mmap_2(t_cub *cub, bool draw)
 			++x;
 			if (draw)
 				cub_check_shape(cub, alt_x, y, cub->map.map[y][x]);
-			if (cub->map.map[y][x] == cub->player.c)
+			if (y == (int)cub->player.pos_x && x == (int)cub->player.pos_y)
 			{
 				cub->tmp.x = alt_x * MINIMAP;
 				cub->tmp.y = y * MINIMAP;
@@ -71,7 +71,7 @@ void	cub_draw_mmap_3(t_cub *cub, bool draw)
 			++alt_x;
 			if (draw)
 				cub_check_shape(cub, alt_x, y, cub->map.map[y][x]);
-			if (cub->map.map[y][x] == cub->player.c)
+			if (y == (int)cub->player.pos_x && x == (int)cub->player.pos_y)
 			{
 				cub->tmp.x = alt_x * MINIMAP;
 				cub->tmp.y = y * MINIMAP;
