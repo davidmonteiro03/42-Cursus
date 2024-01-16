@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/15 08:58:05 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:31:05 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void	cub_update_angle(t_cub *cub, int angle)
 
 void	cub_move_player(t_cub *cub, double x, double y)
 {
+	if (fabs(x) >= 1.0)
+		x = x - (int)x;
+	if (fabs(y) >= 1.0)
+		y = y - (int)y;
 	cub_draw_player(cub, true);
 	auto char char_x = \
 		cub->map.map[(int)(cub->player.pos_x + x)][(int)cub->player.pos_y];
