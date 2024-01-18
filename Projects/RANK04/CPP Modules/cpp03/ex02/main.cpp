@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 17:59:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 14:48:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/18 21:26:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	main(void)
 {
-	FragTrap	frag("frag");
+	FragTrap frag("frag1");
 
-	frag.attack("me");
-	frag.beRepaired(10);
-	frag.takeDamage(5);
+	frag.attack("enemy");
 	frag.highFivesGuys();
 	return (0);
 }

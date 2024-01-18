@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 17:36:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/07 18:32:21 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/18 19:07:52 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/18 19:21:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,27 @@
 class ClapTrap
 {
 	private:
-		std::string		_name;
-		unsigned int	_hitPoints;
-		unsigned int	_energyPoints;
-		unsigned int	_attackDamage;
+		std::string _name;
+		int _hitPoints;
+		int _energyPoints;
+		int _attackDamage;
 	public:
+		// Orthodox Canonical Form
 		ClapTrap(std::string name);
-		ClapTrap(const ClapTrap &ref);
-		ClapTrap& operator=(const ClapTrap &ref);
+		ClapTrap(const ClapTrap& ref);
+		ClapTrap& operator=(const ClapTrap& rhs);
 		~ClapTrap();
 
-		void	attack(const std::string& target);
-		void	takeDamage(unsigned int amount);
-		void	beRepaired(unsigned int amount);
+		// getters
+		std::string getName(void) const;
+		int getHitPoints(void) const;
+		int getEnergyPoints(void) const;
+		int getAttackDamage(void) const;
+
+		// member functions
+		void attack(const std::string& target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
 };
 
 #endif

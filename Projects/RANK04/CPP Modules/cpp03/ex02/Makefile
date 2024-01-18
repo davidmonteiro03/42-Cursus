@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/04 08:04:41 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/18 20:33:46 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ RM				= rm -rf
 OBJS_DIR		= obj/
 INCLUDES_DIR	= ./
 
-SRCS			= main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
+SRCS			= main.cpp ClapTrap.cpp FragTrap.cpp
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
 

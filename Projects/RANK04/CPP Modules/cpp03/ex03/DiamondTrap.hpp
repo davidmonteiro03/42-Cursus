@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 14:20:20 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 14:27:07 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/18 20:50:42 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/18 21:10:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@
 # include "FragTrap.hpp"
 # include "ScavTrap.hpp"
 
-class DiamondTrap : public FragTrap, public ScavTrap
+class DiamondTrap : public ScavTrap, public FragTrap
 {
 	private:
-		std::string	_name;
+		std::string _name;
 	public:
+		// Orthodox Canonical Form
 		DiamondTrap(std::string name);
+		DiamondTrap(const DiamondTrap& ref);
+		DiamondTrap& operator=(const DiamondTrap& rhs);
 		~DiamondTrap();
 
-		void	whoAmI();
+		// member functions
+		void attack(const std::string& target);
+		void whoAmI();
 };
 
 #endif

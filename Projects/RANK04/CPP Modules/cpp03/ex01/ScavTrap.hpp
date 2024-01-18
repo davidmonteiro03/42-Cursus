@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 12:58:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/12/08 13:05:00 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/18 20:03:50 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/18 21:03:43 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@
 
 class ScavTrap : public ClapTrap
 {
-	private:
-		ScavTrap();
 	public:
+		// Orthodox Canonical Form
 		ScavTrap(std::string name);
+		ScavTrap(const ScavTrap& ref);
+		ScavTrap& operator=(const ScavTrap& rhs);
 		~ScavTrap();
 
-		void	attack(const std::string& target);
-		void	guardGate();
+		// member functions
+		void attack(const std::string& target);
+		void guardGate();
 };
 
 #endif
