@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 22:05:07 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/20 22:09:45 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/21 11:21:35 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/21 12:11:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,15 @@
 # define CHARACTER_HPP
 
 # include "ICharacter.hpp"
-# include <vector>
 
 class Character : public ICharacter
 {
 	private:
 		std::string _name;
-		std::vector<AMateria*> _inventory;
+		AMateria* _inventory[4];
 	public:
-		Character(std::string name);
-		~Character();
+		Character(std::string const & name);
+		virtual ~Character();
 		std::string const & getName() const;
 		void equip(AMateria* m);
 		void unequip(int idx);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 21:54:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/20 21:55:18 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/21 11:43:04 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/21 11:50:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class Cure : public AMateria
 		Cure();
 		~Cure();
 		AMateria* clone() const;
-		virtual void use(ICharacter& target);
+		void use(ICharacter& target);
 };
 
 #endif

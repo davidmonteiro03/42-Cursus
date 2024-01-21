@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.cpp                                           :+:      :+:    :+:   */
+/*   IMateriaSource.hpp                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/21 11:46:38 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/21 11:49:48 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/21 11:56:00 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/21 11:56:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cure.hpp"
+#ifndef IMATERIASOURCE_HPP
+# define IMATERIASOURCE_HPP
 
-Cure::Cure() : AMateria("cure")
-{
-}
+# include "AMateria.hpp"
 
-Cure::~Cure()
+class IMateriaSource
 {
-}
+	public:
+		virtual ~IMateriaSource() {}
+		virtual void learnMateria(AMateria*) = 0;
+		virtual AMateria* createMateria(std::string const & type) = 0;
+};
 
-AMateria* Cure::clone() const
-{
-	return (new Cure());
-}
-
-void Cure::use(ICharacter& target)
-{
-	std::cout << "* heals ";
-	std::cout << target.getName();
-	std::cout << "'s wounds *";
-	std::cout << std::endl;
-}
+#endif

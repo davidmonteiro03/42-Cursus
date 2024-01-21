@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/20 21:46:46 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/20 21:50:40 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/21 11:11:55 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/21 11:29:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class AMateria
 		AMateria(std::string const & type);
 		AMateria(const AMateria& ref);
 		AMateria& operator=(const AMateria& rhs);
-		~AMateria();
+		virtual ~AMateria();
 		std::string const & getType() const;
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
