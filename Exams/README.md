@@ -47,7 +47,9 @@
 			</td>
 			<td>2023-12-22</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="75"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-04">
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+				</a>
 			</td>
 		</tr>
 		<!-- RANK 05 -->
