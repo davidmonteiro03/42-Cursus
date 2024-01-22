@@ -162,9 +162,10 @@
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppn.png" width="125"/>
 				</a>
 			</td>
-			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
+			<td>2024-01-22</td>
 			<td>CPP Modules</td>
 		</tr>
 		<tr>
@@ -182,11 +183,25 @@
 		<!-- RANK 05 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/webserv">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/webservn.png" width="125"/>
+				</a>
 			</td>
-			<td colspan="4">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
+			<td>webserv</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/CPP Modules">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppn.png" width="125"/>
+				</a>
+			</td>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			</td>
+			<td>CPP Modules</td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
