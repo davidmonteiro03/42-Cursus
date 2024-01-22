@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/21 11:57:27 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/21 12:13:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/22 08:57:00 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/22 09:46:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 MateriaSource::MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
-		_materia[i] = NULL;
+		_materias[i] = NULL;
 }
 
 MateriaSource::~MateriaSource()
 {
 	for (int i = 0; i < 4; i++)
-		if (_materia[i])
-			delete _materia[i];
+		if (_materias[i])
+			delete _materias[i];
 }
 
 void MateriaSource::learnMateria(AMateria* m)
@@ -31,9 +31,9 @@ void MateriaSource::learnMateria(AMateria* m)
 		return ;
 	for (int i = 0; i < 4; i++)
 	{
-		if (!_materia[i])
+		if (!_materias[i])
 		{
-			_materia[i] = m;
+			_materias[i] = m;
 			return ;
 		}
 	}
@@ -41,14 +41,14 @@ void MateriaSource::learnMateria(AMateria* m)
 
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
-	AMateria* materia = NULL;
+	AMateria* tmp = NULL;
 	for (int i = 0; i < 4; i++)
 	{
-		if (_materia[i] && _materia[i]->getType() == type)
+		if (_materias[i] && _materias[i]->getType() == type)
 		{
-			materia = _materia[i];
+			tmp = _materias[i];
 			break ;
 		}
 	}
-	return (materia);
+	return (tmp);
 }

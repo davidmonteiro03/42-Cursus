@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/21 11:56:29 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/21 11:57:08 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/22 08:52:59 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/22 08:56:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 
 # include "IMateriaSource.hpp"
 
-class MateriaSource : public IMateriaSource
+class MateriaSource: public IMateriaSource
 {
 	private:
-		AMateria* _materia[4];
+		AMateria* _materias[4];
 	public:
 		MateriaSource();
 		~MateriaSource();

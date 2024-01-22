@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/21 11:24:24 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/21 11:25:19 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/22 08:11:26 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/22 09:28:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,13 @@ AMateria::AMateria(std::string const & type) : _type(type)
 {
 }
 
-AMateria::AMateria(const AMateria& ref)
+AMateria::AMateria(const AMateria& ref) : _type(ref._type)
 {
-	*this = ref;
 }
 
 AMateria& AMateria::operator=(const AMateria& rhs)
 {
-	if (this != &rhs)
-		*this = rhs;
+	(void)rhs;
 	return (*this);
 }
 
@@ -41,3 +39,4 @@ void AMateria::use(ICharacter& target)
 {
 	(void)target;
 }
+

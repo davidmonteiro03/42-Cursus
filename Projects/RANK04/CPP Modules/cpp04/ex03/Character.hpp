@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/21 11:21:35 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/21 12:11:36 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/22 08:32:32 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/22 08:44:34 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ class Character : public ICharacter
 		std::string _name;
 		AMateria* _inventory[4];
 	public:
-		Character(std::string const & name);
-		virtual ~Character();
+		Character(std::string name);
+		Character(const Character& ref);
+		Character& operator=(const Character& rhs);
+		~Character();
 		std::string const & getName() const;
 		void equip(AMateria* m);
 		void unequip(int idx);

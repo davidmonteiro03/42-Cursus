@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 11:02:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/21 12:15:31 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/22 09:50:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 int	main(void)
 {
-	IMateriaSource* src = new MateriaSource();
+ 	IMateriaSource* src = new MateriaSource();
 
 	src->learnMateria(new Ice());
 	src->learnMateria(new Cure());
@@ -34,12 +34,10 @@ int	main(void)
 
 	me->use(0, *bob);
 	me->use(1, *bob);
-	me->use(2, *bob);
 
 	delete bob;
 	delete me;
 	delete src;
-
 	return (0);
 }
 

@@ -5,15 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/21 11:14:24 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/21 11:28:57 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/22 08:30:42 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/22 08:31:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ICHARACTER_HPP
 # define ICHARACTER_HPP
 
-# include <iostream>
 # include "AMateria.hpp"
 
 class AMateria;
