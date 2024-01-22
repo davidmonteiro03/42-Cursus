@@ -184,12 +184,20 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
+			<td rowspan="1">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04">
+					<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
+				</a>
+			</td>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/webserv">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/webservn.png" width="125"/>
+				</a>
 			</td>
-			<td colspan="4">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
+			<td>webserv</td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
