@@ -182,6 +182,11 @@
 		</tr>
 		<!-- RANK 05 -->
 		<tr>
+			<td rowspan="3">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05">
+					<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
+				</a>
+			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/webserv">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/webservn.png" width="125"/>
@@ -202,6 +207,17 @@
 				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
 			<td>CPP Modules</td>
+		</tr>
+		<tr>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/Inception">
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/inceptionn.png" width="125"/>
+				</a>
+			</td>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			</td>
+			<td>Inception</td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
