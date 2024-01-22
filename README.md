@@ -190,7 +190,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 				</a>
 			</td>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/webserv">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/webserv">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/webservn.png" width="125"/>
 				</a>
 			</td>
@@ -212,7 +212,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 		</tr>
 		<tr>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/Inception">
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/Inception">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/inceptionn.png" width="125"/>
 				</a>
 			</td>
