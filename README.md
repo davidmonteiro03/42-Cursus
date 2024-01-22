@@ -195,7 +195,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 				</a>
 			</td>
 			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="100"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
 			<td>webserv</td>
 		</tr>
