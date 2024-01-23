@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:37:52 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/23 18:26:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/23 19:18:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,64 +186,109 @@ void _test_sign(bool result_bc, bool result_form, const int grade, \
 	_separator(false);
 }
 
+void _test_double_sign_1(void)
+{
+	_separator(true);
+	Form form("form", 80, 40);
+	Bureaucrat bc_1("bc_1", 80);
+	std::cout << "TEST_DOUBLE_SIGNING->form_1->bc_1->sign_first => ";
+	try
+	{
+		form.beSigned(bc_1);
+		std::cout << "Success!" << std::endl << std::endl;
+		std::cout << "Result: OK!" << std::endl << std::endl;
+		std::cout << "TEST_DOUBLE_SIGNING->form_1->bc_1->sign_again => ";
+		try
+		{
+			form.beSigned(bc_1);
+			std::cout << "Success!" << std::endl << std::endl;
+			std::cout << "Result: KO!";
+		}
+		catch(std::exception& e)
+		{
+			std::cout << "Error! " << e.what() << std::endl << std::endl;
+			std::cout << "Result: OK!";
+		}
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Result: KO!";
+	}
+	_separator(false);
+}
+
+void _test_double_sign_2(void)
+{
+	_separator(true);
+	Form form("form", 80, 40);
+	Bureaucrat bc_1("bc_1", 80);
+	Bureaucrat bc_2("bc_2", 80);
+	std::cout << "TEST_DOUBLE_SIGNING->form_2->bc_1->sign_first => ";
+	try
+	{
+		form.beSigned(bc_1);
+		std::cout << "Success!" << std::endl << std::endl;
+		std::cout << "Result: OK!" << std::endl << std::endl;
+		std::cout << "TEST_DOUBLE_SIGNING->form_2->bc_2->sign_first => ";
+		try
+		{
+			form.beSigned(bc_2);
+			std::cout << "Success!" << std::endl << std::endl;
+			std::cout << "Result: KO!";
+		}
+		catch(std::exception& e)
+		{
+			std::cout << "Error! " << e.what() << std::endl << std::endl;
+			std::cout << "Result: OK!";
+		}
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Result: KO!";
+	}
+	_separator(false);
+}
+
+void _test_double_sign_3(void)
+{
+	_separator(true);
+	Form form("form", 80, 40);
+	Bureaucrat bc_1("bc_1", 81);
+	Bureaucrat bc_2("bc_2", 80);
+	std::cout << "TEST_DOUBLE_SIGNING->form_3->bc_1->sign_first => ";
+	try
+	{
+		form.beSigned(bc_1);
+		std::cout << "Success!" << std::endl << std::endl;
+		std::cout << "Result: KO!";
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "Error! " << e.what() << std::endl << std::endl;
+		std::cout << "Result: OK!" << std::endl << std::endl;
+		std::cout << "TEST_DOUBLE_SIGNING->form_3->bc_2->sign_first => ";
+		try
+		{
+			form.beSigned(bc_2);
+			std::cout << "Success!" << std::endl << std::endl;
+			std::cout << "Result: OK!";
+		}
+		catch(std::exception& e)
+		{
+			std::cout << "Error! " << e.what() << std::endl << std::endl;
+			std::cout << "Result: KO!" << std::endl << std::endl;
+		}
+	}
+	_separator(false);
+}
+
 void _test_double_sign(void)
 {
-	// TEST 1
-	_separator(true);
-	Form form_1("form_1", 80, 40);
-	Bureaucrat form_1_bc_1("form_1_bc_1", 40);
-	std::cout << "TEST_DOUBLE_SIGNING->" << form_1_bc_1.getName() << " => ";
-	form_1_bc_1.signForm(form_1);
-	std::cout << std::endl << std::endl << "Result: ";
-	try
-	{
-		form_1.beSigned(form_1_bc_1);
-		std::cout << "KO";
-	}
-	catch(std::exception& e)
-	{
-		std::cout << "OK";
-	}
-	std::cout << "!";
-	_separator(false);
-	// TEST 2
-	_separator(true);
-	Form form_2("form_2", 80, 40);
-	Bureaucrat form_2_bc_1("form_2_bc_1", 81);
-	Bureaucrat form_2_bc_2("form_2_bc_2", 80);
-	std::cout << "TEST_DOUBLE_SIGNING->" << form_2_bc_2.getName() << " => ";
-	form_2_bc_1.signForm(form_2);
-	std::cout << std::endl << std::endl << "Result: ";
-	try
-	{
-		form_2.beSigned(form_2_bc_2);
-		std::cout << "OK";
-	}
-	catch(std::exception& e)
-	{
-		std::cout << "KO";
-	}
-	std::cout << "!";
-	_separator(false);
-	// TEST 3
-	_separator(true);
-	Form form_3("form_3", 80, 40);
-	Bureaucrat form_3_bc_1("form_3_bc_1", 80);
-	Bureaucrat form_3_bc_2("form_3_bc_2", 81);
-	std::cout << "TEST_DOUBLE_SIGNING->" << form_3_bc_2.getName() << " => ";
-	form_3_bc_1.signForm(form_3);
-	std::cout << std::endl << std::endl << "Result: ";
-	try
-	{
-		form_3.beSigned(form_3_bc_2);
-		std::cout << "KO";
-	}
-	catch(std::exception& e)
-	{
-		std::cout << "OK";
-	}
-	std::cout << "!";
-	_separator(false);
+	_test_double_sign_1();
+	_test_double_sign_2();
+	_test_double_sign_3();
 }
 
 int	main(void)
