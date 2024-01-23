@@ -299,7 +299,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			</td>
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="75"/>
-			</td>
+			 </td>
 		</tr>
 		<!-- RANK 06 -->
 		<tr>
