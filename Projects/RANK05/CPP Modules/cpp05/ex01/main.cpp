@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:37:52 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/23 18:03:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/23 18:26:12 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,17 +172,7 @@ void _test_sign(bool result_bc, bool result_form, const int grade, \
 			std::cout << std::endl << std::endl;
 			std::cout << "Result: ";
 			if (form.getStatus())
-			{
-				try
-				{
-					form.beSigned(test);
-					std::cout << "KO";
-				}
-				catch(std::exception& e)
-				{
-					std::cout << "OK";
-				}
-			}
+				std::cout << "OK";
 			else
 				std::cout << "KO";
 			std::cout << "!";
@@ -193,6 +183,66 @@ void _test_sign(bool result_bc, bool result_form, const int grade, \
 		std::cout << " => Error! " << e.what() << std::endl << std::endl;
 		std::cout << "Result: " << _result_bc_rev << "!";
 	}
+	_separator(false);
+}
+
+void _test_double_sign(void)
+{
+	// TEST 1
+	_separator(true);
+	Form form_1("form_1", 80, 40);
+	Bureaucrat form_1_bc_1("form_1_bc_1", 40);
+	std::cout << "TEST_DOUBLE_SIGNING->" << form_1_bc_1.getName() << " => ";
+	form_1_bc_1.signForm(form_1);
+	std::cout << std::endl << std::endl << "Result: ";
+	try
+	{
+		form_1.beSigned(form_1_bc_1);
+		std::cout << "KO";
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "OK";
+	}
+	std::cout << "!";
+	_separator(false);
+	// TEST 2
+	_separator(true);
+	Form form_2("form_2", 80, 40);
+	Bureaucrat form_2_bc_1("form_2_bc_1", 81);
+	Bureaucrat form_2_bc_2("form_2_bc_2", 80);
+	std::cout << "TEST_DOUBLE_SIGNING->" << form_2_bc_2.getName() << " => ";
+	form_2_bc_1.signForm(form_2);
+	std::cout << std::endl << std::endl << "Result: ";
+	try
+	{
+		form_2.beSigned(form_2_bc_2);
+		std::cout << "OK";
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "KO";
+	}
+	std::cout << "!";
+	_separator(false);
+	// TEST 3
+	_separator(true);
+	Form form_3("form_3", 80, 40);
+	Bureaucrat form_3_bc_1("form_3_bc_1", 80);
+	Bureaucrat form_3_bc_2("form_3_bc_2", 81);
+	std::cout << "TEST_DOUBLE_SIGNING->" << form_3_bc_2.getName() << " => ";
+	form_3_bc_1.signForm(form_3);
+	std::cout << std::endl << std::endl << "Result: ";
+	try
+	{
+		form_3.beSigned(form_3_bc_2);
+		std::cout << "KO";
+	}
+	catch(std::exception& e)
+	{
+		std::cout << "OK";
+	}
+	std::cout << "!";
 	_separator(false);
 }
 
@@ -237,5 +287,7 @@ int	main(void)
 		&right_bc, &wrong_bc, &right_form, &wrong_form);
 	_test_sign(false, false, 151, \
 		&right_bc, &wrong_bc, &right_form, &wrong_form);
+	// TEST_DOUBLE_SIGNING (test only if your Form class has a AlreadySignedException)
+	_test_double_sign();
 	return (0);
 }
