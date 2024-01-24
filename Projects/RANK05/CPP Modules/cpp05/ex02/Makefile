@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/23 19:28:07 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/24 08:25:24 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,13 @@ RM				= rm -rf
 OBJS_DIR		= obj/
 INCLUDES_DIR	= ./
 
-SRCS			= Bureaucrat.cpp Form.cpp main.cpp
+SRCS			= Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp \
+					PresidentialPardonForm.cpp RobotomyRequestForm.cpp \
+					main.cpp
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
 
-EXEC			= form
+EXEC			= beeblebrox
 
 all: $(EXEC)
 
