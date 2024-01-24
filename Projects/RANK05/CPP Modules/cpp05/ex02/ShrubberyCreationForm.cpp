@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 09:09:28 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:34:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,67 @@ std::string ShrubberyCreationForm::getTarget(void) const
 	return (_target);
 }
 
+void draw_tree(std::ofstream& file_out)
+{
+	int size = 10, rows = 10, columns = 10;
+	for (int s = 0; s < rows; s++)
+	{
+		for (int i = 0; i < size; i++)
+		{
+			for (int t = 0; t < columns; t++)
+			{
+				for (int j = 0; j < size - i - 1; j++)
+					file_out << " ";
+				for (int j = 0; j < 2 * i + 1; j++)
+				{
+					if (i == 0)
+						file_out << "$";
+					else if (j == 0)
+						file_out << "/";
+					else if (j == 2 * i)
+						file_out << "\\";
+					else if (i < size - 1)
+						file_out << " ";
+					else
+						file_out << "_";
+				}
+				for (int j = 0; j < size - i - 1; j++)
+					file_out << " ";
+				if (t < columns - 1)
+					file_out << "  ";
+			}
+			file_out << std::endl;
+		}
+		if (size > 1)
+		{
+			for (int k = 0; k < (size + 1) / 3; k++)
+			{
+				for (int t = 0; t < columns; t++)
+				{
+					for (int j = 0; j < size - size / 2; j++)
+						file_out << " ";
+					for (int j = size - size / 2; j < size + size / 2 - 1; j++)
+					{
+						if (j == size - size / 2 || j == size + size / 2 - 2)
+							file_out << "|";
+						else if (k == (size + 1) / 3 - 1)
+							file_out << "_";
+						else
+							file_out << " ";
+					}
+					for (int j = 0; j < size - size / 2; j++)
+						file_out << " ";
+					if (t < columns - 1)
+						file_out << "  ";
+				}
+				file_out << std::endl;
+			}
+		}
+		if (s < rows - 1)
+			file_out << std::endl;
+	}
+}
+
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (!getStatus())
@@ -53,31 +114,12 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	else
 	{
 		std::ofstream file_out;
-		int rows = 4, columns = 5;
-		const char* tree[] = {
-			"   OOOOOOOO   ",
-			" OOOOOOOOOOOO ",
-			"OOOOOOOOOOOOOO",
-			"OOOOOOOOOOOOOO",
-			" OOOOOOOOOOOO ",
-			"  OOOOOOOOOO  ",
-			"      OO      ",
-			"      OO      ",
-			"      OO      ",
-			NULL
-		};
 		file_out.open((_target + "_shrubbery").c_str());
-		for (int i = 0; i < rows; i++)
+		if (!file_out.is_open())
 		{
-			for (int j = 0; tree[j]; j++)
-			{
-				file_out << tree[j];
-				for (int k = 0; k < columns - 1; k++)
-					file_out << " " << tree[j];
-				file_out << "\n";
-			}
-			if (i < rows - 1)
-				file_out << "\n";
+			std::cout << "Couldn't open file" << std::endl;
+			return ;
 		}
+		draw_tree(file_out);
 	}
 }

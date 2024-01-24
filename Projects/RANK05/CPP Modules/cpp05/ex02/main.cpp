@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:35:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 09:01:00 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:28:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(void)
 		AForm* form = new ShrubberyCreationForm();
 		try
 		{
-			Bureaucrat bc("bc", 137);
+			Bureaucrat bc("bc", 1);
 			try
 			{
 				bc.signForm(*form);
