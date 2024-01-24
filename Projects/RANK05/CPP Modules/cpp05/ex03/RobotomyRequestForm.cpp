@@ -1,55 +1,62 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.cpp                         :+:      :+:    :+:   */
+/*   RobotomyRequestForm.cpp                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:17:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/24 17:19:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() : \
-	Form("default presidential", 25, 5), _target("default")
+RobotomyRequestForm::RobotomyRequestForm() : \
+	Form("default robotomy", 72, 45), _target("default")
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string target) : \
-	Form("presidential", 25, 5), _target(target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) : \
+	Form("robotomy", 72, 45), _target(target)
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copy) : \
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : \
 	Form(copy.getName(), copy.getSignGrade(), \
 	copy.getExecGrade()), _target(copy.getTarget())
 {
 }
 
-PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm& other)
+RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& other)
 {
 	if (this != &other)
 		_target = other.getTarget();
 	return (*this);
 }
 
-PresidentialPardonForm::~PresidentialPardonForm()
+RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
-std::string PresidentialPardonForm::getTarget(void) const
+std::string RobotomyRequestForm::getTarget(void) const
 {
 	return (_target);
 }
 
-void PresidentialPardonForm::execute(Bureaucrat const & executor) const
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
+	static int i = 0;
 	if (!getStatus())
 		throw Form::UnsignedFormException();
 	else if (executor.getGrade() > getExecGrade())
 		throw Form::GradeTooLowException();
 	else
-		std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox";
+	{
+		if (i % 2)
+			std::cout << getTarget() << " has been robotmized";
+		else
+			std::cout << "robotmy failed";
+		i++;
+	}
 }
