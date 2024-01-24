@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 08:35:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:24:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,17 @@ std::string RobotomyRequestForm::getTarget(void) const
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
+	static int i = 0;
 	if (!getStatus())
 		throw AForm::UnsignedFormException();
 	else if (executor.getGrade() > getExecGrade())
 		throw AForm::GradeTooLowException();
 	else
 	{
-		std::cout << "Success!" << std::endl;
+		if (i % 2)
+			std::cout << getTarget() << " has been robotmized";
+		else
+			std::cout << "robotmy failed";
+		i++;
 	}
 }

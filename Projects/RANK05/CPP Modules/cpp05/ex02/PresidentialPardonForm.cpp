@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 08:35:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:23:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,5 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 	else if (executor.getGrade() > getExecGrade())
 		throw AForm::GradeTooLowException();
 	else
-	{
-		std::cout << "Success!" << std::endl;
-	}
+		std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox";
 }

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:32:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 07:54:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:26:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ class Bureaucrat
 				virtual const char* what() const throw();
 		};
 		void signForm(AForm& form);
+		void executeForm(AForm const & form);
 };
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& bc);

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 10:49:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:10:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,24 @@ std::string ShrubberyCreationForm::getTarget(void) const
 	return (_target);
 }
 
-void draw_tree(std::ofstream& file_out)
+void draw_tree(std::ofstream& file_out, const int execGrade, const int grade)
 {
-	int size = 3, rows = 4, columns = 5;
-	if (size == 0)
+	int size = execGrade - grade + 4;
+	int rows = execGrade - grade + 2, columns = execGrade - grade + 5;
+	if (size <= 1 || rows <= 0 || columns <= 0)
 		return ;
+	if (rows > 14)
+		rows = 14;
+	if (columns > 19)
+		columns = 19;
+	if (size > 15)
+	{
+		size = 15;
+		if (rows > 4)
+			rows = 4;
+		if (columns > 9)
+			columns = 9;
+	}
 	for (int s = 0; s < rows; s++)
 	{
 		for (int i = 0; i < size; i++)
@@ -122,6 +135,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 			std::cout << "Couldn't open file" << std::endl;
 			return ;
 		}
-		draw_tree(file_out);
+		draw_tree(file_out, getExecGrade(), executor.getGrade());
 	}
 }
