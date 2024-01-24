@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 10:34:20 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:49:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ std::string ShrubberyCreationForm::getTarget(void) const
 
 void draw_tree(std::ofstream& file_out)
 {
-	int size = 10, rows = 10, columns = 10;
+	int size = 3, rows = 4, columns = 5;
+	if (size == 0)
+		return ;
 	for (int s = 0; s < rows; s++)
 	{
 		for (int i = 0; i < size; i++)
