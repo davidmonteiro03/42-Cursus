@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/18 08:42:34 by dcaetano          #+#    #+#              #
-#    Updated: 2023/12/20 16:44:55 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/24 16:03:47 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,7 @@ CC_LIN			= cc
 
 ### ---------- OTHERS ---------- ###
 NAME			= minishell
-CFLAGS			= -Werror -Wextra -Wall -g3 -fsanitize=address
+CFLAGS			= -Werror -Wextra -Wall -g3 #-fsanitize=address
 INCLUDE			= include
 LIBS			= libs/libft/libft.a -lreadline
 
