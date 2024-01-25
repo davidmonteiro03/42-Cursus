@@ -6,16 +6,16 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 07:58:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:17:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:28:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRESIDENTIALPARDONFORM_HPP
 # define PRESIDENTIALPARDONFORM_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class PresidentialPardonForm : public Form
+class PresidentialPardonForm : public AForm
 {
 	private:
 		std::string _target;

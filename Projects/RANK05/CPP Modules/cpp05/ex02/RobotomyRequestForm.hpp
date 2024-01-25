@@ -6,16 +6,16 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 07:58:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:17:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:28:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class RobotomyRequestForm : public Form
+class RobotomyRequestForm : public AForm
 {
 	private:
 		std::string _target;

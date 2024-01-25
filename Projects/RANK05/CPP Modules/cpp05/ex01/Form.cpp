@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 13:49:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/23 14:23:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:24:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ Form& Form::operator=(const Form& other)
 
 Form::~Form()
 {
-	_status = false;
 }
 
 const std::string Form::getName(void) const

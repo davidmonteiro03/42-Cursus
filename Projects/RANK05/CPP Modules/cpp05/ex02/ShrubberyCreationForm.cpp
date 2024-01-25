@@ -6,24 +6,24 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:17:34 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:30:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 
 ShrubberyCreationForm::ShrubberyCreationForm() : \
-	Form("default shrubbery", 145, 137), _target("default")
+	AForm("default shrubbery", 145, 137), _target("default")
 {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : \
-	Form("shrubbery", 145, 137), _target(target)
+	AForm("shrubbery", 145, 137), _target(target)
 {
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& copy) : \
-	Form(copy.getName(), copy.getSignGrade(), \
+	AForm(copy.getName(), copy.getSignGrade(), \
 	copy.getExecGrade()), _target(copy.getTarget())
 {
 }
@@ -123,9 +123,9 @@ void draw_tree(std::ofstream& file_out, const int execGrade, const int grade)
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (!getStatus())
-		throw Form::UnsignedFormException();
+		throw AForm::UnsignedFormException();
 	else if (executor.getGrade() > getExecGrade())
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	else
 	{
 		std::ofstream file_out;

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:41:37 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:18:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:23:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw()
 	return ("Bureaucrat: GradeTooLowException");
 }
 
-void Bureaucrat::signForm(Form& form)
+void Bureaucrat::signForm(AForm& form)
 {
 	try
 	{
@@ -95,7 +95,7 @@ void Bureaucrat::signForm(Form& form)
 	}
 }
 
-void Bureaucrat::executeForm(Form const & form)
+void Bureaucrat::executeForm(AForm const & form)
 {
 	try
 	{

@@ -46,7 +46,6 @@ Form& Form::operator=(const Form& other)
 
 Form::~Form()
 {
-	_status = false;
 }
 
 const std::string Form::getName(void) const

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 12:32:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:18:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:23:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 # include <iostream>
 # include <stdexcept>
-# include "Form.hpp"
+# include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -44,8 +44,8 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw();
 		};
-		void signForm(Form& form);
-		void executeForm(Form const & form);
+		void signForm(AForm& form);
+		void executeForm(AForm const & form);
 };
 
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& bc);

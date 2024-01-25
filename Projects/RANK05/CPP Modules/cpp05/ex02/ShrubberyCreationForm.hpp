@@ -6,17 +6,17 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 07:58:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:17:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:29:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
-# include "Form.hpp"
+# include "AForm.hpp"
 # include <fstream>
 
-class ShrubberyCreationForm : public Form
+class ShrubberyCreationForm : public AForm
 {
 	private:
 		std::string _target;

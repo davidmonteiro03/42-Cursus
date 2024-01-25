@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:35:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:17:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:39:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void _default_ShrubberyCreationForm(void)
 	{
 		std::cout << BCYN "TEST_DEFAULT_CONSTRUCTOR->";
 		std::cout << "_default_ShrubberyCreationForm->shrubbery" << RESET " => ";
-		Form* shrubbery = new ShrubberyCreationForm();
+		AForm* shrubbery = new ShrubberyCreationForm();
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		std::cout << BCYN "Result" << RESET ": " << BGRN "OK" << RESET "!";
 		++const_oks;
@@ -70,7 +70,7 @@ void _test_default_ShrubberyCreationForm(std::string target)
 		std::cout << BCYN "TEST_DEFAULT_CONSTRUCTOR->";
 		std::cout << "_default_ShrubberyCreationForm->";
 		std::cout << target << RESET " => ";
-		Form* shrubbery = new ShrubberyCreationForm(target);
+		AForm* shrubbery = new ShrubberyCreationForm(target);
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		std::cout << BCYN "Result" << RESET ": " << BGRN "OK" << RESET "!";
 		++const_oks;
@@ -87,12 +87,12 @@ void _test_default_ShrubberyCreationForm(std::string target)
 void _test_copy_ShrubberyCreationForm(void)
 {
 	++const_try;
-	Form* shrubbery = new ShrubberyCreationForm();
+	AForm* shrubbery = new ShrubberyCreationForm();
 	_separator(true);
 	std::cout << BCYN "TEST_COPY_CONSTRUCTOR_ShrubberyCreationForm" << RESET " => ";
 	try
 	{
-		Form* test(shrubbery);
+		AForm* test(shrubbery);
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		if (test->getName() != shrubbery->getName() || \
 			test->getStatus() != shrubbery->getStatus() || \
@@ -117,9 +117,9 @@ void _test_copy_ShrubberyCreationForm(void)
 void _test_assignment_ShrubberyCreationForm(void)
 {
 	++const_try;
-	Form* shrubbery = new ShrubberyCreationForm();
+	AForm* shrubbery = new ShrubberyCreationForm();
 	_separator(true);
-	Form* assignment = new ShrubberyCreationForm("assignment");
+	AForm* assignment = new ShrubberyCreationForm("assignment");
 	std::cout << BCYN "TEST_ASSIGNMENT_OVERLOAD_ShrubberyCreationForm" << RESET " => ";
 	try
 	{
@@ -145,12 +145,12 @@ void _default_RobotomyRequestForm(void)
 	try
 	{
 		std::cout << BCYN "TEST_DEFAULT_CONSTRUCTOR->";
-		std::cout << "_default_RobotomyRequestForm->shrubbery" << RESET " => ";
-		Form* robotmy = new RobotomyRequestForm();
+		std::cout << "_default_RobotomyRequestForm->robotomy" << RESET " => ";
+		AForm* robotomy = new RobotomyRequestForm();
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		std::cout << BCYN "Result" << RESET ": " << BGRN "OK" << RESET "!";
 		++const_oks;
-		delete robotmy;
+		delete robotomy;
 	}
 	catch(std::exception& e)
 	{
@@ -169,11 +169,11 @@ void _test_default_RobotomyRequestForm(std::string target)
 		std::cout << BCYN "TEST_DEFAULT_CONSTRUCTOR->";
 		std::cout << "_default_RobotomyRequestForm->";
 		std::cout << target << RESET " => ";
-		Form* robotmy = new RobotomyRequestForm(target);
+		AForm* robotomy = new RobotomyRequestForm(target);
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		std::cout << BCYN "Result" << RESET ": " << BGRN "OK" << RESET "!";
 		++const_oks;
-		delete robotmy;
+		delete robotomy;
 	}
 	catch(std::exception& e)
 	{
@@ -186,17 +186,17 @@ void _test_default_RobotomyRequestForm(std::string target)
 void _test_copy_RobotomyRequestForm(void)
 {
 	++const_try;
-	Form* robotmy = new RobotomyRequestForm();
+	AForm* robotomy = new RobotomyRequestForm();
 	_separator(true);
 	std::cout << BCYN "TEST_COPY_CONSTRUCTOR_RobotomyRequestForm" << RESET " => ";
 	try
 	{
-		Form* test(robotmy);
+		AForm* test(robotomy);
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
-		if (test->getName() != robotmy->getName() || \
-			test->getStatus() != robotmy->getStatus() || \
-			test->getSignGrade() != robotmy->getSignGrade() || \
-			test->getExecGrade() != robotmy->getExecGrade())
+		if (test->getName() != robotomy->getName() || \
+			test->getStatus() != robotomy->getStatus() || \
+			test->getSignGrade() != robotomy->getSignGrade() || \
+			test->getExecGrade() != robotomy->getExecGrade())
 			std::cout << BCYN "Result" << RESET ": " << BRED "KO" << RESET "!";
 		else
 		{
@@ -209,20 +209,20 @@ void _test_copy_RobotomyRequestForm(void)
 		std::cout << RED "Error! " << e.what() << std::endl << std::endl;
 		std::cout << BCYN "Result" << RESET ": " << BRED "KO" << RESET "!";
 	}
-	delete robotmy;
+	delete robotomy;
 	_separator(false);
 }
 
 void _test_assignment_RobotomyRequestForm(void)
 {
 	++const_try;
-	Form* robotmy = new RobotomyRequestForm();
+	AForm* robotomy = new RobotomyRequestForm();
 	_separator(true);
-	Form* assignment = new RobotomyRequestForm("assignment");
+	AForm* assignment = new RobotomyRequestForm("assignment");
 	std::cout << BCYN "TEST_ASSIGNMENT_OVERLOAD_RobotomyRequestForm" << RESET " => ";
 	try
 	{
-		*assignment = *robotmy;
+		*assignment = *robotomy;
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		std::cout << BCYN "Result" << RESET ": " << BGRN "OK" << RESET "!";
 		++const_oks;
@@ -233,7 +233,7 @@ void _test_assignment_RobotomyRequestForm(void)
 		std::cout << BCYN "Result" << RESET ": " << BRED "KO" << RESET "!";
 	}
 	delete assignment;
-	delete robotmy;
+	delete robotomy;
 	_separator(false);
 }
 
@@ -244,8 +244,8 @@ void _default_PresidentialPardonForm(void)
 	try
 	{
 		std::cout << BCYN "TEST_DEFAULT_CONSTRUCTOR->";
-		std::cout << "_default_PresidentialPardonForm->shrubbery" << RESET " => ";
-		Form* presidential = new PresidentialPardonForm();
+		std::cout << "_default_PresidentialPardonForm->presidential" << RESET " => ";
+		AForm* presidential = new PresidentialPardonForm();
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		std::cout << BCYN "Result" << RESET ": " << BGRN "OK" << RESET "!";
 		++const_oks;
@@ -268,7 +268,7 @@ void _test_default_PresidentialPardonForm(std::string target)
 		std::cout << BCYN "TEST_DEFAULT_CONSTRUCTOR->";
 		std::cout << "_default_PresidentialPardonForm->";
 		std::cout << target << RESET " => ";
-		Form* presidential = new PresidentialPardonForm(target);
+		AForm* presidential = new PresidentialPardonForm(target);
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		std::cout << BCYN "Result" << RESET ": " << BGRN "OK" << RESET "!";
 		++const_oks;
@@ -285,12 +285,12 @@ void _test_default_PresidentialPardonForm(std::string target)
 void _test_copy_PresidentialPardonForm(void)
 {
 	++const_try;
-	Form* presidential = new PresidentialPardonForm();
+	AForm* presidential = new PresidentialPardonForm();
 	_separator(true);
 	std::cout << BCYN "TEST_COPY_CONSTRUCTOR_PresidentialPardonForm" << RESET " => ";
 	try
 	{
-		Form* test(presidential);
+		AForm* test(presidential);
 		std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 		if (test->getName() != presidential->getName() || \
 			test->getStatus() != presidential->getStatus() || \
@@ -315,9 +315,9 @@ void _test_copy_PresidentialPardonForm(void)
 void _test_assignment_PresidentialPardonForm(void)
 {
 	++const_try;
-	Form* presidential = new PresidentialPardonForm();
+	AForm* presidential = new PresidentialPardonForm();
 	_separator(true);
-	Form* assignment = new PresidentialPardonForm("assignment");
+	AForm* assignment = new PresidentialPardonForm("assignment");
 	std::cout << BCYN "TEST_ASSIGNMENT_OVERLOAD_PresidentialPardonForm" << RESET " => ";
 	try
 	{
@@ -378,7 +378,7 @@ void _test_exec_ShrubberyCreationForm(bool result_bc, bool result_sign, bool res
 	_separator(true);
 	std::stringstream test_name;
 	test_name << "test" << ++i;
-	Form* shrubbery = new ShrubberyCreationForm(test_name.str());
+	AForm* shrubbery = new ShrubberyCreationForm(test_name.str());
 	std::cout << BCYN "TEST_EXECUTION_ShrubberyCreationForm->";
 	std::cout << test_name.str() << "->create" << RESET " => ";
 	try
@@ -478,7 +478,7 @@ void _test_exec_RobotomyRequestForm(bool result_bc, bool result_sign, bool resul
 	_separator(true);
 	std::stringstream test_name;
 	test_name << "test" << ++i;
-	Form* robotmy = new RobotomyRequestForm(test_name.str());
+	AForm* robotomy = new RobotomyRequestForm(test_name.str());
 	std::cout << BCYN "TEST_EXECUTION_RobotomyRequestForm->";
 	std::cout << test_name.str() << "->create" << RESET " => ";
 	try
@@ -493,7 +493,7 @@ void _test_exec_RobotomyRequestForm(bool result_bc, bool result_sign, bool resul
 			std::cout << test_name.str() << "->sign" << RESET " => ";
 			try
 			{
-				robotmy->beSigned(bc);
+				robotomy->beSigned(bc);
 				std::cout << GRN "Success" RESET "! " << std::endl << std::endl;
 				std::cout << BCYN "Result" << RESET ": ";
 				if (result_sign)
@@ -503,7 +503,7 @@ void _test_exec_RobotomyRequestForm(bool result_bc, bool result_sign, bool resul
 					std::cout << test_name.str() << "->execute" << RESET " => ";
 					try
 					{
-						robotmy->execute(bc);
+						robotomy->execute(bc);
 						std::cout << RESET " -> " << GRN "Success" << RESET "! " << std::endl << std::endl;
 						std::cout << BCYN "Result" << RESET ": ";
 						if (result_exec)
@@ -561,7 +561,7 @@ void _test_exec_RobotomyRequestForm(bool result_bc, bool result_sign, bool resul
 		}
 		std::cout << RESET "!";
 	}
-	delete robotmy;
+	delete robotomy;
 	_separator(false);
 }
 
@@ -571,7 +571,7 @@ void _test_exec_PresidentialPardonForm(bool result_bc, bool result_sign, bool re
 	_separator(true);
 	std::stringstream test_name;
 	test_name << "test" << ++i;
-	Form* presidential = new PresidentialPardonForm(test_name.str());
+	AForm* presidential = new PresidentialPardonForm(test_name.str());
 	std::cout << BCYN "TEST_EXECUTION_PresidentialPardonForm->";
 	std::cout << test_name.str() << "->create" << RESET " => ";
 	try
@@ -660,12 +660,12 @@ void _test_exec_PresidentialPardonForm(bool result_bc, bool result_sign, bool re
 
 void _test_exec_mix(bool result_bc, \
 	bool result_sign_shrubbery, bool result_exec_shrubbery, \
-	bool result_sign_robotmy, bool result_exec_robotmy, \
+	bool result_sign_robotomy, bool result_exec_robotomy, \
 	bool result_sign_presidential, bool result_exec_presidential, \
 	int grade)
 {
 	_test_exec_ShrubberyCreationForm(result_bc, result_sign_shrubbery, result_exec_shrubbery, grade);
-	_test_exec_RobotomyRequestForm(result_bc, result_sign_robotmy, result_exec_robotmy, grade);
+	_test_exec_RobotomyRequestForm(result_bc, result_sign_robotomy, result_exec_robotomy, grade);
 	_test_exec_PresidentialPardonForm(result_bc, result_sign_presidential, result_exec_presidential, grade);
 }
 

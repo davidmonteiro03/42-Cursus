@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/24 17:19:50 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/25 08:37:20 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,10 @@ fclean: clean
 	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
 
 re: fclean all
+
+# this rule is just for this exercise and the previous exercise
+delete:
+	@$(RM) *_shrubbery
 
 .PHONY: all clean fclean re
 

@@ -6,24 +6,24 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 08:05:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/24 17:17:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/25 08:30:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm() : \
-	Form("default robotomy", 72, 45), _target("default")
+	AForm("default robotomy", 72, 45), _target("default")
 {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const std::string target) : \
-	Form("robotomy", 72, 45), _target(target)
+	AForm("robotomy", 72, 45), _target(target)
 {
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy) : \
-	Form(copy.getName(), copy.getSignGrade(), \
+	AForm(copy.getName(), copy.getSignGrade(), \
 	copy.getExecGrade()), _target(copy.getTarget())
 {
 }
@@ -48,9 +48,9 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	static int i = 0;
 	if (!getStatus())
-		throw Form::UnsignedFormException();
+		throw AForm::UnsignedFormException();
 	else if (executor.getGrade() > getExecGrade())
-		throw Form::GradeTooLowException();
+		throw AForm::GradeTooLowException();
 	else
 	{
 		if (i % 2)
