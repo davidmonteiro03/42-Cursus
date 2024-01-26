@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/26 21:24:53 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/01/26 22:15:27 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,11 @@ RM				= rm -rf
 OBJS_DIR		= obj/
 INCLUDES_DIR	= ./
 
-SRCS			= ScalarConverter.cpp main.cpp
+SRCS			= Base.cpp A.cpp B.cpp C.cpp main.cpp
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
 
-EXEC			= convert
+EXEC			= base
 
 all: $(EXEC)
 

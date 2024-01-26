@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*   B.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/25 21:40:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/26 20:11:03 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/26 22:02:07 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/26 22:05:01 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCALARCONVERTER_HPP
-# define SCALARCONVERTER_HPP
+#ifndef B_HPP
+# define B_HPP
 
-# include <iostream>
-# include <limits>
-# include <cstdlib>
+# include "Base.hpp"
 
-class ScalarConverter
+class B : public Base
 {
-	private:
-		ScalarConverter();
-		ScalarConverter(const ScalarConverter& copy);
-		ScalarConverter& operator=(const ScalarConverter& other);
 	public:
-		~ScalarConverter();
-		static void convert(std::string arg);
+		virtual ~B();
 };
 
 #endif
