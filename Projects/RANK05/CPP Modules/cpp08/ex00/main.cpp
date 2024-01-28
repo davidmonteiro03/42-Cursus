@@ -5,31 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 11:39:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/28 11:45:36 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/28 15:29:14 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/28 18:42:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
-# include <iostream>
+#include "easyfind.hpp"
+#include <vector>
+
+#define NUM_ELEM 10
+#define SEARCH_E 10
 
 int main(void)
 {
-	int a = 2;
-	int b = 3;
-
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-
-	return 0;
+	std::vector<int> _vector;
+	for (int i = 0; i < NUM_ELEM; i++)
+		_vector.push_back(i + 1);
+	std::vector<int>::iterator it = ::easyfind(_vector, SEARCH_E);
+	if (it != _vector.end())
+		std::cout << *it << " belongs to the vector! :)" << std::endl;
+	else
+		std::cout << SEARCH_E << " doesn't belong to the vector... :(" << std::endl;
+	return (0);
 }

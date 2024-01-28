@@ -5,31 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 11:39:26 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/28 11:45:36 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/28 11:44:42 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/28 12:09:50 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "whatever.hpp"
-# include <iostream>
+#include "iter.hpp"
+#include <iostream>
+
+template<typename T>
+void print(T& elem)
+{
+	std::cout << elem << std::endl;
+}
 
 int main(void)
 {
-	int a = 2;
-	int b = 3;
+	std::string names[] = {"David", "Paul", "John", "Tom"};
+	int grades[] = {20, 16, 15, 19, 20, 14};
 
-	::swap( a, b );
-	std::cout << "a = " << a << ", b = " << b << std::endl;
-	std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
-	std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
-
-	std::string c = "chaine1";
-	std::string d = "chaine2";
-
-	::swap(c, d);
-	std::cout << "c = " << c << ", d = " << d << std::endl;
-	std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
-	std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
-
-	return 0;
+	std::cout << "Array of strings:" << std::endl;
+	::iter(names, 4, &print);
+	std::cout << std::endl;
+	std::cout << "Array of ints:" << std::endl;
+	::iter(grades, 6, &print);
+	return (0);
 }

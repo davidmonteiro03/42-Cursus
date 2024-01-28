@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   whatever.hpp                                       :+:      :+:    :+:   */
+/*   iter.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/27 11:40:37 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/28 11:45:21 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/28 11:41:34 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/28 12:07:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WHATEVER_HPP
-# define WHATEVER_HPP
+#ifndef ITER_HPP
+# define ITER_HPP
+
+# include <cstddef>
 
 template<typename T>
-void swap(T& a, T& b)
+void iter(T* array, size_t length, void (*f)(T&))
 {
-	T tmp = a;
-	a = b;
-	b = tmp;
-}
-
-template<typename T>
-T min(T a, T b)
-{
-	if (a < b)
-		return (a);
-	return (b);
-}
-
-template<typename T>
-T max(T a, T b)
-{
-	if (a > b)
-		return (a);
-	return (b);
+	for (size_t i = 0; i < length; i++)
+		f(array[i]);
 }
 
 #endif
