@@ -5,28 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 19:37:20 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 07:28:10 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/01/29 08:02:22 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/01/29 08:13:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Span.hpp"
-#include <cstdlib>
-#include <ctime>
+#include "MutantStack.hpp"
 
 int main(void)
 {
-	std::srand(std::time(NULL));
-	Span span(2 * 5 + 1);
-	std::cout << "Vector:" << std::endl;
-	for (int i = 0; i < 2 * 5 + 1; i++)
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << mstack.top() << std::endl;
+	mstack.pop();
+	std::cout << mstack.size() << std::endl;
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	mstack.push(0);
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
 	{
-		int num = std::rand() % 11 - 5;
-		span.addNumber(num);
-		std::cout << "\tnum[" << i << "] = " << num << std::endl;
+		std::cout << *it << std::endl;
+		++it;
 	}
-	std::cout << std::endl;
-	std::cout << "span.shortestSpan() = " << span.shortestSpan() << std::endl;
-	std::cout << " span.longestSpan() = " << span.longestSpan() << std::endl;
-	return (0);
+	std::stack<int> s(mstack);
+	return 0;
 }

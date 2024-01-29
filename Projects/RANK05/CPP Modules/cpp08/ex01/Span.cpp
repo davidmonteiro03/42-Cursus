@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:50:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/28 19:52:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/29 08:17:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,21 @@ int Span::shortestSpan(void) const
 		throw TooFewElementsException();
 	std::vector<int> tmp = _storage;
 	std::sort(tmp.begin(), tmp.end());
-	std::cout << tmp[0] << std::endl;
-	return (0);
+	int min = tmp[1] - tmp[0];
+	for (unsigned int i = 0; i < _length - 1; i++)
+		if (tmp[i + 1] - tmp[i] < min)
+			min = tmp[i + 1] - tmp[i];
+	return (min);
 }
 
 int Span::longestSpan(void) const
 {
 	if (_storage.size() <= 1)
 		throw TooFewElementsException();
-	std::cout << _storage[0] << std::endl;
-	return (0);
+	std::vector<int>::const_iterator min, max;
+	min = std::min_element(_storage.begin(), _storage.end());
+	max = std::max_element(_storage.begin(), _storage.end());
+	return (*max - *min);
 }
 
 const char* Span::VectorIsFullException::what() const throw()
