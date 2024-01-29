@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:40:47 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 15:12:26 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:22:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int argc, char **argv)
 	RPN _rpn;
 	try
 	{
-		_rpn.parseInput(argv[1]);
+		_rpn.execute(argv[1]);
 	}
 	catch(std::exception& e)
 	{

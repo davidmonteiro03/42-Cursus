@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:40:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 15:11:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:21:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <iostream>
 # include <stdexcept>
 # include <list>
+# include <cstdlib>
 
 class RPN
 {
@@ -26,7 +27,7 @@ class RPN
 		RPN(const RPN& copy);
 		RPN& operator=(const RPN& other);
 		~RPN();
-		void parseInput(std::string input) const;
+		void execute(std::string input);
 		class InvalidInputException : public std::exception
 		{
 			public:

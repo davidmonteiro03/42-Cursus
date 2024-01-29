@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 15:59:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/29 17:52:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,20 @@ static int getcode(std::string arg)
 	return (1);
 }
 
-void RPN::parseInput(std::string input) const
+void display(std::list<int> list)
 {
-	int i = 0, numbers = 0, operators = 0, args = 0;
-	int first = -1, last = -1;
+	std::list<int>::iterator it = list.begin();
+	while (it != list.end())
+	{
+		std::cout << "element: " << *it << std::endl;
+		++it;
+	}
+	std::cout << std::endl;
+}
+
+void RPN::execute(std::string input)
+{
+	int i = 0;
 	while (input[i])
 	{
 		while (input[i] && input[i] == ' ')
@@ -63,24 +73,39 @@ void RPN::parseInput(std::string input) const
 			throw InvalidInputException();
 		if (getcode(_substr) == 1)
 		{
-			numbers++;
-			if (first == -1)
-				first = args;
+			_list.push_front(std::atoi(_substr.c_str()));
 		}
 		else if (getcode(_substr) == 2)
 		{
-			operators++;
-			last = args;
+			if (_list.size() < 2)
+				throw InvalidInputException();
+			std::list<int>::iterator it = _list.begin();
+			int first = *it++;
+			int second = *it;
+			int result;
+			// std::cout << first << " " << second << std::endl;
+			// std::cout << _substr << std::endl;
+			if (_substr == "+")
+				result = second + first;
+			else if (_substr == "-")
+				result = second - first;
+			else if (_substr == "*")
+				result = second * first;
+			else
+				result = second / first;
+			_list.pop_front();
+			_list.pop_front();
+			_list.push_front(result);
 		}
-		args++;
+		// display(_list);
 	}
-	if (operators != numbers - 1)
+	if (_list.size() != 1)
 		throw InvalidInputException();
-	if (first != 0 || last != args - 1)
-		throw InvalidInputException();
+	std::list<int>::iterator it = _list.begin();
+	std::cout << *it << std::endl;
 }
 
 const char* RPN::InvalidInputException::what() const throw()
 {
-	return ("RPN: InvalidInputException");
+	return ("Error");
 }
