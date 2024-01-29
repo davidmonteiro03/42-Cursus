@@ -6,15 +6,15 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 17:52:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/29 18:37:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN() : _list(std::list<int>()){}
+RPN::RPN() : _list(std::list<double>()) {}
 
-RPN::RPN(const RPN& copy) : _list(std::list<int>(copy._list)){}
+RPN::RPN(const RPN& copy) : _list(std::list<double>(copy._list)) {}
 
 RPN& RPN::operator=(const RPN& other)
 {
@@ -46,9 +46,9 @@ static int getcode(std::string arg)
 	return (1);
 }
 
-void display(std::list<int> list)
+void display(std::list<double> list)
 {
-	std::list<int>::iterator it = list.begin();
+	std::list<double>::iterator it = list.begin();
 	while (it != list.end())
 	{
 		std::cout << "element: " << *it << std::endl;
@@ -70,7 +70,7 @@ void RPN::execute(std::string input)
 		int end = i;
 		std::string _substr = input.substr(start, end - start);
 		if (!getcode(_substr))
-			throw InvalidInputException();
+			throw ErrorException();
 		if (getcode(_substr) == 1)
 		{
 			_list.push_front(std::atoi(_substr.c_str()));
@@ -78,11 +78,11 @@ void RPN::execute(std::string input)
 		else if (getcode(_substr) == 2)
 		{
 			if (_list.size() < 2)
-				throw InvalidInputException();
-			std::list<int>::iterator it = _list.begin();
-			int first = *it++;
-			int second = *it;
-			int result;
+				throw ErrorException();
+			std::list<double>::iterator it = _list.begin();
+			double first = *it++;
+			double second = *it;
+			double result;
 			// std::cout << first << " " << second << std::endl;
 			// std::cout << _substr << std::endl;
 			if (_substr == "+")
@@ -92,7 +92,11 @@ void RPN::execute(std::string input)
 			else if (_substr == "*")
 				result = second * first;
 			else
+			{
+				if (first == 0)
+					throw ErrorException();
 				result = second / first;
+			}
 			_list.pop_front();
 			_list.pop_front();
 			_list.push_front(result);
@@ -100,12 +104,12 @@ void RPN::execute(std::string input)
 		// display(_list);
 	}
 	if (_list.size() != 1)
-		throw InvalidInputException();
-	std::list<int>::iterator it = _list.begin();
+		throw ErrorException();
+	std::list<double>::iterator it = _list.begin();
 	std::cout << *it << std::endl;
 }
 
-const char* RPN::InvalidInputException::what() const throw()
+const char* RPN::ErrorException::what() const throw()
 {
 	return ("Error");
 }
