@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 07:09:57 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 07:15:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,7 @@ RPN::~RPN() {}
 
 static int getcode(std::string arg)
 {
-	// 0 for error
-	// 1 for number
-	// 2 for operator
+	// 0 for error, 1 for number, 2 for operator
 	if (arg.size() == 0)
 		return (0);
 	if (arg.size() == 1 && \
