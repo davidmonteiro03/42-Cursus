@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 14:25:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:58:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,41 +125,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 
 PmergeMe::~PmergeMe() {}
 
-template<typename T>
-static void merge(T& _data, T& left, T& right)
-{
-	typename T::iterator left_it = left.begin();
-	typename T::iterator right_it = right.begin();
-	while (left_it != left.end() && right_it != right.end())
-	{
-		if (*left_it < *right_it)
-			_data.push_back(*left_it++);
-		else
-			_data.push_back(*right_it++);
-	}
-	while (left_it != left.end())
-		_data.push_back(*left_it++);
-	while (right_it != right.end())
-		_data.push_back(*right_it++);
-}
-
-template<typename T>
-static void merge_insert_sort(T& _data)
-{
-	if (_data.size() < 2)
-		return ;
-	T left, right;
-	typename T::iterator it = _data.begin();
-	std::advance(it, _data.size() / 2);
-	left.assign(_data.begin(), it);
-	right.assign(it, _data.end());
-	merge_insert_sort(left);
-	merge_insert_sort(right);
-	_data.clear();
-	merge(_data, left, right);
-}
-
-static std::ostream& operator<<(std::ostream& o, std::list<int> _list)
+/* static  */std::ostream& operator<<(std::ostream& o, std::list<int> _list)
 {
 	int size = int(_list.size()), i = 0;
 	if (size <= 5)
@@ -186,14 +152,24 @@ static std::ostream& operator<<(std::ostream& o, std::list<int> _list)
 	return (o);
 }
 
+template<typename T>
+static void merge_insert_sort(T& _data)
+{
+	typename T::iterator it = _data.begin();
+	while (it != _data.end())
+	{
+		std::advance(it, 2);
+	}
+}
+
 void PmergeMe::execute(void)
 {
 	if (_list.size() <= 0)
 		return ;
 	merge_insert_sort(_list);
-	std::cout << "Before:  " << _copy << std::endl;
-	std::cout << "After:   " << _list << std::endl;
-	std::cout << "Time to process a range of " << _copy.size() << std::endl;
+	// std::cout << "Before:  " << _copy << std::endl;
+	// std::cout << "After:   " << _list << std::endl;
+	// std::cout << "Time to process a range of " << _copy.size() << std::endl;
 }
 
 const char* PmergeMe::ErrorException::what() const throw()
