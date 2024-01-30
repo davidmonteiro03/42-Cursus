@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:39:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 13:26:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 08:31:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,10 @@ static bool parse_exchange_str(std::string exchange_str)
 static int parse_line(std::string line)
 {
 	int i = 0;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && isspace(line[i]))
 		i++;
 	int date_start = i;
-	while (line[i] && line[i] != ' ')
+	while (line[i] && !isspace(line[i]))
 		i++;
 	int date_end = i;
 	std::string date = line.substr(date_start, date_end - date_start);
@@ -131,15 +131,15 @@ static int parse_line(std::string line)
 	int day = std::atoi(date.substr(8, 2).c_str());
 	if (!check_date(year, month, day))
 		return (1);
-	while (line[i] && line[i] == ' ')
+	while (line[i] && isspace(line[i]))
 		i++;
 	if (line[i] != '|')
 		return (1);
 	i++;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && isspace(line[i]))
 		i++;
 	int exchange_start = i;
-	while (line[i] && line[i] != ' ')
+	while (line[i] && !isspace(line[i]))
 		i++;
 	int exchange_end = i;
 	if (line[exchange_end])
@@ -160,23 +160,23 @@ static t_data get_data(std::string line)
 {
 	t_data data;
 	int i = 0;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && isspace(line[i]))
 		i++;
 	int date_start = i;
-	while (line[i] && line[i] != ' ')
+	while (line[i] && !isspace(line[i]))
 		i++;
 	int date_end = i;
 	data.date = line.substr(date_start, date_end - date_start);
 	data.year = std::atoi(data.date.substr(0, 4).c_str());
 	data.month = std::atoi(data.date.substr(5, 2).c_str());
 	data.day = std::atoi(data.date.substr(8, 2).c_str());
-	while (line[i] && line[i] == ' ')
+	while (line[i] && isspace(line[i]))
 		i++;
 	i++;
-	while (line[i] && line[i] == ' ')
+	while (line[i] && isspace(line[i]))
 		i++;
 	int exchange_start = i;
-	while (line[i] && line[i] != ' ')
+	while (line[i] && !isspace(line[i]))
 		i++;
 	int exchange_end = i;
 	std::string exchange_str = \

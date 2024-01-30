@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 07:15:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 08:34:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void RPN::execute(std::string input)
 	int i = 0;
 	while (input[i])
 	{
-		while (input[i] && input[i] == ' ')
+		while (input[i] && isspace(input[i]))
 			i++;
 		int start = i;
-		while (input[i] && input[i] != ' ')
+		while (input[i] && !isspace(input[i]))
 			i++;
 		int end = i;
 		std::string _substr = input.substr(start, end - start);
@@ -83,6 +83,8 @@ void RPN::execute(std::string input)
 			}
 			_stack.push(result);
 		}
+		while (input[i] && isspace(input[i]))
+			i++;
 	}
 	if (_stack.size() != 1)
 		throw ErrorException();
