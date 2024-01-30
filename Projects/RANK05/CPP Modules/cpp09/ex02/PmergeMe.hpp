@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:00:35 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 08:40:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 11:40:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <deque>
 # include <stdexcept>
 # include <cstdlib>
+# include <ctime>
 
 class PmergeMe
 {
@@ -26,11 +27,13 @@ class PmergeMe
 		PmergeMe();
 		std::list<int> _list;
 		std::deque<int> _deque;
+		std::list<int> _copy;
 	public:
 		PmergeMe(char **argv);
 		PmergeMe(const PmergeMe& copy);
 		PmergeMe& operator=(const PmergeMe& other);
 		~PmergeMe();
+		void execute(void);
 		class ErrorException : public std::exception
 		{
 			public:

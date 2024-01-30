@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 07:59:59 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 08:39:05 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 10:48:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 	try
 	{
 		PmergeMe _data(argv + 1);
+		_data.execute();
 	}
 	catch(std::exception& e)
 	{
