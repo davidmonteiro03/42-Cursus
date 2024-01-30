@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 12:38:58 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/28 12:49:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:05:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,11 @@ template<typename T>
 class Array
 {
 	private:
-		T* _array;
 		unsigned int _size;
+		T* _array;
 	public:
-		Array() : _size(0)
-		{
-			_array = new T[_size];
-		}
-		Array(unsigned int n) : _size(n)
-		{
-			_array = new T[_size];
-		}
+		Array() : _size(0) { _array = new T[_size]; }
+		Array(unsigned int n) : _size(n) { _array = new T[_size]; }
 		Array(const Array& copy)
 		{
 			_array = NULL;
