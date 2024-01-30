@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 14:40:13 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 18:36:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 07:06:16 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 # include <iostream>
 # include <stdexcept>
-# include <list>
+# include <stack>
 # include <cstdlib>
 
 class RPN
 {
 	private:
-		std::list<double> _list;
+		std::stack<double> _stack;
 	public:
 		RPN();
 		RPN(const RPN& copy);

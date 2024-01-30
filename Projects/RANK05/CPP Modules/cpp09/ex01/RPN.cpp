@@ -6,20 +6,20 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 15:08:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 18:37:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 07:09:57 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN() : _list(std::list<double>()) {}
+RPN::RPN() : _stack(std::stack<double>()) {}
 
-RPN::RPN(const RPN& copy) : _list(std::list<double>(copy._list)) {}
+RPN::RPN(const RPN& copy) : _stack(std::stack<double>(copy._stack)) {}
 
 RPN& RPN::operator=(const RPN& other)
 {
 	if (this != &other)
-		_list = other._list;
+		_stack = other._stack;
 	return (*this);
 }
 
@@ -46,17 +46,6 @@ static int getcode(std::string arg)
 	return (1);
 }
 
-void display(std::list<double> list)
-{
-	std::list<double>::iterator it = list.begin();
-	while (it != list.end())
-	{
-		std::cout << "element: " << *it << std::endl;
-		++it;
-	}
-	std::cout << std::endl;
-}
-
 void RPN::execute(std::string input)
 {
 	int i = 0;
@@ -72,19 +61,16 @@ void RPN::execute(std::string input)
 		if (!getcode(_substr))
 			throw ErrorException();
 		if (getcode(_substr) == 1)
-		{
-			_list.push_front(std::atoi(_substr.c_str()));
-		}
+			_stack.push(std::atoi(_substr.c_str()));
 		else if (getcode(_substr) == 2)
 		{
-			if (_list.size() < 2)
+			if (_stack.size() < 2)
 				throw ErrorException();
-			std::list<double>::iterator it = _list.begin();
-			double first = *it++;
-			double second = *it;
+			double first = _stack.top();
+			_stack.pop();
+			double second = _stack.top();
+			_stack.pop();
 			double result;
-			// std::cout << first << " " << second << std::endl;
-			// std::cout << _substr << std::endl;
 			if (_substr == "+")
 				result = second + first;
 			else if (_substr == "-")
@@ -97,16 +83,12 @@ void RPN::execute(std::string input)
 					throw ErrorException();
 				result = second / first;
 			}
-			_list.pop_front();
-			_list.pop_front();
-			_list.push_front(result);
+			_stack.push(result);
 		}
-		// display(_list);
 	}
-	if (_list.size() != 1)
+	if (_stack.size() != 1)
 		throw ErrorException();
-	std::list<double>::iterator it = _list.begin();
-	std::cout << *it << std::endl;
+	std::cout << _stack.top() << std::endl;
 }
 
 const char* RPN::ErrorException::what() const throw()
