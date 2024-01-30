@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 13:01:16 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:08:03 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,8 @@ static std::ostream& operator<<(std::ostream& o, std::list<int> _list)
 
 void PmergeMe::execute(void)
 {
+	if (_list.size() <= 0)
+		return ;
 	merge_insert_sort(_list);
 	std::cout << "Before:  " << _copy << std::endl;
 	std::cout << "After:   " << _list << std::endl;
