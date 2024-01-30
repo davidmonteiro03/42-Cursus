@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 14:08:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:25:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,17 +124,6 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 }
 
 PmergeMe::~PmergeMe() {}
-
-/* template<typename T>
-static bool is_sorted(T _data)
-{
-	typename T::iterator it = _data.begin();
-	while (std::next(it != _data.end())
-	{
-		std::cout << "sghdfashg\n";
-		++it;
-	}
-} */
 
 template<typename T>
 static void merge(T& _data, T& left, T& right)
