@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 14:58:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 17:01:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ static int parse_input(std::string input)
 		std::string _substr = input.substr(start, end - start);
 		if (!check_arg(_substr))
 			throw PmergeMe::ErrorException();
-		int num = std::atoi(_substr.c_str());
-		if (num <= 0)
+		long int num = std::atol(_substr.c_str());
+		if (num <= 0 || num > 2147483648)
 			throw PmergeMe::ErrorException();
 		while (input[i] && isspace(input[i]))
 			i++;
@@ -153,13 +153,23 @@ PmergeMe::~PmergeMe() {}
 }
 
 template<typename T>
-static void merge_insert_sort(T& _data)
+static void normal_display(T _data)
 {
 	typename T::iterator it = _data.begin();
+	int i = 0;
 	while (it != _data.end())
 	{
-		std::advance(it, 2);
+		if (i++ > 0)
+			std::cout << " ";
+		std::cout << *it++;
 	}
+}
+
+template<typename T>
+static void merge_insert_sort(T& _data)
+{
+	normal_display(_data);
+	std::cout << std::endl;
 }
 
 void PmergeMe::execute(void)
