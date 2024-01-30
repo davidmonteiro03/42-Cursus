@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:43:16 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 08:17:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 19:24:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ class Span
 		Span& operator=(const Span& other);
 		virtual ~Span();
 		void addNumber(int value);
-		int shortestSpan(void) const;
+		int shortestSpan(void);
 		int longestSpan(void) const;
+		void addNumberRange(std::vector<int>::iterator begin, \
+			std::vector<int>::iterator end);
 		class VectorIsFullException : public std::exception
 		{
 			public:

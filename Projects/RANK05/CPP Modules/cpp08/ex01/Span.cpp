@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:50:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 08:17:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 20:33:21 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,31 @@ void Span::addNumber(int value)
 	_storage.push_back(value);
 }
 
-int Span::shortestSpan(void) const
+void Span::addNumberRange(std::vector<int>::iterator begin, \
+	std::vector<int>::iterator end)
+{
+	if (begin >= end)
+		return ;
+	std::vector<int>::iterator tmp;
+	size_t size = _storage.size(), add_size = 0;
+	tmp = begin;
+	while (tmp++ != end)
+		add_size++;
+	tmp = begin;
+	_storage.resize(size + add_size);
+	while (tmp != end)
+		_storage.push_back(*tmp++);
+}
+
+int Span::shortestSpan(void)
 {
 	if (_storage.size() <= 1)
 		throw TooFewElementsException();
-	std::vector<int> tmp = _storage;
-	std::sort(tmp.begin(), tmp.end());
-	int min = tmp[1] - tmp[0];
+	std::sort(_storage.begin(), _storage.end());
+	int min = _storage[1] - _storage[0];
 	for (unsigned int i = 0; i < _length - 1; i++)
-		if (tmp[i + 1] - tmp[i] < min)
-			min = tmp[i + 1] - tmp[i];
+		if (_storage[i + 1] - _storage[i] < min)
+			min = _storage[i + 1] - _storage[i];
 	return (min);
 }
 
