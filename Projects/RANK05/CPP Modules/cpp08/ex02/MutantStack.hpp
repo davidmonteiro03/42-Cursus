@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 07:37:14 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/29 08:14:46 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/30 18:52:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ class MutantStack : public std::stack<T>
 			return (*this);
 		}
 		virtual ~MutantStack() {}
-		iterator begin() { return std::stack<T>::c.begin(); }
-		iterator end() { return std::stack<T>::c.end(); }
-		const_iterator begin() const { return std::stack<T>::c.begin(); }
-		const_iterator end() const { return std::stack<T>::c.end(); }
-		reverse_iterator rbegin() { return std::stack<T>::c.rbegin(); }
-		reverse_iterator rend() { return std::stack<T>::c.rend(); }
-		const_reverse_iterator rbegin() const { return std::stack<T>::c.rbegin(); }
-		const_reverse_iterator rend() const { return std::stack<T>::c.rend(); }
+		iterator begin() { return (std::stack<T>::c.begin()); }
+		iterator end() { return (std::stack<T>::c.end()); }
+		const_iterator begin() const { return (std::stack<T>::c.begin()); }
+		const_iterator end() const { return (std::stack<T>::c.end()); }
+		reverse_iterator rbegin() { return (std::stack<T>::c.rbegin()); }
+		reverse_iterator rend() { return (std::stack<T>::c.rend()); }
+		const_reverse_iterator rbegin() const { return (std::stack<T>::c.rbegin()); }
+		const_reverse_iterator rend() const { return (std::stack<T>::c.rend()); }
 };
 
 #endif
