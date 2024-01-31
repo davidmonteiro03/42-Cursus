@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 16:03:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:06:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,8 +226,7 @@ static void merge_insert_sort(T& _data)
 			typename T::iterator _iter_a = _a.begin();
 			while (*_iter_b > *_iter_a)
 				_iter_a++;
-			_a.insert(_iter_a, *_iter_b--);
-			count++;
+			_a.insert(_iter_a, *_iter_b--); count++;
 		}
 		for (int i = 0; i < count; i++)
 			_b.pop_front();
@@ -237,8 +236,7 @@ static void merge_insert_sort(T& _data)
 		typename T::iterator _iter_a = _a.begin();
 		while (*(_b.begin()) > *_iter_a)
 			_iter_a++;
-		_a.insert(_iter_a, *(_b.begin()));
-		_b.pop_front();
+		_a.insert(_iter_a, *(_b.begin())); _b.pop_front();
 	}
 	// Final list
 	_data = _a;
