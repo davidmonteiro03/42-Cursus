@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:00:35 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 12:44:29 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 18:48:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,17 @@
 # include <iostream>
 # include <sstream>
 # include <list>
-# include <deque>
 # include <stdexcept>
 # include <cstdlib>
 # include <ctime>
 # include <cmath>
+# include <ctime>
 
 class PmergeMe
 {
 	private:
 		PmergeMe();
 		std::list<int> _list;
-		std::deque<int> _deque;
 		std::list<int> _copy;
 	public:
 		PmergeMe(char **argv);
