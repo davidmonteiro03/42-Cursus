@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:50:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 07:39:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 07:52:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,9 @@ int Span::shortestSpan(void)
 	int min = *start_it;
 	while (start_it != end_it)
 	{
-		int first = *start_it++;
-		int second = *start_it;
-		if (second - first < min)
-			min = second - first;
+		int current = *start_it, next = *(++start_it);
+		if (next - current < min)
+			min = next - current;
 	}
 	return (min);
 }
