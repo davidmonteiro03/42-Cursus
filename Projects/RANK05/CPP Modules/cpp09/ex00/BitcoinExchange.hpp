@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:24:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 09:48:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 09:52:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_data
 	int year;
 	int month;
 	int day;
-	double exchange;
+	float exchange;
 }t_data;
 
 class BitcoinExchange
