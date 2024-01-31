@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:39:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 08:48:28 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 09:16:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ static std::vector<std::string> readfile(std::string filename)
 		while (tmp)
 		{
 			std::getline(tmp, buf);
-			if (i > 0)
-				ret.push_back(buf);
+			ret.push_back(buf);
 			i++;
 		}
-		if (ret.size() > 1)
-			ret.pop_back();
+		ret.pop_back();
 		tmp.close();
 	}
 	return (ret);
@@ -215,10 +213,27 @@ static void display_error(std::string line, int code)
 		std::cout << "Error: empty file." << std::endl;
 	else if (code == 5)
 		std::cout << "Error: there is no dates before given one." << std::endl;
+	else if (code == 6)
+		std::cout << "Info: line containing the info \"data | value\"" << std::endl;
+}
+
+static std::string truncate(std::string s1, std::string set)
+{
+	size_t start = 0;
+	size_t end = s1.length() - 1;
+	while (start <= end && set.find(s1[start]) != std::string::npos)
+		start++;
+	if (start > end)
+		return ("");
+	while (end >= start && set.find(s1[end]) != std::string::npos)
+		end--;
+	return (s1.substr(start, end - start + 1));
 }
 
 static void find_date(std::vector<std::string> database, std::string line)
 {
+	if (truncate(line, " \a\b\t\n\v\f\r") == "date | value")
+		return (display_error("", 6));
 	int check = parse_line(line), i;
 	if (check)
 		return (display_error(line, check));
