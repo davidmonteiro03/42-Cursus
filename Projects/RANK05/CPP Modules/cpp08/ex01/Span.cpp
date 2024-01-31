@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 18:50:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 22:47:45 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 07:39:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,15 @@ void Span::addNumber(int value)
 void Span::addNumberRange(std::vector<int>::iterator begin, \
 	std::vector<int>::iterator end)
 {
-	if (begin >= end)
+	int dist = std::distance(begin, end);
+	if (dist <= 0)
 		return ;
 	while (begin != end)
+	{
+		if (_storage.size() == _length)
+			return ;
 		_storage.push_back(*begin++);
+	}
 }
 
 int Span::shortestSpan(void)
@@ -58,11 +63,9 @@ int Span::shortestSpan(void)
 	std::vector<int>::iterator start_it = _storage.begin();
 	std::vector<int>::iterator end_it = _storage.end();
 	end_it--;
-	int min;
+	int min = *start_it;
 	while (start_it != end_it)
 	{
-		if (start_it == _storage.begin())
-			min = *start_it;
 		int first = *start_it++;
 		int second = *start_it;
 		if (second - first < min)
