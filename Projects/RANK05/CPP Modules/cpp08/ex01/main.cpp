@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 19:37:20 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 07:43:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 07:46:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(void)
 {
-	// boring addNumber 😑
+	// boring addNumber 👎
 	{
 		try
 		{
@@ -29,7 +29,7 @@ int main(void)
 		}
 		catch(std::exception& e) { std::cerr << e.what() << std::endl; }
 	}
-	// ultimate addNumberRange 😎
+	// ultimate addNumberRange 👍
 /* 	{
 		try
 		{
