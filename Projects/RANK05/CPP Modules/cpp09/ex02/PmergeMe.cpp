@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 17:01:42 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 16:03:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,8 +168,80 @@ static void normal_display(T _data)
 template<typename T>
 static void merge_insert_sort(T& _data)
 {
-	normal_display(_data);
-	std::cout << std::endl;
+	int num_jacob_elems = int(_data.size() / 2) + _data.size() % 2;
+	T _a, _b;
+	// Pairwise comparison
+	typename T::iterator _data_begin_it = _data.begin();
+	typename T::iterator _data_end_it = _data.end();
+	if (_data.size() % 2)
+		_data_end_it--;
+	while (_data_begin_it != _data_end_it)
+	{
+		int first = *_data_begin_it++;
+		int second = *_data_begin_it++;
+		if (first > second)
+			std::swap(first, second);
+		_a.push_back(second); _b.push_back(first);
+	}
+	if (_data.size() % 2)
+		_b.push_back(*_data_begin_it++);
+	_data.clear();
+	// Recursion
+	typename T::iterator _a_it = _a.begin();
+	typename T::iterator _b_it = _b.begin();
+	while (_a_it != _a.end())
+	{
+		typename T::iterator _a_tmp_it = ++_a_it;
+		typename T::iterator _b_tmp_it = ++_b_it;
+		--_a_it; --_b_it;
+		while (_a_tmp_it != _a.end())
+		{
+			if (*_a_it > *_a_tmp_it)
+			{
+				std::swap(*_a_it, *_a_tmp_it);
+				std::swap(*_b_it, *_b_tmp_it);
+			}
+			_a_tmp_it++; _b_tmp_it++;
+		}
+		++_a_it; ++_b_it;
+	}
+	// Insertion
+	_a.push_front(*(_b.begin()));
+	_b.pop_front();
+	int jacob_list[num_jacob_elems];
+	for(int i = 0; i < num_jacob_elems; i++)
+		jacob_list[i] = (std::pow(2, i) - std::pow(-1, i)) / 3;
+	for(int i = 0; i < num_jacob_elems - 1; i++)
+	{
+		int dif = jacob_list[i + 1] - jacob_list[i];
+		if (dif == 0)
+			continue ;
+		typename T::iterator _iter_b = _b.begin();
+		typename T::iterator _before_bgn = _iter_b;
+		int count = 0;
+		_before_bgn--;
+		std::advance(_iter_b, dif - 1);
+		while (_iter_b != _before_bgn)
+		{
+			typename T::iterator _iter_a = _a.begin();
+			while (*_iter_b > *_iter_a)
+				_iter_a++;
+			_a.insert(_iter_a, *_iter_b--);
+			count++;
+		}
+		for (int i = 0; i < count; i++)
+			_b.pop_front();
+	}
+	if (_b.size() > 0)
+	{
+		typename T::iterator _iter_a = _a.begin();
+		while (*(_b.begin()) > *_iter_a)
+			_iter_a++;
+		_a.insert(_iter_a, *(_b.begin()));
+		_b.pop_front();
+	}
+	// Final list
+	_data = _a;
 }
 
 void PmergeMe::execute(void)
@@ -177,8 +249,8 @@ void PmergeMe::execute(void)
 	if (_list.size() <= 0)
 		return ;
 	merge_insert_sort(_list);
-	// std::cout << "Before:  " << _copy << std::endl;
-	// std::cout << "After:   " << _list << std::endl;
+	std::cout << "Before:  "; normal_display(_copy); std::cout << std::endl;
+	std::cout << "After:   "; normal_display(_list); std::cout << std::endl;
 	// std::cout << "Time to process a range of " << _copy.size() << std::endl;
 }
 
