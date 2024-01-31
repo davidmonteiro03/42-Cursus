@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:39:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 08:02:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 08:48:28 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static std::vector<std::string> readfile(std::string filename)
 {
-	std::vector<std::string> ret(0);
+	std::vector<std::string> ret;
 	std::ifstream tmp;
 	std::string buf;
 	tmp.open(filename.c_str());
@@ -30,7 +30,7 @@ static std::vector<std::string> readfile(std::string filename)
 				ret.push_back(buf);
 			i++;
 		}
-		if (ret[i].size() == 0)
+		if (ret.size() > 1)
 			ret.pop_back();
 		tmp.close();
 	}
@@ -114,6 +114,8 @@ static bool parse_exchange_str(std::string exchange_str)
 
 static int parse_line(std::string line)
 {
+	if (line.size() < 14)
+		return (1);
 	int i = 0;
 	while (line[i] && isspace(line[i]))
 		i++;
@@ -142,11 +144,13 @@ static int parse_line(std::string line)
 	while (line[i] && !isspace(line[i]))
 		i++;
 	int exchange_end = i;
-	if (line[exchange_end])
-		return (1);
 	std::string exchange_str = \
 		line.substr(exchange_start, exchange_end - exchange_start);
 	if (!parse_exchange_str(exchange_str))
+		return (1);
+	while (line[i] && isspace(line[i]))
+		i++;
+	if (line[i])
 		return (1);
 	float exchange = std::atof(exchange_str.c_str());
 	if (exchange < 0)
@@ -185,21 +189,39 @@ static t_data get_data(std::string line)
 	return (data);
 }
 
+static bool check_empty(std::string line)
+{
+	int i = -1;
+	while (line[++i])
+		if (!isspace(line[i]))
+			return (true);
+	return (false);
+}
+
 static void display_error(std::string line, int code)
 {
 	if (code == 1)
-		std::cout << "Error: bad input => " << line << std::endl;
+	{
+		if (check_empty(line))
+			std::cout << "Error: bad input => " << line << std::endl;
+		else
+			std::cout << "Error: empty line." << std::endl;
+	}
 	else if (code == 2)
 		std::cout << "Error: not a positive number." << std::endl;
 	else if (code == 3)
 		std::cout << "Error: too large a number." << std::endl;
+	else if (code == 4)
+		std::cout << "Error: empty file." << std::endl;
+	else if (code == 5)
+		std::cout << "Error: there is no dates before given one." << std::endl;
 }
 
 static void find_date(std::vector<std::string> database, std::string line)
 {
 	int check = parse_line(line), i;
 	if (check)
-		return display_error(line, check);
+		return (display_error(line, check));
 	float min_ex;
 	double	n1, n2, min;
 	double	list[100] = {0, 31, 59.25, 90.25, 120.25, 151.25, \
@@ -216,7 +238,7 @@ static void find_date(std::vector<std::string> database, std::string line)
 			oldest_date = tmp.date;
 	}
 	if (input.date < oldest_date)
-		return display_error(line, 1);
+		return (display_error(line, 5));
 	for (i = 0; i < int(database.size()); i++)
 	{
 		t_data tmp;
@@ -253,6 +275,8 @@ static void find_date(std::vector<std::string> database, std::string line)
 
 void BitcoinExchange::displayInputFile(bool parse) const
 {
+	if (_input.size() == 0)
+		return (display_error("", 4));
 	if (!parse)
 		for (int i = 0; i < int(_input.size()); i++)
 			std::cout << _input[i] << std::endl;
