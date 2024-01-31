@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:39:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/30 08:31:21 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 08:02:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,18 @@ static void find_date(std::vector<std::string> database, std::string line)
 	double	list[100] = {0, 31, 59.25, 90.25, 120.25, 151.25, \
 						181.25, 212.25, 243.25, 273.25, 304.25, 334.25};
 	t_data input = get_data(line);
+	std::string oldest_date;
+	for (i = 0; i < int(database.size()); i++)
+	{
+		t_data tmp;
+		tmp.date = database[i].substr(0, 10);
+		if (i == 0)
+			oldest_date = tmp.date;
+		else if (tmp.date < oldest_date)
+			oldest_date = tmp.date;
+	}
+	if (input.date < oldest_date)
+		return display_error(line, 1);
 	for (i = 0; i < int(database.size()); i++)
 	{
 		t_data tmp;
@@ -223,7 +235,10 @@ static void find_date(std::vector<std::string> database, std::string line)
 						(double)input.day);
 		double dif = std::abs(n2 - n1);
 		if (i == 0)
+		{
 			min = dif;
+			min_ex = tmp.exchange;
+		}
 		else if (dif < min && input.date >= tmp.date)
 		{
 			min = dif;
