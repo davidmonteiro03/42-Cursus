@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:39:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 09:16:33 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/01/31 09:48:28 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ static std::string truncate(std::string s1, std::string set)
 static void find_date(std::vector<std::string> database, std::string line)
 {
 	if (truncate(line, " \a\b\t\n\v\f\r") == "date | value")
-		return (display_error("", 6));
+		return /* (display_error("", 6)) */;
 	int check = parse_line(line), i;
 	if (check)
 		return (display_error(line, check));
