@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:39:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/01 10:11:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/01 17:19:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static bool check_month_day(int month, int day, int feb_days)
 	for (i = 0; i < 12; i++)
 		if (i == month - 1)
 			break;
-	return (i < 12 && day > 0 && day < month_days[i]);
+	return (i < 12 && day > 0 && day <= month_days[i]);
 }
 
 static bool check_date(int year, int month, int day)
