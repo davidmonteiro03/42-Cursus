@@ -6,24 +6,11 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 18:50:01 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:15:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
-
-template<typename T>
-void normal_display(T _data)
-{
-	typename T::iterator it = _data.begin();
-	int i = 0;
-	while (it != _data.end())
-	{
-		if (i++ > 0)
-			std::cout << " ";
-		std::cout << *it++;
-	}
-}
 
 std::string join_args_to_str(char **argv)
 {
@@ -78,12 +65,12 @@ int parse_input(std::string input)
 template<typename T>
 bool check_dups(T _data, int num)
 {
-	typename T::iterator it = _data.begin();
-	while (it != _data.end())
+	typename T::iterator _it = _data.begin();
+	while (_it != _data.end())
 	{
-		if (*it == num)
+		if (*_it == num)
 			return (false);
-		++it;
+		++_it;
 	}
 	return (true);
 }
@@ -113,22 +100,22 @@ void fill_data(T& _data, std::string input)
 PmergeMe::PmergeMe() {}
 
 PmergeMe::PmergeMe(char **argv) : \
-	_list(std::list<int>()), _copy(std::list<int>())
+	_vector(std::vector<int>()), _copy(std::vector<int>())
 {
 	std::string input = join_args_to_str(argv);
 	parse_input(input);
-	fill_data(_list, input);
-	_copy = _list;
+	fill_data(_vector, input);
+	_copy = _vector;
 }
 
 PmergeMe::PmergeMe(const PmergeMe& copy) : \
-	_list(copy._list), _copy(copy._copy) {}
+	_vector(copy._vector), _copy(copy._copy) {}
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 {
 	if (this != &other)
 	{
-		_list = other._list;
+		_vector = other._vector;
 		_copy = other._copy;
 	}
 	return (*this);
@@ -136,94 +123,141 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& other)
 
 PmergeMe::~PmergeMe() {}
 
-void merge_insert_sort_list(std::list<int>& _list)
+void display_vector_pairs(std::vector<std::pair<int, int> > _vector_pairs)
 {
-	size_t _size = _list.size();
-	int num_jacob_elems = int(_size / 2) + _size % 2;
-	std::list<int> _a, _b;
-	std::list<int>::iterator _list_begin_it = _list.begin();
-	std::list<int>::iterator _list_end_it = _list.end();
-	if (_size % 2)
-		_list_end_it--;
-	while (_list_begin_it != _list_end_it)
+	std::vector<std::pair<int, int> >::iterator _it = _vector_pairs.begin();
+	while (_it != _vector_pairs.end())
 	{
-		int first = *_list_begin_it++;
-		int second = *_list_begin_it++;
-		if (first > second)
-			std::swap(first, second);
-		_a.push_back(second);
-		_b.push_back(first);
+		if (_it != _vector_pairs.begin())
+			std::cout << " ";
+		std::cout << "[" << _it->first << ", " << _it->second << "]";
+		_it++;
 	}
-	if (_size % 2)
-		_b.push_back(*_list_begin_it);
-	_list.clear();
-	std::list<int>::iterator _a_it = _a.begin();
-	std::list<int>::iterator _b_it = _b.begin();
-	while (_a_it != _a.end())
+	std::cout << std::endl;
+}
+
+void insert(std::pair<int, int> _element, \
+	std::vector<std::pair<int, int> >& _pairs, int n)
+{
+	if (n < 0)
+		_pairs.insert(_pairs.begin(), _element);
+	else if (_element.first >= _pairs[n].first)
+		_pairs.insert(_pairs.begin() + n + 1, _element);
+	else
+		insert(_element, _pairs, n - 1);
+}
+
+void sort_pairs(std::vector<std::pair<int, int> >& _pairs, int n)
+{
+	if (n < 1)
+		return ;
+	sort_pairs(_pairs, n - 1);
+	std::pair<int, int> _element = _pairs[n];
+	_pairs.erase(_pairs.begin() + n);
+	insert(_element, _pairs, n - 1);
+}
+
+std::vector<int> prepare_vector(std::vector<std::pair<int, int> > _pairs)
+{
+	std::vector<int> _ret;
+	std::vector<std::pair<int, int> >::iterator _it = _pairs.begin();
+	while (_it != _pairs.end())
 	{
-		std::list<int>::iterator _a_tmp_it = ++_a_it;
-		std::list<int>::iterator _b_tmp_it = ++_b_it;
-		_a_it--;
-		_b_it--;
-		while (_a_tmp_it != _a.end())
+		if (_it == _pairs.begin())
 		{
-			if (*_a_it > *_a_tmp_it)
-			{
-				std::swap(*_a_it, *_a_tmp_it);
-				std::swap(*_b_it, *_b_tmp_it);
-			}
-			_a_tmp_it++;
-			_b_tmp_it++;
+			_ret.push_back(_it->second);
+			_ret.push_back(_it->first);
 		}
-		_a_it++;
-		_b_it++;
+		else
+			_ret.push_back(_it->first);
+		_it++;
 	}
-	_a.push_front(*(_b.begin()));
-	_b.pop_front();
-	int jacob_list[num_jacob_elems];
-	for(int i = 0; i < num_jacob_elems; i++)
-		jacob_list[i] = (std::pow(2, i) - std::pow(-1, i)) / 3;
-	for(int i = 0; i < num_jacob_elems - 1; i++)
+	return (_ret);
+}
+
+std::vector<int> create_jacob(std::vector<std::pair<int, int> > _pairs)
+{
+	std::vector<int> _ret;
+	int jacob_list[] = {
+		1,  3,      5,      11,        43,  683, 2731,
+		43691, 174763, 2796203, 715827883, 2147483647
+	}, max_index_b = _pairs.size(), max_need_index = 0, i, cur;
+	while (max_index_b > jacob_list[max_need_index])
+		max_need_index++;
+	if (max_need_index == 0)
+		return (_ret);
+	for (i = 0; i < max_need_index; i++)
 	{
-		int dif = jacob_list[i + 1] - jacob_list[i];
-		if (dif == 0)
-			continue ;
-		std::list<int>::iterator _iter_b = _b.begin();
-		std::list<int>::iterator _before_bgn = _iter_b;
-		int count = 0;
-		_before_bgn--;
-		std::advance(_iter_b, dif - 1);
-		while (_iter_b != _before_bgn)
-		{
-			std::list<int>::iterator _iter_a = _a.begin();
-			while (*_iter_b > *_iter_a)
-				_iter_a++;
-			_a.insert(_iter_a, *_iter_b);
-			_iter_b--;
-			count++;
-		}
-		for (int j = 0; j < count; j++)
-			_b.pop_front();
+		cur = jacob_list[i + 1];
+		if (max_index_b < cur)
+			cur = max_index_b;
+		while (cur > jacob_list[i])
+			_ret.push_back(cur--);
 	}
-	if (_b.size() > 0)
+	return (_ret);
+}
+
+void display_vector(std::vector<int> _vector)
+{
+	std::vector<int>::iterator _it = _vector.begin();
+	while (_it != _vector.end())
 	{
-		std::list<int>::iterator _iter_a = _a.begin();
-		int _elem = *(_b.begin());
-		while (_elem > *_iter_a)
-			_iter_a++;
-		_a.insert(_iter_a, _elem);
-		_b.pop_front();
+		if (_it != _vector.begin())
+			std::cout << " ";
+		std::cout << *_it++;
 	}
-	_list = _a;
+}
+
+void merge_insert_sort_vector(std::vector<int>& _vector)
+{
+	if (_vector.size() < 2)
+		return ;
+	int special_element = 0;
+	bool is_odd = _vector.size() % 2;
+	if (is_odd)
+	{
+		special_element = _vector.back();
+		_vector.pop_back();
+	}
+	std::vector<std::pair<int, int> > _pairs;
+	std::vector<std::pair<int, int> >::iterator _pairs_it;
+	std::vector<int>::iterator _it = _vector.begin(), _s_it;
+	while (_it != _vector.end())
+	{
+		_pairs.push_back(std::pair<int, int>(*_it, *(_it + 1)));
+		_it += 2;
+	}
+	_pairs_it = _pairs.begin();
+	while (_pairs_it != _pairs.end())
+	{
+		if (_pairs_it->first < _pairs_it->second)
+			std::swap(_pairs_it->first, _pairs_it->second);
+		_pairs_it++;
+	}
+	sort_pairs(_pairs, _pairs.size() - 1);
+	std::vector<int> _ret, _jacob_sequence = prepare_vector(_pairs);
+	_ret = prepare_vector(_pairs);
+	if (is_odd)
+		_pairs.push_back(std::pair<int, int>(0, special_element));
+	_jacob_sequence = create_jacob(_pairs);
+	_it = _jacob_sequence.begin();
+	while (_it != _jacob_sequence.end())
+	{
+		_s_it = _ret.begin();
+		while (*_s_it < _pairs[*_it - 1].second)
+			_s_it++;
+		_ret.insert(_s_it, _pairs[*_it - 1].second);
+		_it++;
+	}
+	_vector = _ret;
 }
 
 void PmergeMe::execute(void)
 {
-	if (_list.size() <= 0)
+	if (_vector.size() <= 0)
 		return ;
-	merge_insert_sort_list(_list);
-	std::cout << "Before:  "; normal_display(_copy); std::cout << std::endl;
-	std::cout << "After:   "; normal_display(_list); std::cout << std::endl;
+	merge_insert_sort_vector(_vector);
+	display_vector(_vector);
 	// std::cout << "Time to process a range of " << _copy.size() << std::endl;
 }
 

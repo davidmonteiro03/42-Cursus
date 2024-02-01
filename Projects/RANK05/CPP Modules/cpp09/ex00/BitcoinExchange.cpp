@@ -6,15 +6,15 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:39:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 09:48:28 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/01 10:11:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-static std::vector<std::string> readfile(std::string filename)
+static std::list<std::string> readfile(std::string filename)
 {
-	std::vector<std::string> ret;
+	std::list<std::string> ret;
 	std::ifstream tmp;
 	std::string buf;
 	tmp.open(filename.c_str());
@@ -58,7 +58,7 @@ BitcoinExchange::~BitcoinExchange() {}
 std::string BitcoinExchange::getFilename(void) const \
 	{ return (_filename); }
 
-std::vector<std::string> BitcoinExchange::getInput(void) const \
+std::list<std::string> BitcoinExchange::getInput(void) const \
 	{ return (_input); }
 
 static bool parse_date(std::string date)
@@ -230,11 +230,11 @@ static std::string truncate(std::string s1, std::string set)
 	return (s1.substr(start, end - start + 1));
 }
 
-static void find_date(std::vector<std::string> database, std::string line)
+static void find_date(std::list<std::string> database, std::string line)
 {
 	if (truncate(line, " \a\b\t\n\v\f\r") == "date | value")
 		return /* (display_error("", 6)) */;
-	int check = parse_line(line), i;
+	int check = parse_line(line), i = 0;
 	if (check)
 		return (display_error(line, check));
 	float min_ex;
@@ -243,26 +243,32 @@ static void find_date(std::vector<std::string> database, std::string line)
 						181.25, 212.25, 243.25, 273.25, 304.25, 334.25};
 	t_data input = get_data(line);
 	std::string oldest_date;
-	for (i = 0; i < int(database.size()); i++)
+	std::list<std::string>::const_iterator it;
+	it = database.begin();
+	while (it != database.end())
 	{
 		t_data tmp;
-		tmp.date = database[i].substr(0, 10);
+		tmp.date = it->substr(0, 10);
 		if (i == 0)
 			oldest_date = tmp.date;
 		else if (tmp.date < oldest_date)
 			oldest_date = tmp.date;
+		i++;
+		it++;
 	}
 	if (input.date < oldest_date)
 		return (display_error(line, 5));
-	for (i = 0; i < int(database.size()); i++)
+	i = 0;
+	it = database.begin();
+	while (it != database.end())
 	{
 		t_data tmp;
-		tmp.date = database[i].substr(0, 10);
+		tmp.date = it->substr(0, 10);
 		tmp.year = std::atoi(tmp.date.substr(0, 4).c_str());
 		tmp.month = std::atoi(tmp.date.substr(5, 2).c_str());
 		tmp.day = std::atoi(tmp.date.substr(8, 2).c_str());
 		std::string exchange_str = \
-			database[i].substr(11, database[i].size() - 10);
+			it->substr(11, it->size() - 10);
 		tmp.exchange = std::atof(exchange_str.c_str());
 		n1 = 365.25 * (double)(tmp.year - 1901) + \
 						(list[tmp.month - 1] + \
@@ -281,6 +287,8 @@ static void find_date(std::vector<std::string> database, std::string line)
 			min = dif;
 			min_ex = tmp.exchange;
 		}
+		i++;
+		it++;
 	}
 	std::cout << input.date << " => ";
 	std::cout << input.exchange  << " = ";
@@ -293,13 +301,17 @@ void BitcoinExchange::displayInputFile(bool parse) const
 	if (_input.size() == 0)
 		return (display_error("", 4));
 	if (!parse)
-		for (int i = 0; i < int(_input.size()); i++)
-			std::cout << _input[i] << std::endl;
+	{
+		std::list<std::string>::const_iterator it = _input.begin();
+		while (it != _input.end())
+			std::cout << *it++ << std::endl;
+	}
 	else
 	{
-		std::vector<std::string> database = readfile("data.csv");
-		for (int i = 0; i < int(_input.size()); i++)
-			find_date(database, _input[i]);
+		std::list<std::string> database = readfile("data.csv");
+		std::list<std::string>::const_iterator it = _input.begin();
+		while (it != _input.end())
+			find_date(database, *it++);
 	}
 }
 

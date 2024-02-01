@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 08:24:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/31 09:52:08 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/01 09:51:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <iostream>
 # include <fstream>
-# include <vector>
+# include <list>
 # include <stdexcept>
 # include <cstdlib>
 
@@ -33,14 +33,14 @@ class BitcoinExchange
 	private:
 		BitcoinExchange();
 		std::string _filename;
-		std::vector<std::string> _input;
+		std::list<std::string> _input;
 	public:
 		BitcoinExchange(const std::string& filename);
 		BitcoinExchange(const BitcoinExchange& copy);
 		BitcoinExchange& operator=(const BitcoinExchange& other);
 		virtual ~BitcoinExchange();
 		std::string getFilename(void) const;
-		std::vector<std::string> getInput(void) const;
+		std::list<std::string> getInput(void) const;
 		void displayInputFile(bool parse) const;
 		class ErrorOpeningFileException : public std::exception
 		{
