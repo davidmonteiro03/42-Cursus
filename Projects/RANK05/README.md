@@ -24,9 +24,10 @@
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppn.png" width="125"/>
 				</a>
 			</td>
-			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			<td>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
+			<td>2024-02-01</td>
 			<td>CPP Modules</td>
 		</tr>
 		<tr>
