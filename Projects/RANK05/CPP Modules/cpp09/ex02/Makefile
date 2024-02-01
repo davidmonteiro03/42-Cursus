@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2024/02/01 14:16:01 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/02/01 14:53:43 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CXX				= c++
-CXXFLAGS		= -Wall -Wextra -Werror -std=c++98 #-O3
+CXXFLAGS		= -Wall -Wextra -Werror -std=c++98 -O3 -fsanitize=address
 RM				= rm -rf
 
 OBJS_DIR		= obj/

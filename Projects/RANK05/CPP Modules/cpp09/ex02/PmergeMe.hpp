@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:00:35 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/01 14:09:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:14:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdexcept>
 # include <cstdlib>
 # include <ctime>
-# include <cmath>
-# include <ctime>
+# include <iomanip>
+# include <algorithm>
 
 class PmergeMe
 {
