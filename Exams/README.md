@@ -59,11 +59,14 @@
 			<td>
 				<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
 			</td>
-			<td colspan="2">
-				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
-			</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="75"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+			</td>
+			<td>2024-01-26</td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-05">
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+				</a>
 			</td>
 		</tr>
 		<!-- RANK 06 -->
