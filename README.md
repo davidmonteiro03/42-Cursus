@@ -299,7 +299,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			</td>
 			<td>2024-01-26</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="75"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-05">
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+				</a>
 			</td>
 		</tr>
 		<!-- RANK 06 -->
