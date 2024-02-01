@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/01 15:17:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/01 15:55:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -406,17 +406,17 @@ void merge_insert_sort_deque(std::deque<int>& _deque)
 void display_time(clock_t start, clock_t end)
 {
 	std::cout << std::fixed << std::setprecision(8);
-	std::cout << double(end - start) / CLOCKS_PER_SEC << "s";
+	std::cout << double(end - start) / CLOCKS_PER_SEC << " s";
 }
 
 template<typename T>
 void display_range(T& _data, std::string info)
 {
 	std::cout << "Time to process a range of ";
-	std::cout << _data.size() << " element";
+	std::cout << std::setw(4) << std::right  << _data.size() << " element";
 	if (_data.size() != 1)
 		std::cout << "s";
-	std::cout << " with std::" << info << " : ";
+	std::cout << " with std::" << std::setw(7) << std::left << info << ": ";
 }
 
 void PmergeMe::execute(void)
@@ -432,6 +432,7 @@ void PmergeMe::execute(void)
 	std::cout << "After:  "; display_vector(_vector); std::cout << std::endl;
 	display_range(_vector, "vector"); display_time(start, middle); std::cout << std::endl;
 	display_range(_deque, "deque"); display_time(middle, end); std::cout << std::endl;
+/* 	// this is to check if the numbers are sorted
 	std::vector<int> _cpy_vector = _vector;
 	std::sort(_vector.begin(), _vector.end());
 	if (_cpy_vector != _vector)
@@ -439,7 +440,7 @@ void PmergeMe::execute(void)
 	std::deque<int> _cpy_deque = _deque;
 	std::sort(_deque.begin(), _deque.end());
 	if (_cpy_deque != _deque)
-		std::cout << "Is not sorted deque\n";
+		std::cout << "Is not sorted deque\n"; */
 }
 
 /* ************************************************************************** */
