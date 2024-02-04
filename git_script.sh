@@ -2,7 +2,7 @@ clear
 echo "=========== GIT STATUS ==========="
 git status
 echo "\n============= GIT ADD ============"
-echo "\n         adding files...          "
+echo "         adding files...          "
 git add .
 echo "\n=========== GIT STATUS ==========="
 git status
