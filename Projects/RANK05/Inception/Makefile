@@ -1,13 +1,11 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/03 21:22:51 by dcaetano          #+#    #+#              #
-#    Updated: 2024/02/03 21:22:55 by dcaetano         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+IMAGE_NAME := myapp
 
+CONTAINER_NAME := myapp-container
 
+all: build run
+
+build:
+	@sudo docker build -t $(IMAGE_NAME) .
+
+run:
+	@sudo docker run --rm --name $(CONTAINER_NAME) $(IMAGE_NAME)
