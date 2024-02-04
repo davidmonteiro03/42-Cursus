@@ -10,3 +10,4 @@ echo "\n=========== GIT COMMIT ==========="
 git commit -m "git updates"
 echo "\n============ GIT PUSH ============"
 git push
+echo
