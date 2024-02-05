@@ -1,13 +1,22 @@
 clear
-echo "=========== GIT STATUS ===========\n"
+echo "=========== GIT STATUS ==========="
+echo
 git status
-echo "\n============= GIT ADD ============"
-echo "\n         adding files...          "
+echo
+echo "============= GIT ADD ============"
+echo
+echo "         adding files...          "
 git add .
-echo "\n=========== GIT STATUS ===========\n"
+echo
+echo "=========== GIT STATUS ==========="
+echo
 git status
-echo "\n=========== GIT COMMIT ===========\n"
+echo
+echo "=========== GIT COMMIT ==========="
+echo
 git commit -m "git updates"
-echo "\n============ GIT PUSH ============\n"
+echo
+echo "============ GIT PUSH ============"
+echo
 git push
 echo
