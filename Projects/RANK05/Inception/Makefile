@@ -1,6 +1,16 @@
-all: build
+all: up
 
-build:
-	@sudo docker compose -f ./srcs/docker-compose.yml up -d --build
+up:
+	@sudo docker compose -f ./srcs/docker-compose.yml up -d
 
-.PHONY: all build
+down:
+	@sudo docker compose -f ./srcs/docker-compose.yml down
+
+stop:
+	@sudo docker compose -f ./srcs/docker-compose.yml stop
+
+start:
+	@sudo docker compose -f ./srcs/docker-compose.yml start
+
+status :
+	@sudo docker ps

@@ -4,6 +4,9 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
-    ports:
-      - 443:443
-    restart: always
+#  wordpress:
+#    container_name: wordpress
+#    build: ./requirements/wordpress
+#  maria-db:
+#    container_name: maria-db
+#    build: ./requirements/maria-db
