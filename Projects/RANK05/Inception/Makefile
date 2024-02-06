@@ -1,12 +1,7 @@
-.PHONY: all build test clean
+.PHONY: up down
 
-all: build
+up:
+	docker-compose up -d
 
-build:
-	@docker-compose build
-
-test:
-	@docker-compose run --rm tests
-
-clean:
-	@docker-compose down -v --remove-orphans
+down:
+	docker-compose down
