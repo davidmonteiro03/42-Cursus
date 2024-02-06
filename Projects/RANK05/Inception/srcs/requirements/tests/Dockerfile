@@ -1,7 +1,7 @@
 FROM debian:bullseye
 
-COPY main.c .
+WORKDIR /app
 
-RUN apt-get update && apt-get install -y gcc
+COPY . /app
 
-CMD ["cc", "main.c", "&&", "./a.out"]
+CMD ["bash", "srcs/requirements/tests/tools/script.sh"]
