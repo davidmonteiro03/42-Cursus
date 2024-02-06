@@ -4,10 +4,3 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
-    ports:
-      - 443:443
-    volumes:
-      - wordpress_data:/var/www/html
-    restart: always
-    networks:
-      - network
