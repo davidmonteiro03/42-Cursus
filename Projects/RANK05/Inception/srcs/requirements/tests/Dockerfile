@@ -1,3 +1,3 @@
 FROM debian:bullseye
 
-RUN apt-get install -y gcc
+RUN apt-get install -y cc
