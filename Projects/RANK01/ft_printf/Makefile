@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/06 10:17:28 by dcaetano          #+#    #+#              #
-#    Updated: 2023/11/23 17:07:35 by dcaetano         ###   ########.fr        #
+#    Created: 2024/02/06 17:09:49 by dcaetano          #+#    #+#              #
+#    Updated: 2024/02/06 17:49:26 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,41 +16,40 @@ YELLOW		= \033[1;93m
 CYAN		= \033[1;96m
 RESET		= \033[1;0m
 
-NAME		= libftprintf.a
-LIBFTNAME	= libft.a
-CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
-LIBFTDIR	= ./libft
-
-SRCS		= ft_printf.c ft_format.c
+SRCS		= ft_printf.c
 
 OBJS		= $(SRCS:.c=.o)
+
+NAME		= libftprintf.a
+AR			= ar rcs
+LIB			= ranlib
+RM			= rm -rf
+CC			= cc
+FLAGS		= -Wall -Wextra -Werror
 
 all: $(NAME)
 
 .c.o:
-	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	@$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
 
-makelibft:
-	@echo "$(CYAN)$(LIBFTNAME) $(GREEN)created$(RESET)!"
-
 $(NAME):$(OBJS)
-	@make -s -C $(LIBFTDIR)
-	@cp $(LIBFTDIR)/$(LIBFTNAME) .
-	@mv $(LIBFTNAME) $(NAME)
-	@ar -r $(NAME) $(OBJS)
+	@make -s -C libft bonus > /dev/null 2>&1
+	@cp libft/libft.a $(NAME)
+	@$(AR) $(NAME) $(OBJS)
+	@$(LIB) $(NAME)
 	@echo "$(CYAN)$(NAME) $(GREEN)created$(RESET)!"
 
 clean:
-	@make -s -C $(LIBFTDIR) clean > /dev/null 2>&1
-	@rm -rf $(OBJS)
+	@make -s -C libft clean > /dev/null 2>&1
+	@$(RM) $(OBJS)
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
-	@make -s -C $(LIBFTDIR) fclean > /dev/null 2>&1
-	@rm -rf $(NAME) $(LIBFTNAME)
-	@echo "$(CYAN)$(LIBFTNAME) $(RED)removed$(RESET)!"
+	@make -s -C libft fclean > /dev/null 2>&1
+	@$(RM) $(NAME)
 	@echo "$(CYAN)$(NAME) $(RED)removed$(RESET)!"
 
 re: fclean all
+
+.PHONY: all clean fclean re

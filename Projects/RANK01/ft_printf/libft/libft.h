@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 10:51:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/06 20:35:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2023/10/05 15:46:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-// libft bonus
+
 typedef struct s_list
 {
 	void			*content;
@@ -33,16 +33,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-// ft_printf
-int		ft_putchar(int c);
-int		ft_putstr(const char *s);
-int		ft_putptr(void *ptr);
-int		ft_putnbr(int num);
-int		ft_putstrhex(unsigned int n, const char format);
-int		ft_putnbru(unsigned int num);
-char	*ft_converthex(size_t num, size_t size);
-char	*ft_utoa(unsigned int n);
-// libft
+
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
