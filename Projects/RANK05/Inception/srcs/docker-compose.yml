@@ -2,8 +2,10 @@ version: '3'
 
 services:
   nginx:
+    container_name: nginx
     build: ./requirements/nginx
     ports:
       - 443:443
-    volumes:
-      
+    restart: always
+    networks:
+      - network
