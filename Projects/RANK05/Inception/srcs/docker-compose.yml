@@ -4,7 +4,7 @@ services:
   tests:
     build:
       context: .
-      dockerfile: srcs/requirements/tests/Dockerfile
+      dockerfile: ./requirements/tests/Dockerfile
     volumes:
       - ./srcs:/app/srcs
     depends_on:
