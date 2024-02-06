@@ -10,3 +10,6 @@ int	main(void)
 	return (0);
 }
 eof
+RUN cc -Wall -Wextra -Werror main.c -o main
+
+CMD ["./main"]
