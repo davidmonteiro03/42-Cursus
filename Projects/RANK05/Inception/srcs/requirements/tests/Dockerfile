@@ -1,3 +1,4 @@
 FROM debian:bullseye
 
-RUN apt-get install -y cc
+RUN sudo apt-get update && \
+	sudo apt-get install -y clang
