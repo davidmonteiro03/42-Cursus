@@ -1,16 +1,17 @@
-all: up
-
-up:
-	@sudo docker compose ./srcs/docker-compose.yml --up
+all:
+	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
-	@sudo docker compose ./srcs/docker-compose.yml --down
+	@docker compose -f ./srcs/docker-compose.yml down
 
-stop:
-	@sudo docker compose ./srcs/docker-compose.yml --stop
+re:
+	@docker compose -f srcs/docker-compose.yml up -d --build
 
-start:
-	@sudo docker compose ./srcs/docker-compose.yml --start
+clean:
+	@docker stop $$(docker ps -qa);\
+	docker rm $$(docker ps -qa);\
+	docker rmi -f $$(docker images -qa);\
+	docker volume rm $$(docker volume ls -q);\
+	docker network rm $$(docker network ls -q);\
 
-status:
-	@sudo docker ps
+.PHONY: all re down clean
