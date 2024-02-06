@@ -1,3 +1,3 @@
 FROM debian:bullseye
 
-RUN sudo apt-get install -y clang
+RUN apt-get install -y clang
