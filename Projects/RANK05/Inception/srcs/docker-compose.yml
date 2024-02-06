@@ -2,10 +2,4 @@ version: '3'
 
 services:
   tests:
-    build:
-      context: .
-      dockerfile: ./requirements/tests/Dockerfile
-    volumes:
-      - ./srcs:/app/srcs
-    depends_on:
-      - build
+    build: ./requirements/tests
