@@ -1,3 +1,3 @@
 FROM debian:bullseye
 
-RUN apt-get update && apt-get install -y nginx nginx-core
+RUN apt-get update && apt install -y nginx
