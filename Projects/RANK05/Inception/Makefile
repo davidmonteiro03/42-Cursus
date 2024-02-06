@@ -1,9 +1,6 @@
-all: build run
+all: build
 
 build:
 	@sudo docker-compose -f ./srcs/docker-compose.yml up -d --build
 
-run:
-	@sudo docker-compose -f ./srcs/docker-compose.yml up -d
-
-.PHONY: all fclean
+.PHONY: all build
