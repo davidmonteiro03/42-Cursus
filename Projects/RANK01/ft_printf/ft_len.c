@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_len.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 17:14:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/06 19:58:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/06 19:53:27 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/06 19:53:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+size_t	ft_len(size_t n)
 {
-	int		ret;
-	va_list	args;
+	size_t	len;
 
-	ret = 0;
-	va_start(args, format);
-	while (*format)
+	len = 0;
+	if (n <= 0)
+		len = 1;
+	while (n != 0)
 	{
-		if (*format == '%')
-			ft_format(*(++format), &ret, args);
-		else
-			ft_putchar(*format, &ret);
-		format++;
+		len++;
+		n /= 16;
 	}
-	va_end(args);
-	return (ret);
+	return (len + 2);
 }

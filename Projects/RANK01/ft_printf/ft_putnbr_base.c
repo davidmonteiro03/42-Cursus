@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 17:14:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/06 19:58:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/06 19:53:01 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/06 19:57:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_putnbr_base(unsigned int num, unsigned int base, int *len, char c)
 {
-	int		ret;
-	va_list	args;
+	char	*base_str;
 
-	ret = 0;
-	va_start(args, format);
-	while (*format)
+	if (c == ft_tolower(c))
+		base_str = "0123456789abcdef";
+	else
+		base_str = "0123456789ABCDEF";
+	if (num > base - 1)
 	{
-		if (*format == '%')
-			ft_format(*(++format), &ret, args);
-		else
-			ft_putchar(*format, &ret);
-		format++;
+		ft_putnbr_base(num / base, base, len, c);
+		ft_putnbr_base(num % base, base, len, c);
 	}
-	va_end(args);
-	return (ret);
+	else
+		ft_putchar(base_str[num % base], len);
 }

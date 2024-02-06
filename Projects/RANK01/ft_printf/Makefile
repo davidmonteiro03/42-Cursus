@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/06 17:09:49 by dcaetano          #+#    #+#              #
-#    Updated: 2024/02/06 17:49:26 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/02/06 19:56:23 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,15 @@ YELLOW		= \033[1;93m
 CYAN		= \033[1;96m
 RESET		= \033[1;0m
 
-SRCS		= ft_printf.c
+SRCS		= ft_converthex.c \
+				ft_format.c \
+				ft_len.c \
+				ft_printf.c \
+				ft_putchar.c \
+				ft_putnbr_base.c \
+				ft_putnbr.c \
+				ft_putptr.c \
+				ft_putstr.c
 
 OBJS		= $(SRCS:.c=.o)
 

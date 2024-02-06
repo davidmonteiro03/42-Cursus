@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 17:14:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/06 19:58:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/06 19:52:32 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/06 19:52:43 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_putnbr(int num, int *len)
 {
-	int		ret;
-	va_list	args;
-
-	ret = 0;
-	va_start(args, format);
-	while (*format)
+	if (num == -2147483648)
 	{
-		if (*format == '%')
-			ft_format(*(++format), &ret, args);
-		else
-			ft_putchar(*format, &ret);
-		format++;
+		ft_putstr("-2147483648", len);
+		return ;
 	}
-	va_end(args);
-	return (ret);
+	if (num < 0)
+	{
+		ft_putchar('-', len);
+		num = -num;
+	}
+	if (num > 9)
+	{
+		ft_putnbr(num / 10, len);
+		ft_putnbr(num % 10, len);
+	}
+	else
+		ft_putchar(num + '0', len);
 }

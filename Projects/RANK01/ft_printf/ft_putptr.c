@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 17:14:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/06 19:58:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/06 19:54:20 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/06 19:54:28 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_putptr(void *ptr, int *len)
 {
-	int		ret;
-	va_list	args;
+	char	*str;
 
-	ret = 0;
-	va_start(args, format);
-	while (*format)
-	{
-		if (*format == '%')
-			ft_format(*(++format), &ret, args);
-		else
-			ft_putchar(*format, &ret);
-		format++;
-	}
-	va_end(args);
-	return (ret);
+	str = ft_converthex((size_t)ptr, ft_len((size_t)ptr));
+	if (!str)
+		return ;
+	return (ft_putstr(str, len), free(str));
 }
