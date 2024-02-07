@@ -1,14 +1,4 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/06 17:09:49 by dcaetano          #+#    #+#              #
-#    Updated: 2024/02/06 19:56:23 by dcaetano         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# Makefile for libftprintf.a
 
 RED			= \033[1;91m
 GREEN		= \033[1;92m
@@ -26,7 +16,18 @@ SRCS		= ft_converthex.c \
 				ft_putptr.c \
 				ft_putstr.c
 
+SRCS_BONUS	= ft_converthex.c \
+				ft_format.c \
+				ft_len.c \
+				ft_printf_bonus.c \
+				ft_putchar.c \
+				ft_putnbr_base.c \
+				ft_putnbr.c \
+				ft_putptr.c \
+				ft_putstr.c
+
 OBJS		= $(SRCS:.c=.o)
+OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
 
 NAME		= libftprintf.a
 AR			= ar rcs
@@ -41,16 +42,24 @@ all: $(NAME)
 	@$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
 
-$(NAME):$(OBJS)
-	@make -s -C libft bonus > /dev/null 2>&1
+$(NAME): $(OBJS) libft/libft.a
 	@cp libft/libft.a $(NAME)
 	@$(AR) $(NAME) $(OBJS)
 	@$(LIB) $(NAME)
 	@echo "$(CYAN)$(NAME) $(GREEN)created$(RESET)!"
 
+bonus: $(OBJS_BONUS) libft/libft.a
+	@cp libft/libft.a $(NAME)
+	@$(AR) $(NAME) $(OBJS_BONUS)
+	@$(LIB) $(NAME)
+	@echo "$(CYAN)$(NAME) $(GREEN)created$(RESET)!"
+
+libft/libft.a:
+	@make -s -C libft > /dev/null 2>&1
+
 clean:
 	@make -s -C libft clean > /dev/null 2>&1
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
