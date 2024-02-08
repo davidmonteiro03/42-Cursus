@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/07 19:21:09 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/08 21:56:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,24 @@ t_data	*ft_initdata(char c)
 	return (data);
 }
 
-t_list	*ft_getformat(const char *format, int *i)
+char	*ft_getformat(const char *format, int *i)
 {
-	t_list	*list;
+	int		start;
+	int		end;
 
-	(*i)++;
-	list = NULL;
+	start = ++(*i);
 	while (format[*i] && !ft_strchr("cspdiuxX%%", format[*i]))
-		ft_lstadd_back(&list, ft_lstnew(ft_initdata(format[(*i)++])));
-	ft_lstadd_back(&list, ft_lstnew(ft_initdata(format[*i])));
-	return (list);
+		(*i)++;
+	end = *i + 1;
+	return (ft_substr(format, start, end - start));
 }
 
 void	ft_format_bonus(const char *format, int *i, int *ret, va_list args)
 {
-	t_list	*frmt;
-	t_list	*result;
+	char	*frmt;
 
 	frmt = ft_getformat(format, i);
-
-	ft_lstclear(&frmt, free);
+	free(frmt);
 }
 
 int	ft_printf(const char *format, ...)
