@@ -1,9 +1,7 @@
 #!/bin/bash
+str="'$*'"
+echo "$str"
 clear
-array=("$@")
-for element in "${array[@]}"; do
-	echo "$element"
-done
 echo "=========== GIT STATUS ==========="
 echo
 git status
