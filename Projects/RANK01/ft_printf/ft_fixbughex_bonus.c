@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_fixbughex_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 22:23:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/09 22:18:23 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/09 22:35:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_fixbughex_bonus(t_list **arg, t_list *node1, t_list *node2)
 {
-	int		ret;
-	va_list	args;
-	int		i;
+	t_list	*new_node1;
+	t_list	*new_node2;
 
-	ret = 0;
-	va_start(args, format);
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-			ft_check_bonus(format, &i, &ret, args);
-		else
-			ft_putchar(format[i], &ret);
-		i++;
-	}
-	va_end(args);
-	return (ret);
+	new_node1 = ft_lstnew(ft_datanew_bonus(ft_vtoc_bonus(node1->content)));
+	new_node2 = ft_lstnew(ft_datanew_bonus(ft_vtoc_bonus(node2->content)));
+	ft_removenode_bonus(arg, node1);
+	ft_removenode_bonus(arg, node2);
+	ft_lstadd_front(arg, new_node2);
+	ft_lstadd_front(arg, new_node1);
 }

@@ -16,15 +16,34 @@ SRCS		= ft_converthex.c \
 				ft_putptr.c \
 				ft_putstr.c
 
-SRCS_BONUS	= ft_converthex.c \
-				ft_format.c \
+SRCS_BONUS	= ft_addchar_bonus.c \
+				ft_addflags_bonus.c \
+				ft_addnbr_base_bonus.c \
+				ft_addnbr_bonus.c \
+				ft_addptr_bonus.c \
+				ft_addstr_bonus.c \
+				ft_check_bonus.c \
+				ft_check_flag_bonus.c \
+				ft_check_tab_bonus.c \
+				ft_checkdec_bonus.c \
+				ft_checkhex_bonus.c \
+				ft_checkint_bonus.c \
+				ft_converthex.c \
+				ft_datanew_bonus.c \
+				ft_findbug_bonus.c \
+				ft_fixbughex_bonus.c \
+				ft_fixbugint_bonus.c \
+				ft_format_bonus.c \
+				ft_getformat_bonus.c \
 				ft_len.c \
+				ft_ltoa_bonus.c \
+				ft_printarg_bonus.c \
+				ft_printdata_bonus.c \
 				ft_printf_bonus.c \
 				ft_putchar.c \
-				ft_putnbr_base.c \
-				ft_putnbr.c \
-				ft_putptr.c \
-				ft_putstr.c
+				ft_removenode_bonus.c \
+				ft_truncate_bonus.c \
+				ft_vtoc_bonus.c
 
 OBJS		= $(SRCS:.c=.o)
 OBJS_BONUS	= $(SRCS_BONUS:.c=.o)

@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_removenode_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 22:23:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/09 22:10:38 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/09 22:36:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_removenode_bonus(t_list **arg, t_list *node)
 {
-	int		ret;
-	va_list	args;
-	int		i;
+	t_list	*current;
 
-	ret = 0;
-	va_start(args, format);
-	i = 0;
-	while (format[i])
+	if (!node || !arg || !*arg)
+		return ;
+	if (*arg == node)
 	{
-		if (format[i] == '%')
-			ft_check_bonus(format, &i, &ret, args);
-		else
-			ft_putchar(format[i], &ret);
-		i++;
+		*arg = node->next;
+		return (free(node->content), free(node));
 	}
-	va_end(args);
-	return (ret);
+	current = *arg;
+	while (current->next && current->next != node)
+		current = current->next;
+	if (!current->next)
+		return ;
+	current->next = node->next;
+	return (free(node->content), free(node));
 }

@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_findbug_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 22:23:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/09 22:21:18 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/09 22:21:22 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_findbug_bonus(t_list **arg, char c)
 {
-	int		ret;
-	va_list	args;
-	int		i;
-
-	ret = 0;
-	va_start(args, format);
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-			ft_check_bonus(format, &i, &ret, args);
-		else
-			ft_putchar(format[i], &ret);
-		i++;
-	}
-	va_end(args);
-	return (ret);
+	if (ft_tolower(c) == 'x')
+		ft_checkhex_bonus(arg);
+	if (ft_strchr("di", c))
+		ft_checkint_bonus(arg);
 }

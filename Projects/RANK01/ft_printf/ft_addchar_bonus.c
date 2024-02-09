@@ -1,34 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_addchar_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 22:23:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/09 22:05:06 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/09 22:05:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_addchar_bonus(char c, t_list **list, bool pos)
 {
-	int		ret;
-	va_list	args;
-	int		i;
-
-	ret = 0;
-	va_start(args, format);
-	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-			ft_check_bonus(format, &i, &ret, args);
-		else
-			ft_putchar(format[i], &ret);
-		i++;
-	}
-	va_end(args);
-	return (ret);
+	if (!pos)
+		ft_lstadd_back(list, ft_lstnew(ft_datanew_bonus(c)));
+	else
+		ft_lstadd_front(list, ft_lstnew(ft_datanew_bonus(c)));
 }

@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_truncate_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 22:23:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/09 22:21:47 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/09 22:21:52 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_truncate_bonus(t_list **arg, int trunc)
 {
-	int		ret;
-	va_list	args;
-	int		i;
+	t_list	*tmp;
+	t_list	*save;
 
-	ret = 0;
-	va_start(args, format);
-	i = 0;
-	while (format[i])
+	tmp = *arg;
+	if (trunc >= ft_lstsize(*arg))
+		return ;
+	while (trunc-- > 0)
+		tmp = tmp->next;
+	while (tmp)
 	{
-		if (format[i] == '%')
-			ft_check_bonus(format, &i, &ret, args);
-		else
-			ft_putchar(format[i], &ret);
-		i++;
+		save = tmp->next;
+		ft_removenode_bonus(arg, tmp);
+		tmp = save;
 	}
-	va_end(args);
-	return (ret);
 }

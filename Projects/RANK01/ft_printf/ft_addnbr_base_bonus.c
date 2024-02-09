@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_addnbr_base_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 22:23:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/09 22:07:20 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/09 22:07:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_addnbr_base_bonus(unsigned int num, \
+	unsigned int base, t_list **list, char c)
 {
-	int		ret;
-	va_list	args;
-	int		i;
+	char	*base_str;
 
-	ret = 0;
-	va_start(args, format);
-	i = 0;
-	while (format[i])
+	if (c == ft_tolower(c))
+		base_str = "0123456789abcdef";
+	else
+		base_str = "0123456789ABCDEF";
+	if (num > base - 1)
 	{
-		if (format[i] == '%')
-			ft_check_bonus(format, &i, &ret, args);
-		else
-			ft_putchar(format[i], &ret);
-		i++;
+		ft_addnbr_base_bonus(num / base, base, list, c);
+		ft_addnbr_base_bonus(num % base, base, list, c);
 	}
-	va_end(args);
-	return (ret);
+	else
+		ft_addchar_bonus(base_str[num % base], list, false);
 }

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
+/*   ft_addflags_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 22:23:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/09 22:23:00 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/09 22:23:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+void	ft_addflags_bonus(char *frmt, t_list **arg)
 {
-	int		ret;
-	va_list	args;
-	int		i;
+	char	*arg_str;
+	size_t	i;
 
-	ret = 0;
-	va_start(args, format);
 	i = 0;
-	while (format[i])
-	{
-		if (format[i] == '%')
-			ft_check_bonus(format, &i, &ret, args);
-		else
-			ft_putchar(format[i], &ret);
-		i++;
-	}
-	va_end(args);
-	return (ret);
+	arg_str = ft_ltoa_bonus(*arg);
+	if (ft_strchr("# +", frmt[i]))
+		ft_check_flag_bonus(frmt, &i, arg_str, arg);
+	free(arg_str);
+	arg_str = ft_ltoa_bonus(*arg);
+	ft_check_tab_bonus(frmt, i, arg_str, arg);
+	ft_findbug_bonus(arg, frmt[ft_strlen(frmt) - 1]);
+	return (free(arg_str));
 }
