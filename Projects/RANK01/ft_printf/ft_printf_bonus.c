@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 19:07:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:57:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -283,7 +283,7 @@ void	ft_truncate(t_list **arg, int trunc)
 	tmp = *arg;
 	if (trunc >= ft_lstsize(*arg))
 		return ;
-	while (trunc--)
+	while (trunc-- > 0)
 		tmp = tmp->next;
 	while (tmp)
 	{
@@ -293,9 +293,13 @@ void	ft_truncate(t_list **arg, int trunc)
 	}
 }
 
-void	ft_checkdecimal(t_list **arg, char fill, char *frmt)
+void	ft_checkdec(char *frmt, char fill, t_list **arg, int num)
 {
-
+	while (num-- > 0)
+		ft_addchar('0', arg, ft_strchr(frmt, '-') == NULL);
+	if (ft_strchr("di", frmt[ft_strlen(frmt) - 1]) && fill == '.')
+		if (num == -1)
+			ft_addchar('0', arg, ft_strchr(frmt, '-') == NULL);
 }
 
 void	ft_check_tab(char *frmt, size_t i, char *arg_str, t_list **arg)
@@ -309,20 +313,20 @@ void	ft_check_tab(char *frmt, size_t i, char *arg_str, t_list **arg)
 	fill = ' ';
 	if (ft_strchr("0.-", frmt[i]))
 		if (ft_strchr("0.", frmt[i++]))
-			fill = '0';
+			fill = frmt[i - 1];
 	num = 0;
 	while (frmt[i] && ft_isdigit(frmt[i]))
 		num = num * 10 + frmt[i++] - '0';
 	trunc = num;
 	num -= (int)ft_strlen(arg_str);
-	if ((!*arg_str && frmt[ft_strlen(frmt) - 1] == 'c'))
+	if (!*arg_str && frmt[ft_strlen(frmt) - 1] == 'c')
 		num--;
 	if (fill == ' ')
 		while (num-- > 0)
-			ft_addchar(' ', arg, ft_strchr(frmt, '-') == NULL);
-	else if (fill == '0' && ft_strchr("diuxX", frmt[ft_strlen(frmt) - 1]))
-		ft_checkdecimal(arg, fill, frmt);
-	else if (fill == '0' && frmt[ft_strlen(frmt) - 1] == 's')
+			ft_addchar(fill, arg, ft_strchr(frmt, '-') == NULL);
+	else if (ft_strchr("0.", fill) && ft_strchr("diuxX", frmt[ft_strlen(frmt) - 1]))
+		ft_checkdec(frmt, fill, arg, num);
+	else if (fill == '.' && frmt[ft_strlen(frmt) - 1] == 's')
 		ft_truncate(arg, trunc);
 }
 
@@ -375,7 +379,7 @@ int	ft_printf(const char *format, ...)
 	return (ret);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	printf("\n\t=====================================================================\n");
 	int	my_ret = \
@@ -387,4 +391,4 @@ int	main(void)
 	printf("\t\t\t   my_ret = %d | cc_ret = %d\n", my_ret, cc_ret);
 	printf("\t=====================================================================\n\n");
 	return (0);
-}
+}*/
