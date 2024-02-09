@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 17:13:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 11:47:03 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/09 18:20:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <stdbool.h>
+# include <limits.h>
 
 typedef struct s_data
 {

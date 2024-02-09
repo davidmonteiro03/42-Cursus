@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 13:18:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/09 19:07:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,26 +173,172 @@ char	*ft_ltoa(t_list *list)
 	return (ret);
 }
 
-void	ft_hastag(char flag, t_list **arg, char *arg_str)
+void	ft_check_flag(char *frmt, size_t *i, char *arg_str, t_list **arg)
 {
-	if (flag == '#')
+	if (frmt[*i] == '#' && ft_strchr("xX", frmt[ft_strlen(frmt) - 1]) && \
+		arg_str[0] != '0')
 	{
+		ft_addchar(frmt[ft_strlen(frmt) - 1], arg, true);
+		ft_addchar('0', arg, true);
 	}
+	else if (ft_strchr("+ ", frmt[*i]) && ft_strchr("di", frmt[ft_strlen(frmt) - 1]) &&
+		ft_atoi(arg_str) >= 0)
+		ft_addchar(frmt[*i], arg, true);
+	(*i)++;
+}
+
+void	ft_removenode(t_list **arg, t_list *node)
+{
+	t_list *current;
+
+	if (!node || !arg || !*arg)
+		return ;
+	if (*arg == node)
+	{
+		*arg = node->next;
+		return (free(node->content), free(node));
+	}
+	current = *arg;
+	while (current->next && current->next != node)
+		current = current->next;
+	if (!current->next)
+		return ;
+	current->next = node->next;
+	return (free(node->content), free(node));
+}
+
+void	ft_fixbughex(t_list **arg, t_list *node1, t_list *node2)
+{
+	t_list	*new_node1;
+	t_list	*new_node2;
+
+	new_node1 = ft_lstnew(ft_datanew(((t_data *)node1->content)->c));
+	new_node2 = ft_lstnew(ft_datanew(((t_data *)node2->content)->c));
+	ft_removenode(arg, node1);
+	ft_removenode(arg, node2);
+	ft_lstadd_front(arg, new_node2);
+	ft_lstadd_front(arg, new_node1);
+}
+
+void	ft_checkhex(t_list **arg)
+{
+	char	curr;
+	char	next;
+	t_list	*tmp;
+
+	if (ft_lstsize(*arg) < 4)
+		return ;
+	tmp = (*arg)->next;
+	while (tmp && tmp->next)
+	{
+		curr = ((t_data *)tmp->content)->c;
+		next = ((t_data *)tmp->next->content)->c;
+		if (curr == '0' && ft_tolower(next) == 'x')
+			break ;
+		tmp = tmp->next;
+	}
+	if (tmp->next)
+		ft_fixbughex(arg, tmp, tmp->next);
+}
+
+void	ft_fixbugint(t_list **arg, t_list *node)
+{
+	t_list	*new_node;
+
+	new_node = ft_lstnew(ft_datanew(((t_data *)node->content)->c));
+	ft_removenode(arg, node);
+	ft_lstadd_front(arg, new_node);
+}
+
+void	ft_checkint(t_list **arg)
+{
+	t_list	*tmp;
+
+	if (ft_lstsize(*arg) < 3)
+		return ;
+	tmp = (*arg)->next;
+	while (tmp)
+	{
+		if (ft_strchr("+-", ((t_data *)tmp->content)->c))
+			break ;
+		tmp = tmp->next;
+	}
+	if (tmp)
+		ft_fixbugint(arg, tmp);
+}
+
+void	ft_findbug(t_list **arg, char c)
+{
+	if (ft_tolower(c) == 'x')
+		ft_checkhex(arg);
+	if (ft_strchr("di", c))
+		ft_checkint(arg);
+}
+
+void	ft_truncate(t_list **arg, int trunc)
+{
+	t_list	*tmp;
+	t_list	*save;
+
+	tmp = *arg;
+	if (trunc >= ft_lstsize(*arg))
+		return ;
+	while (trunc--)
+		tmp = tmp->next;
+	while (tmp)
+	{
+		save = tmp->next;
+		ft_removenode(arg, tmp);
+		tmp = save;
+	}
+}
+
+void	ft_checkdecimal(t_list **arg, char fill, char *frmt)
+{
+
+}
+
+void	ft_check_tab(char *frmt, size_t i, char *arg_str, t_list **arg)
+{
+	int		num;
+	int		trunc;
+	char	fill;
+
+	if (frmt[ft_strlen(frmt) - 1] == '%')
+		return ;
+	fill = ' ';
+	if (ft_strchr("0.-", frmt[i]))
+		if (ft_strchr("0.", frmt[i++]))
+			fill = '0';
+	num = 0;
+	while (frmt[i] && ft_isdigit(frmt[i]))
+		num = num * 10 + frmt[i++] - '0';
+	trunc = num;
+	num -= (int)ft_strlen(arg_str);
+	if ((!*arg_str && frmt[ft_strlen(frmt) - 1] == 'c'))
+		num--;
+	if (fill == ' ')
+		while (num-- > 0)
+			ft_addchar(' ', arg, ft_strchr(frmt, '-') == NULL);
+	else if (fill == '0' && ft_strchr("diuxX", frmt[ft_strlen(frmt) - 1]))
+		ft_checkdecimal(arg, fill, frmt);
+	else if (fill == '0' && frmt[ft_strlen(frmt) - 1] == 's')
+		ft_truncate(arg, trunc);
 }
 
 void	ft_addflags(char *frmt, t_list **arg)
 {
 	char	*arg_str;
-	char	*tmp_frmt;
-	char	flag1;
+	size_t	i;
 
-	tmp_frmt = frmt;
+	i = 0;
 	arg_str = ft_ltoa(*arg);
-	flag1 = '\0';
-	if (ft_strchr("# +", *tmp_frmt))
-		flag1 = *tmp_frmt++;
-	if (flag1)
-		ft_hastag(flag1, arg, arg_str);
+	if (ft_strchr("# +", frmt[i]))
+		ft_check_flag(frmt, &i, arg_str, arg);
+	free(arg_str);
+	arg_str = ft_ltoa(*arg);
+	ft_check_tab(frmt, i, arg_str, arg);
+	ft_findbug(arg, frmt[ft_strlen(frmt) - 1]);
 	return (free(arg_str));
 }
 
@@ -233,12 +379,10 @@ int	main(void)
 {
 	printf("\n\t=====================================================================\n");
 	int	my_ret = \
-		ft_printf("\t%#0x %#x %#X %#.x %#.X %#5x %#5X %#-5x %#-5X %#.5x %#.5X %#-.5x %#-.5X", \
-			0, 01, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42);
+		ft_printf(" %.2d ", -1);
 	printf("\n\t=====================================================================\n");
 	int	cc_ret = \
-		printf("\t%#0x %#x %#X %#.x %#.X %#5x %#5X %#-5x %#-5X %#.5x %#.5X %#-.5x %#-.5X", \
-			0, 01, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42);
+		printf(" %.2d ", -1);
 	printf("\n\t=====================================================================\n");
 	printf("\t\t\t   my_ret = %d | cc_ret = %d\n", my_ret, cc_ret);
 	printf("\t=====================================================================\n\n");

@@ -55,7 +55,11 @@ bonus: $(OBJS_BONUS) libft/libft.a
 	@echo "$(CYAN)$(NAME) $(GREEN)created$(RESET)!"
 
 libft/libft.a:
-	@make -s -C libft > /dev/null 2>&1
+	@make -s -C libft bonus > /dev/null 2>&1
+
+so:
+	@${CC} -nostartfiles -fPIC ${FLAGS} ${SRCS} ${SRCS_BONUS}
+	@gcc -nostartfiles -shared -o libft.so ${OBJS} ${OBJS_BONUS}
 
 clean:
 	@make -s -C libft clean > /dev/null 2>&1
