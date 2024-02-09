@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 11:32:07 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:34:59 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,11 @@ void	ft_format_bonus(char c, t_list **list, va_list args)
 		return (ft_addnbr_base(va_arg(args, unsigned int), 16, list, c));
 	if (c == '%')
 		return (ft_addchar('%', list));
+}
+
+void	ft_addflags(char *frmt, t_list **arg)
+{
+	// this is for check '# +' and '-0.'
 }
 
 void	ft_check(const char *format, int *i, int *ret, va_list args)
