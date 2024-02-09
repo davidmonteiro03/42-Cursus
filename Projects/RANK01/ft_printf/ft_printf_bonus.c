@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 11:51:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/09 12:09:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ void	ft_printarg(t_list *arg, int *ret)
 	}
 }
 
-
-void	ft_addchar(char c, t_list **list)
+void	ft_addchar(char c, t_list **list, bool pos)
 {
-	ft_lstadd_back(list, ft_lstnew(ft_datanew(c)));
+	if (!pos)
+		ft_lstadd_back(list, ft_lstnew(ft_datanew(c)));
+	else
+		ft_lstadd_front(list, ft_lstnew(ft_datanew(c)));
 }
 
 void	ft_addstr(char *str, t_list **list)
@@ -66,7 +68,7 @@ void	ft_addstr(char *str, t_list **list)
 	if (!str)
 		str = "(null)";
 	while (*str)
-		ft_addchar(*str++, list);
+		ft_addchar(*str++, list, false);
 }
 
 void	ft_addptr(void *ptr, t_list **list)
@@ -88,7 +90,7 @@ void	ft_addnbr(int num, t_list **list)
 	}
 	if (num < 0)
 	{
-		ft_addchar('-', list);
+		ft_addchar('-', list, false);
 		num = -num;
 	}
 	if (num > 9)
@@ -97,7 +99,7 @@ void	ft_addnbr(int num, t_list **list)
 		ft_addnbr(num % 10, list);
 	}
 	else
-		ft_addchar(num + '0', list);
+		ft_addchar(num + '0', list, false);
 }
 
 void	ft_addnbr_base(unsigned int num, \
@@ -115,7 +117,7 @@ void	ft_addnbr_base(unsigned int num, \
 		ft_addnbr_base(num % base, base, list, c);
 	}
 	else
-		ft_addchar(base_str[num % base], list);
+		ft_addchar(base_str[num % base], list, false);
 }
 
 void	ft_format_bonus(char c, t_list **list, va_list args)
@@ -123,7 +125,7 @@ void	ft_format_bonus(char c, t_list **list, va_list args)
 	void	*ptr;
 
 	if (c == 'c')
-		return (ft_addchar(va_arg(args, int), list));
+		return (ft_addchar(va_arg(args, int), list, false));
 	if (c == 's')
 		return (ft_addstr(va_arg(args, char *), list));
 	if (c == 'p')
@@ -140,7 +142,7 @@ void	ft_format_bonus(char c, t_list **list, va_list args)
 	if (ft_tolower(c) == 'x')
 		return (ft_addnbr_base(va_arg(args, unsigned int), 16, list, c));
 	if (c == '%')
-		return (ft_addchar('%', list));
+		return (ft_addchar('%', list, false));
 }
 
 char	ft_vtoc(void *content)
@@ -171,12 +173,26 @@ char	*ft_ltoa(t_list *list)
 	return (ret);
 }
 
+void	ft_check_flag(char flag, t_list **arg, char *arg_str)
+{
+	if (flag == '#')
+	{
+	}
+}
+
 void	ft_addflags(char *frmt, t_list **arg)
 {
 	char	*arg_str;
+	char	*tmp_frmt;
+	char	flag1;
 
+	tmp_frmt = frmt;
 	arg_str = ft_ltoa(*arg);
-	// this is for check '# +' and '-0.'
+	flag1 = '\0';
+	if (ft_strchr("# +", *tmp_frmt))
+		flag1 = *tmp_frmt++;
+	if (flag1)
+		ft_check_flag(flag1, arg, arg_str);
 	return (free(arg_str));
 }
 
@@ -217,12 +233,12 @@ int	main(void)
 {
 	printf("\n\t=====================================================================\n");
 	int	my_ret = \
-		ft_printf("\t%#x %#x %#X %#.x %#.X %#5x %#5X %#-5x %#-5X %#.5x %#.5X %#-.5x %#-.5X", \
-			0, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42);
+		ft_printf("\t%#0x %#x %#X %#.x %#.X %#5x %#5X %#-5x %#-5X %#.5x %#.5X %#-.5x %#-.5X", \
+			0, 254, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42);
 	printf("\n\t=====================================================================\n");
 	int	cc_ret = \
-		printf("\t%#x %#x %#X %#.x %#.X %#5x %#5X %#-5x %#-5X %#.5x %#.5X %#-.5x %#-.5X", \
-			0, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42);
+		printf("\t%#0x %#x %#X %#.x %#.X %#5x %#5X %#-5x %#-5X %#.5x %#.5X %#-.5x %#-.5X", \
+			0, 254, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42, 42);
 	printf("\n\t=====================================================================\n");
 	printf("\t\t\t   my_ret = %d | cc_ret = %d\n", my_ret, cc_ret);
 	printf("\t=====================================================================\n\n");
