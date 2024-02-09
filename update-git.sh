@@ -1,3 +1,8 @@
+#!/bin/bash
+array=("$@")
+for element in "${array[@]}"; do
+	echo "$element"
+done
 clear
 echo "=========== GIT STATUS ==========="
 echo
