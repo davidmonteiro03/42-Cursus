@@ -1,7 +1,9 @@
 #!/bin/bash
 clear
 str="$*"
-echo "$str"
+if [ -z "$str" ]; then
+	$str = "git updates"
+fi
 echo "=========== GIT STATUS ==========="
 echo
 git status
@@ -17,7 +19,7 @@ git status
 echo
 echo "=========== GIT COMMIT ==========="
 echo
-git commit -m "git updates"
+git commit -m "$str"
 echo
 echo "============ GIT PUSH ============"
 echo
