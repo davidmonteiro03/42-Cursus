@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 12:11:14 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/09 13:18:25 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ char	*ft_ltoa(t_list *list)
 	return (ret);
 }
 
-void	ft_check_flag(char flag, t_list **arg, char *arg_str)
+void	ft_hastag(char flag, t_list **arg, char *arg_str)
 {
 	if (flag == '#')
 	{
@@ -192,7 +192,7 @@ void	ft_addflags(char *frmt, t_list **arg)
 	if (ft_strchr("# +", *tmp_frmt))
 		flag1 = *tmp_frmt++;
 	if (flag1)
-		ft_check_flag(flag1, arg, arg_str);
+		ft_hastag(flag1, arg, arg_str);
 	return (free(arg_str));
 }
 
