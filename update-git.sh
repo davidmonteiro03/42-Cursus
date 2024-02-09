@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-str="'$*'"
+str="$*"
 echo "$str"
 echo "=========== GIT STATUS ==========="
 echo
