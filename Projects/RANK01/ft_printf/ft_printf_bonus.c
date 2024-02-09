@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:49:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/09 11:34:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/02/09 11:51:18 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,9 +143,41 @@ void	ft_format_bonus(char c, t_list **list, va_list args)
 		return (ft_addchar('%', list));
 }
 
+char	ft_vtoc(void *content)
+{
+	t_data	*tmp;
+
+	tmp = (t_data *)content;
+	return (tmp->c);
+}
+
+char	*ft_ltoa(t_list *list)
+{
+	t_list	*tmp;
+	char	*ret;
+	int		i;
+
+	ret = (char *)malloc(sizeof(char) * (ft_lstsize(list) + 1));
+	if (!ret)
+		return (NULL);
+	i = 0;
+	tmp = list;
+	while (tmp)
+	{
+		ret[i++] = ft_vtoc(tmp->content);
+		tmp = tmp->next;
+	}
+	ret[i] = '\0';
+	return (ret);
+}
+
 void	ft_addflags(char *frmt, t_list **arg)
 {
+	char	*arg_str;
+
+	arg_str = ft_ltoa(*arg);
 	// this is for check '# +' and '-0.'
+	return (free(arg_str));
 }
 
 void	ft_check(const char *format, int *i, int *ret, va_list args)
