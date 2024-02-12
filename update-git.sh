@@ -2,7 +2,7 @@
 clear
 str="$*"
 if [ -z "$str" ]; then
-	$str = "git updates"
+	str="git updates"
 fi
 echo "=========== GIT STATUS ==========="
 echo
