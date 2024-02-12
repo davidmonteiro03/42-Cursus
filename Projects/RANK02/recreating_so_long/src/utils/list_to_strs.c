@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   list_to_strs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 19:06:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/12 20:55:49 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/12 21:07:59 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/12 21:09:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/so_long.h"
+#include "../../include/so_long.h"
 
-int	main(int argc, char **argv)
+char	**so_long_list_to_strs(t_list *list)
 {
-	so_long_check_args(argc, argv);
-	so_long_parse_file(argv[1]);
-	return ((void)argc, (void)argv, 0);
+	t_list	*tmp;
+	size_t	i;
+	char	**ret;
+
+	ret = (char **)malloc(sizeof(char *) * (ft_lstsize(list) + 1));
+	if (!ret)
+		return (NULL);
+	i = 0;
+	tmp = list;
+	while (tmp)
+	{
+		ret[i++] = ft_strdup((char *)tmp->content);
+		tmp = tmp->next;
+	}
+	ret[i] = NULL;
+	return (ret);
 }
