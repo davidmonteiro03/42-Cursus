@@ -16,7 +16,15 @@ SRCS		= ft_converthex.c \
 				ft_putptr.c \
 				ft_putstr.c
 
-SRCS_BONUS	= ft_printf_bonus.c
+SRCS_BONUS	= ft_converthex.c \
+				ft_format.c \
+				ft_len.c \
+				ft_printf_bonus.c \
+				ft_putchar.c \
+				ft_putnbr_base.c \
+				ft_putnbr.c \
+				ft_putptr.c \
+				ft_putstr.c
 
 OBJS		= $(SRCS:.c=.o)
 OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
