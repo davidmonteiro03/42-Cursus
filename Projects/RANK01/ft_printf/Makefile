@@ -16,7 +16,10 @@ SRCS		= ft_converthex.c \
 				ft_putptr.c \
 				ft_putstr.c
 
+SRCS_BONUS	= ft_printf_bonus.c
+
 OBJS		= $(SRCS:.c=.o)
+OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
 
 NAME		= libftprintf.a
 AR			= ar rcs
@@ -37,11 +40,11 @@ $(NAME): $(OBJS) libft/libft.a
 	@$(LIB) $(NAME)
 	@echo "$(CYAN)$(NAME) $(GREEN)created$(RESET)!"
 
-#bonus: $(OBJS_BONUS) libft/libft.a
-#	@cp libft/libft.a $(NAME)
-#	@$(AR) $(NAME) $(OBJS_BONUS)
-#	@$(LIB) $(NAME)
-#	@echo "$(CYAN)$(NAME) $(GREEN)created$(RESET)!"
+bonus: $(OBJS_BONUS) libft/libft.a
+	@cp libft/libft.a $(NAME)
+	@$(AR) $(NAME) $(OBJS_BONUS)
+	@$(LIB) $(NAME)
+	@echo "$(CYAN)$(NAME) $(GREEN)created$(RESET)!"
 
 libft/libft.a:
 	@make -s -C libft bonus > /dev/null 2>&1

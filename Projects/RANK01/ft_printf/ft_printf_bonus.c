@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/12 17:16:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/12 18:06:13 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/02/12 18:04:50 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/02/12 18:06:09 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	main(void)
+int	ft_printf(const char *format, ...)
 {
-	return (0);
+	va_list	args;
+
+	va_start(args, format);
+	va_end(args);
+	return (vprintf(format, args));
 }
