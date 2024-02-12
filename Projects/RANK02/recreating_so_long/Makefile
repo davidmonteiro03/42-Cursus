@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2024/02/12 19:10:47 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/02/12 20:18:06 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,16 @@ MINILIBX_DIR	= minilibx-linux
 MINILIBX_NAME	= libmlx.a
 MINILIBX_FLAGS	= -g -lmlx -lXext -lX11 -lm -lz -lbsd
 
-SRCS			= main.c
+SRCS_ERRORS		= src/errors/error_file.c \
+					src/errors/error.c \
+					src/errors/usage.c
+SRCS_FREE		= src/free/free_strs.c
+SRCS_PARSER		= src/parser/parse_args.c
+SRCS_UTILS		= src/utils/check_extension.c \
+					src/utils/last_str.c \
+					src/utils/open_file.c
+
+SRCS			= $(SRCS_ERRORS) $(SRCS_FREE) $(SRCS_PARSER) $(SRCS_UTILS) main.c
 
 OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.c=.o))
 
