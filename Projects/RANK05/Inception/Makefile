@@ -1,17 +1,37 @@
-all:
-	@docker compose -f ./srcs/docker-compose.yml up -d --build
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/03/18 16:42:15 by dcaetano          #+#    #+#              #
+#    Updated: 2024/03/18 17:59:47 by dcaetano         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+all: up
+
+up:
+	@sudo docker compose -f ./srcs/docker-compose.yml up -d
 
 down:
-	@docker compose -f ./srcs/docker-compose.yml down
+	@sudo docker compose -f ./srcs/docker-compose.yml down
 
-re:
-	@docker compose -f srcs/docker-compose.yml up -d --build
+start:
+	@sudo docker compose -f ./srcs/docker-compose.yml start
 
-clean:
-	@docker stop $$(docker ps -qa);\
-	docker rm $$(docker ps -qa);\
-	docker rmi -f $$(docker images -qa);\
-	docker volume rm $$(docker volume ls -q);\
-	docker network rm $$(docker network ls -q);\
+stop:
+	@sudo docker compose -f ./srcs/docker-compose.yml stop
 
-.PHONY: all re down clean
+status:
+	@sudo docker ps
+
+delete:
+	@sudo docker stop $$(sudo docker ps -qa)
+	@sudo docker rm $$(sudo docker ps -qa)
+	@sudo docker rmi -f $$(sudo docker images -qa)
+
+re: delete all
+
+.PHONY: all up down start stop re

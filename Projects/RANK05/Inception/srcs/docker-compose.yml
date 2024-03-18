@@ -3,10 +3,7 @@ version: '3'
 services:
   nginx:
     container_name: nginx
-    build: ./requirements/nginx
-#  wordpress:
-#    container_name: wordpress
-#    build: ./requirements/wordpress
-#  maria-db:
-#    container_name: maria-db
-#    build: ./requirements/maria-db
+    build: ./requirements/nginx/
+    ports:
+      - 443:443
+    restart: always

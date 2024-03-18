@@ -2,9 +2,16 @@ FROM debian:bullseye
 
 RUN apt-get update
 RUN apt-get install -y nginx openssl
+RUN mkdir /etc/nginx/ssl
+RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
+	-out /etc/nginx/ssl/dcaetano.crt \
+	-keyout /etc/nginx/ssl/dcaetano.key \
+	-subj "/C=PT/ST=Porto/L=Gaia/O=42 School/OU=dcaetano/CN=dcaetano/"
 
-COPY ./tools/script.sh /
+COPY ./config/nginx.conf /etc/nginx/conf.d
 
-RUN chmod +x /script.sh
+RUN mkdir -p /run/nginx
 
-CMD ["/script.sh"]
+EXPOSE 443
+
+CMD ["nginx", "-g", "daemon off;"]
