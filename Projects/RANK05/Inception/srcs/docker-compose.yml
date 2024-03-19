@@ -1,13 +1,15 @@
-version: '3'
+version: '3.5'
+
+networks:
+  inception:
+    name: inception
 
 services:
   nginx:
     container_name: nginx
-    build: ./requirements/nginx/
+    build: ./requirements/nginx
     ports:
-      - 443:443
-    restart: unless-stopped
-  wordpress:
-    container_name: wordpress
-    build: ./requirements/wordpress/
+      - "443:443"
+    networks:
+      - inception
     restart: unless-stopped
