@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 11:03:18 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/19 11:56:02 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/19 13:52:51 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,6 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 
 COPY ./conf/nginx.conf /etc/nginx/conf.d/
 
-RUN mv /var/www/html/index.nginx-debian.html /var/www/html/index.html
-
 RUN mkdir -p /run/nginx
-
-EXPOSE 443
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

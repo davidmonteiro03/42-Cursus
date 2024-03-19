@@ -1,7 +1,8 @@
 version: '3.5'
 
 networks:
-  inception:
+  frontend:
+  backend:
 
 volumes:
   wordpress:
@@ -10,7 +11,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: ./data/website
+      device: ./wordpress
 
 services:
   nginx:
@@ -19,21 +20,22 @@ services:
     ports:
       - "443:443"
     volumes:
-      - "./data/website:/var/www/html"
+      - "./wordpress:/var/www/html"
     depends_on:
       - wordpress
     networks:
-      - inception
-    restart: unless-stopped
+      - frontend
+    restart: always
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
     ports:
       - "9000:9000"
     networks:
-      - inception
+      - frontend
+      - backend
     volumes:
-      - "./data/website:/var/www/html"
+      - "./wordpress:/var/www/html"
     environment:
       MYSQL_HOST:       ${MYSQL_HOST}
       WP_DATABASE_NAME: ${WP_DATABASE_NAME}
@@ -47,4 +49,4 @@ services:
       WP_USR:           ${WP_USR}
       WP_PWD:           ${WP_PWD}
       WP_EMAIL:         ${WP_EMAIL}
-    restart: unless-stopped
+    restart: always
