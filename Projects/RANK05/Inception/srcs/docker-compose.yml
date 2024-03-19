@@ -1,9 +1,12 @@
+# Docker Compose
 version: '3.5'
 
+# Networks
 networks:
   inception:
     name: inception
 
+# Services
 services:
   nginx:
     container_name: nginx
