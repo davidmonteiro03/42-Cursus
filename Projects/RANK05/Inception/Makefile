@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 14:57:57 by shovsepy          #+#    #+#              #
-#    Updated: 2024/03/19 12:23:45 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/19 12:26:54 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,14 +33,13 @@ logs:
 status:
 	@sudo docker ps
 
-delete: down
+prune: down
 	@sudo rm -rf srcs/data
 	@sudo docker system prune -f
 
 rmi:
 	@sudo docker rmi nginx
-	@echo
 
-re: delete all
+re: prune all
 
 .PHONY: all build up down start stop logs status prune rmi re
