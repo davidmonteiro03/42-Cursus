@@ -6,8 +6,8 @@ services:
     build: ./requirements/nginx/
     ports:
       - 443:443
-    restart: always
+    restart: unless-stopped
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress/
-    restart: always
+    restart: unless-stopped
