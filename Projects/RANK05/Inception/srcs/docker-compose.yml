@@ -2,7 +2,15 @@ version: '3.5'
 
 networks:
   inception:
-    name: inception
+
+volumes:
+  wordpress:
+    driver: local
+    name: wordpress
+    driver_opts:
+      type: none
+      o: bind
+      device: ./data/website
 
 services:
   nginx:
@@ -10,6 +18,33 @@ services:
     build: ./requirements/nginx
     ports:
       - "443:443"
+    volumes:
+      - "./data/website:/var/www/html"
+    depends_on:
+      - wordpress
     networks:
       - inception
+    restart: unless-stopped
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    ports:
+      - "9000:9000"
+    networks:
+      - inception
+    volumes:
+      - "./data/website:/var/www/html"
+    environment:
+      MYSQL_HOST:       ${MYSQL_HOST}
+      WP_DATABASE_NAME: ${WP_DATABASE_NAME}
+      WP_DATABASE_USR:  ${WP_DATABASE_USR}
+      WP_DATABASE_PWD:  ${WP_DATABASE_PWD}
+      DOMAIN_NAME:      ${DOMAIN_NAME}
+      WP_TITLE:         ${WP_TITLE}
+      WP_ADMIN_USR:     ${WP_ADMIN_USR}
+      WP_ADMIN_PWD:     ${WP_ADMIN_PWD}
+      WP_ADMIN_EMAIL:   ${WP_ADMIN_EMAIL}
+      WP_USR:           ${WP_USR}
+      WP_PWD:           ${WP_PWD}
+      WP_EMAIL:         ${WP_EMAIL}
     restart: unless-stopped
