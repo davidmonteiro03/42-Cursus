@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/19 11:03:18 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/19 11:13:01 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/19 11:16:24 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,10 +28,7 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
 	-subj "/C=PT/ST=Porto/L=Porto/O=42 School/OU=dcaetano/CN=dcaetano/"
 
 # copy the nginx configuration file
-COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
-
-# rename the default index.html file
-RUN mv /var/www/html/index.nginx-debian.html /var/www/html/index.html
+COPY ./conf/nginx.conf /etc/nginx/conf.d/
 
 # create the directory for the pid file
 RUN mkdir -p /run/nginx
