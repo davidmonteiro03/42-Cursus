@@ -1,30 +1,16 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Dockerfile                                         :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/19 11:03:18 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/19 13:52:51 by dcaetano         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 FROM debian:bullseye
 
 RUN apt-get update -y
 RUN apt-get upgrade -y
-
 RUN apt-get install -y nginx openssl
 
-RUN mkdir /etc/nginx/ssl
-RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
-	-out /etc/nginx/ssl/dcaetano.crt \
-	-keyout /etc/nginx/ssl/dcaetano.key \
-	-subj "/C=PT/ST=Porto/L=Gaia/O=42 School/OU=dcaetano/CN=dcaetano/"
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048\
+	-keyout /etc/ssl/private/nginx-selfsigned.key\
+	-out /etc/ssl/certs/nginx-selfsigned.crt\
+	-subj "/C=PT/ST=Porto/L=Porto/O=42 School/OU=42 School/CN=David/UID=dcaetano"
 
-COPY ./conf/nginx.conf /etc/nginx/conf.d/
+COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN mkdir -p /run/nginx
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+CMD ["nginx", "-g", "daemon off;"]
