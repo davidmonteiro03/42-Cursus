@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/30 14:57:57 by shovsepy          #+#    #+#              #
-#    Updated: 2024/03/20 07:41:03 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/20 09:46:18 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,10 +34,11 @@ status:
 	@sudo docker ps
 
 prune: down
+	@sudo rm -rf ./php
 	@sudo docker system prune -f
 
 rmi:
-	@sudo docker rmi nginx
+	@sudo docker rmi nginx php
 
 re: prune all
 

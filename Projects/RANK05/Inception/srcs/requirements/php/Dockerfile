@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/20 09:16:51 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/20 09:19:16 by dcaetano         ###   ########.fr        #
+#    Created: 2024/03/20 09:16:48 by dcaetano          #+#    #+#              #
+#    Updated: 2024/03/20 09:35:42 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,20 +17,11 @@ FROM debian:bullseye
 RUN apt-get update -y
 RUN apt-get upgrade -y
 
-# Install nginx and openssl
-RUN apt-get install -y nginx openssl
+# Install PHP and its extensions
+RUN apt-get install -y php php-fpm php-mysql php-mbstring php-xml php-gd php-curl
 
-# Create a self-signed SSL certificate
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048\
-	-keyout /etc/ssl/private/nginx-selfsigned.key\
-	-out /etc/ssl/certs/nginx-selfsigned.crt\
-	-subj "/C=PT/ST=Porto/L=Porto/O=42 School/OU=42 School/CN=David/UID=dcaetano"
+WORKDIR /var/www/html
 
-# Copy the nginx configuration file
-COPY ./conf/nginx.conf /etc/nginx/conf.d/default.conf
-
-# Create a directory for the pid file
-RUN mkdir -p /run/nginx
-
-# Initialize nginx
-CMD ["nginx", "-g", "daemon off;"]
+# Config PHP
+COPY ./tools/php-config.sh /tmp/php-config.sh
+CMD ["sh", "/tmp/php-config.sh"]

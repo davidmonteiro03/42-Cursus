@@ -1,7 +1,8 @@
 version: '3.5'
 
 networks:
-  inception:
+  network:
+    driver: bridge
 
 services:
   nginx:
@@ -10,4 +11,11 @@ services:
     ports:
       - "443:443"
     networks:
-      - inception
+      - network
+    restart: unless-stopped
+  php:
+    container_name: php
+    build: ./requirements/php
+    networks:
+      - network
+    restart: unless-stopped
