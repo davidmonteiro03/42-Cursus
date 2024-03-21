@@ -1,0 +1,27 @@
+networks:
+  network:
+    driver: bridge
+
+services:
+  nginx:
+    container_name: nginx
+    build: ./requirements/nginx
+    image: nginx:42
+    env_file:
+      - .env
+    ports:
+      - "443:443"
+    networks:
+      - network
+    restart: always
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    image: wordpress:42
+    env_file:
+      - .env
+    expose:
+      - "9000"
+    networks:
+      - network
+    restart: always
