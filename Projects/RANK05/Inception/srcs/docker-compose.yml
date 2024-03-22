@@ -1,3 +1,11 @@
+volumes:
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: "/home/$USER/app/wordpress"
+      o: bind
+
 networks:
   network:
     driver: bridge
@@ -7,6 +15,10 @@ services:
     container_name: nginx
     build: ./requirements/nginx
     image: nginx:42
+    depends_on:
+      - wordpress
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
     env_file:
       - .env
     ports:
@@ -22,6 +34,8 @@ services:
       - .env
     expose:
       - "9000"
+    volumes:
+      - wordpress_data:/var/www/html/wordpress
     networks:
       - network
     restart: always

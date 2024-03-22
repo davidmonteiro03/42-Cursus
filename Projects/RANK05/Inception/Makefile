@@ -6,11 +6,15 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 14:10:59 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/21 17:54:53 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 08:07:59 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+APP_PATH = /home/$(USER)/app
+
 all:
+	@mkdir -p $(APP_PATH)
+	@mkdir -p $(APP_PATH)/wordpress
 	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
@@ -26,8 +30,9 @@ fclean: clean
 	@if [ -n "$$(docker ps -qa)" ]; then docker stop $$(docker ps -qa); fi
 	@if [ -n "$$(docker ps -qa)" ]; then docker rm -f $$(docker ps -qa); fi
 	@if [ -n "$$(docker images -q)" ]; then docker rmi -f $$(docker images -q); fi
-	@docker system prune -af --volumes
-	@docker volume prune -f
-	@docker network prune -f
+	@if [ -n "$$(docker volume ls -q)" ]; then docker volume rm $$(docker volume ls -q); fi
+	@if [ -n "$$(docker network ls --format '{{.Name}}' | grep -vE 'bridge|host|none')" ]; then docker network rm $$(docker network ls --format '{{.Name}}' | grep -vE 'bridge|host|none'); fi
+	@docker system prune -af
+	@sudo rm -rf $(APP_PATH)
 
 .PHONY: all down re clean fclean

@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 14:32:28 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/21 18:52:25 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 08:12:45 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,18 +29,18 @@ server {
 	ssl_protocols TLSv1.2 TLSv1.3;
 
 	root /var/www/html;
-	index index.php index.html index.htm index.nginx-debian.html;
+	index index.php index.html index.htm;
 
-	#location / {
-	#	try_files \$uri \$uri/ =404;
-	#}
+	location / {
+		try_files \$uri \$uri/ =404;
+	}
 
-	#location \ ~ \.php$ {
-	#	fastcgi_pass wordpress:9000;
-	#	fastcgi_index index.php;
-	#	fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-	#	include fastcgi_params;
-	#}
+	location ~ \.php$ {
+		fastcgi_pass wordpress:9000;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+		include fastcgi_params;
+	}
 }" > /etc/nginx/conf.d/default.conf
 
 /usr/sbin/nginx -g "daemon off;"
