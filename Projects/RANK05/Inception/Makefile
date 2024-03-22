@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 14:10:59 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 08:34:06 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 11:06:38 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ all: prepare
 prepare:
 	@mkdir -p $(APP_PATH)
 	@mkdir -p $(APP_PATH)/wordpress
+	@mkdir -p $(APP_PATH)/mariadb
 
 down:
 	@docker compose -f ./srcs/docker-compose.yml down

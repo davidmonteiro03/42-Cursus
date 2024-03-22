@@ -5,6 +5,12 @@ volumes:
       type: none
       device: "/home/$USER/app/wordpress"
       o: bind
+  mariadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: "/home/$USER/app/mariadb"
+      o: bind
 
 networks:
   network:
@@ -30,12 +36,27 @@ services:
     container_name: wordpress
     build: ./requirements/wordpress
     image: wordpress:42
+    depends_on:
+      - mariadb
     env_file:
       - .env
     expose:
       - "9000"
     volumes:
       - wordpress_data:/var/www/html
+    networks:
+      - network
+    restart: always
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    image: mariadb:42
+    env_file:
+      - .env
+    expose:
+      - "3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
     networks:
       - network
     restart: always
