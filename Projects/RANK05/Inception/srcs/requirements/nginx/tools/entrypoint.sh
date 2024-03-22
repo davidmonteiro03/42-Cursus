@@ -6,25 +6,11 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 14:32:28 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 11:36:13 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 16:18:52 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/sh
-
-rm -rf /var/www/html/*
-
-echo "
-	<!DOCTYPE html>
-	<html>
-		<head>
-			<title>Welcome to $DOMAIN</title>
-		</head>
-		<body>
-			<h1>Welcome to $DOMAIN</h1>
-		</body>
-	</html>
-" > /var/www/html/index.html
 
 openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
 	-keyout /etc/ssl/private/$DOMAIN.key \

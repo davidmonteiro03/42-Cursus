@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/22 12:59:19 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 12:59:40 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 15:55:13 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,10 @@ bind-address = 0.0.0.0
 "
 echo "$config" > /etc/mysql/my.cnf
 
-if [ ! -d "/var/lib/mysql/$MYSQL_DATABASE" ]; then
+if [ ! -d "/var/lib/mysql/$DB_NAME" ]; then
     run_command "
     mysql_secure_installation << EOF
-    $MYSQL_ROOT_PASSWORD
+    $DB_ROOT
     y
     n
     y
@@ -54,11 +54,11 @@ echo "MariaDB Starting Setup."
 
 run_command "
 mariadb <<EOF
-CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;
-CREATE USER '$MYSQL_ADMIN_USER'@'%' IDENTIFIED BY '$MYSQL_ADMIN_PASSWORD';
-CREATE USER '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
-GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_ADMIN_USER'@'%';
-GRANT ALL PRIVILEGES ON $MYSQL_DATABASE.* TO '$MYSQL_USER'@'%';
+CREATE DATABASE IF NOT EXISTS $DB_NAME;
+CREATE USER '$DB_USER'@'%' IDENTIFIED BY '$DB_PASS';
+CREATE USER '$WP_USER'@'%' IDENTIFIED BY '$WP_PASS';
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$DB_USER'@'%';
+GRANT ALL PRIVILEGES ON $DB_NAME.* TO '$WP_USER'@'%';
 SELECT user, host FROM mysql.user;
 FLUSH PRIVILEGES;
 exit
