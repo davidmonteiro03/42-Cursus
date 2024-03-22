@@ -6,16 +6,18 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 14:10:59 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 08:07:59 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 08:34:06 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 APP_PATH = /home/$(USER)/app
 
-all:
+all: prepare
+	@docker compose -f ./srcs/docker-compose.yml up -d --build
+
+prepare:
 	@mkdir -p $(APP_PATH)
 	@mkdir -p $(APP_PATH)/wordpress
-	@docker compose -f ./srcs/docker-compose.yml up -d --build
 
 down:
 	@docker compose -f ./srcs/docker-compose.yml down

@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 14:32:28 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 08:12:45 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 09:53:23 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,10 +29,10 @@ server {
 	ssl_protocols TLSv1.2 TLSv1.3;
 
 	root /var/www/html;
-	index index.php index.html index.htm;
+	index index.php index.html index.htm index.nginx-debian.html;
 
 	location / {
-		try_files \$uri \$uri/ =404;
+		try_files \$uri \$uri/ /index.php\$is_args\$args;
 	}
 
 	location ~ \.php$ {

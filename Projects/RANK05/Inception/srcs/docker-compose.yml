@@ -18,7 +18,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress_data:/var/www/html/wordpress
+      - wordpress_data:/var/www/html
     env_file:
       - .env
     ports:
@@ -35,7 +35,7 @@ services:
     expose:
       - "9000"
     volumes:
-      - wordpress_data:/var/www/html/wordpress
+      - wordpress_data:/var/www/html
     networks:
       - network
     restart: always
