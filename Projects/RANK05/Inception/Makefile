@@ -6,11 +6,11 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 14:10:59 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 11:45:39 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 17:15:52 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-APP_PATH = /home/$(USER)/app
+APP_PATH = /home/$(USER)/data
 
 all: prepare
 	@docker compose -f ./srcs/docker-compose.yml up -d --build

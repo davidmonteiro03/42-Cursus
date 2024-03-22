@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 18:38:51 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 16:41:13 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/22 17:24:26 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ sed -i "s/database_name_here/$DB_NAME/g" wp-config.php
 sed -i "s/username_here/$DB_USER/g" wp-config.php
 sed -i "s/password_here/$DB_PASS/g" wp-config.php
 sed -i "s/localhost/$DB_HOST/g" wp-config.php
-wp core install --url="$DOMAIN/wordpress" \
+wp core install --url="https://$DOMAIN/wordpress" \
 	--title=$WP_TITLE \
 	--admin_user=$DB_USER \
 	--admin_password=$DB_PASS \
