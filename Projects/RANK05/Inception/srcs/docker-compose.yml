@@ -40,8 +40,6 @@ services:
       - mariadb
     env_file:
       - .env
-    expose:
-      - "9000"
     volumes:
       - wordpress_data:/var/www/html
     networks:
@@ -53,8 +51,6 @@ services:
     image: mariadb:42
     env_file:
       - .env
-    expose:
-      - "3306"
     volumes:
       - mariadb_data:/var/lib/mysql
     networks:

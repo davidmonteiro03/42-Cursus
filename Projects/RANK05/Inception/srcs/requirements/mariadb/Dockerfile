@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/21 18:50:59 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 17:19:29 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/03/23 15:30:58 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,5 @@ RUN mkdir -p /var/run/mysqld &&\
 RUN rm -f /etc/mysql/my.cnf
 COPY ./tools/entrypoint.sh /tmp/entrypoint.sh
 RUN chmod +x /tmp/entrypoint.sh
-
-EXPOSE 3306
 
 ENTRYPOINT ["sh", "/tmp/entrypoint.sh"]
