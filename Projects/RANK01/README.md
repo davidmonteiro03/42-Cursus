@@ -23,7 +23,7 @@
 		<tr>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/get_next_line">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linee.png" width="125"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linem.png" width="125"/>
 				</a>
 			</td>
 			<td>
