@@ -149,7 +149,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			</td>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/NetPractice">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/netpracticee.png" width="125"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/netpracticem.png" width="125"/>
 				</a>
 			</td>
 			<td>
@@ -202,7 +202,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 		<tr>
 			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/CPP Modules">
-					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppe.png" width="125"/>
+					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppm.png" width="125"/>
 				</a>
 			</td>
 			<td>
