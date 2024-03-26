@@ -6,11 +6,20 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 20:01:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/03/26 20:37:24 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/03/26 20:47:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// this is not my code, I just push it to study
+// this is not my code, I just pushed it to study
+// things to study:
+// functions {
+// 		write, close, select, socket, accept, listen, send, recv, bind, strstr
+// 		malloc, realloc, free, calloc, bzero, atoi, sprintf, strlen, exit, strcpy
+// 		strcat, memset
+// }
+// macros {
+// 		FD_SET, FD_CLR, FD_ISSET, FD_ZERO, FD_SETSIZE, AF_INET, SOCK_STREAM
+// }
 
 #include <stdio.h>
 #include <errno.h>
