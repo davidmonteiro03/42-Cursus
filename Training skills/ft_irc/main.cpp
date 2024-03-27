@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:55:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/03/27 16:07:06 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:49:49 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,6 +170,9 @@ int main(void)
 						close(i);
 						free(msg[i]);
 						msg[i] = NULL;
+						check[i][0] = false;
+						check[i][1] = false;
+						users[i] = "";
 						if (i == nfds)
 							--nfds;
 					}
@@ -207,7 +210,18 @@ int main(void)
 							}
 							else
 							{
-								send_message(&fds, i, server, check, nfds, line);
+								char *temp = (char *)calloc(15, sizeof(char));
+								if (temp == NULL)
+								{
+									free(line);
+									ft_fail(&fds, msg, nfds);
+								}
+								sprintf(temp, "%s: ", (char *)users[i].c_str());
+								temp = str_join(temp, line);
+								if (temp == NULL)
+									ft_fail(&fds, msg, nfds);
+								send_message(&fds, i, server, check, nfds, temp);
+								free(temp);
 							}
 							message.clear();
 							free(line);
