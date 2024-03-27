@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:55:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/03/27 16:49:49 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:24:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ extern "C"
 #include <cstring>
 
 #include <iostream>
-#include <vector>
 
 #define FATAL "Fatal error"
-#define USERNAME_REQUEST "Type username: "
-#define PASSWORD_REQUEST "Type password: "
-#define WELCOME_MESSAGE "Welcome to the server!\n"
+#define PASSWORD_REQUEST "Type server password: "
+#define USERNAME_REQUEST "Choose your username: "
+#define ERROR_PASSWORD "Wrong password! Try again...\n"
+#define ERROR_USERNAME "Invalid username! Try again...\n"
+#define COMMAND "Command > "
 
 void ft_error(const char *error)
 {
@@ -86,11 +87,21 @@ char *str_join(char *buf, char *add)
 	return (newbuf);
 }
 
-void send_message(fd_set *fds, int client, int server, bool check[FD_SETSIZE][2], int nfds, char *msg)
+void send_message(fd_set *fds, int client, int server, bool check[FD_SETSIZE][2], \
+	int nfds, char *msg, bool all_people)
 {
-	for (int i = 0; i <= nfds; ++i)
-		if (FD_ISSET(i, fds) && check[i][0] && check[i][1] && i != server && i != client)
-			send(i, msg, strlen(msg), 0);
+	if (!all_people)
+	{
+		for (int i = 0; i <= nfds; ++i)
+			if (FD_ISSET(i, fds) && check[i][0] && check[i][1] && i != server && i != client)
+				send(i, msg, strlen(msg), 0);
+	}
+	else
+	{
+		for (int i = 0; i <= nfds; ++i)
+			if (FD_ISSET(i, fds) && check[i][0] && check[i][1] && i != server)
+				send(i, msg, strlen(msg), 0);
+	}
 }
 
 void ft_fail(fd_set *fds, char **msg, int nfds)
@@ -108,6 +119,11 @@ void ft_fail(fd_set *fds, char **msg, int nfds)
 
 bool check_username(std::string username, std::string users[FD_SETSIZE], int nfds)
 {
+	if (username.size() < 3 || username.size() > 20)
+		return (false);
+	for (size_t i = 0; i < username.size(); ++i)
+		if (isspace(username[i]))
+			return (false);
 	for (int i = 0; i <= nfds; ++i)
 		if (username == users[i])
 			return (false);
@@ -190,7 +206,10 @@ int main(void)
 							if (check[i][0] == false)
 							{
 								if (message != "password")
+								{
+									send(i, ERROR_PASSWORD, strlen(ERROR_PASSWORD), 0);
 									send(i, PASSWORD_REQUEST, strlen(PASSWORD_REQUEST), 0);
+								}
 								else
 								{
 									check[i][0] = true;
@@ -200,27 +219,45 @@ int main(void)
 							else if (check[i][1] == false)
 							{
 								if (!check_username(message, users, nfds))
+								{
+									send(i, ERROR_USERNAME, strlen(ERROR_USERNAME), 0);
 									send(i, USERNAME_REQUEST, strlen(USERNAME_REQUEST), 0);
+								}
 								else
 								{
 									check[i][1] = true;
 									users[i] = message;
-									send(i, WELCOME_MESSAGE, strlen(WELCOME_MESSAGE), 0);
+									char *temp = (char *)calloc(BUFSIZ, sizeof(char));
+									if (temp == NULL)
+									{
+										free(line);
+										ft_fail(&fds, msg, nfds);
+									}
+									bzero(temp, BUFSIZ);
+									sprintf(temp, "Welcome to the server, %s!\n", (char *)users[i].c_str());
+									send(i, temp, strlen(temp), 0);
+									free(temp);
+									send(i, COMMAND, strlen(COMMAND), 0);
 								}
 							}
 							else
 							{
-								char *temp = (char *)calloc(15, sizeof(char));
+								char *temp = (char *)calloc(BUFSIZ, sizeof(char));
 								if (temp == NULL)
 								{
 									free(line);
 									ft_fail(&fds, msg, nfds);
 								}
-								sprintf(temp, "%s: ", (char *)users[i].c_str());
+								bzero(temp, BUFSIZ);
+								sprintf(temp, "\n%s: ", (char *)users[i].c_str());
 								temp = str_join(temp, line);
 								if (temp == NULL)
 									ft_fail(&fds, msg, nfds);
-								send_message(&fds, i, server, check, nfds, temp);
+								if (message.size() > 0)
+								{
+									send_message(&fds, i, server, check, nfds, temp, false);
+									send_message(&fds, i, server, check, nfds, (char *)COMMAND, true);
+								}
 								free(temp);
 							}
 							message.clear();
