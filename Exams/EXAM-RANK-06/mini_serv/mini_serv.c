@@ -5,31 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/26 20:01:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/03/26 20:47:35 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/03/27 09:11:43 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/03/27 11:07:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// this is not my code, I just pushed it to study
-// things to study:
-// functions {
-// 		write, close, select, socket, accept, listen, send, recv, bind, strstr
-// 		malloc, realloc, free, calloc, bzero, atoi, sprintf, strlen, exit, strcpy
-// 		strcat, memset
-// }
-// macros {
-// 		FD_SET, FD_CLR, FD_ISSET, FD_ZERO, FD_SETSIZE, AF_INET, SOCK_STREAM
-// }
-
 #include <stdio.h>
-#include <errno.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
-#include <netdb.h>
+#include <strings.h>
 #include <sys/socket.h>
 #include <sys/select.h>
-#include <netinet/in.h>
+#include <netdb.h>
 
 #define FATAL "Fatal error"
 
@@ -37,27 +25,7 @@ void ft_error(const char *error)
 {
 	write(STDERR_FILENO, error, strlen(error));
 	write(STDERR_FILENO, "\n", 1);
-	exit(1);
-}
-
-void ft_fail(fd_set *fds, char **msg, int fdmax)
-{
-	for (int i = 0; i <= fdmax; ++i)
-	{
-		if (FD_ISSET(i, fds))
-		{
-			free(msg[i]);
-			close(i);
-		}
-	}
-	ft_error(FATAL);
-}
-
-void send_message(fd_set *fds, int server, int client, int fdmax, char *msg)
-{
-	for (int i = 0; i <= fdmax; ++i)
-		if (FD_ISSET(i, fds) && i != server && i != client)
-			send(i, msg, strlen(msg), 0);
+	exit(EXIT_FAILURE);
 }
 
 int extract_message(char **buf, char **msg)
@@ -107,41 +75,60 @@ char *str_join(char *buf, char *add)
 	return (newbuf);
 }
 
+void send_message(fd_set *fds, int server, int client, int nfds, char *msg)
+{
+	for (int i = 0; i <= nfds; ++i)
+		if (FD_ISSET(i, fds) && i != server && i != client)
+			send(i, msg, strlen(msg), 0);
+}
+
+void ft_fail(fd_set *fds, char **msg, int nfds)
+{
+	for (int i = 0; i <= nfds; ++i)
+	{
+		if (FD_ISSET(i, fds))
+		{
+			free(msg[i]);
+			close(i);
+		}
+	}
+	ft_error(FATAL);
+}
+
 int main(int argc, char **argv)
 {
 	if (argc != 2)
 		ft_error("Wrong number of arguments");
-	socklen_t len;
 	int server;
-	struct sockaddr_in servaddr, cli;
 	server = socket(AF_INET, SOCK_STREAM, 0);
 	if (server == -1)
 		ft_error(FATAL);
+	socklen_t len;
+	struct sockaddr_in servaddr, cli;
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = htonl(2130706433);
 	servaddr.sin_port = htons(atoi(argv[1]));
-	if ((bind(server, (const struct sockaddr *)&servaddr, sizeof(servaddr))) != 0 || \
+	if (bind(server, (const struct sockaddr *)&servaddr, sizeof(servaddr)) != 0 || \
 		listen(server, 10) != 0)
 	{
 		close(server);
 		ft_error(FATAL);
 	}
-	fd_set fds;
-	fd_set events;
+	fd_set fds, events;
 	FD_ZERO(&fds);
 	FD_SET(server, &fds);
-	int fdmax = server;
+	int nfds = server;
 	int last = -1;
+	char buf[BUFSIZ];
 	int ids[FD_SETSIZE] = {-1};
 	char *msg[FD_SETSIZE] = {NULL};
-	char buf[BUFSIZ];
 	while (1)
 	{
 		events = fds;
-		if (select(fdmax + 1, &events, NULL, NULL, NULL) == -1)
-			ft_fail(&fds, msg, fdmax);
-		for (int i = 0; i <= fdmax; ++i)
+		if (select(nfds + 1, &events, NULL, NULL, NULL) == -1)
+			ft_fail(&fds, msg, nfds);
+		for (int i = 0; i <= nfds; i++)
 		{
 			if (FD_ISSET(i, &events))
 			{
@@ -152,59 +139,61 @@ int main(int argc, char **argv)
 					{
 						FD_SET(client, &fds);
 						ids[client] = ++last;
-						if (client > fdmax)
-							fdmax = client;
+						if (client > nfds)
+							nfds = client;
 						bzero(buf, BUFSIZ);
 						sprintf(buf, "server: client %d just arrived\n", last);
-						send_message(&fds, server, client, fdmax, buf);
+						send_message(&fds, server, client, nfds, buf);
 					}
 				}
 				else
 				{
-					ssize_t ret;
 					bzero(buf, BUFSIZ);
-					if ((ret = recv(i, buf, BUFSIZ - 1, 0)) == 0)
+					ssize_t ret = recv(i, buf, BUFSIZ - 1, 0);
+					if (ret == 0)
 					{
 						FD_CLR(i, &fds);
 						close(i);
 						free(msg[i]);
 						msg[i] = NULL;
-						if (i == fdmax)
-							--fdmax;
+						if (i == nfds)
+							--nfds;
 						bzero(buf, BUFSIZ);
 						sprintf(buf, "server: client %d just left\n", ids[i]);
 						ids[i] = -1;
-						send_message(&fds, server, i, fdmax, buf);
+						send_message(&fds, server, i, nfds, buf);
 					}
 					else if (ret > 0)
 					{
 						msg[i] = str_join(msg[i], buf);
 						if (msg[i] == NULL)
-							ft_fail(&fds, msg, fdmax);
+							ft_fail(&fds, msg, nfds);
 						char *line = NULL;
-						while ((ret = extract_message(&msg[i], &line)) > 0)
+						ret = extract_message(&msg[i], &line);
+						while (ret > 0)
 						{
 							char *temp = calloc(30, sizeof(char));
 							if (temp == NULL)
 							{
 								free(line);
-								ft_fail(&fds, msg, fdmax);
+								ft_fail(&fds, msg, nfds);
 							}
 							sprintf(temp, "client %d: ", ids[i]);
 							temp = str_join(temp, line);
 							free(line);
 							if (temp == NULL)
-								ft_fail(&fds, msg, fdmax);
+								ft_fail(&fds, msg, nfds);
 							line = NULL;
-							send_message(&fds, server, i, fdmax, temp);
+							send_message(&fds, server, i, nfds, temp);
 							free(temp);
+							ret = extract_message(&msg[i], &line);
 						}
 						if (ret == -1)
-							ft_fail(&fds, msg, fdmax);
+							ft_fail(&fds, msg, nfds);
 					}
 				}
 			}
 		}
 	}
-	return (0);
+	return ((void)argc, (void)argv, EXIT_SUCCESS);
 }
