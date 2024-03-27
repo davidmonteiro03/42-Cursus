@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 09:11:43 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/03/27 11:07:51 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/03/27 13:24:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,7 @@ int main(int argc, char **argv)
 	server = socket(AF_INET, SOCK_STREAM, 0);
 	if (server == -1)
 		ft_error(FATAL);
-	socklen_t len;
-	struct sockaddr_in servaddr, cli;
+	struct sockaddr_in servaddr;
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = htonl(2130706433);
@@ -134,6 +133,8 @@ int main(int argc, char **argv)
 			{
 				if (i == server)
 				{
+					socklen_t len;
+					struct sockaddr_in cli;
 					int client = accept(server, (struct sockaddr *)&cli, &len);
 					if (client >= 0)
 					{
