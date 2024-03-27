@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:55:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/03/27 17:24:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/03/27 17:27:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,8 @@ int main(void)
 									send_message(&fds, i, server, check, nfds, temp, false);
 									send_message(&fds, i, server, check, nfds, (char *)COMMAND, true);
 								}
+								else
+									send(i, COMMAND, strlen(COMMAND), 0);
 								free(temp);
 							}
 							message.clear();
