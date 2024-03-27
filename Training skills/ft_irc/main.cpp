@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/27 13:55:00 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/03/27 15:33:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/03/27 16:07:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,27 @@ void send_message(fd_set *fds, int client, int server, bool check[FD_SETSIZE][2]
 			send(i, msg, strlen(msg), 0);
 }
 
+void ft_fail(fd_set *fds, char **msg, int nfds)
+{
+	for (int i = 0; i <= nfds; ++i)
+	{
+		if (FD_ISSET(i, fds))
+		{
+			free(msg[i]);
+			close(i);
+		}
+	}
+	ft_error(FATAL);
+}
+
+bool check_username(std::string username, std::string users[FD_SETSIZE], int nfds)
+{
+	for (int i = 0; i <= nfds; ++i)
+		if (username == users[i])
+			return (false);
+	return (true);
+}
+
 int main(void)
 {
 	int server = socket(AF_INET, SOCK_STREAM, 0);
@@ -107,7 +128,7 @@ int main(void)
 		listen(server, 10) == -1)
 	{
 		close(server);
-		return (EXIT_FAILURE);
+		ft_error(FATAL);
 	}
 	fd_set fds, events;
 	struct sockaddr_in cli;
@@ -118,11 +139,12 @@ int main(void)
 	char buf[BUFSIZ];
 	char *msg[FD_SETSIZE] = {NULL};
 	bool check[FD_SETSIZE][2] = {{false, false}};
+	std::string users[FD_SETSIZE] = {""};
 	while (1)
 	{
 		events = fds;
 		if (select(nfds + 1, &events, NULL, NULL, NULL) == -1)
-			ft_error(FATAL);
+			ft_fail(&fds, msg, nfds);
 		for (int i = 0; i <= nfds; i++)
 		{
 			if (FD_ISSET(i, &events))
@@ -155,7 +177,7 @@ int main(void)
 					{
 						msg[i] = str_join(msg[i], buf);
 						if (msg[i] == 0)
-							ft_error(FATAL);
+							ft_fail(&fds, msg, nfds);
 						char *line = NULL;
 						ret = extract_message(&msg[i], &line);
 						while (ret > 0)
@@ -174,16 +196,19 @@ int main(void)
 							}
 							else if (check[i][1] == false)
 							{
-								if (message.size() < 3 || message.size() > 10)
+								if (!check_username(message, users, nfds))
 									send(i, USERNAME_REQUEST, strlen(USERNAME_REQUEST), 0);
 								else
 								{
 									check[i][1] = true;
+									users[i] = message;
 									send(i, WELCOME_MESSAGE, strlen(WELCOME_MESSAGE), 0);
 								}
 							}
 							else
+							{
 								send_message(&fds, i, server, check, nfds, line);
+							}
 							message.clear();
 							free(line);
 							line = NULL;
