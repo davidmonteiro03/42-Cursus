@@ -1,6 +1,9 @@
 #!/bin/bash
 clear
-str="$*"
+str=""
+for arg in "$@"; do
+	str="$str$arg"
+done
 if [ -z "$str" ]; then
 	str="git updates"
 fi
@@ -25,3 +28,4 @@ echo "============ GIT PUSH ============"
 echo
 git push
 echo
+
