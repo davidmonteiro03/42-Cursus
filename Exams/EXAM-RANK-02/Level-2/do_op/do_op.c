@@ -23,6 +23,8 @@ void	do_op(int a, char *op, int b)
 		printf("%d", a * b);
 	else if (*op == '/')
 		printf("%d", a / b);
+	else if (*op == '%')
+		printf("%d", a % b);
 	else
 		printf("0");
 }
