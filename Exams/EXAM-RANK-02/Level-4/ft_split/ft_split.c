@@ -100,7 +100,7 @@ char	**ft_split(char *str)
 	if (!str || !*str)
 		return (NULL);
 	len = ft_count(str);
-	result = ft_destroy(str, len, 0, 0);
+	result = ft_destroy(str, 0, 0, len);
 	if (!result)
 		return (NULL);
 	return (result);
