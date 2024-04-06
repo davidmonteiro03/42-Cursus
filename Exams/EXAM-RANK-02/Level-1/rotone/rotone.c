@@ -24,9 +24,13 @@ int	ft_isalpha(int c)
 
 void	ft_print(char c, int step)
 {
-	if ((c + step > 'Z' && c + step < 'a') || c + step > 'z')
-		c -= 26;
-	ft_putchar(c + step);
+	while (step--)
+	{
+		c++;
+		if (!ft_isalpha(c))
+			c -= 26;
+	}
+	ft_putchar(c);
 }
 
 void	rotate(char *str, int step)
