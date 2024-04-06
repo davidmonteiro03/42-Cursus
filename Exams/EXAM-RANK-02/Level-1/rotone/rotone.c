@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:24:37 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/03 09:37:25 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/04/06 15:57:32 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,19 @@ int	ft_isalpha(int c)
 	return ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'));
 }
 
-void	ft_print(char c)
+void	ft_print(char c, int step)
 {
-	++c;
-	if ((c > 'Z' && c < 'a') || c > 'z')
+	if ((c + step > 'Z' && c + step < 'a') || c + step > 'z')
 		c -= 26;
-	ft_putchar(c);
+	ft_putchar(c + step);
 }
 
-void	rotone(char *str)
+void	rotate(char *str, int step)
 {
 	while (*str)
 	{
 		if (ft_isalpha(*str))
-			ft_print(*str);
+			ft_print(*str, step);
 		else
 			ft_putchar(*str);
 		str++;
@@ -45,7 +44,8 @@ void	rotone(char *str)
 int	main(int argc, char **argv)
 {
 	if (argc == 2)
-		rotone(argv[1]);
+		rotate(argv[1], 1);
 	ft_putchar('\n');
 	return (0);
 }
+
