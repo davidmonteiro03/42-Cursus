@@ -68,23 +68,23 @@ $(OBJS_DIR)%.o: srcs/%.c
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
 
 $(EXEC): $(OBJS)
-	@make -C $(LIBFT_DIR)
+	@make -s -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft
 	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
 
 $(EXEC_BONUS): $(OBJS_BONUS)
-	@make -C $(LIBFT_DIR)
+	@make -s -C $(LIBFT_DIR)
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) $^ -o $@ -L$(LIBFT_DIR) -lft
 	@echo "$(CYAN)$(EXEC_BONUS) $(GREEN)created$(RESET)!"
 
 clean:
 	@$(RM) $(OBJS_DIR)
-	@make -C $(LIBFT_DIR) clean
+	@make -s -C $(LIBFT_DIR) clean
 	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
 
 fclean: clean
 	@$(RM) $(EXEC) $(EXEC_BONUS)
-	@make -C $(LIBFT_DIR) fclean
+	@make -s -C $(LIBFT_DIR) fclean
 	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
 	@echo "$(CYAN)$(EXEC_BONUS) $(RED)removed$(RESET)!"
 
