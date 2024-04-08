@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 08:08:49 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/01 15:55:18 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/04/08 09:48:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int parse_input(std::string input)
 		if (!check_arg(_substr))
 			throw PmergeMe::ErrorException();
 		long int num = std::atol(_substr.c_str());
-		if (num <= 0 || num > 2147483648)
+		if (num <= 0 || num > 2147483647)
 			throw PmergeMe::ErrorException();
 		while (input[i] && isspace(input[i]))
 			i++;
