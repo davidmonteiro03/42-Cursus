@@ -10,14 +10,18 @@
 		<!-- RANK 02 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="90"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-02">
+					<img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="90"/>
+				</a>
 			</td>
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
 			<td>2023-10-23</td>
 			<td>
-				<img src="https://cdn-icons-png.flaticon.com/512/463/463612.png" width="75"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-02">
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+				</a>
 			</td>
 		</tr>
 		<!-- RANK 03 -->
