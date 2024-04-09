@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/dcaetano/42-Cursus/Exams/EXAM-RANK-06/mini_serv",
-      "program": "/home/dcaetano/42-Cursus/Exams/EXAM-RANK-06/mini_serv/build/Debug/outDebug",
+      "cwd": ".",
+      "program": "build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
