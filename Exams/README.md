@@ -78,21 +78,23 @@
 		<!-- RANK 06 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-06">
+					<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
+				</a>
 			</td>
-			<td colspan="3">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			</td>
+			<td>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-06">
+					<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+				</a>
 			</td>
 		</tr>
 	</table>
 </div>
 
 ## Images
-
-
-### Not registered in Rank
-
-<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
 
 ### Project Finished / Helpful files ready
 
