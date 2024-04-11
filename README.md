@@ -320,7 +320,9 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 		<!-- RANK 06 -->
 		<tr>
 			<td>
-				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
+				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-06">
+					<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
+				</a>
 			</td>
 			<td colspan="2">
 				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
