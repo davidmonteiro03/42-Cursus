@@ -230,7 +230,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
 			</td>
 			<td colspan="4">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/5695859.png" width="75"/>
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
 		</tr>
 	</table>
