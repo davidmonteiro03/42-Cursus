@@ -233,7 +233,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			<td>
 				<img src="https://github.com/ayogun/42-project-badges/blob/main/badges/ft_transcendencee.png" width="125"/>
 			</td>
-			<td colspan="3">
+			<td colspan="2">
 				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
 			</td>
 			<td>ft_transcendence</td>
