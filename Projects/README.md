@@ -227,18 +227,18 @@
 			<td>
 				<img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
 			</td>
-			<td colspan="4">
-				<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
+			<td>
+				<img src="https://github.com/ayogun/42-project-badges/blob/main/badges/ft_transcendencee.png" width="125"/>
 			</td>
+			<td colspan="2">
+				<img src="https://cdn-icons-png.flaticon.com/512/5695/5695859.png" width="125"/>
+			</td>
+			<td>ft_transcendence</td>
 		</tr>
 	</table>
 </div>
 
 ## Images
-
-### Not registered in Rank
-
-<img src="https://cdn-icons-png.flaticon.com/512/3020/3020000.png" width="75"/>
 
 ### Project Finished
 
