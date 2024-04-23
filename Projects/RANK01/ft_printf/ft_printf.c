@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 08:04:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/23 09:30:30 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:06:36 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_printf(const char *format, ...)
 	int		ret;
 	va_list	args;
 
+	if (format == NULL)
+		return (0);
 	va_start(args, format);
 	va_end(args);
 	ret = 0;
