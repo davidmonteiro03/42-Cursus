@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:55:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/23 10:29:37 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:32:45 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	ft_puthex(size_t size, int *ret)
 void	ft_putptr(const void *ptr, int *ret)
 {
 	if (ptr == NULL)
-		ft_putstr("(nil)", ret);
+		return (ft_putstr("(nil)", ret));
 	ft_putstr("0x", ret);
 	ft_puthex((size_t)ptr, ret);
 }
