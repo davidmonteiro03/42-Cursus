@@ -6,13 +6,13 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/06 10:17:28 by dcaetano          #+#    #+#              #
-#    Updated: 2024/04/23 10:27:31 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/04/23 11:02:58 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 SRCS = ft_printf.c \
-	ft_putchar.c ft_putstr.c ft_putptr.c ft_putnbr.c \
+	ft_putchar.c ft_putstr.c ft_putptr.c ft_putnbr.c ft_putnbr_base.c \
 	ft_format.c
 OBJS = $(SRCS:.c=.o)
 CFLAGS = -Wall -Wextra -Werror
