@@ -5,18 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 19:52:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/06 19:52:13 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 09:27:54 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/04/23 09:30:40 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char *str, int *len)
+void	ft_putstr(const char *str, int *ret)
 {
-	if (!str)
-		*len += write(1, "(null)", 6);
+	if (str == NULL)
+		*ret += write(1, "(null)", 6);
 	else
-		while (*str)
-			ft_putchar(*str++, len);
+		while (*str != '\0')
+			ft_putchar(*str++, ret);
 }

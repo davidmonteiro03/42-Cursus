@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 17:14:41 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/06 19:58:26 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 08:04:03 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/04/23 09:30:30 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,18 @@ int	ft_printf(const char *format, ...)
 	int		ret;
 	va_list	args;
 
-	ret = 0;
 	va_start(args, format);
-	while (*format)
+	va_end(args);
+	ret = 0;
+	while (*format != '\0')
 	{
 		if (*format == '%')
-			ft_format(*(++format), &ret, args);
-		else
-			ft_putchar(*format, &ret);
-		format++;
+		{
+			ft_format(++format, args, &ret);
+			format++;
+			continue ;
+		}
+		ft_putchar(*format++, &ret);
 	}
-	va_end(args);
 	return (ret);
 }

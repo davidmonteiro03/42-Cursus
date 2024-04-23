@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 19:51:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/11 00:18:40 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 09:08:45 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/04/23 09:34:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putchar(char c, int *len)
+void	ft_putchar(const char c, int *ret)
 {
-	*len += write(1, &c, 1);
+	*ret += write(1, &c, 1);
 }
