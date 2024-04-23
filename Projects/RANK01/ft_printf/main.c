@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 08:59:40 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/23 10:14:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/04/23 10:31:13 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	main(void)
 
 	printf("ft_printf: $");
 	fflush(stdout);
-	my_ret = ft_printf(" Name: %p  ", "David");
+	my_ret = ft_printf(" Name: %d  ", 5000);
 	printf("$\n");
 	printf("  printf : $");
-	cc_ret = printf(" Name: %p  ", "David");
+	cc_ret = printf(" Name: %d  ", 5000);
 	printf("$");
 	printf("\n----------------\n");
 	printf("my_ret: %d\n", my_ret);

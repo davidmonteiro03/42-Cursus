@@ -1,35 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putptr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/23 09:55:48 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/23 10:29:37 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 10:26:58 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/04/23 10:30:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_puthex(size_t size, int *ret)
+void	ft_putnbr(int nbr, int *ret)
 {
-	const char	*base;
-
-	base = "0123456789abcdef";
-	if (size > 15)
+	if (nbr == -2147483648)
+		return (ft_putstr("-2147483648", ret));
+	if (nbr < 0)
 	{
-		ft_puthex(size / 16, ret);
-		ft_puthex(size % 16, ret);
+		nbr = -nbr;
+		ft_putchar('-', ret);
+	}
+	if (nbr > 9)
+	{
+		ft_putnbr(nbr / 10, ret);
+		ft_putnbr(nbr % 10, ret);
 	}
 	else
-		ft_putchar(base[size % 16], ret);
-}
-
-void	ft_putptr(const void *ptr, int *ret)
-{
-	if (ptr == NULL)
-		ft_putstr("(nil)", ret);
-	ft_putstr("0x", ret);
-	ft_puthex((size_t)ptr, ret);
+		ft_putchar(nbr % 10 + '0', ret);
 }
