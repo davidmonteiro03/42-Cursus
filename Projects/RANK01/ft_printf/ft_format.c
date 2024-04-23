@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 09:18:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/23 12:00:35 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/04/23 12:02:02 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_format(const char *format, va_list args, int *ret)
 			ret, NULL));
 	if (*format == 'x' || *format == 'X')
 		return (ft_putnbr_base(va_arg(args, unsigned int), 16, \
-			ret, tmp[*format == 'x']));
+			ret, tmp[*format == 'X']));
 	if (*format == '%')
 		return (ft_putchar('%', ret));
 }
