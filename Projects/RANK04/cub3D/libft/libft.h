@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/28 10:51:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/27 07:30:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:47:31 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}t_list;
+}	t_list;
 
 int		ft_lstsize(t_list *lst);
 void	ft_lstadd_front(t_list **lst, t_list *new);

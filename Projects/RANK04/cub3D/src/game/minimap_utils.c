@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:57:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/08 20:16:47 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:09:33 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ void	cub_draw_last_column(t_cub *cub, int x, int y)
 	auto int tmp_y = y * MINIMAP - 1;
 	while (++tmp_y < (y + 1) * MINIMAP + STROKE - 1)
 	{
-		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			x * MINIMAP, tmp_y, BORDER_COLOR);
+		cub_draw_pixel(&cub->img, x * MINIMAP, tmp_y, BORDER_COLOR);
 		auto int tmp_i = -1;
 		while (++tmp_i < STROKE)
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-				x * MINIMAP + tmp_i, tmp_y, BORDER_COLOR);
+			cub_draw_pixel(&cub->img, x * MINIMAP + tmp_i, \
+				tmp_y, BORDER_COLOR);
 	}
 }
 
@@ -31,12 +30,11 @@ void	cub_draw_last_line(t_cub *cub, int x, int y)
 	auto int tmp_x = -1;
 	while (++tmp_x < x * MINIMAP + STROKE)
 	{
-		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			tmp_x, y * MINIMAP, BORDER_COLOR);
+		cub_draw_pixel(&cub->img, tmp_x, y * MINIMAP, BORDER_COLOR);
 		auto int tmp_i = -1;
 		while (++tmp_i < STROKE)
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-				tmp_x, y * MINIMAP + tmp_i, BORDER_COLOR);
+			cub_draw_pixel(&cub->img, tmp_x, \
+				y * MINIMAP + tmp_i, BORDER_COLOR);
 	}
 }
 

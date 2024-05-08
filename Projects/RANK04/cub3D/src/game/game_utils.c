@@ -6,11 +6,18 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:41:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/16 15:31:05 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:58:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
+
+void	cub_draw_pixel(t_img *img, int x, int y, unsigned int color)
+{
+	*(unsigned int *)(img->addr + \
+		(x * img->bpp / 8) + \
+		(y * img->size_line)) = color;
+}
 
 void	cub_mmap_check(t_cub *cub, bool draw)
 {

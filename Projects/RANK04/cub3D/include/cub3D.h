@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/15 07:46:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/05/08 10:58:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_parse
 	int	spc_left;
 	int	spc_right;
 	int	spc_down;
-}t_parse;
+}	t_parse;
 
 typedef struct s_adj
 {
@@ -73,26 +73,26 @@ typedef struct s_adj
 	char	center;
 	char	right;
 	char	down;
-}t_adj;
+}	t_adj;
 
 typedef struct s_info
 {
 	int	pos_start;
 	int	pos_end;
-}t_info;
+}	t_info;
 
 typedef struct s_file
 {
 	int		fd;
 	char	*filename;
 	char	**content;
-}t_file;
+}	t_file;
 
 typedef struct s_coord
 {
 	int	x;
 	int	y;
-}t_coord;
+}	t_coord;
 
 typedef struct s_count
 {
@@ -102,7 +102,7 @@ typedef struct s_count
 	int	east;
 	int	floor;
 	int	ceiling;
-}t_count;
+}	t_count;
 
 typedef struct s_img
 {
@@ -115,7 +115,7 @@ typedef struct s_img
 	int				width;
 	int				height;
 	unsigned int	*textures;
-}t_img;
+}	t_img;
 
 typedef struct s_mlx
 {
@@ -125,7 +125,7 @@ typedef struct s_mlx
 	int		screen_height;
 	int		screen_size;
 	t_img	img;
-}t_mlx;
+}	t_mlx;
 
 typedef struct s_directions
 {
@@ -133,7 +133,7 @@ typedef struct s_directions
 	t_img	south;
 	t_img	west;
 	t_img	east;
-}t_directions;
+}	t_directions;
 
 typedef struct s_color
 {
@@ -141,7 +141,7 @@ typedef struct s_color
 	int				green;
 	int				blue;
 	unsigned long	hex;
-}t_color;
+}	t_color;
 
 typedef struct s_map
 {
@@ -149,7 +149,7 @@ typedef struct s_map
 	int		height;
 	int		width;
 	int		minimap_size;
-}t_map;
+}	t_map;
 
 typedef struct s_player
 {
@@ -162,13 +162,13 @@ typedef struct s_player
 	double	move_speed;
 	double	rot_speed;
 	char	c;
-}t_player;
+}	t_player;
 
 typedef struct s_tmp
 {
 	double	x;
 	double	y;
-}t_tmp;
+}	t_tmp;
 
 typedef struct s_keys
 {
@@ -179,7 +179,7 @@ typedef struct s_keys
 	bool	left;
 	bool	right;
 	bool	esc;
-}t_keys;
+}	t_keys;
 
 typedef struct s_raycast
 {
@@ -201,7 +201,7 @@ typedef struct s_raycast
 	int		draw_start;
 	int		draw_end;
 	double	wall_x;
-}t_raycast;
+}	t_raycast;
 
 typedef struct s_cub
 {
@@ -217,7 +217,8 @@ typedef struct s_cub
 	t_tmp			tmp;
 	t_mlx			mlx;
 	t_raycast		raycast;
-}t_cub;
+	t_img			img;
+}	t_cub;
 
 /* ************************************************************************** */
 /*                                    EXIT                                    */
@@ -257,6 +258,7 @@ void			cub_draw_square(t_cub *cub, int x, int y, unsigned int color);
 void			cub_check_shape(t_cub *cub, int x, int y, char c);
 
 // game utils
+void			cub_draw_pixel(t_img *img, int x, int y, unsigned int color);
 void			cub_mmap_check(t_cub *cub, bool draw);
 void			cub_update_angle(t_cub *cub, int angle);
 void			cub_move_player(t_cub *cub, double x, double y);

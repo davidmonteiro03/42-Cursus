@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 19:11:30 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/15 14:53:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:03:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	cub_raycast_draw_wall(t_cub *cub, t_img *img, int x)
 		auto unsigned int color;
 		color = img->textures[img->width * tex_y + tex_x];
 		if (!cub_check_draw(cub, x, y))
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, x, y, color);
+			cub_draw_pixel(&cub->img, x, y, color);
 	}
 }
 
@@ -68,13 +68,11 @@ void	cub_draw_floor_and_ceiling(t_cub *cub, int x)
 	auto int aux_y = -1;
 	while (++aux_y < cub->raycast.draw_start)
 		if (!cub_check_draw(cub, x, aux_y))
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-				x, aux_y, cub->ceiling.hex);
+			cub_draw_pixel(&cub->img, x, aux_y, cub->ceiling.hex);
 	aux_y = cub->raycast.draw_end - 1;
 	while (++aux_y < cub->mlx.screen_size - 1)
 		if (!cub_check_draw(cub, x, aux_y))
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-				x, aux_y, cub->floor.hex);
+			cub_draw_pixel(&cub->img, x, aux_y, cub->floor.hex);
 }
 
 t_img	*cub_get_wall(t_cub *cub)

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 20:17:15 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/15 16:16:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:04:53 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,22 @@ void	cub_check_pixel(t_cub *cub, int x, int y, bool erase)
 	auto char c = cub->map.map[pos_x][pos_y];
 	if (!erase)
 	{
-		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			cub->tmp.x + x, cub->tmp.y + y, PLAYER_COLOR);
+		cub_draw_pixel(&cub->img, cub->tmp.x + x, \
+			cub->tmp.y + y, PLAYER_COLOR);
 		if (cub_check_angle(cub, x, y))
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-				cub->tmp.x + x, cub->tmp.y + y, DIR_COLOR);
+			cub_draw_pixel(&cub->img, cub->tmp.x + x, \
+				cub->tmp.y + y, DIR_COLOR);
 		return ;
 	}
 	if (c == '1')
-		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			cub->tmp.x + x, cub->tmp.y + y, WALL_COLOR);
+		cub_draw_pixel(&cub->img, cub->tmp.x + x, \
+			cub->tmp.y + y, WALL_COLOR);
 	else if (c == '-')
-		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			cub->tmp.x + x, cub->tmp.y + y, EMPTY_COLOR);
+		cub_draw_pixel(&cub->img, cub->tmp.x + x, \
+			cub->tmp.y + y, EMPTY_COLOR);
 	else
-		mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-			cub->tmp.x + x, cub->tmp.y + y, FLOOR_COLOR);
+		cub_draw_pixel(&cub->img, cub->tmp.x + x, \
+			cub->tmp.y + y, FLOOR_COLOR);
 }
 
 void	cub_draw_player(t_cub *cub, bool erase)
@@ -86,8 +86,7 @@ void	cub_draw_square(t_cub *cub, int x, int y, unsigned int color)
 	{
 		auto int j = -1;
 		while (++j < MINIMAP)
-			mlx_pixel_put(cub->mlx.mlx, cub->mlx.win, \
-				x + i, y + j, color);
+			cub_draw_pixel(&cub->img, x + i, y + j, color);
 	}
 }
 

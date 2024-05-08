@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 18:36:34 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/01/16 13:08:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/05/08 11:12:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	cub_exit(t_cub *cub)
 	free_img(cub->mlx.mlx, cub->directions.west);
 	free_img(cub->mlx.mlx, cub->directions.north);
 	free_img(cub->mlx.mlx, cub->directions.south);
+	free_img(cub->mlx.mlx, cub->img);
 	free_mlx(cub->mlx);
 	free_file(cub->config);
 	free_map(cub->map);
