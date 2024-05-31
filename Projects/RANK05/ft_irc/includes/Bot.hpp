@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_irc.hpp                                         :+:      :+:    :+:   */
+/*   Bot.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/27 11:22:54 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/10 08:35:42 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/05/21 08:39:14 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/05/21 08:39:46 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_IRC_HPP
-#define FT_IRC_HPP
+#ifndef BOT_HPP
+#define BOT_HPP
 
-#include "macros.hpp"
-#include "headers.hpp"
-#include "colors.hpp"
-#include "Server.hpp"
-#include "Client.hpp"
-#include "Channel.hpp"
-#include "utils.hpp"
+class Bot
+{
+private:
+	t_string _name;
+	t_stats _stats;
+	Channel *_channel;
+	t_args _levels;
+
+public:
+	Bot(t_string, Channel *);
+	~Bot();
+
+	void addStats(Client *);
+	void updateStats(Client *);
+	void checkStats(Client *, t_string, bool);
+	void removeClient(Client *);
+	size_t getClientLevel(t_string);
+	t_string getName();
+};
 
 #endif

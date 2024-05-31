@@ -5,57 +5,47 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2024/04/10 08:39:23 by dcaetano         ###   ########.fr        #
+#    Created: 2024/05/07 19:12:17 by dcaetano          #+#    #+#              #
+#    Updated: 2024/05/23 22:08:41 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RED				= \033[1;91m
-GREEN			= \033[1;92m
-YELLOW			= \033[1;93m
-CYAN			= \033[1;96m
-RESET			= \033[1;0m
+CXX = c++
+RM = rm -rf
+AR = ar rcs
 
-CXX				= c++
-CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
-RM				= rm -rf
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 -O3
 
-OBJS_DIR		= obj/
-INCLUDES_DIR	= ./include/
+INCS = ./includes/
 
-SRCS			= src/Server.cpp \
-					src/Channel.cpp \
-					src/Client.cpp \
-					src/utils.cpp \
-					main.cpp
+NAME = ircserv
+SRCS = ./main.cpp
+OBJS = $(SRCS:.cpp=.o)
 
-OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
+LIB = ircserv.a
+SRCS_LIB = ./srcs/Server.cpp ./srcs/Client.cpp \
+	./srcs/Channel.cpp ./srcs/utils.cpp ./srcs/Bot.cpp
+OBJS_LIB = $(SRCS_LIB:.cpp=.o)
 
-EXEC			= ircserv
+all: $(NAME)
 
-all: $(EXEC)
+$(OBJS): %.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJS_DIR)%.o: ./%.cpp
-	@mkdir -p $(dir $@)
-	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CXX) $(CXXFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
+$(OBJS_LIB): %.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(OBJS_DIR)%.o: src/%.cpp
-	@mkdir -p $(dir $@)
-	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CXX) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
+$(NAME): $(OBJS) $(LIB)
+	$(CXX) $(CXXFLAGS) -I$(INCS) $(OBJS) $(LIB) -o $(NAME)
 
-$(EXEC): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -I$(INCLUDES_DIR) $^ -o $@
-	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
+$(LIB): $(OBJS_LIB)
+	$(AR) $(LIB) $(OBJS_LIB) $(OBJS_LIB)
 
 clean:
-	@$(RM) $(OBJS_DIR)
-	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
+	$(RM) $(OBJS_LIB) $(OBJS)
 
 fclean: clean
-	@$(RM) $(EXEC)
-	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
+	$(RM) $(LIB) $(NAME)
 
 re: fclean all
 
