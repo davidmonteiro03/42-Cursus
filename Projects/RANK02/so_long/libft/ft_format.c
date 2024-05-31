@@ -5,35 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 18:12:56 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/07 15:55:11 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 09:18:10 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/04/29 20:41:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_format(va_list args, const char format)
+void	ft_format(const char *format, va_list args, int *ret)
 {
-	void	*ptr;
-
-	if (format == 'c')
-		return (ft_putchar((va_arg(args, int))));
-	else if (format == 's')
-		return (ft_putstr((va_arg(args, char *))));
-	else if (format == 'p')
-	{
-		ptr = va_arg(args, void *);
-		if (ptr)
-			return (ft_putptr(ptr));
-		return (write(1, "(nil)", 5));
-	}
-	else if (format == 'i' || format == 'd')
-		return (ft_putnbr((va_arg(args, int))));
-	else if (format == 'u')
-		return (ft_putnbru((va_arg(args, unsigned int))));
-	else if (format == 'x' || format == 'X')
-		return (ft_putstrhex((va_arg(args, unsigned int)), format));
-	else if (format == '%')
-		return (ft_putchar('%'));
-	return (0);
+	if (format == NULL || *format == '\0')
+		return ;
+	if (*format == 'c')
+		return (ft_putchar(va_arg(args, int), ret));
+	if (*format == 's')
+		return (ft_putstr(va_arg(args, char *), ret));
+	if (*format == 'p')
+		return (ft_putptr(va_arg(args, void *), ret));
+	if (*format == 'd' || *format == 'i')
+		return (ft_putnbr(va_arg(args, int), ret));
+	if (*format == 'u')
+		return (ft_putnbr_base(va_arg(args, unsigned int), 10, \
+			ret, NULL));
+	if (*format == 'x')
+		return (ft_putnbr_base(va_arg(args, unsigned int), 16, \
+			ret, &ft_tolower));
+	if (*format == 'X')
+		return (ft_putnbr_base(va_arg(args, unsigned int), 16, \
+			ret, &ft_toupper));
+	if (*format == '%')
+		return (ft_putchar('%', ret));
 }

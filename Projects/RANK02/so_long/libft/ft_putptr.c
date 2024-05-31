@@ -5,43 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 18:33:37 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/06 19:35:59 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 09:55:48 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/05/03 17:46:11 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static size_t	ft_len(size_t n)
+static void	ft_puthex(size_t size, int *ret)
 {
-	size_t	len;
+	const char	*base;
 
-	len = 0;
-	if (n <= 0)
-		len = 1;
-	while (n != 0)
+	base = "0123456789abcdef";
+	if (size > 15)
 	{
-		len++;
-		n = n / 16;
+		ft_puthex(size / 16, ret);
+		ft_puthex(size % 16, ret);
 	}
-	return (len + 2);
+	else
+		ft_putchar(base[size % 16], ret);
 }
 
-int	ft_putptr(void *ptr)
+void	ft_putptr(const void *ptr, int *ret)
 {
-	size_t	mem;
-	size_t	size;
-	size_t	aux;
-	int		num;
-	char	*str;
-
-	mem = (size_t)ptr;
-	aux = mem;
-	size = ft_len(mem);
-	str = ft_converthex(aux, size);
-	if (!str)
-		return (0);
-	num = ft_putstr(str);
-	free(str);
-	return (num);
+	if (ptr == NULL)
+		return (ft_putstr("(nil)", ret));
+	ft_putstr("0x", ret);
+	ft_puthex((size_t)ptr, ret);
 }

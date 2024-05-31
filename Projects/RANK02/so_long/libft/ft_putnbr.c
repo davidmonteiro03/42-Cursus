@@ -5,20 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 19:38:05 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/06 19:52:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 10:26:58 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/04/23 10:30:42 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_putnbr(int num)
+void	ft_putnbr(int nbr, int *ret)
 {
-	char	*str;
-	int		len;
-
-	str = ft_itoa(num);
-	len = ft_putstr(str);
-	free(str);
-	return (len);
+	if (nbr == -2147483648)
+		return (ft_putstr("-2147483648", ret));
+	if (nbr < 0)
+	{
+		nbr = -nbr;
+		ft_putchar('-', ret);
+	}
+	if (nbr > 9)
+	{
+		ft_putnbr(nbr / 10, ret);
+		ft_putnbr(nbr % 10, ret);
+	}
+	else
+		ft_putchar(nbr % 10 + '0', ret);
 }

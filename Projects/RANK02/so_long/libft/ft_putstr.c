@@ -5,16 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 18:23:11 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/26 14:47:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 09:27:54 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/05/03 17:46:04 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_putstr(const char *s)
+void	ft_putstr(const char *str, int *ret)
 {
-	if (!s)
-		return (write(1, "(null)", 6));
-	return (write(1, s, ft_strlen(s)));
+	if (str == NULL)
+		*ret += write(STDOUT_FILENO, "(null)", 6);
+	else
+		while (*str != '\0')
+			ft_putchar(*str++, ret);
 }

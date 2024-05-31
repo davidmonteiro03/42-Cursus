@@ -5,133 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 14:02:23 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/27 07:57:50 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/27 21:34:23 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/04/29 09:31:51 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECKER_H
 # define CHECKER_H
 
-# include "../libft/libft.h"
-# include <stdbool.h>
+# include "../includes/push_swap.h"
 
-////////////////////////////////////////////////////////////////////////////////
-//                                  LIST DATA                                 //
-////////////////////////////////////////////////////////////////////////////////
-
-typedef struct s_data
+typedef struct s_tmpdisp
 {
-	int	*tab;
-	int	size;
-}t_data;
+	t_list	*tmp;
+	bool	flag;
+	int		nbr;
+}	t_tmpdisp;
 
-////////////////////////////////////////////////////////////////////////////////
-//                               LIST STRUCTURE                               //
-////////////////////////////////////////////////////////////////////////////////
-
-typedef struct s_node
+typedef struct s_check
 {
-	int				content;
-	struct s_node	*prev;
-	struct s_node	*next;
-}t_node;
+	char	buf[BUFSIZ];
+	char	*buffer;
+	int		ret;
+	char	*line;
+	char	*tmp;
+	int		original_size;
+}	t_check;
 
-////////////////////////////////////////////////////////////////////////////////
-//                                  CALCULATE                                 //
-////////////////////////////////////////////////////////////////////////////////
+// ----- Parse ----- //
+void	ft_parse_bonus(char **argv, bool *has_flag); // ft_parse_bonus
 
-int		lcm(int pos[2], int size_a, int size_b, bool move);
-int		calc(t_node *stack_a, t_node *stack_b, int size, bool pos_b);
-int		execute_calc(t_node *stack_a, t_node *stack_b, int size, bool pos_b);
-void	reverse_pos(t_node **stack_a, t_node **stack_b, int pos[2]);
+// ---- Checker ---- //
+void	ft_putstacks(t_list *list_a, t_list *list_b, \
+	int original_size); // ft_putstacks
+void	ft_checker_bonus(t_check *check, t_list **list_a, \
+	t_list **list_b, bool has_flag); // ft_checker_bonus
 
-////////////////////////////////////////////////////////////////////////////////
-//                                   ERRORS                                   //
-////////////////////////////////////////////////////////////////////////////////
-
-void	errorargs(char **strs);
-void	errorall(int *tab, char **strs);
-void	errorlst(t_node *stack);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                 OPERATIONS                                 //
-////////////////////////////////////////////////////////////////////////////////
-
-bool	swap(t_node **stack);
-bool	push(t_node **stack_from, t_node **stack_to);
-bool	rotate(t_node **stack, bool reverse);
-bool	execute(t_node **stack_a, t_node **stack_b, char *line, bool display);
-bool	multi_execute(t_node **stack_a, t_node **stack_b, char *line, int n);
-
-////////////////////////////////////////////////////////////////////////////////
-//                              PREPARE ARGUMENTS                             //
-////////////////////////////////////////////////////////////////////////////////
-
-int		getlen(char **strs);
-void	freechars(char **strs);
-char	**jointsplit(int len, char **av);
-void	validargs(char **strs);
-
-////////////////////////////////////////////////////////////////////////////////
-//                               PREPARE NUMBERS                              //
-////////////////////////////////////////////////////////////////////////////////
-
-long	ft_atol(const char *nptr);
-int		findrep(int *tab, int len);
-int		*validnums(char **strs);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                  PUSH_SWAP                                 //
-////////////////////////////////////////////////////////////////////////////////
-
-void	execute_ps(t_node **stack_a, t_node **stack_b, int pos[2], int mode);
-void	sort3(t_node *stack_a);
-void	simple_sort(t_node *stack_a, t_node *stack_b, int size);
-void	sort(t_node *stack_a, t_node *stack_b);
-void	push_swap(t_node *stack_a, t_node *stack_b, int size);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                  READ LINE                                 //
-////////////////////////////////////////////////////////////////////////////////
-
-char	*get_next_line(int fd);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                    SORT                                    //
-////////////////////////////////////////////////////////////////////////////////
-
-int		find_target(t_node *stack_from, t_node *stack_to);
-void	push_target(t_node *stack, int pos);
-void	exec_smt(t_node **stack_a, t_node **stack_b, int pos[2], int mode);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                 SORT UTILS                                 //
-////////////////////////////////////////////////////////////////////////////////
-
-bool	sorted(t_node *stack, bool reverse);
-int		node_index(t_node *stack, int target);
-int		posminmax(t_node *stack, bool max, bool pos);
-void	pushminmax(t_node *stack, bool max);
-int		find_min_index(t_node *stack_a, t_node *stack_b, int size);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                 STACK UTILS                                //
-////////////////////////////////////////////////////////////////////////////////
-
-void	lstdisplay(t_node *stack, char *str, bool pro, bool first);
-t_node	*createnode(int content);
-void	lstfree(t_node *node);
-t_node	*addnode(t_node *node, int content);
-t_node	*frstlastnode(t_node *node, bool last);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                    UTILS                                   //
-////////////////////////////////////////////////////////////////////////////////
-
-int		max(int a, int b);
-int		min(int a, int b);
-int		stacksize(t_node *stack);
-int		ft_strcmp(const char *s1, const char *s2);
+// ----- Utils ----- //
+void	ft_putnbr_ultimate(int nbr); // ft_putnbr_ultimate
+void	ft_fill_bonus(t_list **list, char **args); // ft_fill_bonus
+int		ft_getline(char **buff, char **line); // ft_getline
+void	ft_check_stack(t_tmpdisp *tmpdisp, t_list *list, \
+	int original_size); // ft_check_stack
 
 #endif

@@ -5,34 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 18:06:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/07 16:00:42 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 08:04:03 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/04/29 20:40:44 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_printf(const char *str, ...)
+int	ft_printf(const char *format, ...)
 {
+	int		ret;
 	va_list	args;
-	int		i;
-	int		length;
 
-	i = 0;
-	length = 0;
-	va_start(args, str);
-	while (*(str + i))
-	{
-		if (*(str + i) == '%')
-		{
-			if (ft_strchr("cspdiuxX%", *(str + i + 1)))
-				length += ft_format(args, *(str + i + 1));
-			i++;
-		}
-		else
-			length += ft_putchar(*(str + i));
-		i++;
-	}
+	if (format == NULL)
+		return (0);
+	va_start(args, format);
 	va_end(args);
-	return (length);
+	ret = 0;
+	while (*format != '\0')
+	{
+		if (*format == '%')
+		{
+			ft_format(++format, args, &ret);
+			format++;
+			continue ;
+		}
+		ft_putchar(*format++, &ret);
+	}
+	return (ret);
 }

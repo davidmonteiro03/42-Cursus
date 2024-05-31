@@ -5,237 +5,223 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 12:50:10 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/11/17 12:38:29 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/29 22:46:24 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/05/07 12:10:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# define BRED "\e[1;91m"
-# define BGRN "\e[1;92m"
-# define BYLW "\e[1;93m"
-# define BCYN "\e[1;96m"
-# define BWHT "\e[1;97m"
-# define RESET "\e[0m"
-
-# define LEVEL_1 BRED
-# define LEVEL_2 "\e[1;31m"
-# define LEVEL_3 BYLW
-# define LEVEL_4 "\e[1;32m"
-# define LEVEL_5 BGRN
-
-# define MEMORY_ERROR "Problem with memory allocation"
-# define ARGUMENT_ERROR "Problem with given argument"
-# define LENGTH_ERROR "Argument length must be greater than extension length"
-# define EXTENSION_ERROR "Wrong extension"
-
 # include "../libft/libft.h"
+# include "../libft/ft_printf.h"
 # include "../libft/get_next_line.h"
-# include "../minilibx-linux/mlx.h"
-# include <strings.h>
+# include "../mlx/mlx.h"
+# include <fcntl.h>
+# include <limits.h>
+# include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 
-////////////////////////////////////////////////////////////////////////////////
-//                                 STRUCTURES                                 //
-////////////////////////////////////////////////////////////////////////////////
-
-typedef struct s_chars
+enum
 {
-	char	empty;
-	char	wall;
-	char	collect;
-	char	exit;
-	char	start_pos;
-}t_chars;
+	UP,
+	LEFT,
+	DOWN,
+	RIGHT
+};
 
-typedef struct s_mapinfo
+enum
 {
-	int	n_collect;
-	int	n_exit;
-	int	n_start_pos;
-	int	n_lines;
-	int	n_columns;
-	int	start_x;
-	int	start_y;
-}t_mapinfo;
+	OLD,
+	NEW,
+	EXT
+};
 
-////////////////////////////////////////////////////////////////////////////////
-//                                    GAME                                    //
-////////////////////////////////////////////////////////////////////////////////
-
-// game data
-typedef struct s_data
+// ----- Game struct ---- //
+typedef struct s_file
 {
-	char	**m;
-	int		c;
-	int		x;
-	int		y;
-	int		mv;
-}t_data;
+	int			fd;
+	const char	*name;
+	char		**content;
+}	t_file;
 
-// game sizes
-typedef struct s_size
+typedef struct s_comp
 {
-	int	m_w;
-	int	m_h;
-	int	i_w;
-	int	i_h;
-}t_size;
+	int	collectible;
+	int	map_exit;
+	int	start_position;
+	int	unknown;
+}	t_comp;
 
-// player directories
-typedef struct s_play_d
+typedef struct s_map
 {
-	char	*play;
-	char	*play_r;
-	char	*play_l;
-	char	*play_u;
-	char	*play_d;
-}t_play_d;
+	int		height;
+	int		width;
+	char	**content;
+}	t_map;
 
-// std directories
-typedef struct s_std_d
+typedef struct s_pos
 {
-	char	*bck;
-	char	*col;
-	char	*ext;
-	char	*wal;
-}t_std_d;
+	int	x;
+	int	y;
+}	t_pos;
 
-// player images
-typedef struct s_play_i
-{
-	void	*play;
-	void	*play_r;
-	void	*play_l;
-	void	*play_u;
-	void	*play_d;
-}t_play_i;
-
-// std images
-typedef struct s_std_i
-{
-	void	*bck;
-	void	*col;
-	void	*ext;
-	void	*wal;
-}t_std_i;
-
-// directories
-typedef struct s_dir
-{
-	t_play_d	play;
-	t_std_d		std;
-}t_dir;
-
-// images
-typedef struct s_img
-{
-	t_play_i	play;
-	t_std_i		std;
-}t_img;
-
-// mlx
 typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-}t_mlx;
+	int		win_width;
+	int		win_height;
+}	t_mlx;
 
-// game
+typedef struct s_image
+{
+	void	*img;
+	int		bpp;
+	int		size_line;
+	char	*addr;
+	int		endian;
+	int		width;
+	int		height;
+}	t_image;
+
+typedef struct s_textures
+{
+	t_image	empty;
+	t_image	wall;
+	t_image	collectible;
+	t_image	exit;
+}	t_textures;
+
+typedef struct s_player
+{
+	t_pos			pos;
+	t_image			*frames;
+	t_image			*current;
+	unsigned int	moves;
+}	t_player;
+
 typedef struct s_game
 {
-	t_data	data;
-	t_size	size;
-	t_dir	dir;
-	t_mlx	mlx;
-	t_img	img;
-}t_game;
+	t_file		file;
+	t_map		map;
+	t_comp		comp;
+	t_mlx		mlx;
+	t_textures	textures;
+	t_player	player;
+	t_pos		exit;
+}	t_game;
 
-//prepare_game.c
-void		prepare_game(t_game *g, t_mapinfo info);
+// ------- MACROS ------- //
+# define ERROR "Error"
+# define USAGE "Usage: ./so_long <map>"
+# define EMPTY_ARGUMENT "Empty argument"
+# define ARGUMENT_TO_SHORT "Argument too short"
+# define WRONG_EXTENSION "Wrong extension"
+# define EMPTY_FILE "Empty file"
+# define ERROR_SHAPE "The map must be rectangular."
+# define ERROR_WALLS "The map must be closed/surrounded by walls."
+# define ERROR_UNKNOWN_CHAR "The map must be composed of only \
+'0', '1', 'C', 'E' and 'P'"
+# define ERROR_COLLECT "The map must contain at least 1 collectible"
+# define ERROR_PLAYER_POSITION "The map must contain 1 starting position"
+# define ERROR_MAP_EXIT "The map must contain 1 exit"
+# define MAIN_CHARSET "01CEP"
+# define ERROR_FINISH_COLLECT "The map doesn't let the \
+player collect everything"
+# define ERROR_FINISH_GAME "The map doesn't let the player finish the game"
 
-//dir_init.c
-t_std_d		std_dir_init(void);
-t_play_d	play_dir_init(void);
-t_dir		dir_init(void);
+# define GAME_TITLE "SO_LONG"
+# define MAP_EXTENSION ".ber"
 
-//img_init.c
-t_play_i	play_img_init(t_game *g);
-t_std_i		std_img_init(t_game *g);
-t_img		img_init(t_game *g);
+# define EMPTY '0'
+# define WALL '1'
+# define COLLECT 'C'
+# define PLAYER 'P'
+# define EXIT 'E'
+# define VISIT 'V'
 
-//init_game.c
-void		put_image(t_game *g, void *img, int x, int y);
-void		draw_game(t_game *g);
-void		init_game(t_game *g);
+# define PATH_EMPTY "./textures/mandatory/empty.xpm"
+# define PATH_WALL "./textures/mandatory/wall.xpm"
+# define PATH_COLLECT "./textures/mandatory/collectible.xpm"
+# define PATH_EXIT "./textures/mandatory/exit.xpm"
+# define PLAYER_UP "./textures/mandatory/player_up.xpm"
+# define PLAYER_LEFT "./textures/mandatory/player_left.xpm"
+# define PLAYER_DOWN "./textures/mandatory/player_down.xpm"
+# define PLAYER_RIGHT "./textures/mandatory/player_right.xpm"
+# define PLAYER_FRAMES 4
+# define TEXTURE_SIZE 32
+# define MARGIN 4
 
-//play_game.c
-void		play_game(t_game *g);
+# define DEBUG false
 
-//exit_game.c
-void		clean_play_imgs(t_game *g);
-void		clean_std_imgs(t_game *g);
-void		clean_imgs(t_game *g);
-int			exit_game(t_game *g);
+// ------- Errors ------- //
+void	so_long_error(char *msg, bool usage, bool isfile); // so_long_error
 
-//moves.c
-void		right(t_game *g);
-void		left(t_game *g);
-void		up(t_game *g);
-void		down(t_game *g);
+// -------- Parse ------- //
+void	so_long_parse(t_game *game, char *arg); // so_long_parse
+void	so_long_parse_content(t_game *game); // so_long_parse_content
+t_pos	so_long_getpos(char **map, char c); // so_long_getpos
+void	so_long_parse_path(t_game *game); // so_long_parse_path
 
-////////////////////////////////////////////////////////////////////////////////
-//                                   ERRORS                                   //
-////////////////////////////////////////////////////////////////////////////////
+// -------- Exit -------- //
+void	so_long_exit(t_game *game, char *error, bool iserror, \
+	bool isfile); // so_long_exit
 
-void		simperror(char *error);
-void		fileerror(char *file);
+// -------- Free -------- //
+void	so_long_free_file(t_file *file); // so_long_free_file
+void	so_long_free_mlx(t_mlx *mlx); // so_long_free_mlx
+void	so_long_free_image(t_image *image, t_mlx mlx); // so_long_free_image
+void	so_long_free_textures(t_textures *textures, \
+	t_mlx mlx); // so_long_free_textures
+void	so_long_free_player(t_player *player, t_mlx mlx); // so_long_free_player
+void	so_long_free(t_game *game); // so_long_free
 
-////////////////////////////////////////////////////////////////////////////////
-//                                    FREE                                    //
-////////////////////////////////////////////////////////////////////////////////
+// -------- Utils ------- //
+void	ft_free(void **ptr); // ft_free
+void	ft_freeptrs(void ***ptrs); // ft_freeptrs
+int		ft_strcmp(const char *s1, const char *s2); // ft_strcmp
+char	**ft_readfile(int fd); // ft_readfile
+t_map	ft_mapdup(t_map map); // ft_mapdup
+int		ft_minvalue(int value_a, int value_b); // ft_minvalue
+int		ft_maxvalue(int value_a, int value_b); // ft_maxvalue
+bool	ft_istransp(unsigned int color); // ft_istransp
 
-void		simplefree(void *pnt);
-void		free_pnts(void **pnts);
-void		free_ppnts(void ***ppnts);
-void		type_free(va_list args, const char format);
-void		multiple_free(const char *format, ...);
+// -------- Init -------- //
+void	so_long_init_file(t_file *file, \
+	const char *name); // so_long_init_file
+void	so_long_init_map(t_map *map, char **content); // so_long_init_map
+void	so_long_init_comp(t_comp *comp, t_comp src); // so_long_init_comp
+void	so_long_init_mlx(t_mlx *mlx, t_map map, bool init); // so_long_init_mlx
+void	so_long_init_textures(t_textures *textures, \
+	t_mlx mlx, bool init); // so_long_init_textures
+void	so_long_init_player(t_player *player, \
+	t_mlx mlx, t_map map, bool init); // so_long_init_player
+void	so_long_init_img_background(t_image *image, \
+	t_mlx mlx); // so_long_init_img_background
+void	so_long_init(t_game *game); // so_long_init
 
-////////////////////////////////////////////////////////////////////////////////
-//                               INITIALIZATION                               //
-////////////////////////////////////////////////////////////////////////////////
+// ------- Display ------ //
+void	so_long_display_file(t_file file, bool debug); // so_long_display_file
+void	so_long_display_map(t_map map, bool debug); // so_long_display_map
 
-t_chars		chars_init(void);
-t_mapinfo	mapinfo_init(void);
-void		mapinfo_update(char c, t_mapinfo *mapinfo, t_chars chars);
-
-////////////////////////////////////////////////////////////////////////////////
-//                               PARSE ARGUMENTS                              //
-////////////////////////////////////////////////////////////////////////////////
-
-char		*parse_extension(char *arg, char *ext);
-void		parse_arg(char *arg, t_mapinfo *mapinfo, char ***lines);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                 PARSE UTILS                                //
-////////////////////////////////////////////////////////////////////////////////
-
-void		parse_length_lines(char **lines);
-void		parse_chars(char **lines);
-void		parse_info(char **lines, t_mapinfo *mapinfo);
-void		parse_walls(char **lines, t_mapinfo *mapinfo);
-void		parse_contents(char **lines, t_mapinfo *mapinfo);
-
-////////////////////////////////////////////////////////////////////////////////
-//                                    UTILS                                   //
-////////////////////////////////////////////////////////////////////////////////
-
-char		*specialtrim(char *str, char *ext);
-char		*ft_jointfree2(char *s1, char *s2);
-char		**read_file(char *file);
-int			find_invalid_char(char *str, t_chars chars);
+// -------- Game -------- //
+int		so_long_close(t_game *game); // so_long_close
+void	so_long_show_img(t_image image, t_mlx mlx, \
+	t_pos pos, bool transp); // so_long_display_img
+void	so_long_put_block(t_game *game, \
+	t_image *image, t_pos pos, char c); // so_long_put_block
+void	so_long_play(t_game *game); // so_long_play
+int		so_long_keypress(int keycode, t_game *game); // so_long_keypress
+int		so_long_keyrelease(int keycode, t_game *game); // so_long_keyrelease
+void	so_long_show_map(t_game *game); // so_long_show_map
+void	so_long_show_map_case1(t_game *game); // so_long_show_map_case1
+void	so_long_show_map_case2(t_game *game); // so_long_show_map_case2
+void	so_long_show_map_case3(t_game *game); // so_long_show_map_case3
+void	so_long_find_nearest_collect(t_game \
+	*game); // so_long_find_nearest_collect
+int		so_long_get_best_frame(char **map, \
+	t_pos player, t_pos target); // so_long_get_best_frame
 
 #endif

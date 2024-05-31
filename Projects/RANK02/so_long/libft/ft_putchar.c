@@ -5,15 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/06 18:13:32 by dcaetano          #+#    #+#             */
-/*   Updated: 2023/10/06 18:28:53 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/04/23 09:08:45 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/05/03 17:45:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_putchar(int c)
+void	ft_putchar(const char c, int *ret)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	*ret += write(STDOUT_FILENO, &c, 1);
 }
