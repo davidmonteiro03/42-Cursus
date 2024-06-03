@@ -17,7 +17,7 @@ CYAN			= \033[1;96m
 RESET			= \033[1;0m
 
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -g #-fsanitize=address
+CFLAGS			= -Wall -Wextra -Werror -g -O3 #-fsanitize=address
 RM				= rm -rf
 
 OBJS_DIR		= obj/
