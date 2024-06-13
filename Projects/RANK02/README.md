@@ -4,7 +4,7 @@
 		<tr>
 			<td>Project</td>
 			<td>Status</td>
-			<td>Delivery date</td>
+			<td>Last submission date</td>
 			<td>Name of the project</td>
 		</tr>
 		<!-- RANK 02 -->
@@ -17,7 +17,7 @@
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
-			<td>2023-10-27</td>
+			<td>2024-04-29</td>
 			<td>push_swap</td>
 		</tr>
 		<tr>
@@ -41,7 +41,7 @@
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
-			<td>2023-11-06</td>
+			<td>2024-05-13</td>
 			<td>so_long</td>
 		</tr>
 	</table>

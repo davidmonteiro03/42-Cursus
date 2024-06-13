@@ -4,7 +4,7 @@
 		<tr>
 			<td>Project</td>
 			<td>Status</td>
-			<td>Delivery date</td>
+			<td>Last submission date</td>
 			<td>Name of the project</td>
 		</tr>
 		<!-- RANK 01 -->

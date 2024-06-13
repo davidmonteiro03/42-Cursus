@@ -250,7 +250,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 		<tr>
 			<td>Rank</td>
 			<td>Status</td>
-			<td>Delivery date</td>
+			<td>Last submission date</td>
 			<td>Helpful files</td>
 		</tr>
 		<!-- RANK 02 -->
