@@ -53,7 +53,7 @@
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
-			<td>2023-10-10</td>
+			<td>2024-04-23</td>
 			<td>get_next_line</td>
 		</tr>
 		<tr>
@@ -81,7 +81,7 @@
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
-			<td>2023-10-27</td>
+			<td>2024-04-29</td>
 			<td>push_swap</td>
 		</tr>
 		<tr>
@@ -105,7 +105,7 @@
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
-			<td>2023-11-06</td>
+			<td>2024-05-13</td>
 			<td>so_long</td>
 		</tr>
 		<!-- RANK 03 -->
@@ -195,7 +195,7 @@
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
-			<td>2024-04-11</td>
+			<td>2024-05-27</td>
 			<td>ft_irc</td>
 		</tr>
 		<tr>
