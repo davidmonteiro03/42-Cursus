@@ -21,11 +21,11 @@
 	</table>
 </div>
 
-## Images
+<!-- ## Images
 
 ### Project Finished
 
-<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
+<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/> -->
 
 ## Download files
 
