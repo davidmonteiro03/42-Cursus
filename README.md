@@ -7,7 +7,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			<td>Rank</td>
 			<td>Project</td>
 			<td>Status</td>
-			<td>Delivery date</td>
+			<td>Last submission date</td>
 			<td>Name of the project</td>
 		</tr>
 		<!-- RANK 00 -->
