@@ -21,12 +21,6 @@
 	</table>
 </div>
 
-<!-- ## Images
-
-### Project Finished
-
-<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/> -->
-
 ## Download files
 
 <p>Go to <a href="https://minhaskamal.github.io/DownGit/#/home" target="_blank">DownGit</a> and copy the link of the folder you want to download, then click on Download button.</p>
