@@ -14,7 +14,7 @@
 
 void	cub_draw_mmap_7(t_cub *cub, bool draw)
 {
-	auto int alt_y = -1, x;
+	auto int alt_y = -1, x = 0;
 	auto int y = (int)cub->player.pos_x - cub->map.minimap_size - 1;
 	while (++y < (int)cub->player.pos_x - \
 		cub->map.minimap_size + cub->map.minimap_size * 2 + 1)
@@ -39,7 +39,7 @@ void	cub_draw_mmap_7(t_cub *cub, bool draw)
 
 void	cub_draw_mmap_8(t_cub *cub, bool draw)
 {
-	auto int alt_y = -1, alt_x;
+	auto int alt_y = -1, alt_x = 0;
 	auto int y = (int)cub->player.pos_x - cub->map.minimap_size - 1;
 	while (++y < (int)cub->player.pos_x - \
 		cub->map.minimap_size + cub->map.minimap_size * 2 + 1)
@@ -66,7 +66,7 @@ void	cub_draw_mmap_8(t_cub *cub, bool draw)
 
 void	cub_draw_mmap_9(t_cub *cub, bool draw)
 {
-	auto int alt_y = -1, alt_x;
+	auto int alt_y = -1, alt_x = 0;
 	auto int y = (int)cub->player.pos_x - cub->map.minimap_size - 1;
 	while (++y < (int)cub->player.pos_x - \
 		cub->map.minimap_size + cub->map.minimap_size * 2 + 1)

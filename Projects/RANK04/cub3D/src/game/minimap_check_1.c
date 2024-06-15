@@ -14,7 +14,7 @@
 
 void	cub_draw_mmap_1(t_cub *cub, bool draw)
 {
-	auto int y = -1, x;
+	auto int y = -1, x = 0;
 	while (++y < cub->map.minimap_size * 2 + 1)
 	{
 		x = -1;
@@ -36,7 +36,7 @@ void	cub_draw_mmap_1(t_cub *cub, bool draw)
 
 void	cub_draw_mmap_2(t_cub *cub, bool draw)
 {
-	auto int y = -1, alt_x;
+	auto int y = -1, alt_x = 0;
 	while (++y < cub->map.minimap_size * 2 + 1)
 	{
 		auto int x = cub->map.width - (cub->map.minimap_size * 2 + 1) - 1;
@@ -60,7 +60,7 @@ void	cub_draw_mmap_2(t_cub *cub, bool draw)
 
 void	cub_draw_mmap_3(t_cub *cub, bool draw)
 {
-	auto int y = -1, alt_x;
+	auto int y = -1, alt_x = 0;
 	while (++y < cub->map.minimap_size * 2 + 1)
 	{
 		alt_x = -1;
