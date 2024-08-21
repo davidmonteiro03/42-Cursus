@@ -27,7 +27,7 @@ CFLAGS = -Wall -Wextra -Werror -O3 -g
 
 # Minilibx
 
-MLXLINK = https://cdn.intra.42.fr/document/document/21300/minilibx-linux.tgz
+MLXLINK = https://cdn.intra.42.fr/document/document/25858/minilibx-linux.tgz
 MLXZIP = minilibx-linux.tgz
 MLXUNZIP = minilibx-linux
 MLXFOLDER = mlx
