@@ -6,15 +6,14 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 19:18:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/08/23 08:30:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/08/23 08:36:29 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-// choose your arguments
-static void	execute(int (*print)(const char *, ...))
+static void	default_test(int (*print)(const char *, ...))
 {
 	int	ret;
 
@@ -33,9 +32,18 @@ static void	execute(int (*print)(const char *, ...))
 		fflush(stdout);
 }
 
+// add more tests here ...
+
+static void	execute(void (*test)(int (*print)(const char *, ...)))
+{
+	if (test == NULL)
+		return ;
+	test(printf);
+	test(ft_printf);
+}
+
 int	main(void)
 {
-	execute(printf);
-	execute(ft_printf);
+	execute(default_test);
 	return (0);
 }
