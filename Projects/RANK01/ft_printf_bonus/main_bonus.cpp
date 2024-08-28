@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 19:18:19 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/08/28 17:48:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/08/28 23:01:20 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ extern "C"
 #define TYPE_X "X"
 #define TYPE_percent "%"
 #define TEST_c \
-	"%c %-c %0c %.c %#c % c %     1     -3 c"
+"%.2c %.c %2.c %2.2c %.2.c"
 #define TEST_s "%-s %-s %-s %-s %-s"
 #define TEST_p "%-p %-p %-p %-p %-p"
 #define TEST_d "%-d %-d %-d %-d %-d %-d %-d"
@@ -51,7 +51,7 @@ static void test_c(const char *format, int (*print)(const char *, ...))
 		printf(FT_PRINTF_STR);
 	printf(OUTPUT_STR);
 	fflush(stdout);
-	int ret = print(format, 42, 42, 42, 42, 42, 42, 42);
+	int ret = print(format, 42, 42, 42, 42, 42);
 	printf(RETURN_STR, ret);
 	if (print == printf)
 		fflush(stdout);
