@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/07 19:12:17 by dcaetano          #+#    #+#              #
-#    Updated: 2024/05/23 22:08:41 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/08/29 12:52:39 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ NAME = ircserv
 SRCS = ./main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
-LIB = ircserv.a
+LIB = $(NAME).a
 SRCS_LIB = ./srcs/Server.cpp ./srcs/Client.cpp \
 	./srcs/Channel.cpp ./srcs/utils.cpp ./srcs/Bot.cpp
 OBJS_LIB = $(SRCS_LIB:.cpp=.o)
