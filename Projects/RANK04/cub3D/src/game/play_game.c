@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:31:24 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/05/08 11:12:12 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/02 08:28:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	cub_render(t_cub *cub)
 	time = clock();
 	auto double frame_time = (time - old_time) / 1000.0;
 	cub->player.move_speed = frame_time / 200.0;
-	cub->player.rot_speed = frame_time / 400.0;
+	cub->player.rot_speed = frame_time / 600.0;
 	mlx_put_image_to_window(cub->mlx.mlx, cub->mlx.win, cub->img.img, 0, 0);
 	return (0);
 }
