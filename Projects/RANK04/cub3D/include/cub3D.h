@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 16:28:50 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/02 08:17:59 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/09 09:20:39 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,19 @@
 # define MINIMAP 15
 # define STROKE 2
 # define PLAYER_SZ 5
-# define BORDER_COLOR 0xFFFFFF
-# define FLOOR_COLOR 0x444444
 # define EMPTY_COLOR 0x000000
-# define PLAYER_COLOR 0xDDDD00
-# define DIR_COLOR 0x000000
-# define WALL_COLOR 0x999999
+# define WALL_COLOR 0x333333
+# define FLOOR_COLOR 0x777777
+# define PLAYER_COLOR 0x00FF00
+# define DIR_COLOR 0x00AA00
+# define BORDER_COLOR 0xFFFFFF
 # define PI 3.14159265358979323846
 # define FRAME_WIDTH 64
 # define FRAME_HEIGHT 64
 # define FRAME_TIME 10
+# define FRAME_STEP 1000.0
+# define MOVE_SPEED 0.006
+# define ROT_SPEED 0.002
 
 // ERRORS
 # define ERROR_INPUT "Invalid input"

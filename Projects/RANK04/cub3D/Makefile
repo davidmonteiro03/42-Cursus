@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/24 07:31:26 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/16 13:11:39 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/09/09 09:08:32 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,12 +85,12 @@ EXEC			= cub3D
 
 all: $(EXEC)
 
-$(OBJS_DIR)%.o: ./%.c
+$(OBJS_DIR)%.o: %.c include/cub3D.h
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
 
-$(OBJS_DIR)%.o: srcs/%.c
+$(OBJS_DIR)%.o: srcs/%.c include/cub3D.h
 	@mkdir -p $(dir $@)
 	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
 	@$(CC) $(CFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
