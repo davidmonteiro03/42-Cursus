@@ -3,7 +3,7 @@ name=cub3D
 if [ -f $name ]; then
 	wrong_extension=$(find * -type f -not -name "*.cub" | sort | grep '\.' | head -n 1)
 	not_found="not_found.cub"
-	files=$(find maps -type f -name "*.cub" | sort)" $wrong_extension $not_found"
+	files=$(find * -type f | sort)" $wrong_extension $not_found"
 	for file in $files; do
 		if [[ -f $file ]]; then
 			output=$(./$name $file | grep -v "Error")
