@@ -1,7 +1,0 @@
-NO ./images/north.xpm
-SO ./images/west.xpm
-WE ./images/south.xpm
-EA ./images/east.xpm
-
-F 0,120,0
-C 0,250,0
