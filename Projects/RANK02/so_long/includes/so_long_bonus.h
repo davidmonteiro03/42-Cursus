@@ -185,7 +185,7 @@ typedef struct s_game
 
 // ------- MACROS ------- //
 # define ERROR "Error"
-# define USAGE "Usage: ./so_long <map>"
+# define USAGE "Usage: ./so_long_bonus <map>"
 # define EMPTY_ARGUMENT "Empty argument"
 # define ARGUMENT_TO_SHORT "Argument too short"
 # define WRONG_EXTENSION "Wrong extension"

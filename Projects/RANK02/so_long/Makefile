@@ -134,7 +134,7 @@ bonus: $(BONUS)
 
 # so_long library objs
 
-$(SLOBJS): %.o: %.c
+$(SLOBJS): %.o: %.c includes/so_long.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(SLLIB): $(SLOBJS)
@@ -146,7 +146,7 @@ $(SLLIB): $(SLOBJS)
 	$(AR) $(SLLIB) $(SLOBJS)
 	$(RANLIB) $(SLLIB)
 
-$(SLOBJS_B): %.o: %.c
+$(SLOBJS_B): %.o: %.c includes/so_long_bonus.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(SLLIB_B): $(SLOBJS_B)
