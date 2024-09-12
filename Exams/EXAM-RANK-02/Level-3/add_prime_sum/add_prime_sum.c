@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 16:35:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/06 16:48:43 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:03:07 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,23 @@ void	ft_putnbr(int nbr)
 		ft_putchar(nbr % 10 + '0');
 }
 
-int	ft_isprime(int nbr)
-{
-	int	i;
-	int	t;
-
-	i = 0;
-	t = 0;
-	while (i++ < nbr)
-		if (nbr % i == 0)
-			t++;
-	return (t == 2);
-}
-
 void	add_prime_sum(int *result, int nbr)
 {
 	int	i;
+	int	j;
+	int	t;
 
 	if (nbr <= 0)
 		return ;
 	i = 0;
 	while (i++ < nbr)
 	{
-		if (!ft_isprime(i))
+		j = 0;
+		t = 0;
+		while (j++ < nbr)
+			if (nbr % j == 0)
+				t++;
+		if (t != 2)
 			continue ;
 		*result += i;
 	}

@@ -6,13 +6,17 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:22:12 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/02 21:38:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:08:24 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	int ret = 0, sign = 1;
+	int	ret;
+	int	sign;
+
+	ret = 0;
+	sign = 1;
 	while (*str && *str == ' ')
 		str++;
 	if (*str == '-' || *str == '+')

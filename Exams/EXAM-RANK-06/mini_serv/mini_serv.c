@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 08:29:29 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/05/31 08:29:57 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:20:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <sys/select.h>
 #include <netinet/in.h>
 
-int extract_message(char **buf, char **msg)
+int	extract_message(char **buf, char **msg)
 {
 	char	*newbuf;
 	int		i;
@@ -47,7 +47,7 @@ int extract_message(char **buf, char **msg)
 	return (0);
 }
 
-char *str_join(char *buf, char *add)
+char	*str_join(char *buf, char *add)
 {
 	char	*newbuf;
 	int		len;
@@ -67,46 +67,48 @@ char *str_join(char *buf, char *add)
 	return (newbuf);
 }
 
-void ft_error(const char *error)
+void	ft_error(const char *error)
 {
 	write(STDERR_FILENO, error, strlen(error));
 	write(STDERR_FILENO, "\n", 1);
 	exit(EXIT_FAILURE);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
+	struct sockaddr_in	servaddr;
+	struct sockaddr_in	cli;
+
 	if (argc != 2)
 		ft_error("Wrong number of arguments");
-	int serverfd = socket(AF_INET, SOCK_STREAM, 0);
+	auto int serverfd = socket(AF_INET, SOCK_STREAM, 0);
 	if (serverfd < 0)
 		ft_error("Fatal error");
-	struct sockaddr_in servaddr, cli;
-	socklen_t len = sizeof(cli);
+	auto socklen_t len = sizeof(cli);
 	bzero(&servaddr, sizeof(servaddr));
 	servaddr.sin_family = AF_INET;
 	servaddr.sin_addr.s_addr = htonl(2130706433);
 	servaddr.sin_port = htons(atoi(argv[1]));
-	if (bind(serverfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) != 0 || \
-		listen(serverfd, 10) != 0)
+	if (bind(serverfd, (const struct sockaddr *)&servaddr, sizeof(servaddr)) \
+		!= 0 || listen(serverfd, 10) != 0)
 		ft_error("Fatal error");
-	const int BUFFER_READ = 1024;
-	const int BUFFER_WRITE = 100;
-	char buffer_read[BUFFER_READ];
-	char buffer_write[BUFFER_WRITE];
-	fd_set allfds, readfds, writefds;
-	int next_id = 0;
-	int ids[1024] = {-1};
-	char *msg[1024] = {NULL};
+	auto const int BUFFER_READ = 1024;
+	auto const int BUFFER_WRITE = 100;
+	auto char buffer_read[BUFFER_READ];
+	auto char buffer_write[BUFFER_WRITE];
+	auto fd_set allfds, readfds, writefds;
+	auto int next_id = 0;
+	auto int ids[1024] = {-1};
+	auto char *msg[1024] = {NULL};
 	FD_ZERO(&allfds);
 	FD_SET(serverfd, &allfds);
-	int maxfd = serverfd;
+	auto int maxfd = serverfd;
 	while (42)
 	{
 		readfds = writefds = allfds;
 		if (select(maxfd + 1, &readfds, &writefds, NULL, NULL) < 0)
 		{
-			for (int i = 0; i <= maxfd; i++)
+			for (auto int i = 0; i <= maxfd; i++)
 			{
 				if (FD_ISSET(i, &allfds))
 				{
@@ -116,13 +118,13 @@ int main(int argc, char **argv)
 				}
 			}
 		}
-		for (int fd = 0; fd <= maxfd; fd++)
+		for (auto int fd = 0; fd <= maxfd; fd++)
 		{
 			if (!FD_ISSET(fd, &readfds))
 				continue ;
 			if (fd == serverfd)
 			{
-				int clientfd = accept(serverfd, (struct sockaddr *)&cli, &len);
+				auto int clientfd = accept(serverfd, (struct sockaddr *)&cli, &len);
 				if (clientfd >= 0)
 				{
 					FD_SET(clientfd, &allfds);
@@ -143,14 +145,14 @@ int main(int argc, char **argv)
 			else
 			{
 				bzero(buffer_read, BUFFER_READ);
-				int ret = recv(fd, buffer_read, sizeof(buffer_read) - 1, 0);
+				auto int ret = recv(fd, buffer_read, sizeof(buffer_read) - 1, 0);
 				if (ret <= 0)
 				{
 					bzero(buffer_write, BUFFER_WRITE);
 					sprintf(buffer_write, "server: client %d just left\n", ids[fd]);
 					if (fd == maxfd)
 						--maxfd;
-					for (int i = 0; i <= maxfd; i++)
+					for (auto int i = 0; i <= maxfd; i++)
 					{
 						if (FD_ISSET(i, &writefds) && i != fd)
 							send(i, buffer_write, strlen(buffer_write), 0);
@@ -165,12 +167,12 @@ int main(int argc, char **argv)
 					FD_CLR(fd, &allfds);
 					break ;
 				}
-				char *tmpbuff;
+				auto char *tmpbuff;
 				buffer_read[ret] = '\0';
 				msg[fd] = str_join(msg[fd], buffer_read);
 				while (extract_message(&msg[fd], &tmpbuff))
 				{
-					for (int i = 0; i <= maxfd; i++)
+					for (auto int i = 0; i <= maxfd; i++)
 					{
 						if (FD_ISSET(i, &writefds) && i != fd)
 						{

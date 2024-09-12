@@ -47,7 +47,7 @@ typedef struct s_data
 	bool	simulation_end;
 	t_mutex	display;
 	t_mutex	check;
-}t_data;
+}	t_data;
 
 typedef struct s_philo
 {
@@ -58,7 +58,7 @@ typedef struct s_philo
 	t_mutex		*left_fork;
 	t_mutex		*right_fork;
 	t_data		*data;
-}t_philo;
+}	t_philo;
 
 // CHECK
 long int	ph_atol(const char *str);

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 12:00:22 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/03 12:10:52 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:06:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,26 @@ void	ft_putnbr(int nbr)
 		ft_putchar(nbr % 10 + '0');
 }
 
-void	tab_mult(int num)
-{
-	int	i;
-
-	i = 0;
-	while (i++ < 9)
-	{
-		if (i > 1)
-			ft_putchar('\n');
-		ft_putnbr(i);
-		ft_putstr(" x ");
-		ft_putnbr(num);
-		ft_putstr(" = ");
-		ft_putnbr(i * num);
-	}
-}
-
 int	main(int argc, char **argv)
 {
+	int	num;
+	int	i;
+
 	if (argc == 2)
-		tab_mult(ft_atoi(argv[1]));
+	{
+		num = ft_atoi(argv[1]);
+		i = 0;
+		while (i++ < 9)
+		{
+			if (i > 1)
+				ft_putchar('\n');
+			ft_putnbr(i);
+			ft_putstr(" x ");
+			ft_putnbr(num);
+			ft_putstr(" = ");
+			ft_putnbr(i * num);
+		}
+	}
 	ft_putchar('\n');
 	return (0);
 }

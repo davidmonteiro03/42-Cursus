@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:24:37 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/06 15:57:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:07:35 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,3 @@ int	main(int argc, char **argv)
 	ft_putchar('\n');
 	return (0);
 }
-

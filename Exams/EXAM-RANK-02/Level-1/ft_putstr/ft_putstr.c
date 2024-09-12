@@ -6,13 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 21:20:06 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/02/02 21:38:58 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/12 21:07:19 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void ft_putstr(char *str)
+void	ft_putstr(char *str)
 {
 	if (!str)
 		return ;
