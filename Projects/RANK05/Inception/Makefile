@@ -5,39 +5,47 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/21 14:10:59 by dcaetano          #+#    #+#              #
-#    Updated: 2024/03/22 17:15:52 by dcaetano         ###   ########.fr        #
+#    Created: 2024/09/09 17:42:36 by dcaetano          #+#    #+#              #
+#    Updated: 2024/09/13 16:07:16 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-APP_PATH = /home/$(USER)/data
+APP_PATH = $(HOME)/data
 
 all: prepare
-	@docker compose -f ./srcs/docker-compose.yml up -d --build
+	@docker compose -f ./srcs/docker-compose.yml up --build
 
 prepare:
-	@mkdir -p $(APP_PATH)
 	@mkdir -p $(APP_PATH)/wordpress
 	@mkdir -p $(APP_PATH)/mariadb
+
+build:
+	@docker compose -f ./srcs/docker-compose.yml build
+
+up:
+	@docker compose -f ./srcs/docker-compose.yml up
 
 down:
 	@docker compose -f ./srcs/docker-compose.yml down
 
-re:
-	@docker compose -f ./srcs/docker-compose.yml up -d --build
+restart:
+	@docker compose -f ./srcs/docker-compose.yml restart
+
+stats:
+	@docker compose -f ./srcs/docker-compose.yml stats
 
 clean: down
-	@docker system prune -af
+	@docker compose -f ./srcs/docker-compose.yml down -v
 
 fclean: clean
-	@if [ -n "$$(docker ps -qa)" ]; then docker stop $$(docker ps -qa); fi
-	@if [ -n "$$(docker ps -qa)" ]; then docker rm -f $$(docker ps -qa); fi
-	@if [ -n "$$(docker images -q)" ]; then docker rmi -f $$(docker images -q); fi
-	@if [ -n "$$(docker volume ls -q)" ]; then docker volume rm $$(docker volume ls -q); fi
-	@if [ -n "$$(docker network ls --format '{{.Name}}' | grep -vE 'bridge|host|none')" ]; then \
-		docker network rm $$(docker network ls --format '{{.Name}}' | grep -vE 'bridge|host|none'); \
-	fi
 	@docker system prune -af
-	@sudo rm -rf $(APP_PATH)
+	@rm -rf $(APP_PATH)
 
-.PHONY: all down re clean fclean
+system:
+	@docker system df -v
+
+rerun: down up
+
+re: fclean all
+
+.PHONY: all build up down restart stats clean fclean system rerun re
