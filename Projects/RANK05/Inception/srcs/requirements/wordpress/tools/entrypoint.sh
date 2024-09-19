@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/03/21 18:38:51 by dcaetano          #+#    #+#              #
-#    Updated: 2024/09/19 12:59:52 by dcaetano         ###   ########.fr        #
+#    Created: 2024/09/19 13:04:23 by dcaetano          #+#    #+#              #
+#    Updated: 2024/09/19 13:04:24 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ PHP_FPM_CONF="/etc/php/7.4/fpm/pool.d/www.conf"
 TMP_CONF="/tmp/www.conf"
 
 # Download and extract WordPress
-echo "Downloadind WordPress..."
+echo "Downloading WordPress..."
 wget $WORDPRESS_URL -O latest.tar.gz
 if [ $? -ne 0 ]; then
     echo "Error downloading WordPress"
@@ -41,7 +41,7 @@ else
 fi
 
 # Setup permissions
-echo "Setting up permitions..."
+echo "Setting up permissions..."
 mkdir -p $WORDPRESS_DIR
 chown -R www-data:www-data $WORDPRESS_DIR
 chmod -R 777 $WORDPRESS_DIR
@@ -57,7 +57,7 @@ else
     exit 1
 fi
 
-# Download e setup WP-CLI
+# Download and setup WP-CLI
 echo "Downloading WP-CLI..."
 wget $WP_CLI_URL -O wp-cli.phar
 if [ $? -ne 0 ]; then
@@ -77,24 +77,32 @@ sed -i "s/username_here/$DB_USER/g" wp-config.php
 sed -i "s/password_here/$DB_PASS/g" wp-config.php
 sed -i "s/localhost/$DB_HOST/g" wp-config.php
 
-# Install WordPress
-echo "Installing WordPress..."
-wp core install --url="https://$DOMAIN" \
-    --title="$WP_TITLE" \
-    --admin_user="$DB_USER" \
-    --admin_password="$DB_PASS" \
-    --admin_email="$DB_MAIL" \
-    --skip-email \
-    --path="$WORDPRESS_DIR" \
-    --allow-root
+# Install WordPress if not already installed
+if ! wp core is-installed --path="$WORDPRESS_DIR" --allow-root; then
+    echo "Installing WordPress..."
+    wp core install --url="https://$DOMAIN" \
+        --title="$WP_TITLE" \
+        --admin_user="$DB_USER" \
+        --admin_password="$DB_PASS" \
+        --admin_email="$DB_MAIL" \
+        --skip-email \
+        --path="$WORDPRESS_DIR" \
+        --allow-root
+else
+    echo "WordPress is already installed."
+fi
 
-# Create WordPress user
-echo "Creating WordPress user..."
-wp user create $WP_USER $WP_MAIL \
-    --role=author \
-    --user_pass="$WP_PASS" \
-    --path="$WORDPRESS_DIR" \
-    --allow-root
+# Create WordPress user if not already exists
+if ! wp user get $WP_USER --path="$WORDPRESS_DIR" --allow-root > /dev/null 2>&1; then
+    echo "Creating WordPress user..."
+    wp user create $WP_USER $WP_MAIL \
+        --role=author \
+        --user_pass="$WP_PASS" \
+        --path="$WORDPRESS_DIR" \
+        --allow-root
+else
+    echo "The '$WP_USER' username is already registered."
+fi
 
 # Start PHP-FPM
 echo "Starting PHP-FPM..."
