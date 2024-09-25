@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 11:25:19 by dcaetano          #+#    #+#              #
-#    Updated: 2024/09/25 09:54:19 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/09/25 12:19:58 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,9 @@ READLINEFLAGS          = -lreadline
 RMFLAGS                = -rf
 VALGRINDFLAGS          = -s --suppressions=$(READLINE_SUPP) \
                          --tool=memcheck --leak-check=full \
-                         --track-origins=yes --track-fds=yes \
-                         --show-below-main=no --log-file=$(LEAKS_LOG)
+                         --show-leak-kinds=all --track-origins=yes \
+                         --track-fds=yes --show-below-main=no \
+                         --log-file=$(LEAKS_LOG)
 # --- FILES ------------------------------------------------------------------ #
 LEAKS_LOG              = leaks.log
 READLINE_SUPP          = readline.supp

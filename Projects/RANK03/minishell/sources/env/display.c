@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 09:24:58 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/25 07:19:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 12:37:38 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,22 @@
 
 static void	writevar(char *const key, char *const sep, char *const value)
 {
-	char	*output;
-
 	if (key == NULL || sep == NULL)
 		return ;
-	output = ft_strjoin(key, sep);
+	display_fprintf(STDOUT_FILENO, "%s%s", key, sep);
 	if (value != NULL)
-		output = utils_joinfree(output, ft_strdup(value));
-	output = utils_joinfree(output, ft_strdup("\n"));
-	if (output != NULL)
-	{
-		write(STDOUT_FILENO, output, ft_strlen(output));
-		free(output);
-	}
+		ft_putstr_fd(value, STDOUT_FILENO);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 }
 
 static void	writevar2(char *const key, char *const sep, char *const value)
 {
-	char	*output;
-
 	if (key == NULL || sep == NULL)
 		return ;
-	output = ft_strjoin("declare -x ", key);
+	display_fprintf(STDOUT_FILENO, "declare -x %s", key);
 	if (value != NULL)
-	{
-		output = utils_joinfree(output, ft_strdup(sep));
-		output = utils_joinfree(output, ft_strdup("\""));
-		output = utils_joinfree(output, ft_strdup(value));
-		output = utils_joinfree(output, ft_strdup("\""));
-	}
-	output = utils_joinfree(output, ft_strdup("\n"));
-	if (output != NULL)
-	{
-		write(STDOUT_FILENO, output, ft_strlen(output));
-		free(output);
-	}
+		display_fprintf(STDOUT_FILENO, "%s\"%s\"", sep, value);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 }
 
 static void	envs_display(t_vars *envs, char *const underscore, char *const sep)
