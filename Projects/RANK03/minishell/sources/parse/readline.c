@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:05:02 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/20 13:10:22 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 07:14:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	parse_readline(t_shell *shell)
 {
-	shell->line = readline(CYN PROMPT RESET "$ ");
+	shell->line = readline(PROMPT);
 	if (shell->line == NULL)
 		return (false);
 	if (*shell->line != '\0')

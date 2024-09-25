@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preis-ne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 02:38:23 by preis-ne          #+#    #+#             */
-/*   Updated: 2024/06/16 18:06:58 by preis-ne         ###   ########.fr       */
+/*   Updated: 2024/09/25 07:55:00 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_left_string(char *buffer)
 
 char	*ft_line(char *buffer, char *line)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (buffer[i] != '\0' && buffer[i] != '\n')
@@ -56,10 +56,11 @@ char	*ft_line(char *buffer, char *line)
 	return (line);
 }
 
-char	*ft_read(int fd, char *file, char *buffer)
+char	*ft_read(int fd, char *file, char *buffer, int status)
 {
-	auto char *tmp = 0;
-	auto int status = -1;
+	char	*tmp;
+
+	tmp = 0;
 	while (status != 0)
 	{
 		status = read(fd, file, BUFFER_SIZE);
@@ -88,18 +89,19 @@ char	*get_next_line(int fd)
 {
 	static char	*buffer[FILES];
 	char		*line;
+	char		*file;
 
 	line = NULL;
 	if (fd < 0 || fd > FILES || BUFFER_SIZE <= 0)
 		return (NULL);
-	auto char *file = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	file = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!file)
 	{
 		if (buffer[fd] != NULL)
 			return (free(buffer[fd]), buffer[fd] = NULL, NULL);
 		return (NULL);
 	}
-	buffer[fd] = ft_read(fd, file, buffer[fd]);
+	buffer[fd] = ft_read(fd, file, buffer[fd], -1);
 	free(file);
 	file = NULL;
 	if (!buffer[fd])
@@ -113,10 +115,11 @@ char	*get_next_line(int fd)
 /*
 #include <fcntl.h>
 #include <stdio.h>
+
 int	main(void)
 {
-	int	fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	fd = open("read_error.txt", O_RDONLY);
 	line = get_next_line(fd);

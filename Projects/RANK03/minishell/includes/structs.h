@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:00:42 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/20 20:46:10 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 07:17:10 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_env
 	t_vars				*envs;
 	t_vars				*exps;
 	char				**envp;
+	char				*underscore;
 }						t_env;
 
 typedef struct s_exp

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 13:10:53 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/20 15:42:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:04:28 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	builtins_export(t_cmds *cmd, t_shell *shell)
 	while (cmd->args[i] != NULL)
 	{
 		exp_init(&exp, cmd->args[i]);
-		exp_execute(&shell->env, exp, cmd->args[i++]);
+		exp_execute(&shell->env, exp, cmd->args[i++], vars_pushback);
 		exp_clear(&exp);
 	}
 }

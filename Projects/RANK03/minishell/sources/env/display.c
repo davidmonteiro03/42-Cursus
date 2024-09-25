@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 09:24:58 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/23 09:01:13 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 07:19:55 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	writevar2(char *const key, char *const sep, char *const value)
 	}
 }
 
-static void	envs_display(t_vars *envs, char *const sep)
+static void	envs_display(t_vars *envs, char *const underscore, char *const sep)
 {
 	t_vars	*iter;
 
@@ -63,6 +63,7 @@ static void	envs_display(t_vars *envs, char *const sep)
 		writevar(iter->key, sep, iter->value);
 		iter = iter->next;
 	}
+	writevar("_", sep, underscore);
 }
 
 static void	exps_display(t_vars *exps, char *const sep)
@@ -86,7 +87,7 @@ void	env_display(t_env *env, char *const sep, bool printenvs, bool printexps)
 			&& printexps == false))
 		return ;
 	if (printenvs == true && printexps == false)
-		return (envs_display(env->envs, sep));
+		return (envs_display(env->envs, env->underscore, sep));
 	if (printenvs == false && printexps == true)
 		return (exps_display(env->exps, sep));
 }

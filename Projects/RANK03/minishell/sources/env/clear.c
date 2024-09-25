@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 09:22:27 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/16 14:31:32 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 07:18:23 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,6 @@ void	env_clear(t_env *env)
 		vars_clear(&env->exps);
 	if (env->envp != NULL)
 		utils_freestrs(env->envp);
+	if (env->underscore != NULL)
+		free(env->underscore);
 }

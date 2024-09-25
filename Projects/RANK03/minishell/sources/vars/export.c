@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 15:32:33 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/23 08:15:36 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:00:47 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ static void	updatevar(t_vars *node, t_exp exp)
 	node->value = utils_joinfree(node->value, ft_strdup(exp.value));
 }
 
-void	vars_export(t_vars **vars, t_exp const exp)
+void	vars_export(t_vars **vars, t_exp const exp, void (*insert)(t_vars **,
+			t_vars *))
 {
 	t_vars	*iter;
 	t_vars	*node;
 
-	if (vars == NULL || exp.key == NULL)
+	if (vars == NULL || insert == NULL || exp.key == NULL
+		|| utils_strcmp(exp.key, "_") == 0)
 		return ;
 	iter = vars_first(*vars);
 	while (iter != NULL)
@@ -51,5 +53,5 @@ void	vars_export(t_vars **vars, t_exp const exp)
 	node = vars_new2(exp);
 	if (node == NULL)
 		return ;
-	vars_pushback(vars, node);
+	insert(vars, node);
 }

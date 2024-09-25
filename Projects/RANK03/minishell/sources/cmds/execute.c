@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 08:22:47 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/23 09:15:54 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 08:03:08 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,20 @@ static void	waitcmds(t_shell *shell)
 	signals_handler(shell, DEFAULT_MODE);
 }
 
-void	cmds_execute(t_shell *shell)
+static void	cmdspipe(t_shell *shell)
 {
-	if (shell == NULL || cmds_size(shell->cmds) < 1)
+	t_cmds	*iter;
+
+	if (shell == NULL)
 		return ;
-	if (cmds_size(shell->cmds) < 2)
-		return (cmds_nopipe(shell));
-	if (cmds_openclosefds(shell->cmds, 1) != EXIT_SUCCESS)
-		return ;
-	auto t_cmds * iter = cmds_first(shell->cmds);
+	iter = cmds_first(shell->cmds);
 	while (iter != NULL)
 	{
 		iter->pid = fork();
 		if (iter->pid == 0)
 		{
 			signals_handler(shell, FORK_MODE);
+			env_underscoreup(&shell->env, utils_laststr(iter->args));
 			if (cmds_checkfiles(&shell->env, iter->files) == EXIT_SUCCESS)
 			{
 				cmds_controlfds(iter);
@@ -55,4 +54,15 @@ void	cmds_execute(t_shell *shell)
 		iter = iter->next;
 	}
 	waitcmds(shell);
+}
+
+void	cmds_execute(t_shell *shell)
+{
+	if (shell == NULL || cmds_size(shell->cmds) < 1)
+		return ;
+	if (cmds_size(shell->cmds) < 2)
+		return (cmds_nopipe(shell));
+	if (cmds_openclosefds(shell->cmds, 1) != EXIT_SUCCESS)
+		return ;
+	cmdspipe(shell);
 }

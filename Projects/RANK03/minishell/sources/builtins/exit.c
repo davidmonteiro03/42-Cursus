@@ -6,39 +6,37 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 11:58:03 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/23 09:10:39 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 07:53:56 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-static bool	longlongintrange(long long int const sign, long long int const nbr, \
-	char const c)
+static bool	longlongintrange(long long int const sign, long long int const nbr,
+		char const c)
 {
 	if (nbr * sign > LLONG_MAX / 10 || nbr * sign < LLONG_MIN / 10)
 		return (false);
-	if ((nbr * sign == LLONG_MAX / 10 && c - '0' > LLONG_MAX % 10) || \
-		(nbr * sign == LLONG_MIN / 10 && c - '0' > -(LLONG_MIN % 10)))
+	if ((nbr * sign == LLONG_MAX / 10 && c - '0' > LLONG_MAX % 10) || (nbr
+			* sign == LLONG_MIN / 10 && c - '0' > -(LLONG_MIN % 10)))
 		return (false);
 	return (true);
 }
 
-static bool	longlongintvalid(char *const str)
+static bool	longlongintvalid(char *const str, size_t i, long long int sign,
+		long long int nbr)
 {
 	if (str == NULL)
 		return (false);
-	auto size_t i = 0;
 	while (str[i] != '\0' && utils_isspace(str[i]) == true)
 		i++;
 	if (str[i] == '\0')
 		return (false);
-	auto long long int sign = 1;
 	if (str[i] == '-' || str[i] == '+')
 		if (str[i++] == '-')
 			sign = -1;
 	if (str[i] == '\0')
 		return (false);
-	auto long long int nbr = 0;
 	while (str[i] != '\0' && ft_isdigit(str[i]) == true)
 	{
 		if (longlongintrange(sign, nbr, str[i]) == false)
@@ -88,7 +86,7 @@ void	builtins_exit(t_cmds *cmd, t_shell *shell)
 		ft_putendl_fd("exit", STDERR_FILENO);
 	if (cmd->args[1] == NULL)
 		return (shell_hardreset(shell), exit(g_exit_status));
-	if (longlongintvalid(cmd->args[1]) == false)
+	if (longlongintvalid(cmd->args[1], 0, 1, 0) == false)
 		return (numericerror(cmd->args[1], shell));
 	if (cmd->args[2] != NULL)
 		return (argserror());

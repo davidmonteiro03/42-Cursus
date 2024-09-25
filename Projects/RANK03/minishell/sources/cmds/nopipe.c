@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/16 15:25:36 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/20 20:47:55 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 08:10:14 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	cmds_nopipe(t_shell *shell)
 	if (shell == NULL || shell->cmds == NULL)
 		return ;
 	cmd = cmds_first(shell->cmds);
+	env_underscoreup(&shell->env, utils_laststr(cmd->args));
 	if (cmds_checkfiles(&shell->env, cmd->files) == EXIT_SUCCESS)
 	{
 		lastin = files_lastin(cmd->files);

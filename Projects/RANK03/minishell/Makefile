@@ -6,7 +6,7 @@
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/06 11:25:19 by dcaetano          #+#    #+#              #
-#    Updated: 2024/09/23 17:24:40 by dcaetano         ###   ########.fr        #
+#    Updated: 2024/09/25 09:54:19 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,7 @@ DISPLAY_SOURCES        = case_c case_di case_p case_percent case_s \
                          manipulations_strings \
                          manipulations_strings_two manipulations_u \
                          manipulations_xx
-ENV_SOURCES            = clear display init unset
+ENV_SOURCES            = clear display init underscoreup unset
 EXP_SOURCES            = clear execute init print
 PARSE_SOURCES          = expand heredocexpand quotes readline somefix \
                          vars
@@ -109,8 +109,8 @@ TEMP_SOURCES           = clear init
 TOKENS_SOURCES         = clear first getoper gettext isoper last new \
                          parse print pushback pushfront size
 UTILS_SOURCES          = atott exportvalidop freestrs isspace joinfree \
-                         listtoarray strcmp strconstruct strflex \
-                         syscallerror tokenstostrs
+                         laststr listtoarray shellatoi strcmp strconstruct \
+                         strflex syscallerror tokenstostrs
 VARS_SOURCES           = clear copy delone dup export first getvalue last \
                          new new2 pushback pushfront remove resetvalue size \
                          sort unset
@@ -163,7 +163,7 @@ LIB_OBJECTS            = $(patsubst \
                            $(OBJECTS_DIR)/%.o, \
                            $(LIB_DATA))
 MAIN_OBJECT            = $(OBJECTS_DIR)/$(MAIN_SOURCE:.c=.o)
-INCLUDES               = colors consts headers minishell structs
+INCLUDES               = consts headers minishell structs
 HEADERS                = $(addsuffix .h, \
                            $(addprefix $(INCLUDES_DIR)/, \
                          $(INCLUDES)))

@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 10:25:45 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/20 20:49:27 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:02:58 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ static char	*handlepwdoldpwd(t_env *env)
 	}
 	if (pwd != NULL)
 	{
-		exp_execute(env, (t_exp){.key = "PWD", .op = "=", .value = pwd}, NULL);
+		exp_execute(env, (t_exp){.key = "PWD", .op = "=", .value = pwd}, NULL,
+			vars_pushback);
 		if (oldpwd != NULL)
 		{
 			exp_execute(env, (t_exp){.key = "OLDPWD", .op = "=",
-				.value = oldpwd}, NULL);
+				.value = oldpwd}, NULL, vars_pushback);
 			free(oldpwd);
 		}
 		free(pwd);

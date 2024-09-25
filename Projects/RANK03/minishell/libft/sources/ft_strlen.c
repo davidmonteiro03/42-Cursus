@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: preis-ne <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/04 14:52:27 by preis-ne          #+#    #+#             */
-/*   Updated: 2023/12/04 06:29:20 by preis-ne         ###   ########.fr       */
+/*   Updated: 2024/09/25 07:52:15 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
+
 /*NAME: ft_strlen	--- Calculates the lenght of a string
 **
 **SYNOPSIS: size_t	ft_strlen(const char *ptr)
 **
-**DESCRIPTION: This functions calculates the length of the string pointed to 
+**DESCRIPTION: This functions calculates the length of the string pointed to
 **	by ptr, excluding the terminating null byte ('\0').
 **
 **PARAMETERS:	*ptr: pointer to a string
@@ -27,7 +28,9 @@
 **FUCNTION: \NA*/
 size_t	ft_strlen(const char *ptr)
 {
-	auto int i = 0;
+	int	i;
+
+	i = 0;
 	if (!ptr)
 		return (0);
 	while (ptr[i])

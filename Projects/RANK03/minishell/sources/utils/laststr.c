@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   getvalue.c                                         :+:      :+:    :+:   */
+/*   laststr.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/22 08:34:55 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/25 07:24:07 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/09/25 07:46:33 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/09/25 07:48:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minishell.h"
 
-char	*vars_getvalue(t_env *env, char *const key)
+char	*utils_laststr(char *const *strs)
 {
-	t_vars	*iter;
-
-	if (env == NULL || key == NULL || *key == '\0')
+	if (strs == NULL || *strs == NULL)
 		return (NULL);
-	iter = vars_first(env->envs);
-	while (iter != NULL)
-	{
-		if (utils_strcmp(iter->key, key) == 0)
-			return (iter->value);
-		iter = iter->next;
-	}
-	if (utils_strcmp(key, "_") == 0)
-		return (env->underscore);
-	return (NULL);
+	if (*(strs + 1) == NULL)
+		return (*strs);
+	return (utils_laststr(strs + 1));
 }

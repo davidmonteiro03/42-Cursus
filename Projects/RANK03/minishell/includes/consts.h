@@ -6,14 +6,14 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 11:05:57 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/20 13:17:56 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 09:54:37 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONSTS_H
 # define CONSTS_H
 
-# define PROMPT "p4q48k6oo_f3g6i3uj6"
+# define PROMPT "minishell$ "
 # define NAME "minishell"
 
 # define ECHO_STR "echo"
@@ -32,6 +32,8 @@
 # define REDOUT_STR ">"
 # define HEREDOC_STR "<<"
 # define APPEND_STR ">>"
+
+# define SHLVL_MAX 1000
 
 typedef enum e_type
 {

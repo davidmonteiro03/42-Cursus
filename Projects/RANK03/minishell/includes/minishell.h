@@ -6,14 +6,13 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 07:03:58 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/09/23 09:16:04 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/09/25 10:02:26 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include "colors.h"
 # include "consts.h"
 # include "headers.h"
 # include "structs.h"
@@ -103,12 +102,14 @@ void		env_display(t_env *env, char *const sep, bool printenvs,
 				bool printexps);
 void		env_init(t_env *env, char *const *envp, void (*insert)(t_vars **,
 					t_vars *));
+void		env_underscoreup(t_env *env, char *const newstr);
 void		env_unset(t_env *env, char *const key);
 
 void		execute_main(t_shell *shell);
 
 void		exp_clear(t_exp *exp);
-void		exp_execute(t_env *env, t_exp exp, char *const arg);
+void		exp_execute(t_env *env, t_exp exp, char *const arg,
+				void (*insert)(t_vars **, t_vars *));
 void		exp_init(t_exp *exp, char *const str);
 void		exp_print(int fd, t_exp *exp);
 
@@ -164,7 +165,9 @@ bool		utils_exportvalidop(char const curr, char const next);
 void		utils_freestrs(char **strs);
 bool		utils_isspace(char const c);
 char		*utils_joinfree(char *const s1, char *const s2);
+char		*utils_laststr(char *const *strs);
 char		**utils_listtoarray(t_vars *const vars);
+int			utils_shellatoi(char *const str);
 int			utils_strcmp(char *const s1, char *const s2);
 char		*utils_strconstruct(char const c, size_t len);
 char		*utils_strflex(char *const line, size_t *i);
@@ -175,7 +178,8 @@ void		vars_clear(t_vars **vars);
 t_vars		*vars_copy(t_vars *const vars, void (*insert)(t_vars **, t_vars *));
 void		vars_delone(t_vars *node);
 t_vars		*vars_dup(t_vars *source);
-void		vars_export(t_vars **vars, t_exp exp);
+void		vars_export(t_vars **vars, t_exp exp, void (*insert)(t_vars **,
+					t_vars *));
 t_vars		*vars_first(t_vars *const vars);
 char		*vars_getvalue(t_env *env, char *const key);
 t_vars		*vars_last(t_vars *const vars);
