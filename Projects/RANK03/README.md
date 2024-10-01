@@ -28,7 +28,7 @@
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
-			<td>2023-12-21</td>
+			<td>2024-01-01</td>
 			<td>minishell</td>
 		</tr>
 	</table>
