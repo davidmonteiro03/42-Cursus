@@ -62,7 +62,7 @@ static char	*helppath(char *const env_path, char *const path)
 		while (env_path[i] != '\0' && env_path[i] != ':')
 			i++;
 		ret = verifypath(ft_substr(env_path, k, i - k), path);
-		if (env_path[i] == ':')
+		if (ret == NULL && env_path[i] == ':')
 			if (env_path[++i] == '\0')
 				ret = verifypath(ft_strdup("."), path);
 		if (ret != NULL)
