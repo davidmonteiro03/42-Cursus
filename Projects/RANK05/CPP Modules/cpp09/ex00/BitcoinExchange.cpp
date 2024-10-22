@@ -5,317 +5,178 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 08:39:04 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/04/08 09:42:13 by dcaetano         ###   ########.fr       */
+/*   Created: 2024/10/22 10:17:08 by dcaetano          #+#    #+#             */
+/*   Updated: 2024/10/22 13:30:41 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-static std::list<std::string> readfile(std::string filename)
+/* ************************************************************************** */
+/*                                   PRIVATE                                  */
+/* ************************************************************************** */
+
+void BitcoinExchange::_readCSV(std::string csv_file)
 {
-	std::list<std::string> ret;
-	std::ifstream tmp;
-	std::string buf;
-	tmp.open(filename.c_str());
-	if (tmp.fail())
-		throw BitcoinExchange::ErrorOpeningFileException();
-	if (tmp.is_open())
+	std::ifstream ifs(csv_file.c_str());
+	if (ifs.fail())
+		throw CouldNotOpenFile();
+	int fields_readed = 0;
+	while (ifs.eof() == 0)
 	{
-		int i = 0;
-		while (tmp)
+		std::string line = "";
+		std::getline(ifs, line);
+		if (line.empty())
+			continue;
+		std::stringstream ss_line(line);
+		std::string s_date, s_exchange;
+		if (fields_readed == 0)
 		{
-			std::getline(tmp, buf);
-			ret.push_back(buf);
-			i++;
+			if (std::getline(ss_line, s_date, ',') && std::getline(ss_line, s_exchange, ','))
+				fields_readed = 1;
+			continue;
 		}
-		ret.pop_back();
-		tmp.close();
+		if (std::getline(ss_line, s_date, ',') && std::getline(ss_line, s_exchange, ','))
+			_database[s_date] = std::strtod(s_exchange.c_str(), NULL);
 	}
-	return (ret);
+	ifs.close();
 }
 
-BitcoinExchange::BitcoinExchange() {}
-
-BitcoinExchange::BitcoinExchange(const std::string& filename) : \
-	_filename(filename), _input(readfile(_filename)) {}
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy) : \
-	_filename(copy._filename), _input(copy._input) {}
-
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other)
+void BitcoinExchange::_readInput(std::string input_file)
 {
-	if (this != &other)
+	std::ifstream ifs(input_file.c_str());
+	if (ifs.fail())
+		throw CouldNotOpenFile();
+	int fields_readed = 0;
+	while (ifs.eof() == 0)
 	{
-		_filename = other._filename;
-		_input = other._input;
+		std::string line;
+		std::getline(ifs, line);
+		if (line.empty())
+			continue;
+		std::stringstream ss_line(line);
+		std::string s_date, s_value;
+		if (fields_readed == 0)
+		{
+			if (std::getline(ss_line, s_date, '|') && std::getline(ss_line, s_value, '|'))
+				fields_readed = 1;
+			continue;
+		}
+		if (std::getline(ss_line, s_date, '|') && std::getline(ss_line, s_value, '|'))
+		{
+			std::stringstream ss_date(s_date);
+			std::string s_year, s_mounth, s_day;
+			if (std::getline(ss_date, s_year, '-') && std::getline(ss_date, s_mounth, '-') && std::getline(ss_date, s_day, '-'))
+			{
+				if (ss_date.eof())
+				{
+					t_date date = _createDate(s_year, s_mounth, s_day);
+					if (date.year > 0 && (date.mounth >= 1 && date.mounth <= 12))
+					{
+						unsigned num_days = _getNumDays(date);
+						if (date.day >= 1 && date.day <= num_days)
+						{
+							double value = std::strtod(s_value.c_str(), NULL);
+							if (value < 0)
+								std::cerr << "Error: not a positive number." << std::endl;
+							else if (value > 1000)
+								std::cerr << "Error: too large a number." << std::endl;
+							else
+							{
+								std::string s_date = _sDate(date);
+								try
+								{
+									double exchange = value * _searchExchange(date);
+									std::cout << s_date << " => " << value << " = " << exchange << std::endl;
+								}
+								catch (const std::exception &e)
+								{
+									std::cerr << e.what() << std::endl;
+								}
+							}
+							continue;
+						}
+					}
+				}
+			}
+		}
+		std::cerr << "Error: bad input => " << line << std::endl;
 	}
-	return (*this);
+	if (fields_readed == 0)
+		throw InvalidInputFile();
+	ifs.close();
 }
+
+t_date BitcoinExchange::_createDate(std::string s_year, std::string s_mounth, std::string s_day)
+{
+	t_date date;
+	date.year = std::atoi(s_year.c_str());
+	date.mounth = std::atoi(s_mounth.c_str());
+	date.day = std::atoi(s_day.c_str());
+	return date;
+}
+
+unsigned int BitcoinExchange::_getNumDays(t_date date)
+{
+	if (date.year <= 0 || date.mounth < 1 || date.mounth > 12)
+		return 0;
+	unsigned feb_days = date.year % 400 == 0 || (date.year % 4 == 0 && date.year % 100 != 0) ? 29 : 28;
+	if (date.mounth == 2)
+		return feb_days;
+	if ((date.mounth < 8 && date.mounth % 2 == 1) ||
+		(date.mounth >= 8 && date.mounth % 2 == 0))
+		return 31;
+	return 30;
+}
+
+std::string BitcoinExchange::_sDate(t_date date)
+{
+	char buf_date[BUFSIZ];
+	std::memset(buf_date, 0, sizeof(buf_date));
+	std::sprintf(buf_date, "%u-%02u-%02u", date.year, date.mounth, date.day);
+	return std::string(buf_date);
+}
+
+double BitcoinExchange::_searchExchange(t_date date)
+{
+	std::string s_date = _sDate(date);
+	if (_database.find(s_date) != _database.end())
+		return _database[s_date];
+	while (date.year > 0)
+	{
+		while (date.mounth > 0)
+		{
+			while (date.day > 0)
+			{
+				std::string s_date = _sDate(date);
+				if (_database.find(s_date) != _database.end())
+					return _database[s_date];
+				date.day--;
+			}
+			date.day = _getNumDays(date);
+			date.mounth--;
+		}
+		date.year--;
+		date.mounth = 12;
+	}
+	throw DateIsTooOld();
+	return -1;
+}
+
+const char *BitcoinExchange::CouldNotOpenFile::what() const throw() { return COULD_NOT_OPEN_FILE; }
+
+const char *BitcoinExchange::InvalidDatabaseCSV::what() const throw() { return INVALID_DATABASE_CSV; }
+
+const char *BitcoinExchange::InvalidInputFile::what() const throw() { return INVALID_INPUT_FILE; }
+
+const char *BitcoinExchange::DateIsTooOld::what() const throw() { return DATE_IS_TOO_OLD; }
+
+/* ************************************************************************** */
+/*                                   PUBLIC                                   */
+/* ************************************************************************** */
+
+BitcoinExchange::BitcoinExchange(void) { _readCSV("data.csv"); }
 
 BitcoinExchange::~BitcoinExchange() {}
 
-std::string BitcoinExchange::getFilename(void) const \
-	{ return (_filename); }
-
-std::list<std::string> BitcoinExchange::getInput(void) const \
-	{ return (_input); }
-
-static bool parse_date(std::string date)
-{
-	int i = 0;
-	while (i < 10)
-	{
-		if ((i == 4 || i == 7) && date[i] != '-')
-			return (false);
-		if (!(i == 4 || i == 7) && !isdigit(date[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-static bool check_month_day(int month, int day, int feb_days)
-{
-	int month_days[12] = {
-		31, feb_days, 31, 30, 31, 30,
-		31, 31, 30, 31, 30, 31
-	}, i;
-	for (i = 0; i < 12; i++)
-		if (i == month - 1)
-			break;
-	return (i < 12 && day > 0 && day <= month_days[i]);
-}
-
-static bool check_date(int year, int month, int day)
-{
-	if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0))
-		return (check_month_day(month, day, 29));
-	return (check_month_day(month, day, 28));
-}
-
-static bool parse_exchange_str(std::string exchange_str)
-{
-	int i = 0, digit = 0, dot = 0;
-	while (exchange_str[i])
-	{
-		if ((exchange_str[i] == '+' || exchange_str[i] == '-') && i != 0)
-			return (false);
-		if (exchange_str[i] == '.')
-			dot++;
-		if (isdigit(exchange_str[i]))
-			digit++;
-		i++;
-	}
-	return (digit > 0 && dot <= 1);
-}
-
-static int parse_line(std::string line)
-{
-	if (line.size() < 14)
-		return (1);
-	int i = 0;
-	while (line[i] && isspace(line[i]))
-		i++;
-	int date_start = i;
-	while (line[i] && !isspace(line[i]))
-		i++;
-	int date_end = i;
-	std::string date = line.substr(date_start, date_end - date_start);
-	if (!line[date_end - date_start] || date.size() != 10)
-		return (1);
-	if (!parse_date(date))
-		return (1);
-	int year = std::atoi(date.substr(0, 4).c_str());
-	int month = std::atoi(date.substr(5, 2).c_str());
-	int day = std::atoi(date.substr(8, 2).c_str());
-	if (!check_date(year, month, day))
-		return (1);
-	while (line[i] && isspace(line[i]))
-		i++;
-	if (line[i] != '|')
-		return (1);
-	i++;
-	while (line[i] && isspace(line[i]))
-		i++;
-	int exchange_start = i;
-	while (line[i] && !isspace(line[i]))
-		i++;
-	int exchange_end = i;
-	std::string exchange_str = \
-		line.substr(exchange_start, exchange_end - exchange_start);
-	if (!parse_exchange_str(exchange_str))
-		return (1);
-	while (line[i] && isspace(line[i]))
-		i++;
-	if (line[i])
-		return (1);
-	float exchange = std::atof(exchange_str.c_str());
-	if (exchange < 0)
-		return (2);
-	if (exchange > 1000)
-		return (3);
-	return (0);
-}
-
-static t_data get_data(std::string line)
-{
-	t_data data;
-	int i = 0;
-	while (line[i] && isspace(line[i]))
-		i++;
-	int date_start = i;
-	while (line[i] && !isspace(line[i]))
-		i++;
-	int date_end = i;
-	data.date = line.substr(date_start, date_end - date_start);
-	data.year = std::atoi(data.date.substr(0, 4).c_str());
-	data.month = std::atoi(data.date.substr(5, 2).c_str());
-	data.day = std::atoi(data.date.substr(8, 2).c_str());
-	while (line[i] && isspace(line[i]))
-		i++;
-	i++;
-	while (line[i] && isspace(line[i]))
-		i++;
-	int exchange_start = i;
-	while (line[i] && !isspace(line[i]))
-		i++;
-	int exchange_end = i;
-	std::string exchange_str = \
-		line.substr(exchange_start, exchange_end - exchange_start);
-	data.exchange = std::atof(exchange_str.c_str());
-	return (data);
-}
-
-static bool check_empty(std::string line)
-{
-	int i = -1;
-	while (line[++i])
-		if (!isspace(line[i]))
-			return (true);
-	return (false);
-}
-
-static void display_error(std::string line, int code)
-{
-	if (code == 1)
-	{
-		if (check_empty(line))
-			std::cout << "Error: bad input => " << line << std::endl;
-		else
-			std::cout << "Error: empty line." << std::endl;
-	}
-	else if (code == 2)
-		std::cout << "Error: not a positive number." << std::endl;
-	else if (code == 3)
-		std::cout << "Error: too large a number." << std::endl;
-	else if (code == 4)
-		std::cout << "Error: empty file." << std::endl;
-	else if (code == 5)
-		std::cout << "Error: there is no dates before given one." << std::endl;
-	else if (code == 6)
-		std::cout << "Info: line containing the info \"data | value\"" << std::endl;
-}
-
-static std::string truncate(std::string s1, std::string set)
-{
-	size_t start = 0;
-	size_t end = s1.length() - 1;
-	while (start <= end && set.find(s1[start]) != std::string::npos)
-		start++;
-	if (start > end)
-		return ("");
-	while (end >= start && set.find(s1[end]) != std::string::npos)
-		end--;
-	return (s1.substr(start, end - start + 1));
-}
-
-static void find_date(std::list<std::string> database, std::string line)
-{
-	if (truncate(line, " \a\b\t\n\v\f\r") == "date | value")
-		return /* (display_error("", 6)) */;
-	int check = parse_line(line), i = 0;
-	if (check)
-		return (display_error(line, check));
-	float min_ex;
-	double	n1, n2, min;
-	double	list[100] = {0, 31, 59.25, 90.25, 120.25, 151.25, \
-						181.25, 212.25, 243.25, 273.25, 304.25, 334.25};
-	t_data input = get_data(line);
-	std::string oldest_date;
-	std::list<std::string>::const_iterator it;
-	it = database.begin();
-	while (it != database.end())
-	{
-		t_data tmp;
-		tmp.date = it->substr(0, 10);
-		if (i == 0)
-			oldest_date = tmp.date;
-		else if (tmp.date < oldest_date)
-			oldest_date = tmp.date;
-		i++;
-		it++;
-	}
-	if (input.date < oldest_date)
-		return (display_error(line, 5));
-	i = 0;
-	it = database.begin();
-	while (it != database.end())
-	{
-		t_data tmp;
-		tmp.date = it->substr(0, 10);
-		tmp.year = std::atoi(tmp.date.substr(0, 4).c_str());
-		tmp.month = std::atoi(tmp.date.substr(5, 2).c_str());
-		tmp.day = std::atoi(tmp.date.substr(8, 2).c_str());
-		std::string exchange_str = \
-			it->substr(11, it->size() - 10);
-		tmp.exchange = std::atof(exchange_str.c_str());
-		n1 = 365.25 * (double)(tmp.year - 1901) + \
-						(list[tmp.month - 1] + \
-						(double)tmp.day);
-		n2 = 365.25 * (double)(input.year - 1901) + \
-						(list[input.month - 1] + \
-						(double)input.day);
-		double dif = std::abs(n2 - n1);
-		if (i == 0)
-		{
-			min = dif;
-			min_ex = tmp.exchange;
-		}
-		else if (dif < min && input.date >= tmp.date)
-		{
-			min = dif;
-			min_ex = tmp.exchange;
-		}
-		i++;
-		it++;
-	}
-	std::cout << input.date << " => ";
-	std::cout << input.exchange  << " = ";
-	std::cout << min_ex * input.exchange;
-	std::cout << std::endl;
-}
-
-void BitcoinExchange::displayInputFile(bool parse) const
-{
-	if (_input.size() == 0)
-		return (display_error("", 4));
-	if (!parse)
-	{
-		std::list<std::string>::const_iterator it = _input.begin();
-		while (it != _input.end())
-			std::cout << *it++ << std::endl;
-	}
-	else
-	{
-		std::list<std::string> database = readfile("data.csv");
-		std::list<std::string>::const_iterator it = _input.begin();
-		while (it != _input.end())
-			find_date(database, *it++);
-	}
-}
-
-const char* BitcoinExchange::ErrorOpeningFileException::what() const throw()
-{
-	return ("Error: could not open file.");
-}
+void BitcoinExchange::_execute(std::string input_file) { _readInput(input_file); }

@@ -5,50 +5,68 @@
 #                                                     +:+ +:+         +:+      #
 #    By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/04 17:50:20 by dcaetano          #+#    #+#              #
-#    Updated: 2024/01/29 08:43:14 by dcaetano         ###   ########.fr        #
+#    Created: 2024/10/22 10:09:29 by dcaetano          #+#    #+#              #
+#    Updated: 2024/10/22 10:39:15 by dcaetano         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-RED				= \033[1;91m
-GREEN			= \033[1;92m
-YELLOW			= \033[1;93m
-CYAN			= \033[1;96m
-RESET			= \033[1;0m
+# === COMMANDS =============================================================== #
+RM            = rm
+AR_RCS        = ar rcs
+MKDIR         = mkdir
+CXX           = c++
+# === DIRECTORIES ============================================================ #
+SRCS_DIR      = srcs
+OBJS_DIR      = objs
+# === EXTENSIONS ============================================================= #
+CPP_EXTENSION = .cpp
+HPP_EXTENSION = .hpp
+OBJ_EXTENSION = .o
+# === FILES ================================================================== #
+NAME          = $(PROGRAM_NAME)
+INCS          = $(addsuffix $(HPP_EXTENSION), \
+                            $(CLASSES))
+SRCS          = $(addsuffix $(CPP_EXTENSION), \
+                            $(CLASSES))
+OBJS          = $(patsubst %$(CPP_EXTENSION), \
+                            $(OBJS_DIR)/$(SRCS_DIR)/%$(OBJ_EXTENSION), \
+                            $(SRCS))
+MAIN_SRC      = main$(CPP_EXTENSION)
+MAIN_OBJ      = $(patsubst %$(CPP_EXTENSION), \
+                            $(OBJS_DIR)/%$(OBJ_EXTENSION), \
+                            $(MAIN_SRC))
+LIB           = $(NAME).a
+# === FLAGS ================================================================== #
+RM_FLAGS      = -rf
+MKDIR_FLAGS   = -p
+CXX_FLAGS     = -Wall -Wextra -Werror -pedantic -std=c++98
+# === PROJECT ================================================================ #
+PROGRAM_NAME  = btc
+CLASSES       = BitcoinExchange
+LIB_NAME      = $(PROGRAM_NAME).a
+# === RULES ================================================================== #
+all: $(NAME)
 
-CXX				= c++
-CXXFLAGS		= -Wall -Wextra -Werror -std=c++98
-RM				= rm -rf
+$(OBJS_DIR)/$(SRCS_DIR)/%$(OBJ_EXTENSION): %$(CPP_EXTENSION)
+	$(MKDIR) $(MKDIR_FLAGS) $(dir $@)
+	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
-OBJS_DIR		= obj/
-INCLUDES_DIR	= ./
+$(OBJS_DIR)/%$(OBJ_EXTENSION): %$(CPP_EXTENSION)
+	$(MKDIR) $(MKDIR_FLAGS) $(dir $@)
+	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
-SRCS			= BitcoinExchange.cpp main.cpp
+$(LIB): $(OBJS)
+	$(AR_RCS) $(LIB) $(OBJS)
 
-OBJS			= $(addprefix $(OBJS_DIR), $(SRCS:.cpp=.o))
-
-EXEC			= btc
-
-all: $(EXEC)
-
-$(OBJS_DIR)%.o: ./%.cpp
-	@mkdir -p $(dir $@)
-	@echo "$(YELLOW)Compiling $(CYAN)$<$(RESET)..."
-	@$(CXX) $(CXXFLAGS) -I$(INCLUDES_DIR) -c $< -o $@
-
-$(EXEC): $(OBJS)
-	@$(CXX) $(CXXFLAGS) -I$(INCLUDES_DIR) $^ -o $@
-	@echo "$(CYAN)$(EXEC) $(GREEN)created$(RESET)!"
+$(NAME): $(LIB) $(MAIN_OBJ)
+	$(CXX) $(CXX_FLAGS) $(MAIN_OBJ) $(LIB) -o $(NAME)
 
 clean:
-	@$(RM) $(OBJS_DIR)
-	@echo "$(CYAN)Objects $(RED)removed$(RESET)!"
+	$(RM) $(RM_FLAGS) $(OBJS_DIR)
 
 fclean: clean
-	@$(RM) $(EXEC)
-	@echo "$(CYAN)$(EXEC) $(RED)removed$(RESET)!"
+	$(RM) $(RM_FLAGS) $(NAME) $(LIB)
 
 re: fclean all
 
 .PHONY: all clean fclean re
-
