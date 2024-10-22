@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:17:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/10/22 14:05:17 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:55:48 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,40 +64,51 @@ void BitcoinExchange::_readInput(std::string input_file)
 		}
 		if (std::getline(ss_line, s_date, '|') && std::getline(ss_line, s_value, '|'))
 		{
-			std::stringstream ss_date(s_date);
-			std::string s_year, s_mounth, s_day;
-			if (std::getline(ss_date, s_year, '-') && std::getline(ss_date, s_mounth, '-') && std::getline(ss_date, s_day, '-'))
+			if (ss_line.eof())
 			{
-				if (ss_date.eof())
+				std::stringstream ss_date(s_date);
+				std::string s_year, s_month, s_day;
+				if (std::getline(ss_date, s_year, '-') && std::getline(ss_date, s_month, '-') && std::getline(ss_date, s_day, '-'))
 				{
-					t_date date = _createDate(s_year, s_mounth, s_day);
-					if (date.year > 0 && (date.mounth >= 1 && date.mounth <= 12))
+					if (ss_date.eof())
 					{
-						unsigned num_days = _getNumDays(date);
-						if (date.day >= 1 && date.day <= num_days)
+						t_date date = _createDate(s_year, s_month, s_day);
+						if (date.year > 0 && (date.month >= 1 && date.month <= 12))
 						{
-							double value = std::strtod(s_value.c_str(), NULL);
-							if (value < 0)
-								std::cerr << "Error: not a positive number." << std::endl;
-							else if (value > 1000)
-								std::cerr << "Error: too large a number." << std::endl;
-							else
+							unsigned num_days = _getNumDays(date);
+							if (date.day >= 1 && date.day <= num_days)
 							{
-								std::string s_date = _sDate(date);
-								try
+								std::stringstream ss_value(s_value);
+								double value = 0;
+								ss_value >> value;
+								if (value < 0)
+									std::cerr << "Error: not a positive number." << std::endl;
+								else if (value > 1000)
+									std::cerr << "Error: too large a number." << std::endl;
+								else
 								{
-									double exchange = value * _searchExchange(date);
-									std::cout << s_date << " => " << value << " = " << exchange << std::endl;
+									std::string s_date = _sDate(date);
+									try
+									{
+										double exchange = value * _searchExchange(date);
+										std::cout << s_date << " => " << value << " = " << std::setprecision(8) << exchange << std::endl;
+									}
+									catch (const std::exception &e)
+									{
+										std::cerr << e.what() << " => " << line << std::endl;
+									}
 								}
-								catch (const std::exception &e)
-								{
-									std::cerr << e.what() << std::endl;
-								}
+								continue;
 							}
+							std::cerr << "Error: bad day => " << line << std::endl;
 							continue;
 						}
+						std::cerr << "Error: bad year/month => " << line << std::endl;
+						continue;
 					}
 				}
+				std::cerr << "Error: bad date => " << line << std::endl;
+				continue;
 			}
 		}
 		std::cerr << "Error: bad input => " << line << std::endl;
@@ -107,25 +118,25 @@ void BitcoinExchange::_readInput(std::string input_file)
 	ifs.close();
 }
 
-t_date BitcoinExchange::_createDate(std::string s_year, std::string s_mounth, std::string s_day)
+t_date BitcoinExchange::_createDate(std::string s_year, std::string s_month, std::string s_day)
 {
 	t_date date;
-	std::stringstream ss_year(s_year), ss_mounth(s_mounth), ss_day(s_day);
+	std::stringstream ss_year(s_year), ss_month(s_month), ss_day(s_day);
 	ss_year >> date.year;
-	ss_mounth >> date.mounth;
+	ss_month >> date.month;
 	ss_day >> date.day;
 	return date;
 }
 
 unsigned int BitcoinExchange::_getNumDays(t_date date)
 {
-	if (date.year <= 0 || date.mounth < 1 || date.mounth > 12)
+	if (date.year <= 0 || date.month < 1 || date.month > 12)
 		return 0;
 	unsigned feb_days = date.year % 400 == 0 || (date.year % 4 == 0 && date.year % 100 != 0) ? 29 : 28;
-	if (date.mounth == 2)
+	if (date.month == 2)
 		return feb_days;
-	if ((date.mounth < 8 && date.mounth % 2 == 1) ||
-		(date.mounth >= 8 && date.mounth % 2 == 0))
+	if ((date.month < 8 && date.month % 2 == 1) ||
+		(date.month >= 8 && date.month % 2 == 0))
 		return 31;
 	return 30;
 }
@@ -134,7 +145,7 @@ std::string BitcoinExchange::_sDate(t_date date)
 {
 	char buf_date[BUFSIZ];
 	std::memset(buf_date, 0, sizeof(buf_date));
-	std::sprintf(buf_date, "%u-%02u-%02u", date.year, date.mounth, date.day);
+	std::sprintf(buf_date, "%u-%02u-%02u", date.year, date.month, date.day);
 	return std::string(buf_date);
 }
 
@@ -145,7 +156,7 @@ double BitcoinExchange::_searchExchange(t_date date)
 		return _database[s_date];
 	while (date.year > 0)
 	{
-		while (date.mounth > 0)
+		while (date.month > 0)
 		{
 			while (date.day > 0)
 			{
@@ -155,10 +166,10 @@ double BitcoinExchange::_searchExchange(t_date date)
 				date.day--;
 			}
 			date.day = _getNumDays(date);
-			date.mounth--;
+			date.month--;
 		}
 		date.year--;
-		date.mounth = 12;
+		date.month = 12;
 	}
 	throw DateIsTooOld();
 	return -1;

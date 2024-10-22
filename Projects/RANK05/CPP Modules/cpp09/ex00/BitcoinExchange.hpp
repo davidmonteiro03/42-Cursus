@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:14:21 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/10/22 13:30:31 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:48:54 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <cstring>
 #include <exception>
 #include <fstream>
+#include <iomanip>
 #include <iostream>
 #include <map>
 #include <sstream>
@@ -24,11 +25,11 @@
 #define COULD_NOT_OPEN_FILE "Error: could not open file."
 #define INVALID_DATABASE_CSV "Error: invalid database csv."
 #define INVALID_INPUT_FILE "Error: invalid input file."
-#define DATE_IS_TOO_OLD "Error: date is too old."
+#define DATE_IS_TOO_OLD "Error: date is too old"
 
 typedef struct s_date
 {
-	unsigned int year, mounth, day;
+	unsigned int year, month, day;
 } t_date;
 
 class BitcoinExchange
