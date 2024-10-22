@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:17:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/10/22 13:30:41 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:05:17 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,9 +110,10 @@ void BitcoinExchange::_readInput(std::string input_file)
 t_date BitcoinExchange::_createDate(std::string s_year, std::string s_mounth, std::string s_day)
 {
 	t_date date;
-	date.year = std::atoi(s_year.c_str());
-	date.mounth = std::atoi(s_mounth.c_str());
-	date.day = std::atoi(s_day.c_str());
+	std::stringstream ss_year(s_year), ss_mounth(s_mounth), ss_day(s_day);
+	ss_year >> date.year;
+	ss_mounth >> date.mounth;
+	ss_day >> date.day;
 	return date;
 }
 
