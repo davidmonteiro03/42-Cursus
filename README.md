@@ -137,7 +137,7 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			<td>
 				<img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
 			</td>
-			<td>2024-01-01</td>
+			<td>2024-10-01</td>
 			<td>minishell</td>
 		</tr>
 		<!-- RANK 04 -->
