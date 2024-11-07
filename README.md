@@ -183,8 +183,8 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 			<td>cub3d</td>
 		</tr>
 		<!-- RANK 05 -->
-		<tr rowspan="3">
-			<td>
+		<tr>
+			<td rowspan="3">
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/CPP Modules">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppm.png" width="125"/>
 				</a>
