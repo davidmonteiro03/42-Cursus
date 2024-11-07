@@ -209,11 +209,6 @@ I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on
 		</tr>
 		<tr>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05">
-					<img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
-				</a>
-			</td>
-			<td>
 				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/ft_irc">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_ircm.png" width="125"/>
 				</a>
