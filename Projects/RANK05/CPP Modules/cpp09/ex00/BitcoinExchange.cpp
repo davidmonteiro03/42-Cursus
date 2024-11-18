@@ -6,7 +6,7 @@
 /*   By: dcaetano <dcaetano@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 10:17:08 by dcaetano          #+#    #+#             */
-/*   Updated: 2024/10/22 14:55:48 by dcaetano         ###   ########.fr       */
+/*   Updated: 2024/11/18 12:41:06 by dcaetano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,11 +165,11 @@ double BitcoinExchange::_searchExchange(t_date date)
 					return _database[s_date];
 				date.day--;
 			}
-			date.day = _getNumDays(date);
 			date.month--;
+			date.day = _getNumDays(date);
 		}
 		date.year--;
-		date.month = 12;
+		date.month = 13;
 	}
 	throw DateIsTooOld();
 	return -1;
