@@ -42,10 +42,10 @@ class Match(models.Model):
     away_player_score = models.IntegerField(verbose_name='away player score',
                                             blank=False,
                                             null=False)
-    round_count = models.IntegerField(verbose_name='round',
+    round_count = models.IntegerField(verbose_name='round count',
                                       blank=False,
                                       null=True)
-    round_type = models.CharField(verbose_name='away player alias name',
+    round_type = models.CharField(verbose_name='round type',
                                   max_length=256,
                                   blank=False,
                                   null=True)
