@@ -1,0 +1,51 @@
+{% load i18n %}
+{% if not request.session.two_fa_required and not control_user.null_password %}
+<div class="d-flex flex-column justify-content-center align-items-center mx-3 my-2">
+{% if control_user and tour_data %}
+{% for r in tour_data.rounds %}
+    <table class="table table-striped table-bordered w-100 mt-2">
+        <thead>
+            <tr>
+                <td class="text-center align-middle text-uppercase bg-transparent" colspan="4">
+                    <code class="ft_mini_span ft_text-light px-1">{{ r.description }}</code>
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_date' %}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_home_player' %}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_result' %}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_away_player' %}</code>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+{% for m in r.matches %}
+            <tr class="h-100">
+                <td class="text-center align-middle w-25">
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.day }}/{{ m.month }}</code>
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.hours }}:{{ m.minutes }}:{{ m.seconds }}</code>
+                </td>
+                <td class="text-center align-middle w-25">
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.alias_home }}</code>
+                </td>
+                <td class="text-center align-middle w-25">
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.score_home }} - {{ m.score_away }}</code>
+                </td>
+                <td class="text-center align-middle w-25">
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.alias_away }}</code>
+                </td>
+            </tr>
+{% endfor %}
+        </tbody>
+    </table>
+{% endfor %}
+{% endif %}
+</div>
+{% endif %}

@@ -1,0 +1,21 @@
+{% load i18n %}
+{% if not request.session.two_fa_required and not control_user.null_password %}
+{% if control_user %}
+<div class="mx-2 text-center ft_game_button w-100">
+    <form class="w-100" onsubmit="PlayerVsPlayerConfigUser(event)">
+        <div class="text-start">
+            <span class="ft_title">{% trans 'span_game_choose_opponent' %}</span>
+        </div>
+        <div class="text-start">
+            <span class="ft_span">{% trans 'form_label_username_opponent' %}</span>
+            <label for="pvpcuou" class="d-none">{% trans 'form_label_username_opponent' %}</label>
+            <div class="ft_input_div mt-2">
+                <input id="pvpcuou" type="text" name="opponent_alias" autocomplete="off" placeholder="{% trans 'form_placeholder_username_opponent' %}" required />
+            </div>
+        </div>
+        <div class="ft_text-danger" id="gameplayervsplayerconfiguser_error"></div>
+        <button type="submit" class="ft_button ft_button-primary mt-3 w-100">{% trans 'main_game_config' %}</button>
+    </form>
+</div>
+{% endif %}
+{% endif %}

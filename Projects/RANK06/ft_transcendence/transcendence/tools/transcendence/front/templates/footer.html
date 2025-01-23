@@ -1,0 +1,9 @@
+{% load i18n %}
+<div class="text-center p-4 no_select">
+{% if not control_user %}
+    
+    &copy; {% trans 'main_home_footer' %}
+    <a class="text-center p-4" onclick="changePage(event, '/', 'terms/')">{% trans 'terms_span' %}</a>
+{% else %}
+{% endif %}
+</div>

@@ -1,0 +1,56 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>
+{% if not control_user %}
+            Transcendence
+{% else %}
+            {% trans 'main_profile' %}
+{% endif %}
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/three@latest/build/three.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@latest/dist/chart.umd.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+        <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+        <script src="{% static 'js/stats.js' %}"></script>
+        <script src="{% static 'js/loadElement.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+        <script src="{% static 'js/signUp.js' %}"></script>
+        <script src="{% static 'js/signIn.js' %}"></script>
+        <script src="{% static 'js/signWithFT.js' %}"></script>
+        <script src="{% static 'js/updateUser.js' %}"></script>
+        <script src="{% static 'js/addFriend.js' %}"></script>
+        <script src="{% static 'js/removeFriend.js' %}"></script>
+        <script src="{% static 'js/deleteAccount.js' %}"></script>
+        <script src="{% static 'js/signOut.js' %}"></script>
+        <script src="{% static 'js/configurePassword.js' %}"></script>
+        <script src="{% static 'js/disableTwoFactorAuth.js' %}"></script>
+        <script src="{% static 'js/verifyTwoFactorAuthCode.js' %}"></script>
+        <script src="{% static 'js/enableTwoFactorAuth.js' %}"></script>
+        <script src="{% static 'js/twoFactorAuthVerifyLogin.js' %}"></script>
+        <script src="{% static 'js/changeLanguage.js' %}"></script>
+        <script src="{% static 'js/loadFieldTexture.js' %}"></script>
+        <script src="{% static 'js/createThreeMesh.js' %}"></script>
+        <script src="{% static 'js/updateGameStatus.js' %}"></script>
+        <script src="{% static 'js/moveThreeMesh.js' %}"></script>
+        <script src="{% static 'js/gameNavigation.js' %}"></script>
+        <script src="{% static 'js/gamePlayerVsPlayer.js' %}"></script>
+
+        <script src="{% static 'js/gamePlayerVsAI.js' %}"></script>
+        <script src="{% static 'js/gameTournament.js' %}"></script>
+        <script src="{% static 'js/gameMatchMaking.js' %}"></script>
+        <script src="{% static 'js/gameClose.js' %}"></script>
+        <script src="{% static 'js/getStatsData.js' %}"></script>
+        <script src="{% static 'js/starfield.js' %}"></script>
+    </head>
+{% block body %}
+{% endblock %}
+</html>

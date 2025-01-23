@@ -1,0 +1,30 @@
+{% load i18n %}
+<div class="mx-3 my-2">
+    <div>
+        <button class="ft_button ft_button-primary" data-bs-toggle="modal" data-bs-target="#addFriendModal">{% trans 'main_friend_add' %}</button>
+    </div>
+    <div class="mt-3">
+{% for f in control_user.friends %}
+        <div class="d-flex flex-row align-items-center {% if not forloop.first %}mt-2{% endif %}">
+            <form onsubmit="removeFriend(event)">
+                <input type="hidden" name="friend_user" value="{{ f.username }}">
+                <button class="ft_button ft_button-danger px-3 py-1" data-toggle="tooltip" data-placement="bottom" title="{% trans 'main_friend_remove' %}">
+                    <i class="bi bi-person-x-fill"></i>
+                </button>
+            </form>
+            <div class="ft_img_div ft_img_mini ft_img_div-{% if f.active %}success{% else %}danger{% endif %} ms-2">
+                <img src="{% if f.ft_image %}{{ f.ft_image }}{% elif f.profile_image %}{{ MEDIA_URL }}{{ f.profile_image }}{% else %}{% load static %}{% static 'images/default-pic.jpg' %}{% endif %}"
+                     width="50"
+                     height="50"
+                     alt="profile_pic" />
+            </div>
+            <div class="d-flex flex-column ms-2">
+                <code class="ft_span text-light">{{ f.username }}</code>
+{% if f.first_name and f.last_name %}
+                <span class="ft_mini_span">{{ f.first_name }} {{ f.last_name }}</span>
+{% endif %}
+            </div>
+        </div>
+{% endfor %}
+    </div>
+</div>

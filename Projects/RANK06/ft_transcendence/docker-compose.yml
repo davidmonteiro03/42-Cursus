@@ -1,0 +1,68 @@
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    env_file: .env
+    networks:
+      - t_cluster
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d ${POSTGRES_DB} -U postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: always
+  transcendence:
+    container_name: transcendence
+    image: transcendence:42
+    build: transcendence
+    env_file: .env
+    networks:
+      - t_cluster
+    volumes:
+      - transcendence_data:/transcendence
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: always
+  nginx:
+    container_name: nginx
+    image: nginx:42
+    build: nginx
+    env_file: .env
+    networks:
+      - t_cluster
+    volumes:
+      - transcendence_data:/transcendence
+      - certs_data:/etc/ssl/certs
+    ports:
+      - "${DJANGO_PORT}:${DJANGO_PORT}"
+    depends_on:
+      - transcendence
+    restart: always
+  redis:
+    container_name: redis
+    image: redis:latest
+    networks:
+      - t_cluster
+    volumes:
+      - redis_data:/data
+    restart: always
+
+networks:
+  t_cluster:
+    name: t_cluster
+    driver: bridge
+
+volumes:
+  postgres_data:
+    name: postgres_data
+  transcendence_data:
+    name: transcendence_data
+  certs_data:
+    name: certs_data
+  redis_data:
+    name: redis_data

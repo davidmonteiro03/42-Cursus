@@ -1,0 +1,61 @@
+{% load i18n %}
+{% if not request.session.two_fa_required and not control_user.null_password %}
+{% if control_user %}
+<div class="mx-2 text-center ft_game_button w-100">
+    <form class="w-100" onsubmit="TournamentConfig(event)">
+        <div class="text-start">
+            <span class="ft_title">{% trans 'span_game_tournament_settings' %}</span>
+        </div>
+        <div class="text-start mt-3">
+            <div class="mt-2">
+                <span class="ft_span">{% trans 'form_label_game_ball_color' %}</span>
+                <label for="tcgbc" class="d-none">{% trans 'form_label_game_ball_color' %}</label>
+                <div class="ft_input_div mt-2">
+                    <input id="tcgbc" type="color" name="ball_color" value="#C62828" autocomplete="off" required />
+                </div>
+            </div>
+        </div>
+        <div class="text-start mt-3">
+            <div class="mt-2">
+                <span class="ft_span">{% trans 'form_label_game_field_color' %}</span>
+                <label for="tcgfc" class="d-none">{% trans 'form_label_game_field_color' %}</label>
+                <div class="ft_input_div mt-2">
+                    <input id="tcgfc" type="color" name="field_color" value="#000000" autocomplete="off" required />
+                </div>
+            </div>
+        </div>
+        <div class="text-start mt-3">
+            <span class="ft_span">{% trans 'form_label_game_field_image' %}</span>
+            <label for="tcgfi" class="d-none">{% trans 'form_label_game_field_image' %}</label>
+            <div class="ft_input_div mt-2">
+                <input id="tcgfi_helper" type="text" readonly />
+            </div>
+            <input id="tcgfi" name="field_image" type="file" class="d-none" onchange="document.getElementById('tcgfi_helper').value=this.value" />
+            <div class="d-flex mt-2">
+                <button type="button" class="ft_button ft_button-light flex-grow-1" onclick="document.getElementById('tcgfi').click();">{% trans 'main_image_game_field_upload' %}</button>
+            </div>
+        </div>
+        <div class="text-start mt-3">
+            <div class="mt-2">
+                <span class="ft_span">{% trans 'form_label_game_max_points' %}</span>
+                <label for="tcgmp" class="d-none">{% trans 'form_label_game_max_points' %}</label>
+                <div class="ft_input_div mt-2">
+                    <input id="tcgmp" type="number" name="max_points" autocomplete="off" required />
+                </div>
+            </div>
+        </div>
+        <div class="text-start mt-3">
+            <div class="mt-2">
+                <span class="ft_span">{% trans 'form_label_game_host_padel_color' %}</span>
+                <label for="tcghpc" class="d-none">{% trans 'form_label_game_host_padel_color' %}</label>
+                <div class="ft_input_div mt-2">
+                    <input id="tcghpc" type="color" name="host_padel_color" value="#1E90FF" autocomplete="off" required />
+                </div>
+            </div>
+        </div>
+        <div class="ft_text-danger" id="tournamentconfig_error"></div>
+        <button type="submit" class="ft_button ft_button-primary mt-3 w-100">{% trans 'main_game_config_tournament' %}</button>
+    </form>
+</div>
+{% endif %}
+{% endif %}

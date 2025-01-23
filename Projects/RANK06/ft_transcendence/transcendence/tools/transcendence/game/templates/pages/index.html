@@ -1,0 +1,37 @@
+{% load i18n %}
+{% if not request.session.two_fa_required and not control_user.null_password %}
+{% if control_user %}
+<div class="d-flex h-100 w-100">
+    <div class="d-flex flex-column w-100 my-2">
+        <div id="menu" class="mx-3 align-items-start sticky">
+            <button class="ft_button ft_button-primary px-3 py-1" onclick="changePage(event, '/game/', 'index/', false)">
+                <i class="bi bi-house-door-fill"></i>
+            </button>
+            <button class="ft_button ft_button-primary px-3 py-1 ms-1" onclick="gameNavigateBack(event)">
+                <i class="bi bi-caret-left-fill"></i>
+            </button>
+        </div>
+        <div id="game" class="d-flex justify-content-center align-items-center flex-fill w-100">
+            <div class="mx-2 text-center ft_game_button w-100">
+                <button class="ft_button ft_button-primary w-100" onclick="gameNavigate(event, 'p-vs-p-config-user/')">{% trans 'main_game_player' %} vs {% trans 'main_game_player' %}</button>
+                <button class="ft_button ft_button-primary mt-3 w-100" onclick="PlayerVsAIConfigUser(event)">{% trans 'main_game_player' %} vs {% trans 'main_game_bot' %}</button>
+                <button class="ft_button ft_button-primary mt-3 w-100" onclick="gameNavigate(event, 'tour-config/')">{% trans 'main_game_tournament' %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-lg fade" id="gameInfoModal" tabindex="-1" aria-labelledby="gameInfoModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="modal-title ft_span" id="gameInfoModalLabel"></span>
+            </div>
+            <div class="modal-body w-100" id="gameInfoModalBody" align="center"></div>
+            <div class="modal-footer">
+                <button type="button" class="ft_button ft_button-primary flex-grow-1" onclick="gameResume(event, 'gameInfoModal')">{% trans 'main_game_continue' %}</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endif %}

@@ -1,0 +1,69 @@
+{% load i18n %}
+{% if not request.session.two_fa_required and not control_user.null_password %}
+<nav class="navbar navbar-expand-sm">
+    <div class="container-fluid">
+{% load static %}
+{% if not control_user %}
+        <a class="ft_img_mini" onclick="changePage(event)">
+            <img src="{% static 'images/favicon.ico' %}" width="50" height="50" alt="icon" />
+        </a>
+{% else %}
+        <a class="ft_img_div ft_img_mini ft_img_div-primary" onclick="changePage(event)">
+{% if control_user.ft_image %}
+            <img src="{{ control_user.ft_image }}" width="50" height="50" alt="ft_image" />
+{% elif control_user.profile_image %}
+            <img src="{{ MEDIA_URL }}{{ control_user.profile_image }}" width="50" height="50" alt="profile_image" />
+{% else %}
+            <img src="{% static 'images/default-pic.jpg' %}" width="50" height="50" alt="profile_image" />
+{% endif %}
+{% endif %}
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-sm-1" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+{% if control_user %}
+                <li class="nav-item mt-1 mt-sm-0" onclick="changePage(event, '/control/')">
+                    <button class="ft_button ft_button-primary w-100">{% trans 'main_profile' %}</button>
+                </li>
+                <li class="nav-item mt-1 mt-sm-0 ms-sm-1" onclick="changePage(event, '/control/', 'friends/')">
+                    <button class="ft_button ft_button-primary w-100">{% trans 'main_friend_main' %}</button>
+                </li>
+                <li class="nav-item mt-1 mt-sm-0 ms-sm-1" onclick="changePage(event, '/game/', 'index/', false)">
+                    <button class="ft_button ft_button-primary w-100">{% trans 'main_game_main' %}</button>
+                </li>
+{% else %}
+                </li>
+                <li class="nav-item mt-1 mt-sm-0 ms-sm-1">
+                    <button class="ft_button ft_button-primary w-100" data-bs-toggle="modal" data-bs-target="#changeLanguageModal">{% trans 'main_change_lang' %}</button>
+                </li>
+{% endif %}
+            </ul>
+            <ul class="navbar-nav">
+{% if not control_user %}
+                <li class="nav-item mt-1 mt-sm-0 ms-sm-1">
+                    <button class="ft_button ft_button-success w-100" data-bs-toggle="modal" data-bs-target="#signUpModal">{% trans 'main_sign_up' %}</button>
+                </li>
+                <li class="nav-item mt-1 mt-sm-0 ms-sm-1">
+                    <button class="ft_button ft_button-success w-100" data-bs-toggle="modal" data-bs-target="#signInModal">{% trans 'main_sign_in' %}</button>
+                </li>
+                <li class="nav-item mt-1 mt-sm-0 ms-sm-1">
+                    <form class="form" onsubmit="signWithFT(event)">
+{% load static %}
+                        <button type="submit" class="ft_button ft_button-light w-100 d-flex flex-row justify-content-center align-items-center">
+                            <div>{% trans 'main_sign_with' %}</div>
+                            <img class="ms-2 align-middle ft_logo" height="15" src="{% static 'images/forty-two-logo.svg' %}" alt="42 Logo">
+                        </button>
+                    </form>
+                </li>
+{% else %}
+                <li class="nav-item mt-1 mt-sm-0 ms-sm-1">
+                    <button class="ft_button ft_button-danger w-100" onclick="signOut(event)">{% trans 'main_sign_out' %}</button>
+                </li>
+{% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endif %}

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+{% csrf_token %}
+<body class="d-flex flex-column vh-100 starfield">
+    <div id="navbar" class="sticky-top"></div>
+    <div id="content"></div>
+    <div id="modal"></div>
+    <div id="footer" class="footer mt-auto"></div>
+</body>
+{% endblock %}

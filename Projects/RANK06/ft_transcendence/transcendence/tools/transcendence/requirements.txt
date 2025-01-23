@@ -1,0 +1,14 @@
+django
+channels
+channels-redis
+websockets
+uvicorn
+whitenoise
+pillow
+psycopg2
+regex
+requests
+pyotp
+qrcode
+djangorestframework
+djangorestframework-simplejwt

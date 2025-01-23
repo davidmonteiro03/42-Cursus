@@ -1,0 +1,63 @@
+{% load i18n %}
+{% if not request.session.two_fa_required and not control_user.null_password %}
+<div class="d-flex flex-column justify-content-center align-items-center h-100 mx-2">
+{% if not control_user %}
+    <span class="welcome_box">{% trans 'main_welcome' %}</span>
+    {% else %}
+    <span class="welcome_box">{% blocktrans with first_name=control_user.first_name last_name=control_user.last_name %}main_session_welcome {{ first_name }} {{ last_name }}{% endblocktrans %}</span>
+{% if control_user.matches %}
+    <div id="stats"></div>
+    <span class="ft_span text-start mt-3 w-100 neon_effects">{% trans 'main_game_matches' %}</span>
+    <table class="table table-striped table-bordered w-100 mt-3">
+        <thead>
+            <tr>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_date' %}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_type' %}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_opponent' %}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_place' %}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_result' %}</code>
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+{% for m in control_user.matches %}
+            <tr class="h-100">
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.day }}/{{ m.month }}</code>
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.hours }}:{{ m.minutes }}:{{ m.seconds }}</code>
+                </td>
+                <td class="text-center align-middle">
+                    {% if not m.tournament_id %}
+                        <code class="ft_mini_span ft_text-light px-1">{% trans 'main_game_match' %}</code>
+                    {% else %}
+                    <a class="text-decoration-none" onclick="changePage(event, '/game/', 'tournament-{{ m.tournament_id }}/')">
+                        <code class="ft_mini_span ft_text-light">{% trans 'main_game_tournament' %}</code>
+                    </a>
+                    {% endif %}
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.opponent }}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-light px-1">{{ m.place }}</code>
+                </td>
+                <td class="text-center align-middle">
+                    <code class="ft_mini_span ft_text-{% if m.win %}success{% else %}danger{% endif %} px-1">{{ m.score_home }} - {{ m.score_away }}</code>
+                </td>
+            </tr>
+{% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endif %}
+</div>
+{% endif %}
