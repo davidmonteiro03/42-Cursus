@@ -34,7 +34,7 @@
 				</a>
 			</td>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">
+				<a href="https://github.com/davidmonteiro03/42cursus-ft_printf">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" width="125"/>
 				</a>
 			</td>
