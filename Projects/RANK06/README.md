@@ -9,7 +9,7 @@
 		</tr>
 		<tr>
 			<td>
-				<a href="https://github.com/davidmonteiro03/ft_transcendence">
+				<a href="https://github.com/davidmonteiro03/42-Cursus-ft_transcendence">
 					<img src="https://github.com/ayogun/42-project-badges/blob/main/badges/ft_transcendencem.png" width="125"/>
 				</a>
 			</td>
