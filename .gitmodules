@@ -1,6 +1,3 @@
 [submodule "Projects/RANK06/ft_transcendence"]
 	path = Projects/RANK06/ft_transcendence
 	url = git@github.com:davidmonteiro03/ft_transcendence.git
-[submodule "Projects/RANK00/libft"]
-	path = Projects/RANK00/libft
-	url = git@github.com:davidmonteiro03/42-Cursus-libft.git
