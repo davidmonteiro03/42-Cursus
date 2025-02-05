@@ -1,5 +1,5 @@
-# 42-Cursus
-I joined <a href="https://github.com/davidmonteiro03/42-Cursus">42-Cursus</a> on October 2, 2023, from Piscine #7 of 42 Porto.
+# 42cursus
+I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on October 2, 2023, from Piscine #7 of 42 Porto.
 ## Projects
 <div align="center">
 	<table>
