@@ -13,12 +13,12 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
 		<!-- RANK 00 -->
 		<tr>
 			<td rowspan="1">
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK00">
+				<a href="https://github.com/davidmonteiro03/42cursus/tree/main/Projects/RANK00">
 					<img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" width="90"/>
 				</a>
 			</td>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus-libft">
+				<a href="https://github.com/davidmonteiro03/42cursus-libft">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png" width="125"/>
 				</a>
 			</td>
@@ -31,12 +31,12 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
 		<!-- RANK 01 -->
 		<tr>
 			<td rowspan="3">
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01">
+				<a href="https://github.com/davidmonteiro03/42cursus/tree/main/Projects/RANK01">
 					<img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="90"/>
 				</a>
 			</td>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK01/ft_printf">
+				<a href="https://github.com/davidmonteiro03/42cursus-ft_printf">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" width="125"/>
 				</a>
 			</td>
