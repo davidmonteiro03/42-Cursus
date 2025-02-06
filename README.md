@@ -30,9 +30,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         <!-- RANK 01 -->
         <tr>
             <td rowspan="3">
-                <a href="https://github.com/davidmonteiro03/42cursus/tree/main/Projects/RANK01">
-                    <img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="90"/>
             </td>
             <td>
                 <a href="https://github.com/davidmonteiro03/42cursus-ft_printf">
@@ -70,12 +68,10 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         <!-- RANK 02 -->
         <tr>
             <td rowspan="3">
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02">
-                    <img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/push_swap">
+                <a href="https://github.com/davidmonteiro03/42cursus-push_swap">
                     <img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/push_swapm.png" width="125"/>
                 </a>
             </td>
@@ -87,7 +83,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/minitalk">
+                <a href="https://github.com/davidmonteiro03/42cursus-minitalk">
                     <img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/minitalkm.png" width="125"/>
                 </a>
             </td>
@@ -99,7 +95,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK02/so_long">
+                <a href="https://github.com/davidmonteiro03/42cursus-so_long">
                     <img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/so_longm.png" width="125"/>
                 </a>
             </td>
@@ -112,12 +108,10 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         <!-- RANK 03 -->
         <tr>
             <td rowspan="2">
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03">
-                    <img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/philo">
+                <a href="https://github.com/davidmonteiro03/42cursus-philosophers">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/philosopherse.png" width="125"/>
                 </a>
             </td>
@@ -129,7 +123,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK03/minishell">
+                <a href="https://github.com/davidmonteiro03/42cursus-minishell">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/minishellm.png" width="125"/>
                 </a>
             </td>
@@ -142,12 +136,10 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         <!-- RANK 04 -->
         <tr>
             <td rowspan="3">
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04">
-                    <img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/NetPractice">
+                <a href="https://github.com/davidmonteiro03/42cursus-netpractice">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/netpracticem.png" width="125"/>
                 </a>
             </td>
@@ -159,7 +151,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/CPP Modules">
+                <a href="https://github.com/davidmonteiro03/42cursus-cpp-modules">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppm.png" width="125"/>
                 </a>
             </td>
@@ -171,7 +163,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK04/cub3D">
+                <a href="https://github.com/davidmonteiro03/42cursus-cub3d">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cub3dm.png" width="125"/>
                 </a>
             </td>
@@ -184,12 +176,10 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         <!-- RANK 05 -->
         <tr>
             <td rowspan="3">
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05">
-                    <img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/CPP Modules">
+                <a href="https://github.com/davidmonteiro03/42cursus-cpp-modules">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppm.png" width="125"/>
                 </a>
             </td>
@@ -201,7 +191,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/Inception">
+                <a href="https://github.com/davidmonteiro03/42cursus-inception">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/inceptionm.png" width="125"/>
                 </a>
             </td>
@@ -213,7 +203,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK05/ft_irc">
+                <a href="https://github.com/davidmonteiro03/42cursus-ft_irc">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_ircm.png" width="125"/>
                 </a>
             </td>
@@ -226,12 +216,10 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         <!-- RANK 06 -->
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Projects/RANK06">
-                    <img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus-ft_transcendence">
+                <a href="https://github.com/davidmonteiro03/42cursus-ft_transcendence">
                     <img src="https://github.com/ayogun/42-project-badges/blob/main/badges/ft_transcendencem.png" width="125"/>
                 </a>
             </td>
