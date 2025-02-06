@@ -1,5 +1,5 @@
 # 42 Common Core
-I joined <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> on October 2, 2023, from Piscine #7 of 42 Porto.
+I started <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> after completing the 42 Piscine on 13 September 2023.
 
 ## Projects
 <div align="center">
