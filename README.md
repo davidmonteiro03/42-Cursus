@@ -244,16 +244,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-common-core">42 Common C
         <!-- RANK 02 -->
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-02">
-                    <img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="90"/>
             </td>
             <td>
                 <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
             </td>
             <td>2023-10-23</td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-02">
+                <a href="https://github.com/davidmonteiro03/42-common-core-exam-rank-02">
                     <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
                 </a>
             </td>
@@ -261,16 +259,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-common-core">42 Common C
         <!-- RANK 03 -->
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
-                    <img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
             </td>
             <td>
                 <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
             </td>
             <td>2023-11-17</td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-03">
+                <a href="https://github.com/davidmonteiro03/42-common-core-exam-rank-03">
                     <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
                 </a>
             </td>
@@ -278,16 +274,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-common-core">42 Common C
         <!-- RANK 04 -->
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-04">
-                    <img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
             </td>
             <td>
                 <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
             </td>
             <td>2023-12-22</td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-04">
+                <a href="https://github.com/davidmonteiro03/42-common-core-exam-rank-04">
                     <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
                 </a>
             </td>
@@ -295,16 +289,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-common-core">42 Common C
         <!-- RANK 05 -->
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-05">
-                    <img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
             </td>
             <td>
                 <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
             </td>
             <td>2024-01-26</td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-05">
+                <a href="https://github.com/davidmonteiro03/42-common-core-exam-rank-05">
                     <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
                 </a>
             </td>
@@ -312,16 +304,14 @@ I joined <a href="https://github.com/davidmonteiro03/42-common-core">42 Common C
         <!-- RANK 06 -->
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-06">
-                    <img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
-                </a>
+                <img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
             </td>
             <td>
                 <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
             </td>
             <td>2024-04-19</td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42-Cursus/tree/main/Exams/EXAM-RANK-06">
+                <a href="https://github.com/davidmonteiro03/42-common-core-exam-rank-06">
                     <img src="https://cdn-icons-png.flaticon.com/512/845/845646.png" width="75"/>
                 </a>
             </td>
