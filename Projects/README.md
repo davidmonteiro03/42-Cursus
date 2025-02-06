@@ -16,7 +16,7 @@
 				</a>
 			</td>
 			<td>
-				<a href="https://github.com/davidmonteiro03/42-Cursus-libft">
+				<a href="https://github.com/davidmonteiro03/42cursus-libft">
 					<img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png" width="125"/>
 				</a>
 			</td>
