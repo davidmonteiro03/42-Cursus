@@ -1,5 +1,5 @@
-# 42cursus
-I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on October 2, 2023, from Piscine #7 of 42 Porto.
+# 42 Common Core
+I joined <a href="https://github.com/davidmonteiro03/42-common-core">42 Common Core</a> on October 2, 2023, from Piscine #7 of 42 Porto.
 
 ## Projects
 <div align="center">
@@ -17,7 +17,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
                 <img src="https://freepngimg.com/thumb/numbers/9-2-0-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-libft">
+                <a href="https://github.com/davidmonteiro03/42-common-core-libft">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/libftm.png" width="125"/>
                 </a>
             </td>
@@ -33,7 +33,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
                 <img src="https://freepngimg.com/thumb/numbers/7-2-1-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-ft_printf">
+                <a href="https://github.com/davidmonteiro03/42-common-core-ft_printf">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_printfe.png" width="125"/>
                 </a>
             </td>
@@ -45,7 +45,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-get_next_line">
+                <a href="https://github.com/davidmonteiro03/42-common-core-get_next_line">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/get_next_linem.png" width="125"/>
                 </a>
             </td>
@@ -71,7 +71,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
                 <img src="https://freepngimg.com/thumb/numbers/2-2-2-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-push_swap">
+                <a href="https://github.com/davidmonteiro03/42-common-core-push_swap">
                     <img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/push_swapm.png" width="125"/>
                 </a>
             </td>
@@ -83,7 +83,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-minitalk">
+                <a href="https://github.com/davidmonteiro03/42-common-core-minitalk">
                     <img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/minitalkm.png" width="125"/>
                 </a>
             </td>
@@ -95,7 +95,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-so_long">
+                <a href="https://github.com/davidmonteiro03/42-common-core-so_long">
                     <img src="https://raw.githubusercontent.com/byaliego/42-project-badges/main/badges/so_longm.png" width="125"/>
                 </a>
             </td>
@@ -111,7 +111,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
                 <img src="https://freepngimg.com/thumb/numbers/5-2-3-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-philosophers">
+                <a href="https://github.com/davidmonteiro03/42-common-core-philosophers">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/philosopherse.png" width="125"/>
                 </a>
             </td>
@@ -123,7 +123,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-minishell">
+                <a href="https://github.com/davidmonteiro03/42-common-core-minishell">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/minishellm.png" width="125"/>
                 </a>
             </td>
@@ -139,7 +139,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
                 <img src="https://freepngimg.com/thumb/numbers/1-2-4-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-netpractice">
+                <a href="https://github.com/davidmonteiro03/42-common-core-netpractice">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/netpracticem.png" width="125"/>
                 </a>
             </td>
@@ -151,7 +151,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-cpp-modules">
+                <a href="https://github.com/davidmonteiro03/42-common-core-cpp-modules">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppm.png" width="125"/>
                 </a>
             </td>
@@ -163,7 +163,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-cub3d">
+                <a href="https://github.com/davidmonteiro03/42-common-core-cub3d">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cub3dm.png" width="125"/>
                 </a>
             </td>
@@ -179,7 +179,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
                 <img src="https://freepngimg.com/thumb/numbers/11-2-5-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-cpp-modules">
+                <a href="https://github.com/davidmonteiro03/42-common-core-cpp-modules">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/cppm.png" width="125"/>
                 </a>
             </td>
@@ -191,7 +191,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-inception">
+                <a href="https://github.com/davidmonteiro03/42-common-core-inception">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/inceptionm.png" width="125"/>
                 </a>
             </td>
@@ -203,7 +203,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
         </tr>
         <tr>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-ft_irc">
+                <a href="https://github.com/davidmonteiro03/42-common-core-ft_irc">
                     <img src="https://github.com/byaliego/42-project-badges/blob/main/badges/ft_ircm.png" width="125"/>
                 </a>
             </td>
@@ -219,7 +219,7 @@ I joined <a href="https://github.com/davidmonteiro03/42cursus">42cursus</a> on O
                 <img src="https://freepngimg.com/thumb/numbers/8-2-6-number-png-thumb.png" width="90"/>
             </td>
             <td>
-                <a href="https://github.com/davidmonteiro03/42cursus-ft_transcendence">
+                <a href="https://github.com/davidmonteiro03/42-common-core-ft_transcendence">
                     <img src="https://github.com/ayogun/42-project-badges/blob/main/badges/ft_transcendencem.png" width="125"/>
                 </a>
             </td>
